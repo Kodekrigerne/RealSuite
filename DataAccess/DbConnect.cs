@@ -5,7 +5,7 @@ namespace DataAccess
     internal static class DbConnect
     {
         private static readonly string _password = GetPassword();
-        private static readonly string _connectionString = $"Server = mssql11.unoeuro.com; Database = kodekrigerne_dk_db_realsuite; User Id = kodekrigerne_dk; Password = {_password}; Trusted_Connection = True; TrustServerCertificate=True;";
+        private static readonly string _connectionString = $"Server=mssql11.unoeuro.com; Database=kodekrigerne_dk_db_realsuite; User Id=kodekrigerne_dk; Password={_password}; TrustServerCertificate=True;";
         private static readonly SqlConnection _connection = new(_connectionString);
 
         private static string GetPassword()
