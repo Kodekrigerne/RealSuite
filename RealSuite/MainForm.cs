@@ -5,6 +5,7 @@ namespace RealSuite
         public MainForm()
         {
             InitializeComponent();
+            Console.WriteLine();
         }
     }
 }

@@ -2,29 +2,29 @@
 {
     public class Property
     {
-        public Guid Guid { get; }
+        public int Id { get; }
         public string StreetName { get; set; }
         public int StreetNumber { get; set; }
-        public string? Apartment { get; set; }
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
         public int BuildYear { get; set; }
         public int SquareMeters { get; set; }
-        public Seller Seller { get; set; }
+        public int SellerId { get; set; }
         public double Price { get; set; }
         public double? PriceAssessment { get; set; } = null;
+        public int RealtorId { get; set; }
 
-        public Property(string streetName, int streetNumber, string? apartment, string zipCode, int buildYear,
-            int squareMeters, Seller seller, double price)
+        public Property(int id, string streetName, int streetNumber, int zipCode, int buildYear,
+            int squareMeters, int sellerId, double price, int realtorId)
         {
-            Guid = Guid.NewGuid();
+            Id = id;
             StreetName = streetName;
             StreetNumber = streetNumber;
-            Apartment = apartment;
             ZipCode = zipCode;
             BuildYear = buildYear;
             SquareMeters = squareMeters;
-            Seller = seller;
+            SellerId = sellerId;
             Price = price;
+            RealtorId = realtorId;
         }
     }
 }
