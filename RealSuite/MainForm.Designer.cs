@@ -28,12 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            splitContainer = new SplitContainer();
+            ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
+            splitContainer.SuspendLayout();
+            SuspendLayout();
+            // 
+            // splitContainer
+            // 
+            splitContainer.Dock = DockStyle.Fill;
+            splitContainer.Location = new Point(0, 0);
+            splitContainer.Name = "splitContainer";
+            splitContainer.Size = new Size(1132, 603);
+            splitContainer.SplitterDistance = 200;
+            splitContainer.TabIndex = 0;
+            // 
+            // MainForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1132, 603);
+            Controls.Add(splitContainer);
+            MinimumSize = new Size(1150, 650);
+            Name = "MainForm";
+            Text = "RealSuite";
+            ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
+            splitContainer.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private SplitContainer splitContainer;
+        private UserControls.AddSellerPage addSellerPage;
     }
 }
