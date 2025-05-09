@@ -13,6 +13,9 @@
 
         public Person(int id, string firstName, string lastName, string cprNumber, string streetName, int streetNumber, int zipCode, string phoneNumber)
         {
+            if (zipCode < 1000 || zipCode > 9999) throw new ArgumentOutOfRangeException(nameof(zipCode));
+            if (!cprNumber.All(char.IsDigit) || cprNumber.Length != 10) throw new ArgumentException(nameof(cprNumber));
+
             Id = id;
             FirstName = firstName;
             LastName = lastName;
