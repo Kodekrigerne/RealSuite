@@ -12,9 +12,12 @@
         public double Price { get; set; }
         public double? PriceAssessment { get; set; } = null;
         public int RealtorId { get; set; }
+        public DateTime DateListed { get; set; }
+        public DateTime? DateSold { get; set; }
+        public bool Sold { get; set; }
 
         public Property(int id, string streetName, int streetNumber, int zipCode, int buildYear,
-            int squareMeters, int sellerId, double price, int realtorId)
+            int squareMeters, int sellerId, double price, int realtorId, DateTime dateListed, bool sold)
         {
             Id = id;
             StreetName = streetName;
@@ -25,6 +28,8 @@
             SellerId = sellerId;
             Price = price;
             RealtorId = realtorId;
+            DateListed = dateListed;
+            Sold = sold;
         }
     }
 }

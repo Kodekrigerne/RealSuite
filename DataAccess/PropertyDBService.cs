@@ -7,7 +7,7 @@ namespace DataAccess
     {
         public DataTable GetProperties()
         {
-            string query = "SELECT * FROM Property";
+            string query = "SELECT * FROM Properties";
             var dataTable = new DataTable();
 
             try
