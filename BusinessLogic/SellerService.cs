@@ -13,8 +13,7 @@ namespace BusinessLogic
             if (VerifySeller(sellerDTO) == true)
             {
                 var rowsAffected = sellerDBService.CreateSeller(sellerDTO);
-                if (rowsAffected == true) return true;
-                else return false;
+                return rowsAffected;
             }
             else return false;
         }

@@ -42,7 +42,7 @@ namespace RealSuite.UserControls
 
         private void fornavnTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!fornavnTextBox.Text.Any(char.IsLetter) || fornavnTextBox.Text == "")
+            if (!fornavnTextBox.Text.All(char.IsLetter) || fornavnTextBox.Text == "")
             {
                 fornavnCheckLabel.Text = "O";
                 fornavnCheckLabel.ForeColor = Color.Red;
