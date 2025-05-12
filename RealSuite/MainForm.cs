@@ -4,30 +4,32 @@ namespace RealSuite
 {
     public partial class MainForm : Form
     {
-        private readonly FrontPage _frontPage = new();
-        private readonly AddSellerPage _addSellerPage = new();
-        private readonly AddPropertyPage _addPropertyPage = new();
-        private readonly ViewPropertiesPage _viewPropertiesPage = new();
-        private readonly ViewSellersPage _viewSellersPage = new();
-        private readonly UpdatePropertyPage _updatePropertyPage = new();
-        private readonly UpdateSellerPage _updateSellerPage = new();
+        private Dictionary<string, UserControl> _pages = [];
 
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
-            _frontPage.Visible = true;
+            _pages["front"].Visible = true;
         }
 
         private void InitializePages()
         {
-            PageSetup(_frontPage);
-            PageSetup(_addSellerPage);
-            PageSetup(_addPropertyPage);
-            PageSetup(_viewPropertiesPage);
-            PageSetup(_viewSellersPage);
-            PageSetup(_updatePropertyPage);
-            PageSetup(_updateSellerPage);
+            _pages = new Dictionary<string, UserControl>
+            {
+                {"front", new FrontPage() },
+                {"addProperty", new AddPropertyPage() },
+                {"viewProperties", new ViewPropertiesPage() },
+                {"updateProperty", new UpdatePropertyPage() },
+                {"addSeller", new AddSellerPage() },
+                {"viewSellers", new ViewSellersPage() },
+                {"updateSeller", new UpdateSellerPage() },
+            };
+
+            foreach (var page in _pages)
+            {
+                PageSetup(page.Value);
+            }
         }
 
         private void PageSetup(UserControl page)
@@ -35,6 +37,18 @@ namespace RealSuite
             page.Visible = false;
             page.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(page);
+        }
+
+        private void NavigateTo(string pageKey)
+        {
+            if (!_pages.ContainsKey(pageKey)) throw new ArgumentException(nameof(pageKey));
+
+            foreach (var page in _pages)
+            {
+                page.Value.Visible = false;
+            }
+            _pages[pageKey].Visible = true;
+            _pages[pageKey].Focus();
         }
     }
 }
