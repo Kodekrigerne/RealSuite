@@ -1,0 +1,45 @@
+﻿using Microsoft.Data.SqlClient;
+using Models.DTOModels;
+
+namespace DataAccess
+{
+    public class SellerDBSerivce
+    {
+        public bool CreateSeller(SellerDTO sellerDTO)
+        {
+            string query = "INSERT INTO Sellers(FirstName, LastName, CprNumber, StreetName, StreetNumber, ZipCode, PhoneNumber) " +
+                           "VALUES(@FirstName, @LastName, @CprNumber, @StreetName, @StreetNumber, @ZipCode, @PhoneNumber)";
+
+            int rowsAffected = 0;
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@FirstName", sellerDTO.FirstName);
+                    command.Parameters.AddWithValue("@LastName", sellerDTO.LastName);
+                    command.Parameters.AddWithValue("@CprNumber", sellerDTO.CprNumber);
+                    command.Parameters.AddWithValue("@StreetName", sellerDTO.StreetName);
+                    command.Parameters.AddWithValue("@StreetNumber", sellerDTO.StreetNumber);
+                    command.Parameters.AddWithValue("@ZipCode", sellerDTO.ZipCode);
+                    command.Parameters.AddWithValue("@PhoneNumber", sellerDTO.PhoneNumber);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Seller information:" + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+
+            if (rowsAffected == 0) return false;
+            else return true;
+        }
+    }
+}
