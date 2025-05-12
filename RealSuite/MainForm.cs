@@ -16,7 +16,7 @@ namespace RealSuite
         {
             InitializeComponent();
             InitializePages();
-            _frontPage.Visible = true;
+            _addSellerPage.Visible = true;
         }
 
         private void InitializePages()
