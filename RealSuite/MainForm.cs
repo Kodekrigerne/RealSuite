@@ -98,5 +98,17 @@ namespace RealSuite
             LogoPanel.BackgroundImage = Properties.Resources.FrontLogo;
             LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
+        private void LogoPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            LogoPanel.BackgroundImage = Properties.Resources.FrontLogoClick;
+            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void LogoPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            LogoPanel.BackgroundImage = Properties.Resources.FrontLogoHighlight;
+            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+        }
     }
 }

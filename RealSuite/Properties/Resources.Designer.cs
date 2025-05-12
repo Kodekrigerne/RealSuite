@@ -73,6 +73,16 @@ namespace RealSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FrontLogoClick {
+            get {
+                object obj = ResourceManager.GetObject("FrontLogoClick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FrontLogoHighlight {
             get {
                 object obj = ResourceManager.GetObject("FrontLogoHighlight", resourceCulture);
