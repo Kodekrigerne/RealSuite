@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Models.DTOModels;
+﻿using Models.DTOModels;
 
 namespace BusinessLogic
 {
@@ -32,7 +31,7 @@ namespace BusinessLogic
             {
                 return false;
             }
-            if (!Regex.IsMatch(personDTO.PhoneNumber.ToString(), @"^((\+|00)\d{2})?\d{8}$"))
+            if (!personDTO.PhoneNumber.All(char.IsDigit) && personDTO.PhoneNumber.Length != 8)
             {
                 return false;
             }
