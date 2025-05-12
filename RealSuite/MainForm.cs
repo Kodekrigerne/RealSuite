@@ -1,29 +1,30 @@
+using RealSuite.Enums;
 using RealSuite.UserControls;
 
 namespace RealSuite
 {
     public partial class MainForm : Form
     {
-        private Dictionary<string, UserControl> _pages = [];
+        private Dictionary<Pages, UserControl> _pages = [];
 
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
-            _pages["front"].Visible = true;
+            _pages[Pages.Front].Visible = true;
         }
 
         private void InitializePages()
         {
-            _pages = new Dictionary<string, UserControl>
+            _pages = new Dictionary<Pages, UserControl>
             {
-                {"front", new FrontPage() },
-                {"addProperty", new AddPropertyPage() },
-                {"viewProperties", new ViewPropertiesPage() },
-                {"updateProperty", new UpdatePropertyPage() },
-                {"addSeller", new AddSellerPage() },
-                {"viewSellers", new ViewSellersPage() },
-                {"updateSeller", new UpdateSellerPage() },
+                {Pages.Front, new FrontPage() },
+                {Pages.AddProperty, new AddPropertyPage() },
+                {Pages.ViewProperties, new ViewPropertiesPage() },
+                {Pages.UpdateProperty, new UpdatePropertyPage() },
+                {Pages.AddSeller, new AddSellerPage() },
+                {Pages.ViewSellers, new ViewSellersPage() },
+                {Pages.UpdateSellers, new UpdateSellerPage() },
             };
 
             foreach (var page in _pages)
@@ -39,7 +40,7 @@ namespace RealSuite
             splitContainer.Panel2.Controls.Add(page);
         }
 
-        private void NavigateTo(string pageKey)
+        private void NavigateTo(Pages pageKey)
         {
             if (!_pages.ContainsKey(pageKey)) throw new ArgumentException(nameof(pageKey));
 
@@ -61,36 +62,36 @@ namespace RealSuite
             if (sender is Button button) button.BackColor = ColorTranslator.FromHtml("#79A0EB");
         }
 
-        private void viewPropertiesButton_Click(object sender, EventArgs e)
+        private void ViewPropertiesButton_Click(object sender, EventArgs e)
         {
-            NavigateTo("viewProperties");
+            NavigateTo(Pages.ViewProperties);
         }
 
-        private void addPropertyButton_Click(object sender, EventArgs e)
+        private void AddPropertyButton_Click(object sender, EventArgs e)
         {
-            NavigateTo("addProperty");
+            NavigateTo(Pages.AddProperty);
         }
 
-        private void viewSellersButton_Click(object sender, EventArgs e)
+        private void ViewSellersButton_Click(object sender, EventArgs e)
         {
-            NavigateTo("viewSellers");
+            NavigateTo(Pages.ViewSellers);
         }
 
-        private void panel1_Click(object sender, EventArgs e)
+        private void LogoPanel_Click(object sender, EventArgs e)
         {
-            NavigateTo("front");
+            NavigateTo(Pages.Front);
         }
 
-        private void panel1_MouseEnter(object sender, EventArgs e)
+        private void LogoPanel_MouseEnter(object sender, EventArgs e)
         {
-            panel1.BackgroundImage = Properties.Resources.FrontLogoHighlight;
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            LogoPanel.BackgroundImage = Properties.Resources.FrontLogoHighlight;
+            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
-        private void panel1_MouseLeave(object sender, EventArgs e)
+        private void LogoPanel_MouseLeave(object sender, EventArgs e)
         {
-            panel1.BackgroundImage = Properties.Resources.FrontLogo;
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            LogoPanel.BackgroundImage = Properties.Resources.FrontLogo;
+            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
         }
     }
 }

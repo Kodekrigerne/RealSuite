@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             splitContainer = new SplitContainer();
-            label1 = new Label();
-            panel1 = new Panel();
+            PropertiesLabel = new Label();
+            LogoPanel = new Panel();
             addSellerButton = new Button();
             viewSellersButton = new Button();
             addPropertyButton = new Button();
             viewPropertiesButton = new Button();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            label2 = new Label();
+            BgPanelProperties = new Panel();
+            BgPanelSellers = new Panel();
+            SellersLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.SuspendLayout();
-            panel3.SuspendLayout();
+            BgPanelSellers.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer
@@ -50,56 +50,58 @@
             splitContainer.FixedPanel = FixedPanel.Panel1;
             splitContainer.IsSplitterFixed = true;
             splitContainer.Location = new Point(0, 0);
-            splitContainer.Margin = new Padding(3, 2, 3, 2);
             splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
             // 
             splitContainer.Panel1.BackColor = Color.FromArgb(79, 117, 184);
-            splitContainer.Panel1.Controls.Add(label1);
-            splitContainer.Panel1.Controls.Add(panel1);
+            splitContainer.Panel1.Controls.Add(PropertiesLabel);
+            splitContainer.Panel1.Controls.Add(LogoPanel);
             splitContainer.Panel1.Controls.Add(addSellerButton);
             splitContainer.Panel1.Controls.Add(viewSellersButton);
             splitContainer.Panel1.Controls.Add(addPropertyButton);
             splitContainer.Panel1.Controls.Add(viewPropertiesButton);
-            splitContainer.Panel1.Controls.Add(panel2);
-            splitContainer.Panel1.Controls.Add(panel3);
-            splitContainer.Size = new Size(992, 458);
-            splitContainer.SplitterDistance = 175;
+            splitContainer.Panel1.Controls.Add(BgPanelProperties);
+            splitContainer.Panel1.Controls.Add(BgPanelSellers);
+            splitContainer.Size = new Size(1134, 611);
+            splitContainer.SplitterDistance = 200;
+            splitContainer.SplitterWidth = 5;
             splitContainer.TabIndex = 0;
             // 
-            // label1
+            // PropertiesLabel
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(65, 92, 143);
-            label1.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(64, 96);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 22);
-            label1.TabIndex = 7;
-            label1.Text = "Huse";
+            PropertiesLabel.AutoSize = true;
+            PropertiesLabel.BackColor = Color.FromArgb(65, 92, 143);
+            PropertiesLabel.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PropertiesLabel.ForeColor = Color.White;
+            PropertiesLabel.Location = new Point(62, 128);
+            PropertiesLabel.Name = "PropertiesLabel";
+            PropertiesLabel.Size = new Size(84, 27);
+            PropertiesLabel.TabIndex = 7;
+            PropertiesLabel.Text = "Boliger";
             // 
-            // panel1
+            // LogoPanel
             // 
-            panel1.BackgroundImage = Properties.Resources.FrontLogo;
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.Location = new Point(45, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(81, 81);
-            panel1.TabIndex = 6;
-            panel1.Click += panel1_Click;
-            panel1.MouseEnter += panel1_MouseEnter;
-            panel1.MouseLeave += panel1_MouseLeave;
+            LogoPanel.BackgroundImage = Properties.Resources.FrontLogo;
+            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            LogoPanel.Location = new Point(51, 5);
+            LogoPanel.Margin = new Padding(3, 4, 3, 4);
+            LogoPanel.Name = "LogoPanel";
+            LogoPanel.Size = new Size(93, 108);
+            LogoPanel.TabIndex = 6;
+            LogoPanel.Click += LogoPanel_Click;
+            LogoPanel.MouseEnter += LogoPanel_MouseEnter;
+            LogoPanel.MouseLeave += LogoPanel_MouseLeave;
             // 
             // addSellerButton
             // 
             addSellerButton.BackColor = Color.FromArgb(121, 160, 235);
             addSellerButton.Font = new Font("Microsoft YaHei", 9.75F);
             addSellerButton.ForeColor = Color.White;
-            addSellerButton.Location = new Point(21, 376);
+            addSellerButton.Location = new Point(24, 501);
+            addSellerButton.Margin = new Padding(3, 4, 3, 4);
             addSellerButton.Name = "addSellerButton";
-            addSellerButton.Size = new Size(138, 67);
+            addSellerButton.Size = new Size(158, 89);
             addSellerButton.TabIndex = 5;
             addSellerButton.Text = "Opret sælger";
             addSellerButton.UseVisualStyleBackColor = false;
@@ -111,13 +113,14 @@
             viewSellersButton.BackColor = Color.FromArgb(121, 160, 235);
             viewSellersButton.Font = new Font("Microsoft YaHei", 9.75F);
             viewSellersButton.ForeColor = Color.White;
-            viewSellersButton.Location = new Point(21, 303);
+            viewSellersButton.Location = new Point(24, 404);
+            viewSellersButton.Margin = new Padding(3, 4, 3, 4);
             viewSellersButton.Name = "viewSellersButton";
-            viewSellersButton.Size = new Size(138, 67);
+            viewSellersButton.Size = new Size(158, 89);
             viewSellersButton.TabIndex = 4;
-            viewSellersButton.Text = "Søg på sælger";
+            viewSellersButton.Text = "Se sælgere";
             viewSellersButton.UseVisualStyleBackColor = false;
-            viewSellersButton.Click += viewSellersButton_Click;
+            viewSellersButton.Click += ViewSellersButton_Click;
             viewSellersButton.MouseEnter += HighlightButton;
             viewSellersButton.MouseLeave += StopHighlightButton;
             // 
@@ -126,13 +129,14 @@
             addPropertyButton.BackColor = Color.FromArgb(121, 160, 235);
             addPropertyButton.Font = new Font("Microsoft YaHei", 9.75F);
             addPropertyButton.ForeColor = Color.White;
-            addPropertyButton.Location = new Point(21, 194);
+            addPropertyButton.Location = new Point(24, 259);
+            addPropertyButton.Margin = new Padding(3, 4, 3, 4);
             addPropertyButton.Name = "addPropertyButton";
-            addPropertyButton.Size = new Size(138, 67);
+            addPropertyButton.Size = new Size(158, 89);
             addPropertyButton.TabIndex = 2;
             addPropertyButton.Text = "Opret bolig";
             addPropertyButton.UseVisualStyleBackColor = false;
-            addPropertyButton.Click += addPropertyButton_Click;
+            addPropertyButton.Click += AddPropertyButton_Click;
             addPropertyButton.MouseEnter += HighlightButton;
             addPropertyButton.MouseLeave += StopHighlightButton;
             // 
@@ -141,61 +145,63 @@
             viewPropertiesButton.BackColor = Color.FromArgb(121, 160, 235);
             viewPropertiesButton.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             viewPropertiesButton.ForeColor = Color.White;
-            viewPropertiesButton.Location = new Point(21, 121);
+            viewPropertiesButton.Location = new Point(24, 161);
+            viewPropertiesButton.Margin = new Padding(3, 4, 3, 4);
             viewPropertiesButton.Name = "viewPropertiesButton";
-            viewPropertiesButton.Size = new Size(138, 67);
+            viewPropertiesButton.Size = new Size(158, 89);
             viewPropertiesButton.TabIndex = 1;
-            viewPropertiesButton.Text = "Søg på bolig";
+            viewPropertiesButton.Text = "Se boliger";
             viewPropertiesButton.UseVisualStyleBackColor = false;
-            viewPropertiesButton.Click += viewPropertiesButton_Click;
+            viewPropertiesButton.Click += ViewPropertiesButton_Click;
             viewPropertiesButton.MouseEnter += HighlightButton;
             viewPropertiesButton.MouseLeave += StopHighlightButton;
             // 
-            // panel2
+            // BgPanelProperties
             // 
-            panel2.BackColor = Color.FromArgb(65, 92, 143);
-            panel2.Location = new Point(9, 91);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(160, 177);
-            panel2.TabIndex = 7;
+            BgPanelProperties.BackColor = Color.FromArgb(65, 92, 143);
+            BgPanelProperties.Location = new Point(10, 121);
+            BgPanelProperties.Margin = new Padding(3, 4, 3, 4);
+            BgPanelProperties.Name = "BgPanelProperties";
+            BgPanelProperties.Size = new Size(183, 236);
+            BgPanelProperties.TabIndex = 7;
             // 
-            // panel3
+            // BgPanelSellers
             // 
-            panel3.BackColor = Color.FromArgb(65, 92, 143);
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(9, 276);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(160, 175);
-            panel3.TabIndex = 8;
+            BgPanelSellers.BackColor = Color.FromArgb(65, 92, 143);
+            BgPanelSellers.Controls.Add(SellersLabel);
+            BgPanelSellers.Location = new Point(10, 368);
+            BgPanelSellers.Margin = new Padding(3, 4, 3, 4);
+            BgPanelSellers.Name = "BgPanelSellers";
+            BgPanelSellers.Size = new Size(183, 233);
+            BgPanelSellers.TabIndex = 8;
             // 
-            // label2
+            // SellersLabel
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(65, 92, 143);
-            label2.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(43, 3);
-            label2.Name = "label2";
-            label2.Size = new Size(75, 22);
-            label2.TabIndex = 8;
-            label2.Text = "Sælgere";
+            SellersLabel.AutoSize = true;
+            SellersLabel.BackColor = Color.FromArgb(65, 92, 143);
+            SellersLabel.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SellersLabel.ForeColor = Color.White;
+            SellersLabel.Location = new Point(49, 4);
+            SellersLabel.Name = "SellersLabel";
+            SellersLabel.Size = new Size(93, 27);
+            SellersLabel.TabIndex = 8;
+            SellersLabel.Text = "Sælgere";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(992, 458);
+            ClientSize = new Size(1134, 611);
             Controls.Add(splitContainer);
-            Margin = new Padding(3, 2, 3, 2);
-            MinimumSize = new Size(1008, 497);
+            MinimumSize = new Size(1149, 647);
             Name = "MainForm";
             Text = "RealSuite";
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            BgPanelSellers.ResumeLayout(false);
+            BgPanelSellers.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -207,10 +213,10 @@
         private Button viewSellersButton;
         private Button addPropertyButton;
         private Button viewPropertiesButton;
-        private Panel panel1;
-        private Label label2;
-        private Label label1;
-        private Panel panel2;
-        private Panel panel3;
+        private Panel LogoPanel;
+        private Label SellersLabel;
+        private Label PropertiesLabel;
+        private Panel BgPanelProperties;
+        private Panel BgPanelSellers;
     }
 }
