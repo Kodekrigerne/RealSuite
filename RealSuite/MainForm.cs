@@ -50,5 +50,47 @@ namespace RealSuite
             _pages[pageKey].Visible = true;
             _pages[pageKey].Focus();
         }
+
+        private void HighlightButton(object sender, EventArgs e)
+        {
+            if (sender is Button button) button.BackColor = ColorTranslator.FromHtml("#9BB7ED");
+        }
+
+        private void StopHighlightButton(object sender, EventArgs e)
+        {
+            if (sender is Button button) button.BackColor = ColorTranslator.FromHtml("#79A0EB");
+        }
+
+        private void viewPropertiesButton_Click(object sender, EventArgs e)
+        {
+            NavigateTo("viewProperties");
+        }
+
+        private void addPropertyButton_Click(object sender, EventArgs e)
+        {
+            NavigateTo("addProperty");
+        }
+
+        private void viewSellersButton_Click(object sender, EventArgs e)
+        {
+            NavigateTo("viewSellers");
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            NavigateTo("front");
+        }
+
+        private void panel1_MouseEnter(object sender, EventArgs e)
+        {
+            panel1.BackgroundImage = Properties.Resources.FrontLogoHighlight;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void panel1_MouseLeave(object sender, EventArgs e)
+        {
+            panel1.BackgroundImage = Properties.Resources.FrontLogo;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+        }
     }
 }
