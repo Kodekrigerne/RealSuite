@@ -13,8 +13,8 @@ namespace RealSuite
         {
             InitializeComponent();
             InitializePages();
-            NavigateTo(Pages.Front);
             _currentPage = _pages[Pages.Front];
+            NavigateTo(Pages.Front);
         }
 
         private void InitializePages()
@@ -29,7 +29,6 @@ namespace RealSuite
                 {Pages.ViewSellers, new ViewSellersPage() },
                 {Pages.UpdateSellers, new UpdateSellerPage() },
             };
-
             foreach (var page in _pages)
             {
                 PageSetup(page.Value);
@@ -51,7 +50,7 @@ namespace RealSuite
 
             foreach (var otherPage in _pages)
             {
-                otherPage.Value.Visible = false;
+                if (otherPage.Value != page) otherPage.Value.Visible = false;
             }
 
             page.Visible = true;
