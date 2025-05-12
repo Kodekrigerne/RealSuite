@@ -1,9 +1,11 @@
 ﻿using BusinessLogic;
 using Models.DTOModels;
 
+using RealSuite.Interfaces;
+
 namespace RealSuite.UserControls
 {
-    public partial class AddSellerPage : UserControl
+    public partial class AddSellerPage : UserControl, IClearable
     {
         SellerService sellerService = new SellerService();
 
@@ -171,5 +173,7 @@ namespace RealSuite.UserControls
             }
             else tilføjButton.Enabled = false;
         }
+
+        public void Clear() { }
     }
 }
