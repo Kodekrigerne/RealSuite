@@ -1,4 +1,5 @@
 using RealSuite.Enums;
+using RealSuite.Interfaces;
 using RealSuite.UserControls;
 
 namespace RealSuite
@@ -6,12 +7,14 @@ namespace RealSuite
     public partial class MainForm : Form
     {
         private Dictionary<Pages, UserControl> _pages = [];
+        private UserControl _currentPage;
 
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
-            _pages[Pages.Front].Visible = true;
+            NavigateTo(Pages.Front);
+            _currentPage = _pages[Pages.Front];
         }
 
         private void InitializePages()
@@ -42,14 +45,18 @@ namespace RealSuite
 
         private void NavigateTo(Pages pageKey)
         {
-            if (!_pages.ContainsKey(pageKey)) throw new ArgumentException(nameof(pageKey));
+            if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
 
-            foreach (var page in _pages)
+            if (_currentPage is IClearable clearablePage) clearablePage.Clear();
+
+            foreach (var otherPage in _pages)
             {
-                page.Value.Visible = false;
+                otherPage.Value.Visible = false;
             }
-            _pages[pageKey].Visible = true;
-            _pages[pageKey].Focus();
+
+            page.Visible = true;
+            page.Focus();
+            _currentPage = page;
         }
 
         private void HighlightButton(object sender, EventArgs e)
@@ -87,28 +94,35 @@ namespace RealSuite
             NavigateTo(Pages.Front);
         }
 
+        private void AddSellerButton_Click(object sender, EventArgs e)
+        {
+            NavigateTo(Pages.AddSeller);
+        }
+
+        private void SetLogo(Bitmap bitmap)
+        {
+            LogoPanel.BackgroundImage = bitmap;
+            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
         private void LogoPanel_MouseEnter(object sender, EventArgs e)
         {
-            LogoPanel.BackgroundImage = Properties.Resources.FrontLogoHighlight;
-            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            SetLogo(Properties.Resources.FrontLogoHighlight);
         }
 
         private void LogoPanel_MouseLeave(object sender, EventArgs e)
         {
-            LogoPanel.BackgroundImage = Properties.Resources.FrontLogo;
-            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            SetLogo(Properties.Resources.FrontLogo);
         }
 
         private void LogoPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            LogoPanel.BackgroundImage = Properties.Resources.FrontLogoClick;
-            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            SetLogo(Properties.Resources.FrontLogoClick);
         }
 
         private void LogoPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            LogoPanel.BackgroundImage = Properties.Resources.FrontLogoHighlight;
-            LogoPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            SetLogo(Properties.Resources.FrontLogoHighlight);
         }
     }
 }
