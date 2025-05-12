@@ -62,6 +62,11 @@ namespace RealSuite
             if (sender is Button button) button.BackColor = ColorTranslator.FromHtml("#79A0EB");
         }
 
+        private void HighlightClickButton(object sender, EventArgs e)
+        {
+            if (sender is Button button) button.BackColor = ColorTranslator.FromHtml("#B3C8EF");
+        }
+
         private void ViewPropertiesButton_Click(object sender, EventArgs e)
         {
             NavigateTo(Pages.ViewProperties);

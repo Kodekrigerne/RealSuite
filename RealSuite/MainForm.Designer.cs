@@ -105,8 +105,10 @@
             addSellerButton.TabIndex = 5;
             addSellerButton.Text = "Opret sælger";
             addSellerButton.UseVisualStyleBackColor = false;
+            addSellerButton.MouseDown += HighlightClickButton;
             addSellerButton.MouseEnter += HighlightButton;
             addSellerButton.MouseLeave += StopHighlightButton;
+            addSellerButton.MouseUp += HighlightButton;
             // 
             // viewSellersButton
             // 
@@ -121,8 +123,10 @@
             viewSellersButton.Text = "Se sælgere";
             viewSellersButton.UseVisualStyleBackColor = false;
             viewSellersButton.Click += ViewSellersButton_Click;
+            viewSellersButton.MouseDown += HighlightClickButton;
             viewSellersButton.MouseEnter += HighlightButton;
             viewSellersButton.MouseLeave += StopHighlightButton;
+            viewSellersButton.MouseUp += HighlightButton;
             // 
             // addPropertyButton
             // 
@@ -137,8 +141,10 @@
             addPropertyButton.Text = "Opret bolig";
             addPropertyButton.UseVisualStyleBackColor = false;
             addPropertyButton.Click += AddPropertyButton_Click;
+            addPropertyButton.MouseDown += HighlightClickButton;
             addPropertyButton.MouseEnter += HighlightButton;
             addPropertyButton.MouseLeave += StopHighlightButton;
+            addPropertyButton.MouseUp += HighlightButton;
             // 
             // viewPropertiesButton
             // 
@@ -153,8 +159,10 @@
             viewPropertiesButton.Text = "Se boliger";
             viewPropertiesButton.UseVisualStyleBackColor = false;
             viewPropertiesButton.Click += ViewPropertiesButton_Click;
+            viewPropertiesButton.MouseDown += HighlightClickButton;
             viewPropertiesButton.MouseEnter += HighlightButton;
             viewPropertiesButton.MouseLeave += StopHighlightButton;
+            viewPropertiesButton.MouseUp += HighlightButton;
             // 
             // BgPanelProperties
             // 
