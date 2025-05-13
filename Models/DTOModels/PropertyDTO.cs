@@ -1,8 +1,7 @@
-﻿namespace Models
+﻿namespace Models.DTOModels
 {
-    public class Property
+    public record PropertyDTO
     {
-        public int Id { get; }
         public string StreetName { get; set; }
         public int StreetNumber { get; set; }
         public int ZipCode { get; set; }
@@ -15,10 +14,9 @@
         public DateTime? DateSold { get; set; }
         public bool Sold { get; set; }
 
-        public Property(int id, string streetName, int streetNumber, int zipCode, int buildYear,
+        public PropertyDTO(string streetName, int streetNumber, int zipCode, int buildYear,
             int squareMeters, int sellerId, double price, int realtorId, DateTime dateListed, bool sold)
         {
-            Id = id;
             StreetName = streetName;
             StreetNumber = streetNumber;
             ZipCode = zipCode;
