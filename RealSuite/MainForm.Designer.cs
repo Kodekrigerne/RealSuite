@@ -97,6 +97,7 @@
             addSellerButton.Name = "addSellerButton";
             addSellerButton.Size = new Size(138, 67);
             addSellerButton.TabIndex = 5;
+            addSellerButton.TabStop = false;
             addSellerButton.Text = "Opret sælger";
             addSellerButton.UseVisualStyleBackColor = false;
             addSellerButton.Click += AddSellerButton_Click;
@@ -114,6 +115,7 @@
             viewSellersButton.Name = "viewSellersButton";
             viewSellersButton.Size = new Size(138, 67);
             viewSellersButton.TabIndex = 4;
+            viewSellersButton.TabStop = false;
             viewSellersButton.Text = "Se sælgere";
             viewSellersButton.UseVisualStyleBackColor = false;
             viewSellersButton.Click += ViewSellersButton_Click;
@@ -131,6 +133,7 @@
             addPropertyButton.Name = "addPropertyButton";
             addPropertyButton.Size = new Size(138, 67);
             addPropertyButton.TabIndex = 2;
+            addPropertyButton.TabStop = false;
             addPropertyButton.Text = "Opret bolig";
             addPropertyButton.UseVisualStyleBackColor = false;
             addPropertyButton.Click += AddPropertyButton_Click;
@@ -148,6 +151,7 @@
             viewPropertiesButton.Name = "viewPropertiesButton";
             viewPropertiesButton.Size = new Size(138, 67);
             viewPropertiesButton.TabIndex = 1;
+            viewPropertiesButton.TabStop = false;
             viewPropertiesButton.Text = "Se boliger";
             viewPropertiesButton.UseVisualStyleBackColor = false;
             viewPropertiesButton.Click += ViewPropertiesButton_Click;
