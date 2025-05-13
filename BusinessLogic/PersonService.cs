@@ -15,7 +15,7 @@ namespace BusinessLogic
             {
                 return false;
             }
-            if (!personDTO.CprNumber.All(char.IsDigit) && personDTO.CprNumber.Length != 10)
+            if (!personDTO.CprNumber.All(char.IsDigit) || personDTO.CprNumber.Length != 10)
             {
                 return false;
             }
@@ -27,11 +27,11 @@ namespace BusinessLogic
             {
                 return false;
             }
-            if (!personDTO.ZipCode.ToString().All(char.IsDigit) && (personDTO.ZipCode < 1000 && personDTO.ZipCode > 9999))
+            if (!personDTO.ZipCode.ToString().All(char.IsDigit) || (personDTO.ZipCode < 1000 || personDTO.ZipCode > 9999))
             {
                 return false;
             }
-            if (!personDTO.PhoneNumber.All(char.IsDigit) && personDTO.PhoneNumber.Length != 8)
+            if (!personDTO.PhoneNumber.All(char.IsDigit) || personDTO.PhoneNumber.Length != 8)
             {
                 return false;
             }
