@@ -35,9 +35,9 @@ namespace RealSuite.UserControls
 
         private void SetTrackBarInitialValues()
         {
-            minPriceTrackBar.Value = (int)_propertyService.FilteredSortedProperties.Min(x => x.Price);
+            minPriceTrackBar.Value = minPriceTrackBar.Minimum;
             selectedMinPriceLabel.Text = minPriceTrackBar.Value.ToString();
-            maxPriceTrackBar.Value = (int)_propertyService.FilteredSortedProperties.Max(x => x.Price);
+            maxPriceTrackBar.Value = maxPriceTrackBar.Maximum;
             selectedMaxPriceLabel.Text = maxPriceTrackBar.Value.ToString();
         }
 
