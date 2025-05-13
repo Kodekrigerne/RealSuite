@@ -40,9 +40,12 @@ namespace RealSuite.UserControls
 
         public void Clear()
         {
-            foreach (TextBox item in Controls)
+            foreach (Control control in Controls)
             {
-                item.Text = "";
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = "";
+                }
             }
         }
 
