@@ -28,32 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            components = new System.ComponentModel.Container();
+            propertiesDataGridView = new DataGridView();
+            propertyServiceBindingSource = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // propertiesDataGridView
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(296, 192);
-            label1.Name = "label1";
-            label1.Size = new Size(84, 15);
-            label1.TabIndex = 0;
-            label1.Text = "viewProperties";
+            propertiesDataGridView.AllowUserToAddRows = false;
+            propertiesDataGridView.AllowUserToDeleteRows = false;
+            propertiesDataGridView.AllowUserToResizeColumns = false;
+            propertiesDataGridView.AllowUserToResizeRows = false;
+            propertiesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            propertiesDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            propertiesDataGridView.Location = new Point(3, 139);
+            propertiesDataGridView.Name = "propertiesDataGridView";
+            propertiesDataGridView.RowHeadersVisible = false;
+            propertiesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            propertiesDataGridView.Size = new Size(806, 310);
+            propertiesDataGridView.TabIndex = 0;
+            propertiesDataGridView.TabStop = false;
+            // 
+            // propertyServiceBindingSource
+            // 
+            propertyServiceBindingSource.DataSource = typeof(BusinessLogic.PropertyService);
             // 
             // ViewPropertiesPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
+            Controls.Add(propertiesDataGridView);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ViewPropertiesPage";
             Size = new Size(812, 452);
+            ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private DataGridView propertiesDataGridView;
+        private BindingSource propertyServiceBindingSource;
     }
 }
