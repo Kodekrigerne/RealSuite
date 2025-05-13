@@ -33,8 +33,12 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
+            panel1 = new Panel();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // propertiesDataGridView
@@ -83,17 +87,50 @@
             // 
             propertyServiceBindingSource.DataSource = typeof(BusinessLogic.PropertyService);
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(228, 221, 177);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(comboBox1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(812, 145);
+            panel1.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Alle", "Solgt", "Ikke solgt" });
+            comboBox1.Location = new Point(26, 32);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(106, 23);
+            comboBox1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(26, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(34, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Solgt";
+            // 
             // ViewPropertiesPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(panel1);
             Controls.Add(propertiesDataGridView);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ViewPropertiesPage";
             Size = new Size(812, 452);
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -101,5 +138,8 @@
 
         private DataGridView propertiesDataGridView;
         private BindingSource propertyServiceBindingSource;
+        private Panel panel1;
+        private ComboBox comboBox1;
+        private Label label1;
     }
 }
