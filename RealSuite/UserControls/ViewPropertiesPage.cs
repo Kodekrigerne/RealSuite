@@ -17,12 +17,12 @@ namespace RealSuite.UserControls
             propertiesDataGridView.DataSource = _propertyService.FilteredSortedProperties;
             SetTrackBarBounds();
             SetTrackBarInitialValues();
-            solgtComboBox.SelectedItem = "Alle";
+            soldComboBox.SelectedItem = "Alle";
         }
 
         private void ApplyFilters(object? sender = null, EventArgs? e = null)
         {
-            string solgtFilter = solgtComboBox.SelectedItem!.ToString()!;
+            string solgtFilter = soldComboBox.SelectedItem!.ToString()!;
             _propertyService.ApplyFilters(solgtFilter, minPriceTrackBar.Value, maxPriceTrackBar.Value);
             propertiesDataGridView.DataSource = _propertyService.FilteredSortedProperties;
         }

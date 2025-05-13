@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
-            panel1 = new Panel();
+            topPanel = new Panel();
+            clearButton = new Button();
             refreshButton = new Button();
             selectedMaxPriceLabel = new Label();
             selectedMinPriceLabel = new Label();
@@ -41,12 +42,11 @@
             minPriceLabel = new Label();
             maxPriceTrackBar = new TrackBar();
             minPriceTrackBar = new TrackBar();
-            solgtLabel = new Label();
-            solgtComboBox = new ComboBox();
-            clearButton = new Button();
+            soldLabel = new Label();
+            soldComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
-            panel1.SuspendLayout();
+            topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).BeginInit();
             SuspendLayout();
@@ -62,25 +62,25 @@
             propertiesDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             propertiesDataGridView.BackgroundColor = Color.White;
             propertiesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             propertiesDataGridView.ColumnHeadersHeight = 35;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.NullValue = null;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             propertiesDataGridView.Dock = DockStyle.Bottom;
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             propertiesDataGridView.EnableHeadersVisualStyles = false;
@@ -99,25 +99,35 @@
             // 
             propertyServiceBindingSource.DataSource = typeof(BusinessLogic.PropertyService);
             // 
-            // panel1
+            // topPanel
             // 
-            panel1.BackColor = Color.FromArgb(228, 221, 177);
-            panel1.Controls.Add(clearButton);
-            panel1.Controls.Add(refreshButton);
-            panel1.Controls.Add(selectedMaxPriceLabel);
-            panel1.Controls.Add(selectedMinPriceLabel);
-            panel1.Controls.Add(maxPriceLabel);
-            panel1.Controls.Add(minPriceLabel);
-            panel1.Controls.Add(maxPriceTrackBar);
-            panel1.Controls.Add(minPriceTrackBar);
-            panel1.Controls.Add(solgtLabel);
-            panel1.Controls.Add(solgtComboBox);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(928, 193);
-            panel1.TabIndex = 1;
+            topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(clearButton);
+            topPanel.Controls.Add(refreshButton);
+            topPanel.Controls.Add(selectedMaxPriceLabel);
+            topPanel.Controls.Add(selectedMinPriceLabel);
+            topPanel.Controls.Add(maxPriceLabel);
+            topPanel.Controls.Add(minPriceLabel);
+            topPanel.Controls.Add(maxPriceTrackBar);
+            topPanel.Controls.Add(minPriceTrackBar);
+            topPanel.Controls.Add(soldLabel);
+            topPanel.Controls.Add(soldComboBox);
+            topPanel.Dock = DockStyle.Top;
+            topPanel.Location = new Point(0, 0);
+            topPanel.Margin = new Padding(3, 4, 3, 4);
+            topPanel.Name = "topPanel";
+            topPanel.Size = new Size(928, 193);
+            topPanel.TabIndex = 1;
+            // 
+            // clearButton
+            // 
+            clearButton.Location = new Point(729, 154);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(94, 29);
+            clearButton.TabIndex = 9;
+            clearButton.Text = "Ryd filtre";
+            clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += ClearButton_Click;
             // 
             // refreshButton
             // 
@@ -191,50 +201,40 @@
             minPriceTrackBar.ValueChanged += MinPriceTrackBar_ValueChanged;
             minPriceTrackBar.MouseUp += MinPriceTrackBar_MouseUp;
             // 
-            // solgtLabel
+            // soldLabel
             // 
-            solgtLabel.AutoSize = true;
-            solgtLabel.Location = new Point(30, 19);
-            solgtLabel.Name = "solgtLabel";
-            solgtLabel.Size = new Size(44, 20);
-            solgtLabel.TabIndex = 1;
-            solgtLabel.Text = "Solgt";
+            soldLabel.AutoSize = true;
+            soldLabel.Location = new Point(30, 19);
+            soldLabel.Name = "soldLabel";
+            soldLabel.Size = new Size(44, 20);
+            soldLabel.TabIndex = 1;
+            soldLabel.Text = "Solgt";
             // 
-            // solgtComboBox
+            // soldComboBox
             // 
-            solgtComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            solgtComboBox.FormattingEnabled = true;
-            solgtComboBox.Items.AddRange(new object[] { "Alle", "Solgt", "Ikke solgt" });
-            solgtComboBox.Location = new Point(30, 43);
-            solgtComboBox.Margin = new Padding(3, 4, 3, 4);
-            solgtComboBox.Name = "solgtComboBox";
-            solgtComboBox.Size = new Size(121, 28);
-            solgtComboBox.TabIndex = 0;
-            solgtComboBox.SelectedIndexChanged += ApplyFilters;
-            // 
-            // clearButton
-            // 
-            clearButton.Location = new Point(729, 154);
-            clearButton.Name = "clearButton";
-            clearButton.Size = new Size(94, 29);
-            clearButton.TabIndex = 9;
-            clearButton.Text = "Ryd filtre";
-            clearButton.UseVisualStyleBackColor = true;
-            clearButton.Click += ClearButton_Click;
+            soldComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            soldComboBox.FormattingEnabled = true;
+            soldComboBox.Items.AddRange(new object[] { "Alle", "Solgt", "Ikke solgt" });
+            soldComboBox.Location = new Point(30, 43);
+            soldComboBox.Margin = new Padding(3, 4, 3, 4);
+            soldComboBox.Name = "soldComboBox";
+            soldComboBox.Size = new Size(121, 28);
+            soldComboBox.TabIndex = 0;
+            soldComboBox.SelectedIndexChanged += ApplyFilters;
             // 
             // ViewPropertiesPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(panel1);
+            Controls.Add(topPanel);
             Controls.Add(propertiesDataGridView);
             Name = "ViewPropertiesPage";
             Size = new Size(928, 603);
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            topPanel.ResumeLayout(false);
+            topPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).EndInit();
             ResumeLayout(false);
@@ -244,9 +244,9 @@
 
         private DataGridView propertiesDataGridView;
         private BindingSource propertyServiceBindingSource;
-        private Panel panel1;
-        private ComboBox solgtComboBox;
-        private Label solgtLabel;
+        private Panel topPanel;
+        private ComboBox soldComboBox;
+        private Label soldLabel;
         private TrackBar minPriceTrackBar;
         private Label minPriceLabel;
         private TrackBar maxPriceTrackBar;
