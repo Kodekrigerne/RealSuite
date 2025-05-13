@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.ComponentModel;
+using System.Data;
 using DataAccess;
 using Models;
 
@@ -8,6 +9,7 @@ namespace BusinessLogic
     {
         private readonly PropertyDbService _propertyDbService = new();
         private List<Property> _propertiesList = [];
+        public BindingList<Property> FilteredSortedProperties { get; private set; } = [];
 
         public PropertyService()
         {
@@ -19,12 +21,11 @@ namespace BusinessLogic
             UpdateFromDatabase();
         }
 
-        public List<Property> GetProperties() => _propertiesList;
-
         private void UpdateFromDatabase()
         {
             var propertiesTable = GetPropertiesTable();
             _propertiesList = ConvertToList(propertiesTable);
+            FilteredSortedProperties = [.. _propertiesList];
         }
 
         private static List<Property> ConvertToList(DataTable table)

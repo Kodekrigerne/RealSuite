@@ -9,7 +9,7 @@ namespace RealSuite.UserControls
         public ViewPropertiesPage()
         {
             InitializeComponent();
-            propertiesDataGridView.DataSource = _propertyService.GetProperties();
+            propertiesDataGridView.DataSource = _propertyService.FilteredSortedProperties;
         }
 
         public void Clear() { }
