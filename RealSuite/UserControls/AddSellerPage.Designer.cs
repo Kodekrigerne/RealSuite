@@ -54,6 +54,7 @@
             postnrCheckLabel = new Label();
             telefonCheckLabel = new Label();
             addSellerPageTimer = new System.Windows.Forms.Timer(components);
+            rydButton = new Button();
             SuspendLayout();
             // 
             // fornavnLabel
@@ -126,6 +127,7 @@
             fornavnTextBox.Size = new Size(125, 27);
             fornavnTextBox.TabIndex = 1;
             fornavnTextBox.TextChanged += fornavnTextBox_TextChanged;
+            fornavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // efternavnTextBox
             // 
@@ -134,6 +136,7 @@
             efternavnTextBox.Size = new Size(125, 27);
             efternavnTextBox.TabIndex = 2;
             efternavnTextBox.TextChanged += efternavnTextBox_TextChanged;
+            efternavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // telefonTextBox
             // 
@@ -143,6 +146,7 @@
             telefonTextBox.Size = new Size(125, 27);
             telefonTextBox.TabIndex = 8;
             telefonTextBox.TextChanged += telefonTextBox_TextChanged;
+            telefonTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // cprNrTextBox
             // 
@@ -152,6 +156,7 @@
             cprNrTextBox.Size = new Size(125, 27);
             cprNrTextBox.TabIndex = 3;
             cprNrTextBox.TextChanged += cprNrTextBox_TextChanged;
+            cprNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // vejnavnTextBox
             // 
@@ -160,6 +165,7 @@
             vejnavnTextBox.Size = new Size(125, 27);
             vejnavnTextBox.TabIndex = 5;
             vejnavnTextBox.TextChanged += vejnavnTextBox_TextChanged;
+            vejnavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // vejNrTextBox
             // 
@@ -169,6 +175,7 @@
             vejNrTextBox.Size = new Size(125, 27);
             vejNrTextBox.TabIndex = 6;
             vejNrTextBox.TextChanged += vejNrTextBox_TextChanged;
+            vejNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // postNrTextBox
             // 
@@ -178,10 +185,11 @@
             postNrTextBox.Size = new Size(125, 27);
             postNrTextBox.TabIndex = 7;
             postNrTextBox.TextChanged += postNrTextBox_TextChanged;
+            postNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // tilføjButton
             // 
-            tilføjButton.Location = new Point(765, 473);
+            tilføjButton.Location = new Point(539, 464);
             tilføjButton.Name = "tilføjButton";
             tilføjButton.Size = new Size(94, 29);
             tilføjButton.TabIndex = 9;
@@ -197,6 +205,7 @@
             cpr2NrTextBox.Size = new Size(75, 27);
             cpr2NrTextBox.TabIndex = 4;
             cpr2NrTextBox.TextChanged += cpr2NrTextBox_TextChanged;
+            cpr2NrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // cprBindestregLabel
             // 
@@ -284,14 +293,21 @@
             telefonCheckLabel.TabIndex = 17;
             telefonCheckLabel.Text = "O";
             // 
-            // addSellerPageTimer
+            // rydButton
             // 
-            addSellerPageTimer.Tick += addSellerPageTimer_Tick;
+            rydButton.Location = new Point(651, 464);
+            rydButton.Name = "rydButton";
+            rydButton.Size = new Size(94, 29);
+            rydButton.TabIndex = 10;
+            rydButton.Text = "Ryd";
+            rydButton.UseVisualStyleBackColor = true;
+            rydButton.Click += rydButton_Click;
             // 
             // AddSellerPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(rydButton);
             Controls.Add(telefonCheckLabel);
             Controls.Add(postnrCheckLabel);
             Controls.Add(vejnrCheckLabel);
@@ -349,5 +365,6 @@
         private Label postnrCheckLabel;
         private Label telefonCheckLabel;
         private System.Windows.Forms.Timer addSellerPageTimer;
+        private Button rydButton;
     }
 }

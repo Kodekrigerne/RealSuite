@@ -12,8 +12,8 @@ namespace BusinessLogic
         {
             if (VerifySeller(sellerDTO) == true)
             {
-                var rowsAffected = sellerDBService.CreateSeller(sellerDTO);
-                return rowsAffected;
+                var rowCreated = sellerDBService.CreateSeller(sellerDTO);
+                return rowCreated;
             }
             else return false;
         }
