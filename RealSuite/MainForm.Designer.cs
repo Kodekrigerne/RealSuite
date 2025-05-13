@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer = new SplitContainer();
             LogoPanel = new Panel();
             addSellerButton = new Button();
@@ -203,6 +204,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(992, 458);
             Controls.Add(splitContainer);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(1006, 493);
             Name = "MainForm";
