@@ -32,7 +32,6 @@ namespace BusinessLogic
         public void ApplyFilters(string solgtFilter)
         {
             FilteredSortedProperties = [.. _propertiesList];
-            Debug.WriteLine(solgtFilter);
 
             if (solgtFilter == "Solgt")
             {
