@@ -1,4 +1,5 @@
-﻿using Models.DTOModels;
+﻿using System.Text.RegularExpressions;
+using Models.DTOModels;
 
 namespace BusinessLogic
 {
@@ -15,7 +16,7 @@ namespace BusinessLogic
             {
                 return false;
             }
-            if (!personDTO.CprNumber.All(char.IsDigit) || personDTO.CprNumber.Length != 10)
+            if (!Regex.IsMatch(personDTO.CprNumber, @"^(?:0[1-9]|[12]\d|3[01])(?:0[1-9]|1[0-2])(?:[0-9]{2})[0-9]{4}$"))
             {
                 return false;
             }

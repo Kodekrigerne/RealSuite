@@ -6,13 +6,37 @@ namespace RealSuite.UserControls
 {
     public partial class AddPropertyPage : UserControl, IClearable
     {
+        private SellerService sellerService = new SellerService();
         private PropertyService propertyService = new PropertyService();
 
         public AddPropertyPage()
         {
             InitializeComponent();
             tilføjsælger_button.Enabled = false;
+            
+            addSellerGrid.Visible = false;
+            var sellerDataTable = sellerService.GetSellers();
+            addSellerGrid.DataSource = sellerDataTable;
+            addSellerGrid.Columns[0].HeaderText = "Kunde ID";
+            addSellerGrid.Columns[1].HeaderText = "Fornavn";
+            addSellerGrid.Columns[2].HeaderText = "Efternavn";
+            addSellerGrid.Columns[3].Visible = false;
+            addSellerGrid.Columns[4].Visible = false;
+            addSellerGrid.Columns[5].Visible = false;
+            addSellerGrid.Columns[6].Visible = false;
+            addSellerGrid.Columns[7].HeaderText = "Telefon";
         }
+
+        private void addSellerButton_Click(object sender, EventArgs e)
+        {
+            addSellerGrid.Visible = true;
+        }
+
+        private void addSellerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            addSellerGrid.Visible = false;
+        }
+          
 
         public void Clear()
         {
@@ -178,6 +202,5 @@ namespace RealSuite.UserControls
                 tilføjsælger_button.Enabled = false;
             }
         }
-
     }
 }
