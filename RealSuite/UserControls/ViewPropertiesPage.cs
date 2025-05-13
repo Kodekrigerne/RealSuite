@@ -81,5 +81,10 @@ namespace RealSuite.UserControls
         {
             Clear();
         }
+
+        private void maxPriceLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
