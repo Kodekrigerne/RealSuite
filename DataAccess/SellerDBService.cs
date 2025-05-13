@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using Models.DTOModels;
 
 namespace DataAccess
@@ -40,6 +41,31 @@ namespace DataAccess
 
             if (rowsAffected == 0) return false;
             else return true;
+        }
+
+        public DataTable GetSellers()
+        {
+            string query = "SELECT * FROM Sellers";
+            var dataTable = new DataTable();
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    var adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in GetSellers: " + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+            return dataTable;
         }
     }
 }

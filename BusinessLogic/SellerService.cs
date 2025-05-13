@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using System.Data;
+using DataAccess;
 using Models.DTOModels;
 
 namespace BusinessLogic
@@ -21,6 +22,12 @@ namespace BusinessLogic
         public bool VerifySeller(SellerDTO sellerDTO)
         {
             return personService.VerifyPerson(sellerDTO);
+        }
+
+        public DataTable GetSellers()
+        {
+            var dataTable = sellerDBService.GetSellers();
+            return dataTable;
         }
     }
 }

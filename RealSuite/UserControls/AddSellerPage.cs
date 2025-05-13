@@ -14,8 +14,6 @@ namespace RealSuite.UserControls
         {
             InitializeComponent();
 
-            addSellerPageTimer.Enabled = true;
-
             tilføjButton.Enabled = false;
 
         }
