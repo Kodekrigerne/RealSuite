@@ -41,6 +41,7 @@
             // 
             propertiesDataGridView.AllowUserToAddRows = false;
             propertiesDataGridView.AllowUserToDeleteRows = false;
+            propertiesDataGridView.AllowUserToOrderColumns = true;
             propertiesDataGridView.AllowUserToResizeColumns = false;
             propertiesDataGridView.AllowUserToResizeRows = false;
             propertiesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -49,13 +50,13 @@
             propertiesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(204, 153, 96);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(166, 193, 239);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            propertiesDataGridView.ColumnHeadersHeight = 40;
+            propertiesDataGridView.ColumnHeadersHeight = 35;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
@@ -68,6 +69,7 @@
             propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             propertiesDataGridView.Dock = DockStyle.Bottom;
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            propertiesDataGridView.EnableHeadersVisualStyles = false;
             propertiesDataGridView.GridColor = Color.Gainsboro;
             propertiesDataGridView.Location = new Point(0, 142);
             propertiesDataGridView.Name = "propertiesDataGridView";
