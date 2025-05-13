@@ -20,7 +20,7 @@ namespace RealSuite.UserControls
             var propertyDTO = new PropertyDTO(vejnavn_textbox.Text, Convert.ToInt32(husnr_textbox.Text),
                 Convert.ToInt32(zipcode_textbox.Text), Convert.ToInt32(byggeår_textbox.Text),
                 Convert.ToInt32(kvm_textbox.Text), Convert.ToInt32(sælger_textbox.Text),
-                Convert.ToDouble(pris_textbox.Text), Convert.ToDouble(vurdering_textbox.Text), Convert.ToInt32(ejendomsmægler_textbox.Text),
+                Convert.ToDouble(pris_textbox.Text), Convert.ToInt32(ejendomsmægler_textbox.Text),
                 dato_datepicker.Value, solgt_checkbox.Checked);
 
             bool rowCreated = propertyService.CreateProperty(propertyDTO);

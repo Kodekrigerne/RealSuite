@@ -33,7 +33,6 @@ namespace BusinessLogic
             if (!propertyDTO.BuildYear.ToString().All(char.IsDigit)) return false;
             if (!propertyDTO.SquareMeters.ToString().All(char.IsDigit)) return false;
             if (propertyDTO.Price < 0) return false;
-            if (propertyDTO.PriceAssessment < 0) return false;
             if (!Regex.IsMatch(propertyDTO.DateListed.ToString("yyyy-MM-dd"), @"^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$"))
                 return false;
 

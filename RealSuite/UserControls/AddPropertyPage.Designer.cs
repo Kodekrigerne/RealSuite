@@ -51,6 +51,15 @@
             sælger_textbox = new TextBox();
             solgt_label = new Label();
             solgt_checkbox = new CheckBox();
+            streetname_checklabel = new Label();
+            streetnumber_checklabel = new Label();
+            zip_checkbox = new Label();
+            buildyear_checkbox = new Label();
+            squaremeter_checkbox = new Label();
+            seller_checkbox = new Label();
+            price_checkbox = new Label();
+            realtor_checkbox = new Label();
+            dateListed_checkbox = new Label();
             SuspendLayout();
             // 
             // vejnavn_label
@@ -119,7 +128,7 @@
             // vurdering_label
             // 
             vurdering_label.AutoSize = true;
-            vurdering_label.Location = new Point(33, 353);
+            vurdering_label.Location = new Point(554, 92);
             vurdering_label.Name = "vurdering_label";
             vurdering_label.Size = new Size(74, 20);
             vurdering_label.TabIndex = 7;
@@ -187,31 +196,33 @@
             // 
             // vurdering_textbox
             // 
-            vurdering_textbox.Location = new Point(165, 349);
+            vurdering_textbox.Enabled = false;
+            vurdering_textbox.Location = new Point(634, 89);
             vurdering_textbox.Name = "vurdering_textbox";
+            vurdering_textbox.ReadOnly = true;
             vurdering_textbox.Size = new Size(125, 27);
-            vurdering_textbox.TabIndex = 8;
+            vurdering_textbox.TabIndex = 0;
             // 
             // ejendomsmægler_textbox
             // 
             ejendomsmægler_textbox.Location = new Point(165, 397);
             ejendomsmægler_textbox.Name = "ejendomsmægler_textbox";
             ejendomsmægler_textbox.Size = new Size(125, 27);
-            ejendomsmægler_textbox.TabIndex = 9;
+            ejendomsmægler_textbox.TabIndex = 8;
             // 
             // dato_datepicker
             // 
             dato_datepicker.Location = new Point(165, 440);
             dato_datepicker.Name = "dato_datepicker";
             dato_datepicker.Size = new Size(250, 27);
-            dato_datepicker.TabIndex = 10;
+            dato_datepicker.TabIndex = 9;
             // 
             // tilføjsælger_button
             // 
             tilføjsælger_button.Location = new Point(675, 501);
             tilføjsælger_button.Name = "tilføjsælger_button";
             tilføjsælger_button.Size = new Size(94, 29);
-            tilføjsælger_button.TabIndex = 12;
+            tilføjsælger_button.TabIndex = 11;
             tilføjsælger_button.Text = "Tilføj";
             tilføjsælger_button.UseVisualStyleBackColor = true;
             tilføjsælger_button.Click += tilføjsælger_button_Click;
@@ -238,14 +249,122 @@
             solgt_checkbox.Location = new Point(97, 492);
             solgt_checkbox.Name = "solgt_checkbox";
             solgt_checkbox.Size = new Size(81, 24);
-            solgt_checkbox.TabIndex = 11;
+            solgt_checkbox.TabIndex = 10;
             solgt_checkbox.Text = "Er solgt";
             solgt_checkbox.UseVisualStyleBackColor = true;
+            // 
+            // streetname_checklabel
+            // 
+            streetname_checklabel.AutoSize = true;
+            streetname_checklabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            streetname_checklabel.ForeColor = Color.Red;
+            streetname_checklabel.Location = new Point(305, 49);
+            streetname_checklabel.Name = "streetname_checklabel";
+            streetname_checklabel.Size = new Size(25, 24);
+            streetname_checklabel.TabIndex = 22;
+            streetname_checklabel.Text = "O";
+            // 
+            // streetnumber_checklabel
+            // 
+            streetnumber_checklabel.AutoSize = true;
+            streetnumber_checklabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            streetnumber_checklabel.ForeColor = Color.Red;
+            streetnumber_checklabel.Location = new Point(305, 96);
+            streetnumber_checklabel.Name = "streetnumber_checklabel";
+            streetnumber_checklabel.Size = new Size(25, 24);
+            streetnumber_checklabel.TabIndex = 23;
+            streetnumber_checklabel.Text = "O";
+            // 
+            // zip_checkbox
+            // 
+            zip_checkbox.AutoSize = true;
+            zip_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            zip_checkbox.ForeColor = Color.Red;
+            zip_checkbox.Location = new Point(305, 144);
+            zip_checkbox.Name = "zip_checkbox";
+            zip_checkbox.Size = new Size(25, 24);
+            zip_checkbox.TabIndex = 24;
+            zip_checkbox.Text = "O";
+            // 
+            // buildyear_checkbox
+            // 
+            buildyear_checkbox.AutoSize = true;
+            buildyear_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            buildyear_checkbox.ForeColor = Color.Red;
+            buildyear_checkbox.Location = new Point(305, 185);
+            buildyear_checkbox.Name = "buildyear_checkbox";
+            buildyear_checkbox.Size = new Size(25, 24);
+            buildyear_checkbox.TabIndex = 25;
+            buildyear_checkbox.Text = "O";
+            // 
+            // squaremeter_checkbox
+            // 
+            squaremeter_checkbox.AutoSize = true;
+            squaremeter_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            squaremeter_checkbox.ForeColor = Color.Red;
+            squaremeter_checkbox.Location = new Point(305, 228);
+            squaremeter_checkbox.Name = "squaremeter_checkbox";
+            squaremeter_checkbox.Size = new Size(25, 24);
+            squaremeter_checkbox.TabIndex = 26;
+            squaremeter_checkbox.Text = "O";
+            // 
+            // seller_checkbox
+            // 
+            seller_checkbox.AutoSize = true;
+            seller_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            seller_checkbox.ForeColor = Color.Red;
+            seller_checkbox.Location = new Point(305, 270);
+            seller_checkbox.Name = "seller_checkbox";
+            seller_checkbox.Size = new Size(25, 24);
+            seller_checkbox.TabIndex = 27;
+            seller_checkbox.Text = "O";
+            // 
+            // price_checkbox
+            // 
+            price_checkbox.AutoSize = true;
+            price_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            price_checkbox.ForeColor = Color.Red;
+            price_checkbox.Location = new Point(305, 316);
+            price_checkbox.Name = "price_checkbox";
+            price_checkbox.Size = new Size(25, 24);
+            price_checkbox.TabIndex = 28;
+            price_checkbox.Text = "O";
+            // 
+            // realtor_checkbox
+            // 
+            realtor_checkbox.AutoSize = true;
+            realtor_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            realtor_checkbox.ForeColor = Color.Red;
+            realtor_checkbox.Location = new Point(305, 397);
+            realtor_checkbox.Name = "realtor_checkbox";
+            realtor_checkbox.Size = new Size(25, 24);
+            realtor_checkbox.TabIndex = 30;
+            realtor_checkbox.Text = "O";
+            // 
+            // dateListed_checkbox
+            // 
+            dateListed_checkbox.AutoSize = true;
+            dateListed_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            dateListed_checkbox.ForeColor = Color.Red;
+            dateListed_checkbox.Location = new Point(432, 442);
+            dateListed_checkbox.Name = "dateListed_checkbox";
+            dateListed_checkbox.Size = new Size(25, 24);
+            dateListed_checkbox.TabIndex = 31;
+            dateListed_checkbox.Text = "O";
             // 
             // AddPropertyPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(dateListed_checkbox);
+            Controls.Add(realtor_checkbox);
+            Controls.Add(price_checkbox);
+            Controls.Add(seller_checkbox);
+            Controls.Add(squaremeter_checkbox);
+            Controls.Add(buildyear_checkbox);
+            Controls.Add(zip_checkbox);
+            Controls.Add(streetnumber_checklabel);
+            Controls.Add(streetname_checklabel);
             Controls.Add(solgt_checkbox);
             Controls.Add(solgt_label);
             Controls.Add(sælger_textbox);
@@ -300,5 +419,14 @@
         private TextBox sælger_textbox;
         private Label solgt_label;
         private CheckBox solgt_checkbox;
+        private Label streetname_checklabel;
+        private Label streetnumber_checklabel;
+        private Label zip_checkbox;
+        private Label buildyear_checkbox;
+        private Label squaremeter_checkbox;
+        private Label seller_checkbox;
+        private Label price_checkbox;
+        private Label realtor_checkbox;
+        private Label dateListed_checkbox;
     }
 }

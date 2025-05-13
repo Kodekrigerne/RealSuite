@@ -10,7 +10,6 @@
         public int SquareMeters { get; set; }
         public int SellerId { get; set; }
         public double Price { get; set; }
-        public double? PriceAssessment { get; set; } = null;
         public int RealtorId { get; set; }
         public DateTime DateListed { get; set; }
         public DateTime? DateSold { get; set; }
