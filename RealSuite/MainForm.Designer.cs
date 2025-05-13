@@ -73,6 +73,7 @@
             splitContainer.Size = new Size(992, 458);
             splitContainer.SplitterDistance = 175;
             splitContainer.TabIndex = 0;
+            splitContainer.TabStop = false;
             // 
             // LogoPanel
             // 
