@@ -29,18 +29,22 @@ namespace BusinessLogic
             FilteredSortedProperties = [.. _propertiesList];
         }
 
-        public void ApplyFilters(string solgtFilter)
+
+        public void ApplyFilters(string soldFilter, int minPrice, int maxPrice)
         {
             FilteredSortedProperties = [.. _propertiesList];
 
-            if (solgtFilter == "Solgt")
+            if (soldFilter == "Solgt")
             {
                 FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Sold == true)];
             }
-            else if (solgtFilter == "Ikke solgt")
+            else if (soldFilter == "Ikke solgt")
             {
                 FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Sold == false)];
             }
+
+            FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Price >= minPrice && x.Price <= maxPrice)];
+
         }
 
         private static List<Property> ConvertToList(DataTable table)

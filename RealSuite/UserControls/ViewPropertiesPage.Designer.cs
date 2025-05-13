@@ -34,11 +34,19 @@
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             panel1 = new Panel();
+            selectedMaxPriceLabel = new Label();
+            selectedMinPriceLabel = new Label();
+            maxPriceLabel = new Label();
+            minPriceLabel = new Label();
+            maxPriceTrackBar = new TrackBar();
+            minPriceTrackBar = new TrackBar();
             solgtLabel = new Label();
             solgtComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).BeginInit();
             SuspendLayout();
             // 
             // propertiesDataGridView
@@ -90,6 +98,12 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(228, 221, 177);
+            panel1.Controls.Add(selectedMaxPriceLabel);
+            panel1.Controls.Add(selectedMinPriceLabel);
+            panel1.Controls.Add(maxPriceLabel);
+            panel1.Controls.Add(minPriceLabel);
+            panel1.Controls.Add(maxPriceTrackBar);
+            panel1.Controls.Add(minPriceTrackBar);
             panel1.Controls.Add(solgtLabel);
             panel1.Controls.Add(solgtComboBox);
             panel1.Dock = DockStyle.Top;
@@ -97,6 +111,66 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(812, 145);
             panel1.TabIndex = 1;
+            // 
+            // selectedMaxPriceLabel
+            // 
+            selectedMaxPriceLabel.AutoSize = true;
+            selectedMaxPriceLabel.Location = new Point(412, 14);
+            selectedMaxPriceLabel.Name = "selectedMaxPriceLabel";
+            selectedMaxPriceLabel.Size = new Size(0, 15);
+            selectedMaxPriceLabel.TabIndex = 7;
+            // 
+            // selectedMinPriceLabel
+            // 
+            selectedMinPriceLabel.AutoSize = true;
+            selectedMinPriceLabel.Location = new Point(264, 14);
+            selectedMinPriceLabel.Name = "selectedMinPriceLabel";
+            selectedMinPriceLabel.Size = new Size(0, 15);
+            selectedMinPriceLabel.TabIndex = 6;
+            // 
+            // maxPriceLabel
+            // 
+            maxPriceLabel.AutoSize = true;
+            maxPriceLabel.Location = new Point(351, 14);
+            maxPriceLabel.Name = "maxPriceLabel";
+            maxPriceLabel.Size = new Size(39, 15);
+            maxPriceLabel.TabIndex = 5;
+            maxPriceLabel.Text = "Pris til";
+            // 
+            // minPriceLabel
+            // 
+            minPriceLabel.AutoSize = true;
+            minPriceLabel.Location = new Point(203, 14);
+            minPriceLabel.Name = "minPriceLabel";
+            minPriceLabel.Size = new Size(43, 15);
+            minPriceLabel.TabIndex = 4;
+            minPriceLabel.Text = "Pris fra";
+            // 
+            // maxPriceTrackBar
+            // 
+            maxPriceTrackBar.LargeChange = 0;
+            maxPriceTrackBar.Location = new Point(351, 32);
+            maxPriceTrackBar.Name = "maxPriceTrackBar";
+            maxPriceTrackBar.Size = new Size(104, 45);
+            maxPriceTrackBar.SmallChange = 1000;
+            maxPriceTrackBar.TabIndex = 3;
+            maxPriceTrackBar.TickFrequency = 1000;
+            maxPriceTrackBar.TickStyle = TickStyle.None;
+            maxPriceTrackBar.ValueChanged += MaxPriceTrackBar_ValueChanged;
+            maxPriceTrackBar.MouseUp += MaxPriceTrackBar_MouseUp;
+            // 
+            // minPriceTrackBar
+            // 
+            minPriceTrackBar.LargeChange = 0;
+            minPriceTrackBar.Location = new Point(203, 32);
+            minPriceTrackBar.Name = "minPriceTrackBar";
+            minPriceTrackBar.Size = new Size(104, 45);
+            minPriceTrackBar.SmallChange = 1000;
+            minPriceTrackBar.TabIndex = 2;
+            minPriceTrackBar.TickFrequency = 1000;
+            minPriceTrackBar.TickStyle = TickStyle.None;
+            minPriceTrackBar.ValueChanged += MinPriceTrackBar_ValueChanged;
+            minPriceTrackBar.MouseUp += MinPriceTrackBar_MouseUp;
             // 
             // solgtLabel
             // 
@@ -132,6 +206,8 @@
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).EndInit();
             ResumeLayout(false);
         }
 
@@ -142,5 +218,11 @@
         private Panel panel1;
         private ComboBox solgtComboBox;
         private Label solgtLabel;
+        private TrackBar minPriceTrackBar;
+        private Label minPriceLabel;
+        private TrackBar maxPriceTrackBar;
+        private Label maxPriceLabel;
+        private Label selectedMaxPriceLabel;
+        private Label selectedMinPriceLabel;
     }
 }
