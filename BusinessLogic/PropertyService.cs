@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using DataAccess;
 using Models;
 
@@ -36,15 +35,14 @@ namespace BusinessLogic
 
             if (soldFilter == "Solgt")
             {
-                FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Sold == true)];
+                FilteredSortedProperties = [.. FilteredSortedProperties.Where(x => x.Sold == true)];
             }
             else if (soldFilter == "Ikke solgt")
             {
-                FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Sold == false)];
+                FilteredSortedProperties = [.. FilteredSortedProperties.Where(x => x.Sold == false)];
             }
 
-            FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Price >= minPrice && x.Price <= maxPrice)];
-
+            FilteredSortedProperties = [.. FilteredSortedProperties.Where(x => x.Price >= minPrice && x.Price <= maxPrice)];
         }
 
         private static List<Property> ConvertToList(DataTable table)

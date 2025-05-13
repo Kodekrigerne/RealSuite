@@ -34,6 +34,7 @@
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             panel1 = new Panel();
+            refreshButton = new Button();
             selectedMaxPriceLabel = new Label();
             selectedMinPriceLabel = new Label();
             maxPriceLabel = new Label();
@@ -42,6 +43,7 @@
             minPriceTrackBar = new TrackBar();
             solgtLabel = new Label();
             solgtComboBox = new ComboBox();
+            clearButton = new Button();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             panel1.SuspendLayout();
@@ -83,11 +85,13 @@
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             propertiesDataGridView.EnableHeadersVisualStyles = false;
             propertiesDataGridView.GridColor = Color.Gainsboro;
-            propertiesDataGridView.Location = new Point(0, 142);
+            propertiesDataGridView.Location = new Point(0, 190);
+            propertiesDataGridView.Margin = new Padding(3, 4, 3, 4);
             propertiesDataGridView.Name = "propertiesDataGridView";
             propertiesDataGridView.RowHeadersVisible = false;
+            propertiesDataGridView.RowHeadersWidth = 51;
             propertiesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            propertiesDataGridView.Size = new Size(812, 310);
+            propertiesDataGridView.Size = new Size(928, 413);
             propertiesDataGridView.TabIndex = 0;
             propertiesDataGridView.TabStop = false;
             // 
@@ -98,6 +102,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(228, 221, 177);
+            panel1.Controls.Add(clearButton);
+            panel1.Controls.Add(refreshButton);
             panel1.Controls.Add(selectedMaxPriceLabel);
             panel1.Controls.Add(selectedMinPriceLabel);
             panel1.Controls.Add(maxPriceLabel);
@@ -108,50 +114,62 @@
             panel1.Controls.Add(solgtComboBox);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(812, 145);
+            panel1.Size = new Size(928, 193);
             panel1.TabIndex = 1;
+            // 
+            // refreshButton
+            // 
+            refreshButton.Location = new Point(829, 154);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Size = new Size(94, 29);
+            refreshButton.TabIndex = 8;
+            refreshButton.Text = "Genindlæs";
+            refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += RefreshButton_Click;
             // 
             // selectedMaxPriceLabel
             // 
             selectedMaxPriceLabel.AutoSize = true;
-            selectedMaxPriceLabel.Location = new Point(412, 14);
+            selectedMaxPriceLabel.Location = new Point(471, 19);
             selectedMaxPriceLabel.Name = "selectedMaxPriceLabel";
-            selectedMaxPriceLabel.Size = new Size(0, 15);
+            selectedMaxPriceLabel.Size = new Size(0, 20);
             selectedMaxPriceLabel.TabIndex = 7;
             // 
             // selectedMinPriceLabel
             // 
             selectedMinPriceLabel.AutoSize = true;
-            selectedMinPriceLabel.Location = new Point(264, 14);
+            selectedMinPriceLabel.Location = new Point(302, 19);
             selectedMinPriceLabel.Name = "selectedMinPriceLabel";
-            selectedMinPriceLabel.Size = new Size(0, 15);
+            selectedMinPriceLabel.Size = new Size(0, 20);
             selectedMinPriceLabel.TabIndex = 6;
             // 
             // maxPriceLabel
             // 
             maxPriceLabel.AutoSize = true;
-            maxPriceLabel.Location = new Point(351, 14);
+            maxPriceLabel.Location = new Point(401, 19);
             maxPriceLabel.Name = "maxPriceLabel";
-            maxPriceLabel.Size = new Size(39, 15);
+            maxPriceLabel.Size = new Size(49, 20);
             maxPriceLabel.TabIndex = 5;
             maxPriceLabel.Text = "Pris til";
             // 
             // minPriceLabel
             // 
             minPriceLabel.AutoSize = true;
-            minPriceLabel.Location = new Point(203, 14);
+            minPriceLabel.Location = new Point(232, 19);
             minPriceLabel.Name = "minPriceLabel";
-            minPriceLabel.Size = new Size(43, 15);
+            minPriceLabel.Size = new Size(54, 20);
             minPriceLabel.TabIndex = 4;
             minPriceLabel.Text = "Pris fra";
             // 
             // maxPriceTrackBar
             // 
             maxPriceTrackBar.LargeChange = 0;
-            maxPriceTrackBar.Location = new Point(351, 32);
+            maxPriceTrackBar.Location = new Point(401, 43);
+            maxPriceTrackBar.Margin = new Padding(3, 4, 3, 4);
             maxPriceTrackBar.Name = "maxPriceTrackBar";
-            maxPriceTrackBar.Size = new Size(104, 45);
+            maxPriceTrackBar.Size = new Size(119, 56);
             maxPriceTrackBar.SmallChange = 1000;
             maxPriceTrackBar.TabIndex = 3;
             maxPriceTrackBar.TickFrequency = 1000;
@@ -162,9 +180,10 @@
             // minPriceTrackBar
             // 
             minPriceTrackBar.LargeChange = 0;
-            minPriceTrackBar.Location = new Point(203, 32);
+            minPriceTrackBar.Location = new Point(232, 43);
+            minPriceTrackBar.Margin = new Padding(3, 4, 3, 4);
             minPriceTrackBar.Name = "minPriceTrackBar";
-            minPriceTrackBar.Size = new Size(104, 45);
+            minPriceTrackBar.Size = new Size(119, 56);
             minPriceTrackBar.SmallChange = 1000;
             minPriceTrackBar.TabIndex = 2;
             minPriceTrackBar.TickFrequency = 1000;
@@ -175,9 +194,9 @@
             // solgtLabel
             // 
             solgtLabel.AutoSize = true;
-            solgtLabel.Location = new Point(26, 14);
+            solgtLabel.Location = new Point(30, 19);
             solgtLabel.Name = "solgtLabel";
-            solgtLabel.Size = new Size(34, 15);
+            solgtLabel.Size = new Size(44, 20);
             solgtLabel.TabIndex = 1;
             solgtLabel.Text = "Solgt";
             // 
@@ -186,22 +205,32 @@
             solgtComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             solgtComboBox.FormattingEnabled = true;
             solgtComboBox.Items.AddRange(new object[] { "Alle", "Solgt", "Ikke solgt" });
-            solgtComboBox.Location = new Point(26, 32);
+            solgtComboBox.Location = new Point(30, 43);
+            solgtComboBox.Margin = new Padding(3, 4, 3, 4);
             solgtComboBox.Name = "solgtComboBox";
-            solgtComboBox.Size = new Size(106, 23);
+            solgtComboBox.Size = new Size(121, 28);
             solgtComboBox.TabIndex = 0;
-            solgtComboBox.SelectedIndexChanged += SolgtComboBox_SelectedIndexChanged;
+            solgtComboBox.SelectedIndexChanged += ApplyFilters;
+            // 
+            // clearButton
+            // 
+            clearButton.Location = new Point(729, 154);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(94, 29);
+            clearButton.TabIndex = 9;
+            clearButton.Text = "Ryd filtre";
+            clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += ClearButton_Click;
             // 
             // ViewPropertiesPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(panel1);
             Controls.Add(propertiesDataGridView);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "ViewPropertiesPage";
-            Size = new Size(812, 452);
+            Size = new Size(928, 603);
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
             panel1.ResumeLayout(false);
@@ -224,5 +253,7 @@
         private Label maxPriceLabel;
         private Label selectedMaxPriceLabel;
         private Label selectedMinPriceLabel;
+        private Button refreshButton;
+        private Button clearButton;
     }
 }
