@@ -16,7 +16,7 @@
         public bool Sold { get; set; }
 
         public Property(int id, string streetName, int streetNumber, int zipCode, int buildYear,
-            int squareMeters, int sellerId, double price, int realtorId, DateTime dateListed, bool sold)
+            int squareMeters, int sellerId, double price, int realtorId, DateTime dateListed, DateTime? dateSold, bool sold)
         {
             Id = id;
             StreetName = streetName;
@@ -28,6 +28,7 @@
             Price = price;
             RealtorId = realtorId;
             DateListed = dateListed;
+            DateSold = dateSold;
             Sold = sold;
         }
     }
