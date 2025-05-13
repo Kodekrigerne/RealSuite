@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using System.Data;
+using DataAccess;
 using Models.DTOModels;
 
 namespace BusinessLogic
@@ -12,8 +13,8 @@ namespace BusinessLogic
         {
             if (VerifySeller(sellerDTO) == true)
             {
-                var rowsAffected = sellerDBService.CreateSeller(sellerDTO);
-                return rowsAffected;
+                var rowCreated = sellerDBService.CreateSeller(sellerDTO);
+                return rowCreated;
             }
             else return false;
         }
@@ -21,6 +22,12 @@ namespace BusinessLogic
         public bool VerifySeller(SellerDTO sellerDTO)
         {
             return personService.VerifyPerson(sellerDTO);
+        }
+
+        public DataTable GetSellers()
+        {
+            var dataTable = sellerDBService.GetSellers();
+            return dataTable;
         }
     }
 }

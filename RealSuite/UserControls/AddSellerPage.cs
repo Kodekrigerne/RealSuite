@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using System.Text.RegularExpressions;
+using BusinessLogic;
 using Models.DTOModels;
 
 using RealSuite.Interfaces;
@@ -12,8 +13,6 @@ namespace RealSuite.UserControls
         public AddSellerPage()
         {
             InitializeComponent();
-
-            addSellerPageTimer.Enabled = true;
 
             tilføjButton.Enabled = false;
 
@@ -30,11 +29,13 @@ namespace RealSuite.UserControls
                 Convert.ToInt32(postNrTextBox.Text),
                 telefonTextBox.Text);
 
-            bool rowsAffected = sellerService.CreateSellerDTO(sellerDTO);
+            bool rowCreated = sellerService.CreateSellerDTO(sellerDTO);
 
-            if (rowsAffected == true)
+            if (rowCreated == true)
             {
                 MessageBox.Show("Sælger oprettet i databasen.", "Sælger oprettet");
+                Clear();
+                fornavnTextBox.Focus();
             }
             else
             {
@@ -54,6 +55,8 @@ namespace RealSuite.UserControls
                 fornavnCheckLabel.Text = "P";
                 fornavnCheckLabel.ForeColor = Color.Green;
             }
+
+            SubmitKeyCheck();
         }
 
         private void efternavnTextBox_TextChanged(object sender, EventArgs e)
@@ -68,21 +71,32 @@ namespace RealSuite.UserControls
                 efternavnCheckLabel.Text = "P";
                 efternavnCheckLabel.ForeColor = Color.Green;
             }
+
+            SubmitKeyCheck();
         }
 
         private void cprNrTextBox_TextChanged(object sender, EventArgs e)
         {
             cpr2NrTextBox_TextChanged(sender, e);
+
             if (cprNrTextBox.Text.Length == cprNrTextBox.MaxLength)
             {
                 cpr2NrTextBox.Focus();
             }
+
+            SubmitKeyCheck();
         }
 
         private void cpr2NrTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (cpr2NrTextBox.Text.Length == 0)
+            {
+                cprNrTextBox.Focus();
+            }
+
             if (cprNrTextBox.Text.Length != 6 || !cprNrTextBox.Text.All(char.IsDigit) ||
-                cpr2NrTextBox.Text.Length != 4 || !cpr2NrTextBox.Text.All(char.IsDigit))
+                cpr2NrTextBox.Text.Length != 4 || !cpr2NrTextBox.Text.All(char.IsDigit) ||
+                !Regex.IsMatch(cprNrTextBox.Text, @"^(?:0[1-9]|[12]\d|3[01])(?:0[1-9]|1[0-2])(?:[0-9]{2})$"))
             {
                 cprCheckLabel.Text = "O";
                 cprCheckLabel.ForeColor = Color.Red;
@@ -92,6 +106,8 @@ namespace RealSuite.UserControls
                 cprCheckLabel.Text = "P";
                 cprCheckLabel.ForeColor = Color.Green;
             }
+
+            SubmitKeyCheck();
         }
 
         private void vejnavnTextBox_TextChanged(object sender, EventArgs e)
@@ -106,6 +122,8 @@ namespace RealSuite.UserControls
                 vejnavnCheckLabel.Text = "P";
                 vejnavnCheckLabel.ForeColor = Color.Green;
             }
+
+            SubmitKeyCheck();
         }
 
         private void vejNrTextBox_TextChanged(object sender, EventArgs e)
@@ -120,6 +138,8 @@ namespace RealSuite.UserControls
                 vejnrCheckLabel.Text = "P";
                 vejnrCheckLabel.ForeColor = Color.Green;
             }
+
+            SubmitKeyCheck();
         }
 
         private void postNrTextBox_TextChanged(object sender, EventArgs e)
@@ -142,6 +162,8 @@ namespace RealSuite.UserControls
             {
                 postNrTextBox.Clear();
             }
+
+            SubmitKeyCheck();
         }
 
         private void telefonTextBox_TextChanged(object sender, EventArgs e)
@@ -156,9 +178,34 @@ namespace RealSuite.UserControls
                 telefonCheckLabel.Text = "P";
                 telefonCheckLabel.ForeColor = Color.Green;
             }
+
+            SubmitKeyCheck();
         }
 
-        private void addSellerPageTimer_Tick(object sender, EventArgs e)
+        public void Clear()
+        {
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = "";
+                }
+            }
+        }
+
+        private void HandleDigit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void HandleLetter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void SubmitKeyCheck()
         {
             if (fornavnCheckLabel.Text == "P" &&
                 efternavnCheckLabel.Text == "P" &&
@@ -171,9 +218,17 @@ namespace RealSuite.UserControls
             {
                 tilføjButton.Enabled = true;
             }
-            else tilføjButton.Enabled = false;
+            else
+            {
+                tilføjButton.Enabled = false;
+            }
+
         }
 
-        public void Clear() { }
+        private void rydButton_Click(object sender, EventArgs e)
+        {
+            Clear();
+            fornavnTextBox.Focus();
+        }
     }
 }
