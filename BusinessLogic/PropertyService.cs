@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using DataAccess;
 using Models;
 
@@ -28,6 +29,21 @@ namespace BusinessLogic
             FilteredSortedProperties = [.. _propertiesList];
         }
 
+        public void ApplyFilters(string solgtFilter)
+        {
+            FilteredSortedProperties = [.. _propertiesList];
+            Debug.WriteLine(solgtFilter);
+
+            if (solgtFilter == "Solgt")
+            {
+                FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Sold == true)];
+            }
+            else if (solgtFilter == "Ikke solgt")
+            {
+                FilteredSortedProperties = [..FilteredSortedProperties.Where(x => x.Sold == false)];
+            }
+        }
+
         private static List<Property> ConvertToList(DataTable table)
         {
             List<Property> propertyList = [];
@@ -42,13 +58,12 @@ namespace BusinessLogic
                 int squareMeters = Convert.ToInt32(row["SquareMeters"]);
                 int sellerId = Convert.ToInt32(row["SellerID"]);
                 double price = Convert.ToDouble(row["Price"]);
-                double? priceAssessment = row["PriceAssessment"] == DBNull.Value ? null : Convert.ToDouble(row["PriceAssessMent"]);
                 int realtorId = Convert.ToInt32(row["RealtorID"]);
                 DateTime dateListed = Convert.ToDateTime(row["DateListed"]);
                 DateTime? dateSold = row["DateSold"] == DBNull.Value ? null : Convert.ToDateTime(row["DateSold"]);
                 bool sold = Convert.ToBoolean(row["Sold"]);
 
-                var property = new Property(Id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, priceAssessment, realtorId, dateListed, dateSold, sold);
+                var property = new Property(Id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorId, dateListed, dateSold, sold);
                 propertyList.Add(property);
             }
             return propertyList;

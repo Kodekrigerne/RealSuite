@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using System.Diagnostics;
+using BusinessLogic;
 using RealSuite.Interfaces;
 
 namespace RealSuite.UserControls
@@ -10,8 +11,21 @@ namespace RealSuite.UserControls
         {
             InitializeComponent();
             propertiesDataGridView.DataSource = _propertyService.FilteredSortedProperties;
+            solgtComboBox.SelectedItem = "Alle";
+        }
+
+        private void ApplyFilters()
+        {
+            string solgtFilter = solgtComboBox.SelectedItem!.ToString()!;
+            _propertyService.ApplyFilters(solgtFilter);
+            propertiesDataGridView.DataSource = _propertyService.FilteredSortedProperties;
         }
 
         public void Clear() { }
+
+        private void SolgtComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFilters();
+        }
     }
 }
