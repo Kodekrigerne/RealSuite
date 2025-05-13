@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-
-            label1 = new Label();
             addSellerGrid = new DataGridView();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             addSellerButton = new Button();
-            textBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)addSellerGrid).BeginInit();
             vejnavn_label = new Label();
             husnr_label = new Label();
             postnr_label = new Label();
@@ -55,7 +51,7 @@
             ejendomsmægler_textbox = new TextBox();
             dato_datepicker = new DateTimePicker();
             tilføjsælger_button = new Button();
-            sælger_textbox = new TextBox();
+            sælgerID_textbox = new TextBox();
             solgt_label = new Label();
             solgt_checkbox = new CheckBox();
             streetname_checklabel = new Label();
@@ -66,21 +62,48 @@
             seller_checkbox = new Label();
             price_checkbox = new Label();
             realtor_checkbox = new Label();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-          
+            sælgernavn_textbox = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)addSellerGrid).BeginInit();
             SuspendLayout();
+            // 
+            // addSellerGrid
+            // 
+            addSellerGrid.AllowUserToAddRows = false;
+            addSellerGrid.AllowUserToDeleteRows = false;
+            addSellerGrid.AllowUserToResizeColumns = false;
+            addSellerGrid.AllowUserToResizeRows = false;
+            addSellerGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            addSellerGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            addSellerGrid.Location = new Point(470, 99);
+            addSellerGrid.MultiSelect = false;
+            addSellerGrid.Name = "addSellerGrid";
+            addSellerGrid.ReadOnly = true;
+            addSellerGrid.RowHeadersVisible = false;
+            addSellerGrid.RowHeadersWidth = 51;
+            addSellerGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            addSellerGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            addSellerGrid.Size = new Size(430, 312);
+            addSellerGrid.TabIndex = 1;
+            addSellerGrid.UseWaitCursor = true;
+            addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
+            // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // addSellerButton
+            // 
+            addSellerButton.Location = new Point(38, 307);
+            addSellerButton.Name = "addSellerButton";
+            addSellerButton.Size = new Size(120, 29);
+            addSellerButton.TabIndex = 2;
+            addSellerButton.Text = "Tilføj sælger";
+            addSellerButton.UseVisualStyleBackColor = true;
+            addSellerButton.Click += addSellerButton_Click;
             // 
             // vejnavn_label
             // 
-
-            label1.AutoSize = true;
-            label1.Location = new Point(347, 224);
-            label1.Name = "label1";
-            label1.Size = new Size(134, 20);
-            label1.TabIndex = 0;
-            label1.Text = "viewproperties :) :3";
-
             vejnavn_label.AutoSize = true;
             vejnavn_label.Location = new Point(33, 52);
             vejnavn_label.Name = "vejnavn_label";
@@ -136,7 +159,7 @@
             // pris_label
             // 
             pris_label.AutoSize = true;
-            pris_label.Location = new Point(33, 316);
+            pris_label.Location = new Point(33, 366);
             pris_label.Name = "pris_label";
             pris_label.Size = new Size(32, 20);
             pris_label.TabIndex = 6;
@@ -145,7 +168,7 @@
             // vurdering_label
             // 
             vurdering_label.AutoSize = true;
-            vurdering_label.Location = new Point(554, 92);
+            vurdering_label.Location = new Point(390, 33);
             vurdering_label.Name = "vurdering_label";
             vurdering_label.Size = new Size(74, 20);
             vurdering_label.TabIndex = 7;
@@ -216,7 +239,7 @@
             // 
             // pris_textbox
             // 
-            pris_textbox.Location = new Point(165, 312);
+            pris_textbox.Location = new Point(165, 362);
             pris_textbox.Name = "pris_textbox";
             pris_textbox.Size = new Size(125, 27);
             pris_textbox.TabIndex = 7;
@@ -226,7 +249,7 @@
             // vurdering_textbox
             // 
             vurdering_textbox.Enabled = false;
-            vurdering_textbox.Location = new Point(634, 89);
+            vurdering_textbox.Location = new Point(470, 30);
             vurdering_textbox.Name = "vurdering_textbox";
             vurdering_textbox.ReadOnly = true;
             vurdering_textbox.Size = new Size(125, 27);
@@ -249,7 +272,7 @@
             // 
             // tilføjsælger_button
             // 
-            tilføjsælger_button.Location = new Point(675, 501);
+            tilføjsælger_button.Location = new Point(760, 529);
             tilføjsælger_button.Name = "tilføjsælger_button";
             tilføjsælger_button.Size = new Size(94, 29);
             tilføjsælger_button.TabIndex = 11;
@@ -257,13 +280,14 @@
             tilføjsælger_button.UseVisualStyleBackColor = true;
             tilføjsælger_button.Click += tilføjsælger_button_Click;
             // 
-            // sælger_textbox
+            // sælgerID_textbox
             // 
-            sælger_textbox.Location = new Point(165, 269);
-            sælger_textbox.Name = "sælger_textbox";
-            sælger_textbox.Size = new Size(125, 27);
-            sælger_textbox.TabIndex = 6;
-            sælger_textbox.TextChanged += sælger_textbox_TextChanged;
+            sælgerID_textbox.Location = new Point(164, 274);
+            sælgerID_textbox.Name = "sælgerID_textbox";
+            sælgerID_textbox.ReadOnly = true;
+            sælgerID_textbox.Size = new Size(50, 27);
+            sælgerID_textbox.TabIndex = 6;
+            sælgerID_textbox.TextChanged += sælger_textbox_TextChanged;
             // 
             // solgt_label
             // 
@@ -344,7 +368,7 @@
             seller_checkbox.AutoSize = true;
             seller_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             seller_checkbox.ForeColor = Color.Red;
-            seller_checkbox.Location = new Point(305, 270);
+            seller_checkbox.Location = new Point(364, 271);
             seller_checkbox.Name = "seller_checkbox";
             seller_checkbox.Size = new Size(25, 24);
             seller_checkbox.TabIndex = 27;
@@ -355,7 +379,7 @@
             price_checkbox.AutoSize = true;
             price_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             price_checkbox.ForeColor = Color.Red;
-            price_checkbox.Location = new Point(305, 316);
+            price_checkbox.Location = new Point(305, 366);
             price_checkbox.Name = "price_checkbox";
             price_checkbox.Size = new Size(25, 24);
             price_checkbox.TabIndex = 28;
@@ -372,73 +396,21 @@
             realtor_checkbox.TabIndex = 30;
             realtor_checkbox.Text = "O";
             // 
-            // dataGridView1
+            // sælgernavn_textbox
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(573, 250);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(300, 188);
-            dataGridView1.TabIndex = 31;
-            // 
-            // addSellerGrid
-            // 
-            addSellerGrid.AllowUserToAddRows = false;
-            addSellerGrid.AllowUserToDeleteRows = false;
-            addSellerGrid.AllowUserToResizeColumns = false;
-            addSellerGrid.AllowUserToResizeRows = false;
-            addSellerGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            addSellerGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            addSellerGrid.Location = new Point(397, 29);
-            addSellerGrid.MultiSelect = false;
-            addSellerGrid.Name = "addSellerGrid";
-            addSellerGrid.ReadOnly = true;
-            addSellerGrid.RowHeadersVisible = false;
-            addSellerGrid.RowHeadersWidth = 51;
-            addSellerGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            addSellerGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            addSellerGrid.Size = new Size(502, 491);
-            addSellerGrid.TabIndex = 1;
-            addSellerGrid.UseWaitCursor = true;
-            addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
-            // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // addSellerButton
-            // 
-            addSellerButton.Location = new Point(534, 547);
-            addSellerButton.Name = "addSellerButton";
-            addSellerButton.Size = new Size(120, 29);
-            addSellerButton.TabIndex = 2;
-            addSellerButton.Text = "Tilføj sælger";
-            addSellerButton.UseVisualStyleBackColor = true;
-            addSellerButton.Click += addSellerButton_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(112, 149);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 3;
+            sælgernavn_textbox.Location = new Point(220, 274);
+            sælgernavn_textbox.Name = "sælgernavn_textbox";
+            sælgernavn_textbox.ReadOnly = true;
+            sælgernavn_textbox.Size = new Size(138, 27);
+            sælgernavn_textbox.TabIndex = 31;
             // 
             // AddPropertyPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-
-            Controls.Add(textBox1);
+            Controls.Add(sælgernavn_textbox);
             Controls.Add(addSellerButton);
             Controls.Add(addSellerGrid);
-            Controls.Add(label1);
-            Name = "AddPropertyPage";
-            Size = new Size(928, 603);
-            ((System.ComponentModel.ISupportInitialize)addSellerGrid).EndInit();
-
-            Controls.Add(dataGridView1);
             Controls.Add(realtor_checkbox);
             Controls.Add(price_checkbox);
             Controls.Add(seller_checkbox);
@@ -449,7 +421,7 @@
             Controls.Add(streetname_checklabel);
             Controls.Add(solgt_checkbox);
             Controls.Add(solgt_label);
-            Controls.Add(sælger_textbox);
+            Controls.Add(sælgerID_textbox);
             Controls.Add(tilføjsælger_button);
             Controls.Add(dato_datepicker);
             Controls.Add(ejendomsmægler_textbox);
@@ -472,8 +444,7 @@
             Controls.Add(vejnavn_label);
             Name = "AddPropertyPage";
             Size = new Size(928, 603);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-
+            ((System.ComponentModel.ISupportInitialize)addSellerGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -507,7 +478,7 @@
         private TextBox ejendomsmægler_textbox;
         private DateTimePicker dato_datepicker;
         private Button tilføjsælger_button;
-        private TextBox sælger_textbox;
+        private TextBox sælgerID_textbox;
         private Label solgt_label;
         private CheckBox solgt_checkbox;
         private Label streetname_checklabel;
@@ -519,5 +490,6 @@
         private Label price_checkbox;
         private Label realtor_checkbox;
         private DataGridView dataGridView1;
+        private TextBox sælgernavn_textbox;
     }
 }

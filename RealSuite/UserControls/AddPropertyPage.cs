@@ -12,31 +12,31 @@ namespace RealSuite.UserControls
         public AddPropertyPage()
         {
             InitializeComponent();
+            SellerGridSetup();
             tilføjsælger_button.Enabled = false;
-            
-            addSellerGrid.Visible = false;
-            var sellerDataTable = sellerService.GetSellers();
-            addSellerGrid.DataSource = sellerDataTable;
-            addSellerGrid.Columns[0].HeaderText = "Kunde ID";
-            addSellerGrid.Columns[1].HeaderText = "Fornavn";
-            addSellerGrid.Columns[2].HeaderText = "Efternavn";
-            addSellerGrid.Columns[3].Visible = false;
-            addSellerGrid.Columns[4].Visible = false;
-            addSellerGrid.Columns[5].Visible = false;
-            addSellerGrid.Columns[6].Visible = false;
-            addSellerGrid.Columns[7].HeaderText = "Telefon";
+
         }
 
         private void addSellerButton_Click(object sender, EventArgs e)
         {
-            addSellerGrid.Visible = true;
+            if (addSellerGrid.Visible == true) addSellerGrid.Visible = false;
+            else addSellerGrid.Visible = true;
         }
 
         private void addSellerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            addSellerGrid.Visible = false;
+            try
+            {
+                sælgerID_textbox.Text = addSellerGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                sælgernavn_textbox.Text = addSellerGrid.Rows[e.RowIndex].Cells[1].Value + " " +
+                                          addSellerGrid.Rows[e.RowIndex].Cells[2].Value;
+                addSellerGrid.Visible = false;
+            }
+            catch (Exception)
+            {
+            }
         }
-          
+
 
         public void Clear()
         {
@@ -50,7 +50,7 @@ namespace RealSuite.UserControls
         {
             var propertyDTO = new PropertyDTO(vejnavn_textbox.Text, Convert.ToInt32(husnr_textbox.Text),
                 Convert.ToInt32(zipcode_textbox.Text), Convert.ToInt32(byggeår_textbox.Text),
-                Convert.ToInt32(kvm_textbox.Text), Convert.ToInt32(sælger_textbox.Text),
+                Convert.ToInt32(kvm_textbox.Text), Convert.ToInt32(sælgerID_textbox.Text),
                 Convert.ToDouble(pris_textbox.Text), Convert.ToInt32(ejendomsmægler_textbox.Text),
                 dato_datepicker.Value, solgt_checkbox.Checked);
 
@@ -144,12 +144,21 @@ namespace RealSuite.UserControls
 
         private void sælger_textbox_TextChanged(object sender, EventArgs e)
         {
-
+            if (sælgerID_textbox.Text == "")
+            {
+                seller_checkbox.Text = "O";
+                seller_checkbox.ForeColor = Color.Red;
+            }
+            else
+            {
+                seller_checkbox.Text = "P";
+                seller_checkbox.ForeColor = Color.Green;
+            }
         }
 
         private void pris_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (!pris_textbox.Text.All(char.IsDigit))
+            if (!pris_textbox.Text.All(char.IsDigit) || pris_textbox.Text == "")
             {
                 price_checkbox.Text = "O";
                 price_checkbox.ForeColor = Color.Red;
@@ -201,6 +210,22 @@ namespace RealSuite.UserControls
             {
                 tilføjsælger_button.Enabled = false;
             }
+        }
+
+
+        private void SellerGridSetup()
+        {
+            addSellerGrid.Visible = false;
+            var sellerDataTable = sellerService.GetSellers();
+            addSellerGrid.DataSource = sellerDataTable;
+            addSellerGrid.Columns[0].HeaderText = "Kunde ID";
+            addSellerGrid.Columns[1].HeaderText = "Fornavn";
+            addSellerGrid.Columns[2].HeaderText = "Efternavn";
+            addSellerGrid.Columns[3].Visible = false;
+            addSellerGrid.Columns[4].Visible = false;
+            addSellerGrid.Columns[5].Visible = false;
+            addSellerGrid.Columns[6].Visible = false;
+            addSellerGrid.Columns[7].HeaderText = "Telefon";
         }
     }
 }
