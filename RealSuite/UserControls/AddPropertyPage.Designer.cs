@@ -59,7 +59,8 @@
             seller_checkbox = new Label();
             price_checkbox = new Label();
             realtor_checkbox = new Label();
-            dateListed_checkbox = new Label();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // vejnavn_label
@@ -158,6 +159,8 @@
             vejnavn_textbox.Name = "vejnavn_textbox";
             vejnavn_textbox.Size = new Size(125, 27);
             vejnavn_textbox.TabIndex = 1;
+            vejnavn_textbox.TextChanged += vejnavn_textbox_TextChanged;
+            vejnavn_textbox.KeyPress += HandleLetter_KeyPress;
             // 
             // husnr_textbox
             // 
@@ -165,6 +168,8 @@
             husnr_textbox.Name = "husnr_textbox";
             husnr_textbox.Size = new Size(125, 27);
             husnr_textbox.TabIndex = 2;
+            husnr_textbox.TextChanged += husnr_textbox_TextChanged;
+            husnr_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // zipcode_textbox
             // 
@@ -172,6 +177,8 @@
             zipcode_textbox.Name = "zipcode_textbox";
             zipcode_textbox.Size = new Size(125, 27);
             zipcode_textbox.TabIndex = 3;
+            zipcode_textbox.TextChanged += zipcode_textbox_TextChanged;
+            zipcode_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // byggeår_textbox
             // 
@@ -179,6 +186,8 @@
             byggeår_textbox.Name = "byggeår_textbox";
             byggeår_textbox.Size = new Size(125, 27);
             byggeår_textbox.TabIndex = 4;
+            byggeår_textbox.TextChanged += byggeår_textbox_TextChanged;
+            byggeår_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // kvm_textbox
             // 
@@ -186,6 +195,8 @@
             kvm_textbox.Name = "kvm_textbox";
             kvm_textbox.Size = new Size(125, 27);
             kvm_textbox.TabIndex = 5;
+            kvm_textbox.TextChanged += kvm_textbox_TextChanged;
+            kvm_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // pris_textbox
             // 
@@ -193,6 +204,8 @@
             pris_textbox.Name = "pris_textbox";
             pris_textbox.Size = new Size(125, 27);
             pris_textbox.TabIndex = 7;
+            pris_textbox.TextChanged += pris_textbox_TextChanged;
+            pris_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // vurdering_textbox
             // 
@@ -209,6 +222,7 @@
             ejendomsmægler_textbox.Name = "ejendomsmægler_textbox";
             ejendomsmægler_textbox.Size = new Size(125, 27);
             ejendomsmægler_textbox.TabIndex = 8;
+            ejendomsmægler_textbox.TextChanged += ejendomsmægler_textbox_TextChanged;
             // 
             // dato_datepicker
             // 
@@ -233,6 +247,7 @@
             sælger_textbox.Name = "sælger_textbox";
             sælger_textbox.Size = new Size(125, 27);
             sælger_textbox.TabIndex = 6;
+            sælger_textbox.TextChanged += sælger_textbox_TextChanged;
             // 
             // solgt_label
             // 
@@ -341,22 +356,20 @@
             realtor_checkbox.TabIndex = 30;
             realtor_checkbox.Text = "O";
             // 
-            // dateListed_checkbox
+            // dataGridView1
             // 
-            dateListed_checkbox.AutoSize = true;
-            dateListed_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            dateListed_checkbox.ForeColor = Color.Red;
-            dateListed_checkbox.Location = new Point(432, 442);
-            dateListed_checkbox.Name = "dateListed_checkbox";
-            dateListed_checkbox.Size = new Size(25, 24);
-            dateListed_checkbox.TabIndex = 31;
-            dateListed_checkbox.Text = "O";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(573, 250);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(300, 188);
+            dataGridView1.TabIndex = 31;
             // 
             // AddPropertyPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(dateListed_checkbox);
+            Controls.Add(dataGridView1);
             Controls.Add(realtor_checkbox);
             Controls.Add(price_checkbox);
             Controls.Add(seller_checkbox);
@@ -390,6 +403,7 @@
             Controls.Add(vejnavn_label);
             Name = "AddPropertyPage";
             Size = new Size(928, 603);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -427,6 +441,6 @@
         private Label seller_checkbox;
         private Label price_checkbox;
         private Label realtor_checkbox;
-        private Label dateListed_checkbox;
+        private DataGridView dataGridView1;
     }
 }
