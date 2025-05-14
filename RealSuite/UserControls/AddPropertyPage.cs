@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using Models;
 using Models.DTOModels;
 using RealSuite.Interfaces;
 
@@ -8,6 +9,7 @@ namespace RealSuite.UserControls
     {
         private SellerService sellerService = new SellerService();
         private PropertyService propertyService = new PropertyService();
+        private AssessmentService assessmentService = new AssessmentService();
 
         public AddPropertyPage()
         {
@@ -276,6 +278,22 @@ namespace RealSuite.UserControls
         {
             Clear();
             vejnavn_textbox.Focus();
+        }    
+            
+        private void vurdering_button_Click(object sender, EventArgs e)
+        {
+            var priceAssessment = new PriceAssessment(
+                Convert.ToInt32(zipcode_textbox.Text),
+                Convert.ToInt32(byggeår_textbox.Text),
+                Convert.ToInt32(kvm_textbox.Text));
+
+            var assessedPrice = assessmentService.GetAssessment(priceAssessment);
+
+            if (assessedPrice > 0)
+            {
+                vurdering_textbox.Text = assessedPrice.ToString();
+            }
+            else MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
         }
     }
 }
