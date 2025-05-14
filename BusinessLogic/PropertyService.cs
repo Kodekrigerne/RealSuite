@@ -33,8 +33,8 @@ namespace BusinessLogic
         public void ApplyFilters(string sold, int minPrice, int maxPrice, DateTime listedFrom, DateTime listedTo)
         {
             string soldFilter = sold == "Alle" ? "" : sold == "Solgt" ? "Sold = 1 AND" : "Sold = 0 AND";
-            string priceFilter = $"Price > {minPrice} AND Price < {maxPrice} AND";
-            string listedFilter = $"DateListed > #{listedFrom:yyyy-MM-dd}# AND DateListed < #{listedTo:yyyy-MM-dd}#";
+            string priceFilter = $"Price >= {minPrice} AND Price <= {maxPrice} AND";
+            string listedFilter = $"DateListed >= #{listedFrom:yyyy-MM-dd}# AND DateListed <= #{listedTo:yyyy-MM-dd}#";
 
             PropertiesSource.Filter = string.Empty;
             PropertiesSource.Filter += $"{soldFilter} {priceFilter} {listedFilter}";

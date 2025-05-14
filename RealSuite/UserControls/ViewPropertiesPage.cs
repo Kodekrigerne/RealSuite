@@ -17,10 +17,20 @@ namespace RealSuite.UserControls
         {
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             soldComboBox.SelectedItem = "Alle";
+            SetZipCodeComboBox();
             RenameColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
+        }
+
+        private void SetZipCodeComboBox()
+        {
+            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
+            zipCodeComboBox.Items.Add("Alle");
+            zipCodeComboBox.SelectedItem = "Alle";
+            zipCodeComboBox.Items.AddRange(table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>().ToArray());
+
         }
 
         private void RenameColumns()

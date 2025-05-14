@@ -34,6 +34,8 @@
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
+            panel8 = new Panel();
+            zipCodeComboBox = new ComboBox();
             resultsLabel = new Label();
             label3 = new Label();
             minPriceLabel = new Label();
@@ -61,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             topPanel.SuspendLayout();
+            panel8.SuspendLayout();
             panel5.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).BeginInit();
@@ -105,6 +108,7 @@
             propertiesDataGridView.EnableHeadersVisualStyles = false;
             propertiesDataGridView.GridColor = Color.Gainsboro;
             propertiesDataGridView.Location = new Point(0, 142);
+            propertiesDataGridView.MultiSelect = false;
             propertiesDataGridView.Name = "propertiesDataGridView";
             propertiesDataGridView.RowHeadersVisible = false;
             propertiesDataGridView.RowHeadersWidth = 51;
@@ -120,6 +124,7 @@
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(panel8);
             topPanel.Controls.Add(resultsLabel);
             topPanel.Controls.Add(label3);
             topPanel.Controls.Add(minPriceLabel);
@@ -139,6 +144,25 @@
             topPanel.Name = "topPanel";
             topPanel.Size = new Size(812, 136);
             topPanel.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(79, 117, 184);
+            panel8.Controls.Add(zipCodeComboBox);
+            panel8.Location = new Point(239, 26);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(103, 46);
+            panel8.TabIndex = 23;
+            // 
+            // zipCodeComboBox
+            // 
+            zipCodeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            zipCodeComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            zipCodeComboBox.FormattingEnabled = true;
+            zipCodeComboBox.Location = new Point(3, 10);
+            zipCodeComboBox.Name = "zipCodeComboBox";
+            zipCodeComboBox.Size = new Size(84, 27);
+            zipCodeComboBox.TabIndex = 22;
             // 
             // resultsLabel
             // 
@@ -169,7 +193,7 @@
             minPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
             minPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             minPriceLabel.ForeColor = Color.White;
-            minPriceLabel.Location = new Point(248, 7);
+            minPriceLabel.Location = new Point(373, 7);
             minPriceLabel.Name = "minPriceLabel";
             minPriceLabel.Size = new Size(61, 19);
             minPriceLabel.TabIndex = 4;
@@ -181,7 +205,7 @@
             maxPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
             maxPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             maxPriceLabel.ForeColor = Color.White;
-            maxPriceLabel.Location = new Point(359, 8);
+            maxPriceLabel.Location = new Point(484, 8);
             maxPriceLabel.Name = "maxPriceLabel";
             maxPriceLabel.Size = new Size(54, 19);
             maxPriceLabel.TabIndex = 5;
@@ -271,15 +295,15 @@
             panel3.BackColor = Color.FromArgb(79, 117, 184);
             panel3.Controls.Add(minPriceTrackBar);
             panel3.Controls.Add(selectedMinPriceLabel);
-            panel3.Location = new Point(248, 26);
+            panel3.Location = new Point(373, 20);
             panel3.Name = "panel3";
-            panel3.Size = new Size(105, 60);
+            panel3.Size = new Size(105, 61);
             panel3.TabIndex = 12;
             // 
             // minPriceTrackBar
             // 
             minPriceTrackBar.LargeChange = 0;
-            minPriceTrackBar.Location = new Point(-3, 33);
+            minPriceTrackBar.Location = new Point(-2, 33);
             minPriceTrackBar.Name = "minPriceTrackBar";
             minPriceTrackBar.Size = new Size(104, 45);
             minPriceTrackBar.SmallChange = 1000;
@@ -295,7 +319,7 @@
             selectedMinPriceLabel.BackColor = Color.White;
             selectedMinPriceLabel.Font = new Font("Microsoft YaHei", 10.5F);
             selectedMinPriceLabel.ForeColor = Color.FromArgb(38, 38, 38);
-            selectedMinPriceLabel.Location = new Point(5, 7);
+            selectedMinPriceLabel.Location = new Point(5, 8);
             selectedMinPriceLabel.Name = "selectedMinPriceLabel";
             selectedMinPriceLabel.Size = new Size(33, 20);
             selectedMinPriceLabel.TabIndex = 6;
@@ -306,7 +330,7 @@
             panel4.BackColor = Color.FromArgb(79, 117, 184);
             panel4.Controls.Add(maxPriceTrackBar);
             panel4.Controls.Add(selectedMaxPriceLabel);
-            panel4.Location = new Point(359, 27);
+            panel4.Location = new Point(484, 20);
             panel4.Name = "panel4";
             panel4.Size = new Size(107, 60);
             panel4.TabIndex = 13;
@@ -314,7 +338,7 @@
             // maxPriceTrackBar
             // 
             maxPriceTrackBar.LargeChange = 0;
-            maxPriceTrackBar.Location = new Point(0, 32);
+            maxPriceTrackBar.Location = new Point(0, 33);
             maxPriceTrackBar.Name = "maxPriceTrackBar";
             maxPriceTrackBar.Size = new Size(104, 45);
             maxPriceTrackBar.SmallChange = 1000;
@@ -330,7 +354,7 @@
             selectedMaxPriceLabel.BackColor = Color.White;
             selectedMaxPriceLabel.Font = new Font("Microsoft YaHei", 10.5F);
             selectedMaxPriceLabel.ForeColor = Color.FromArgb(38, 38, 38);
-            selectedMaxPriceLabel.Location = new Point(9, 6);
+            selectedMaxPriceLabel.Location = new Point(12, 9);
             selectedMaxPriceLabel.Name = "selectedMaxPriceLabel";
             selectedMaxPriceLabel.Size = new Size(33, 20);
             selectedMaxPriceLabel.TabIndex = 7;
@@ -424,6 +448,7 @@
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
+            panel8.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -466,5 +491,7 @@
         private Panel panel7;
         private ComboBox comboBox1;
         private Label resultsLabel;
+        private ComboBox zipCodeComboBox;
+        private Panel panel8;
     }
 }

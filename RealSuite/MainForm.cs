@@ -46,7 +46,7 @@ namespace RealSuite
         {
             if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
 
-            if (_currentPage is IClearable clearablePage) clearablePage.Clear();
+            if (_pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
 
             foreach (var otherPage in _pages)
             {
