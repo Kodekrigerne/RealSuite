@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using BusinessLogic;
+using DataAccess;
 using RealSuite.Interfaces;
 
 namespace RealSuite.UserControls
@@ -18,7 +19,9 @@ namespace RealSuite.UserControls
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             soldComboBox.SelectedItem = "Alle";
             zipCodeComboBox.SelectedItem = "Alle";
+            sellerComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
+            SetSellerComboBox();
             RenameColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
@@ -29,7 +32,12 @@ namespace RealSuite.UserControls
         {
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             zipCodeComboBox.Items.AddRange(table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>().ToArray());
+        }
 
+        private void SetSellerComboBox()
+        {
+            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
+            sellerComboBox.Items.AddRange(table.Select(x => x.Field<int>("SellerID")).Distinct().Cast<object>().ToArray());
         }
 
         private void RenameColumns()
@@ -75,8 +83,10 @@ namespace RealSuite.UserControls
             var listedTo = listedToDatePicker.Value;
             if (zipCodeComboBox.SelectedItem == null) zipCodeComboBox.SelectedItem = "Alle";
             var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
+            if (sellerComboBox.SelectedItem == null) sellerComboBox.SelectedItem = "Alle";
+            var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
 
-            _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter);
+            _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter);
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
         }
@@ -170,7 +180,12 @@ namespace RealSuite.UserControls
             ApplyFilters();
         }
 
-        private void zipCodeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ZipCodeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void SellerComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             ApplyFilters();
         }
