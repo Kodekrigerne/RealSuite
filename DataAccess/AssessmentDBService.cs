@@ -18,8 +18,8 @@ namespace DataAccess
                 {
                     command.CommandText = query;
                     command.Parameters.AddWithValue("@zipCode", priceAssessment.ZipCode);
-                    command.Parameters.AddWithValue("@lowerYear", (priceAssessment.BuildYear - 5));
-                    command.Parameters.AddWithValue("@upperYear", (priceAssessment.BuildYear + 5));
+                    command.Parameters.AddWithValue("@lowerYear", (priceAssessment.BuildYear - 10));
+                    command.Parameters.AddWithValue("@upperYear", (priceAssessment.BuildYear + 10));
                     command.Parameters.AddWithValue("@lowerSqm", (priceAssessment.SquareMeters - 20));
                     command.Parameters.AddWithValue("@upperSqm", (priceAssessment.SquareMeters + 20));
 
