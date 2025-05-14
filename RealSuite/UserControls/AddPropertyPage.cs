@@ -13,7 +13,7 @@ namespace RealSuite.UserControls
         {
             InitializeComponent();
             SellerGridSetup();
-            tilføjsælger_button.Enabled = false;
+            pris_textbox.Controls[0].Hide();
 
         }
 
@@ -40,11 +40,19 @@ namespace RealSuite.UserControls
 
         public void Clear()
         {
+            pris_textbox.Value = 0;
             foreach (Control control in Controls)
             {
                 if (control is TextBox textBox)
                 {
                     textBox.Text = "";
+                }
+            }
+            foreach (Control control in Controls)
+            {
+                if (control is Label label && label.Font.Name == "Wingdings 2")
+                {
+                    label.Visible = false;
                 }
             }
         }
@@ -54,7 +62,7 @@ namespace RealSuite.UserControls
             var propertyDTO = new PropertyDTO(vejnavn_textbox.Text, Convert.ToInt32(husnr_textbox.Text),
                 Convert.ToInt32(zipcode_textbox.Text), Convert.ToInt32(byggeår_textbox.Text),
                 Convert.ToInt32(kvm_textbox.Text), Convert.ToInt32(sælgerID_textbox.Text),
-                Convert.ToDouble(pris_textbox.Text), Convert.ToInt32(ejendomsmægler_textbox.Text),
+                Convert.ToDouble(pris_textbox.Text), Convert.ToInt32(ejendomsmæglerID_textbox.Text),
                 dato_datepicker.Value, solgt_checkbox.Checked);
 
             bool rowCreated = propertyService.CreateProperty(propertyDTO);
@@ -72,6 +80,8 @@ namespace RealSuite.UserControls
 
         private void vejnavn_textbox_TextChanged(object sender, EventArgs e)
         {
+            streetname_checklabel.Visible = true;
+
             if (!vejnavn_textbox.Text.All(char.IsLetter) || vejnavn_textbox.Text == "")
             {
                 streetname_checklabel.Text = "O";
@@ -87,6 +97,7 @@ namespace RealSuite.UserControls
 
         private void husnr_textbox_TextChanged(object sender, EventArgs e)
         {
+            streetnumber_checklabel.Visible = true;
             if (!husnr_textbox.Text.All(char.IsDigit) || husnr_textbox.Text == "")
             {
                 streetnumber_checklabel.Text = "O";
@@ -102,6 +113,7 @@ namespace RealSuite.UserControls
 
         private void zipcode_textbox_TextChanged(object sender, EventArgs e)
         {
+            zip_checkbox.Visible = true;
             if (!zipcode_textbox.Text.All(char.IsDigit) || zipcode_textbox.Text.Length != 4)
             {
                 zip_checkbox.Text = "O";
@@ -113,10 +125,12 @@ namespace RealSuite.UserControls
                 zip_checkbox.ForeColor = Color.Green;
             }
             SubmitKeyCheck();
+            GetAssessment();
         }
 
         private void byggeår_textbox_TextChanged(object sender, EventArgs e)
         {
+            buildyear_checkbox.Visible = true;
             if (!byggeår_textbox.Text.All(char.IsDigit) || byggeår_textbox.Text.Length != 4)
             {
                 buildyear_checkbox.Text = "O";
@@ -128,11 +142,13 @@ namespace RealSuite.UserControls
                 buildyear_checkbox.ForeColor = Color.Green;
             }
             SubmitKeyCheck();
+            GetAssessment();
         }
 
         private void kvm_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (!kvm_textbox.Text.All(char.IsDigit))
+            squaremeter_checkbox.Visible = true;
+            if (!kvm_textbox.Text.All(char.IsDigit) || kvm_textbox.Text == "")
             {
                 squaremeter_checkbox.Text = "O";
                 squaremeter_checkbox.ForeColor = Color.Red;
@@ -143,10 +159,12 @@ namespace RealSuite.UserControls
                 squaremeter_checkbox.ForeColor = Color.Green;
             }
             SubmitKeyCheck();
+            GetAssessment();
         }
 
         private void sælger_textbox_TextChanged(object sender, EventArgs e)
         {
+            seller_checkbox.Visible = true;
             if (sælgerID_textbox.Text == "")
             {
                 seller_checkbox.Text = "O";
@@ -158,28 +176,6 @@ namespace RealSuite.UserControls
                 seller_checkbox.ForeColor = Color.Green;
             }
         }
-
-        private void pris_textbox_TextChanged(object sender, EventArgs e)
-        {
-            if (!pris_textbox.Text.All(char.IsDigit) || pris_textbox.Text == "")
-            {
-                price_checkbox.Text = "O";
-                price_checkbox.ForeColor = Color.Red;
-            }
-            else
-            {
-                price_checkbox.Text = "P";
-                price_checkbox.ForeColor = Color.Green;
-            }
-            SubmitKeyCheck();
-        }
-
-        private void ejendomsmægler_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void HandleDigit_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -229,6 +225,50 @@ namespace RealSuite.UserControls
             addSellerGrid.Columns[5].Visible = false;
             addSellerGrid.Columns[6].Visible = false;
             addSellerGrid.Columns[7].HeaderText = "Telefon";
+        }
+
+        private void pris_textbox_ValueChanged(object sender, EventArgs e)
+        {
+            price_checkbox.Visible = true;
+            if (pris_textbox.Value == 0)
+            {
+                price_checkbox.Text = "O";
+                price_checkbox.ForeColor = Color.Red;
+            }
+            else
+            {
+                price_checkbox.Text = "P";
+                price_checkbox.ForeColor = Color.Green;
+            }
+            SubmitKeyCheck();
+        }
+
+        private void solgt_checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (solgt_checkbox.Checked == true)
+            {
+                solgtdato_label.Visible = true;
+                solgtdato_dateTimePicker.Visible = true;
+            }
+            else
+            {
+                solgtdato_label.Visible = false;
+                solgtdato_dateTimePicker.Visible = false;
+            }
+        }
+
+        private void GetAssessment()
+        {
+            if (buildyear_checkbox.Text != "O" &&
+                squaremeter_checkbox.Text != "O" &&
+                zip_checkbox.Text != "O")
+            {
+                vurdering_button.Enabled = true;
+            }
+            else
+            {
+                vurdering_button.Enabled = false;
+            }
         }
     }
 }
