@@ -63,6 +63,16 @@ namespace RealSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ClearPropertyFiltersIcon {
+            get {
+                object obj = ResourceManager.GetObject("ClearPropertyFiltersIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FrontFullLogo {
             get {
                 object obj = ResourceManager.GetObject("FrontFullLogo", resourceCulture);
@@ -96,6 +106,16 @@ namespace RealSuite.Properties {
         internal static System.Drawing.Bitmap FrontLogoHighlight {
             get {
                 object obj = ResourceManager.GetObject("FrontLogoHighlight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Refresh_Properties_Logo {
+            get {
+                object obj = ResourceManager.GetObject("Refresh Properties Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

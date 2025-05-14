@@ -44,18 +44,21 @@ namespace RealSuite
 
         private void NavigateTo(Pages pageKey)
         {
-            if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
-
-            if (_currentPage is IClearable clearablePage) clearablePage.Clear();
-
-            foreach (var otherPage in _pages)
+            if (_currentPage != _pages[pageKey])
             {
-                if (otherPage.Value != page) otherPage.Value.Visible = false;
-            }
+                if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
 
-            page.Visible = true;
-            page.Focus();
-            _currentPage = page;
+                if (_pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
+
+                foreach (var otherPage in _pages)
+                {
+                    if (otherPage.Value != page) otherPage.Value.Visible = false;
+                }
+
+                page.Visible = true;
+                page.Focus();
+                _currentPage = page;
+            }
         }
 
         private void HighlightButton(object sender, EventArgs e)
