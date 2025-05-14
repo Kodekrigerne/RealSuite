@@ -16,11 +16,11 @@ namespace RealSuite.UserControls
         private void InitializeControls()
         {
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+            soldComboBox.SelectedItem = "Alle";
             RenameColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
-            soldComboBox.SelectedItem = "Alle";
         }
 
         private void RenameColumns()
