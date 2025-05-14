@@ -29,46 +29,45 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
-            panel8 = new Panel();
+            zipCodeFilterLabel = new Label();
+            zipCodePanel = new Panel();
             zipCodeComboBox = new ComboBox();
             resultsLabel = new Label();
-            label3 = new Label();
-            minPriceLabel = new Label();
-            maxPriceLabel = new Label();
-            soldLabel = new Label();
-            panel5 = new Panel();
+            sellerFilterLabel = new Label();
+            soldFilterLabel = new Label();
+            soldFilterPanel = new Panel();
             soldComboBox = new ComboBox();
             panel2 = new Panel();
             panel1 = new Panel();
             clearButton = new Button();
             refreshButton = new Button();
-            panel3 = new Panel();
-            minPriceTrackBar = new TrackBar();
-            selectedMinPriceLabel = new Label();
-            panel4 = new Panel();
+            priceFromFilterPanel = new Panel();
             maxPriceTrackBar = new TrackBar();
+            minPriceTrackBar = new TrackBar();
             selectedMaxPriceLabel = new Label();
+            selectedMinPriceLabel = new Label();
+            minPriceLabel = new Label();
+            maxPriceLabel = new Label();
             panel6 = new Panel();
             listedFromDatePicker = new DateTimePicker();
             label2 = new Label();
             label1 = new Label();
             listedToDatePicker = new DateTimePicker();
             panel7 = new Panel();
-            comboBox1 = new ComboBox();
+            sellerComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             topPanel.SuspendLayout();
-            panel8.SuspendLayout();
-            panel5.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).BeginInit();
-            panel4.SuspendLayout();
+            zipCodePanel.SuspendLayout();
+            soldFilterPanel.SuspendLayout();
+            priceFromFilterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).BeginInit();
             panel6.SuspendLayout();
             panel7.SuspendLayout();
             SuspendLayout();
@@ -84,25 +83,25 @@
             propertiesDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             propertiesDataGridView.BackgroundColor = Color.White;
             propertiesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             propertiesDataGridView.ColumnHeadersHeight = 35;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.NullValue = null;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             propertiesDataGridView.Dock = DockStyle.Bottom;
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             propertiesDataGridView.EnableHeadersVisualStyles = false;
@@ -124,19 +123,17 @@
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
-            topPanel.Controls.Add(panel8);
+            topPanel.Controls.Add(zipCodeFilterLabel);
+            topPanel.Controls.Add(zipCodePanel);
             topPanel.Controls.Add(resultsLabel);
-            topPanel.Controls.Add(label3);
-            topPanel.Controls.Add(minPriceLabel);
-            topPanel.Controls.Add(maxPriceLabel);
-            topPanel.Controls.Add(soldLabel);
-            topPanel.Controls.Add(panel5);
+            topPanel.Controls.Add(sellerFilterLabel);
+            topPanel.Controls.Add(soldFilterLabel);
+            topPanel.Controls.Add(soldFilterPanel);
             topPanel.Controls.Add(panel2);
             topPanel.Controls.Add(panel1);
             topPanel.Controls.Add(clearButton);
             topPanel.Controls.Add(refreshButton);
-            topPanel.Controls.Add(panel3);
-            topPanel.Controls.Add(panel4);
+            topPanel.Controls.Add(priceFromFilterPanel);
             topPanel.Controls.Add(panel6);
             topPanel.Controls.Add(panel7);
             topPanel.Dock = DockStyle.Top;
@@ -145,23 +142,35 @@
             topPanel.Size = new Size(812, 136);
             topPanel.TabIndex = 1;
             // 
-            // panel8
+            // zipCodeFilterLabel
             // 
-            panel8.BackColor = Color.FromArgb(79, 117, 184);
-            panel8.Controls.Add(zipCodeComboBox);
-            panel8.Location = new Point(239, 26);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(103, 46);
-            panel8.TabIndex = 23;
+            zipCodeFilterLabel.AutoSize = true;
+            zipCodeFilterLabel.BackColor = Color.FromArgb(158, 126, 97);
+            zipCodeFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            zipCodeFilterLabel.ForeColor = Color.White;
+            zipCodeFilterLabel.Location = new Point(239, 7);
+            zipCodeFilterLabel.Name = "zipCodeFilterLabel";
+            zipCodeFilterLabel.Size = new Size(58, 19);
+            zipCodeFilterLabel.TabIndex = 24;
+            zipCodeFilterLabel.Text = "Postnr";
+            // 
+            // zipCodePanel
+            // 
+            zipCodePanel.BackColor = Color.FromArgb(79, 117, 184);
+            zipCodePanel.Controls.Add(zipCodeComboBox);
+            zipCodePanel.Location = new Point(239, 26);
+            zipCodePanel.Name = "zipCodePanel";
+            zipCodePanel.Size = new Size(79, 39);
+            zipCodePanel.TabIndex = 23;
             // 
             // zipCodeComboBox
             // 
             zipCodeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             zipCodeComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             zipCodeComboBox.FormattingEnabled = true;
-            zipCodeComboBox.Location = new Point(3, 10);
+            zipCodeComboBox.Location = new Point(8, 6);
             zipCodeComboBox.Name = "zipCodeComboBox";
-            zipCodeComboBox.Size = new Size(84, 27);
+            zipCodeComboBox.Size = new Size(64, 27);
             zipCodeComboBox.TabIndex = 22;
             // 
             // resultsLabel
@@ -175,62 +184,38 @@
             resultsLabel.TabIndex = 21;
             resultsLabel.Text = "-";
             // 
-            // label3
+            // sellerFilterLabel
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(158, 126, 97);
-            label3.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(134, 7);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 19);
-            label3.TabIndex = 20;
-            label3.Text = "Sælger";
+            sellerFilterLabel.AutoSize = true;
+            sellerFilterLabel.BackColor = Color.FromArgb(158, 126, 97);
+            sellerFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            sellerFilterLabel.ForeColor = Color.White;
+            sellerFilterLabel.Location = new Point(134, 7);
+            sellerFilterLabel.Name = "sellerFilterLabel";
+            sellerFilterLabel.Size = new Size(60, 19);
+            sellerFilterLabel.TabIndex = 20;
+            sellerFilterLabel.Text = "Sælger";
             // 
-            // minPriceLabel
+            // soldFilterLabel
             // 
-            minPriceLabel.AutoSize = true;
-            minPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
-            minPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            minPriceLabel.ForeColor = Color.White;
-            minPriceLabel.Location = new Point(373, 7);
-            minPriceLabel.Name = "minPriceLabel";
-            minPriceLabel.Size = new Size(61, 19);
-            minPriceLabel.TabIndex = 4;
-            minPriceLabel.Text = "Pris fra";
+            soldFilterLabel.AutoSize = true;
+            soldFilterLabel.BackColor = Color.FromArgb(158, 126, 97);
+            soldFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            soldFilterLabel.ForeColor = Color.White;
+            soldFilterLabel.Location = new Point(12, 8);
+            soldFilterLabel.Name = "soldFilterLabel";
+            soldFilterLabel.Size = new Size(56, 19);
+            soldFilterLabel.TabIndex = 2;
+            soldFilterLabel.Text = "Status";
             // 
-            // maxPriceLabel
+            // soldFilterPanel
             // 
-            maxPriceLabel.AutoSize = true;
-            maxPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
-            maxPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            maxPriceLabel.ForeColor = Color.White;
-            maxPriceLabel.Location = new Point(484, 8);
-            maxPriceLabel.Name = "maxPriceLabel";
-            maxPriceLabel.Size = new Size(54, 19);
-            maxPriceLabel.TabIndex = 5;
-            maxPriceLabel.Text = "Pris til";
-            // 
-            // soldLabel
-            // 
-            soldLabel.AutoSize = true;
-            soldLabel.BackColor = Color.FromArgb(158, 126, 97);
-            soldLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            soldLabel.ForeColor = Color.White;
-            soldLabel.Location = new Point(12, 8);
-            soldLabel.Name = "soldLabel";
-            soldLabel.Size = new Size(56, 19);
-            soldLabel.TabIndex = 2;
-            soldLabel.Text = "Status";
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(79, 117, 184);
-            panel5.Controls.Add(soldComboBox);
-            panel5.Location = new Point(12, 27);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(106, 38);
-            panel5.TabIndex = 14;
+            soldFilterPanel.BackColor = Color.FromArgb(79, 117, 184);
+            soldFilterPanel.Controls.Add(soldComboBox);
+            soldFilterPanel.Location = new Point(12, 27);
+            soldFilterPanel.Name = "soldFilterPanel";
+            soldFilterPanel.Size = new Size(106, 38);
+            soldFilterPanel.TabIndex = 14;
             // 
             // soldComboBox
             // 
@@ -290,55 +275,24 @@
             refreshButton.UseVisualStyleBackColor = false;
             refreshButton.Click += RefreshButton_Click;
             // 
-            // panel3
+            // priceFromFilterPanel
             // 
-            panel3.BackColor = Color.FromArgb(79, 117, 184);
-            panel3.Controls.Add(minPriceTrackBar);
-            panel3.Controls.Add(selectedMinPriceLabel);
-            panel3.Location = new Point(373, 20);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(105, 61);
-            panel3.TabIndex = 12;
-            // 
-            // minPriceTrackBar
-            // 
-            minPriceTrackBar.LargeChange = 0;
-            minPriceTrackBar.Location = new Point(-2, 33);
-            minPriceTrackBar.Name = "minPriceTrackBar";
-            minPriceTrackBar.Size = new Size(104, 45);
-            minPriceTrackBar.SmallChange = 1000;
-            minPriceTrackBar.TabIndex = 2;
-            minPriceTrackBar.TickFrequency = 1000;
-            minPriceTrackBar.TickStyle = TickStyle.None;
-            minPriceTrackBar.ValueChanged += MinPriceTrackBar_ValueChanged;
-            minPriceTrackBar.MouseUp += MinPriceTrackBar_MouseUp;
-            // 
-            // selectedMinPriceLabel
-            // 
-            selectedMinPriceLabel.AutoSize = true;
-            selectedMinPriceLabel.BackColor = Color.White;
-            selectedMinPriceLabel.Font = new Font("Microsoft YaHei", 10.5F);
-            selectedMinPriceLabel.ForeColor = Color.FromArgb(38, 38, 38);
-            selectedMinPriceLabel.Location = new Point(5, 8);
-            selectedMinPriceLabel.Name = "selectedMinPriceLabel";
-            selectedMinPriceLabel.Size = new Size(33, 20);
-            selectedMinPriceLabel.TabIndex = 6;
-            selectedMinPriceLabel.Text = "123";
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(79, 117, 184);
-            panel4.Controls.Add(maxPriceTrackBar);
-            panel4.Controls.Add(selectedMaxPriceLabel);
-            panel4.Location = new Point(484, 20);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(107, 60);
-            panel4.TabIndex = 13;
+            priceFromFilterPanel.BackColor = Color.FromArgb(79, 117, 184);
+            priceFromFilterPanel.Controls.Add(maxPriceTrackBar);
+            priceFromFilterPanel.Controls.Add(minPriceTrackBar);
+            priceFromFilterPanel.Controls.Add(selectedMaxPriceLabel);
+            priceFromFilterPanel.Controls.Add(selectedMinPriceLabel);
+            priceFromFilterPanel.Controls.Add(minPriceLabel);
+            priceFromFilterPanel.Controls.Add(maxPriceLabel);
+            priceFromFilterPanel.Location = new Point(541, 8);
+            priceFromFilterPanel.Name = "priceFromFilterPanel";
+            priceFromFilterPanel.Size = new Size(258, 67);
+            priceFromFilterPanel.TabIndex = 12;
             // 
             // maxPriceTrackBar
             // 
             maxPriceTrackBar.LargeChange = 0;
-            maxPriceTrackBar.Location = new Point(0, 33);
+            maxPriceTrackBar.Location = new Point(70, 36);
             maxPriceTrackBar.Name = "maxPriceTrackBar";
             maxPriceTrackBar.Size = new Size(104, 45);
             maxPriceTrackBar.SmallChange = 1000;
@@ -348,17 +302,66 @@
             maxPriceTrackBar.ValueChanged += MaxPriceTrackBar_ValueChanged;
             maxPriceTrackBar.MouseUp += MaxPriceTrackBar_MouseUp;
             // 
+            // minPriceTrackBar
+            // 
+            minPriceTrackBar.LargeChange = 0;
+            minPriceTrackBar.Location = new Point(70, 6);
+            minPriceTrackBar.Name = "minPriceTrackBar";
+            minPriceTrackBar.Size = new Size(104, 45);
+            minPriceTrackBar.SmallChange = 1000;
+            minPriceTrackBar.TabIndex = 2;
+            minPriceTrackBar.TickFrequency = 1000;
+            minPriceTrackBar.TickStyle = TickStyle.None;
+            minPriceTrackBar.ValueChanged += MinPriceTrackBar_ValueChanged;
+            minPriceTrackBar.MouseUp += MinPriceTrackBar_MouseUp;
+            // 
             // selectedMaxPriceLabel
             // 
             selectedMaxPriceLabel.AutoSize = true;
             selectedMaxPriceLabel.BackColor = Color.White;
             selectedMaxPriceLabel.Font = new Font("Microsoft YaHei", 10.5F);
             selectedMaxPriceLabel.ForeColor = Color.FromArgb(38, 38, 38);
-            selectedMaxPriceLabel.Location = new Point(12, 9);
+            selectedMaxPriceLabel.Location = new Point(180, 37);
             selectedMaxPriceLabel.Name = "selectedMaxPriceLabel";
             selectedMaxPriceLabel.Size = new Size(33, 20);
             selectedMaxPriceLabel.TabIndex = 7;
             selectedMaxPriceLabel.Text = "123";
+            // 
+            // selectedMinPriceLabel
+            // 
+            selectedMinPriceLabel.AutoSize = true;
+            selectedMinPriceLabel.BackColor = Color.White;
+            selectedMinPriceLabel.Font = new Font("Microsoft YaHei", 10.5F);
+            selectedMinPriceLabel.ForeColor = Color.FromArgb(38, 38, 38);
+            selectedMinPriceLabel.Location = new Point(180, 6);
+            selectedMinPriceLabel.Name = "selectedMinPriceLabel";
+            selectedMinPriceLabel.Size = new Size(33, 20);
+            selectedMinPriceLabel.TabIndex = 6;
+            selectedMinPriceLabel.Text = "123";
+            // 
+            // minPriceLabel
+            // 
+            minPriceLabel.AutoSize = true;
+            minPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
+            minPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            minPriceLabel.ForeColor = Color.White;
+            minPriceLabel.Location = new Point(7, 7);
+            minPriceLabel.Name = "minPriceLabel";
+            minPriceLabel.Size = new Size(61, 19);
+            minPriceLabel.TabIndex = 4;
+            minPriceLabel.Text = "Pris fra";
+            // 
+            // maxPriceLabel
+            // 
+            maxPriceLabel.AutoSize = true;
+            maxPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
+            maxPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            maxPriceLabel.ForeColor = Color.White;
+            maxPriceLabel.Location = new Point(7, 38);
+            maxPriceLabel.Name = "maxPriceLabel";
+            maxPriceLabel.Size = new Size(54, 19);
+            maxPriceLabel.TabIndex = 5;
+            maxPriceLabel.Text = "Pris til";
             // 
             // panel6
             // 
@@ -367,7 +370,7 @@
             panel6.Controls.Add(label2);
             panel6.Controls.Add(label1);
             panel6.Controls.Add(listedToDatePicker);
-            panel6.Location = new Point(606, 8);
+            panel6.Location = new Point(333, 7);
             panel6.Name = "panel6";
             panel6.Size = new Size(193, 67);
             panel6.TabIndex = 17;
@@ -419,20 +422,20 @@
             // panel7
             // 
             panel7.BackColor = Color.FromArgb(79, 117, 184);
-            panel7.Controls.Add(comboBox1);
+            panel7.Controls.Add(sellerComboBox);
             panel7.Location = new Point(134, 26);
             panel7.Name = "panel7";
             panel7.Size = new Size(99, 39);
             panel7.TabIndex = 19;
             // 
-            // comboBox1
+            // sellerComboBox
             // 
-            comboBox1.Font = new Font("Microsoft YaHei", 10F);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(6, 6);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(86, 27);
-            comboBox1.TabIndex = 18;
+            sellerComboBox.Font = new Font("Microsoft YaHei", 10F);
+            sellerComboBox.FormattingEnabled = true;
+            sellerComboBox.Location = new Point(6, 6);
+            sellerComboBox.Name = "sellerComboBox";
+            sellerComboBox.Size = new Size(86, 27);
+            sellerComboBox.TabIndex = 18;
             // 
             // ViewPropertiesPage
             // 
@@ -448,14 +451,12 @@
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
-            panel8.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            zipCodePanel.ResumeLayout(false);
+            soldFilterPanel.ResumeLayout(false);
+            priceFromFilterPanel.ResumeLayout(false);
+            priceFromFilterPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).EndInit();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel7.ResumeLayout(false);
@@ -478,20 +479,20 @@
         private Button clearButton;
         private Panel panel1;
         private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
+        private Panel priceFromFilterPanel;
+        private Panel soldFilterPanel;
         private DateTimePicker listedToDatePicker;
         private DateTimePicker listedFromDatePicker;
         private Panel panel6;
         private Label label2;
         private Label label1;
-        private Label soldLabel;
-        private Label label3;
+        private Label soldFilterLabel;
+        private Label sellerFilterLabel;
         private Panel panel7;
-        private ComboBox comboBox1;
+        private ComboBox sellerComboBox;
         private Label resultsLabel;
         private ComboBox zipCodeComboBox;
-        private Panel panel8;
+        private Panel zipCodePanel;
+        private Label zipCodeFilterLabel;
     }
 }
