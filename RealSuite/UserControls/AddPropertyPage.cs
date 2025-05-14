@@ -16,6 +16,7 @@ namespace RealSuite.UserControls
             InitializeComponent();
             SellerGridSetup();
             pris_textbox.Controls[0].Hide();
+            vurdering_textbox.Controls[0].Hide();
 
         }
 
@@ -273,6 +274,12 @@ namespace RealSuite.UserControls
             }
         }
 
+        private void clear_button_Click(object sender, EventArgs e)
+        {
+            Clear();
+            vejnavn_textbox.Focus();
+        }    
+            
         private void vurdering_button_Click(object sender, EventArgs e)
         {
             var priceAssessment = new PriceAssessment(
@@ -287,7 +294,6 @@ namespace RealSuite.UserControls
                 vurdering_textbox.Text = assessedPrice.ToString();
             }
             else MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
-
         }
     }
 }

@@ -46,7 +46,6 @@
             zipcode_textbox = new TextBox();
             byggeår_textbox = new TextBox();
             kvm_textbox = new TextBox();
-            vurdering_textbox = new TextBox();
             ejendomsmæglerID_textbox = new TextBox();
             dato_datepicker = new DateTimePicker();
             tilføjsælger_button = new Button();
@@ -68,8 +67,13 @@
             solgtdato_label = new Label();
             vurdering_button = new Button();
             clear_button = new Button();
+            vurdering_textbox = new NumericUpDown();
+            panel1 = new Panel();
+            vurderingKr_label = new Label();
             ((System.ComponentModel.ISupportInitialize)addSellerGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)vurdering_textbox).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // addSellerGrid
@@ -165,7 +169,7 @@
             // pris_label
             // 
             pris_label.AutoSize = true;
-            pris_label.Location = new Point(33, 366);
+            pris_label.Location = new Point(33, 362);
             pris_label.Name = "pris_label";
             pris_label.Size = new Size(32, 20);
             pris_label.TabIndex = 6;
@@ -240,24 +244,16 @@
             // kvm_textbox
             // 
             kvm_textbox.Location = new Point(165, 228);
-            kvm_textbox.MaxLength = 4;
+            kvm_textbox.MaxLength = 5;
             kvm_textbox.Name = "kvm_textbox";
             kvm_textbox.Size = new Size(125, 27);
             kvm_textbox.TabIndex = 5;
             kvm_textbox.TextChanged += kvm_textbox_TextChanged;
             kvm_textbox.KeyPress += HandleDigit_KeyPress;
             // 
-            // vurdering_textbox
-            // 
-            vurdering_textbox.Enabled = false;
-            vurdering_textbox.Location = new Point(550, 42);
-            vurdering_textbox.Name = "vurdering_textbox";
-            vurdering_textbox.ReadOnly = true;
-            vurdering_textbox.Size = new Size(125, 27);
-            vurdering_textbox.TabIndex = 0;
-            // 
             // ejendomsmæglerID_textbox
             // 
+            ejendomsmæglerID_textbox.Enabled = false;
             ejendomsmæglerID_textbox.Location = new Point(165, 398);
             ejendomsmæglerID_textbox.Name = "ejendomsmæglerID_textbox";
             ejendomsmæglerID_textbox.ReadOnly = true;
@@ -265,6 +261,7 @@
             ejendomsmæglerID_textbox.TabIndex = 8;
             ejendomsmæglerID_textbox.TabStop = false;
             ejendomsmæglerID_textbox.Text = "1000";
+            ejendomsmæglerID_textbox.TextAlign = HorizontalAlignment.Center;
             // 
             // dato_datepicker
             // 
@@ -280,19 +277,21 @@
             tilføjsælger_button.Location = new Point(760, 529);
             tilføjsælger_button.Name = "tilføjsælger_button";
             tilføjsælger_button.Size = new Size(94, 29);
-            tilføjsælger_button.TabIndex = 10;
+            tilføjsælger_button.TabIndex = 12;
             tilføjsælger_button.Text = "Tilføj";
             tilføjsælger_button.UseVisualStyleBackColor = true;
             tilføjsælger_button.Click += tilføjsælger_button_Click;
             // 
             // sælgerID_textbox
             // 
+            sælgerID_textbox.Enabled = false;
             sælgerID_textbox.Location = new Point(164, 274);
             sælgerID_textbox.Name = "sælgerID_textbox";
             sælgerID_textbox.ReadOnly = true;
             sælgerID_textbox.Size = new Size(50, 27);
             sælgerID_textbox.TabIndex = 6;
             sælgerID_textbox.TabStop = false;
+            sælgerID_textbox.TextAlign = HorizontalAlignment.Center;
             sælgerID_textbox.TextChanged += sælger_textbox_TextChanged;
             // 
             // solgt_label
@@ -392,7 +391,7 @@
             price_checkbox.AutoSize = true;
             price_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             price_checkbox.ForeColor = Color.Red;
-            price_checkbox.Location = new Point(326, 367);
+            price_checkbox.Location = new Point(326, 363);
             price_checkbox.Name = "price_checkbox";
             price_checkbox.Size = new Size(25, 24);
             price_checkbox.TabIndex = 28;
@@ -401,6 +400,7 @@
             // 
             // sælgernavn_textbox
             // 
+            sælgernavn_textbox.Enabled = false;
             sælgernavn_textbox.Location = new Point(220, 274);
             sælgernavn_textbox.Name = "sælgernavn_textbox";
             sælgernavn_textbox.ReadOnly = true;
@@ -411,7 +411,7 @@
             // pris_textbox
             // 
             pris_textbox.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
-            pris_textbox.Location = new Point(164, 364);
+            pris_textbox.Location = new Point(164, 360);
             pris_textbox.Maximum = new decimal(new int[] { 75000000, 0, 0, 0 });
             pris_textbox.Name = "pris_textbox";
             pris_textbox.Size = new Size(126, 27);
@@ -423,7 +423,7 @@
             // kr_label
             // 
             kr_label.AutoSize = true;
-            kr_label.Location = new Point(296, 367);
+            kr_label.Location = new Point(296, 363);
             kr_label.Name = "kr_label";
             kr_label.Size = new Size(24, 20);
             kr_label.TabIndex = 33;
@@ -431,6 +431,7 @@
             // 
             // ejendomsmægler_textbox
             // 
+            ejendomsmægler_textbox.Enabled = false;
             ejendomsmægler_textbox.Location = new Point(220, 398);
             ejendomsmægler_textbox.Name = "ejendomsmægler_textbox";
             ejendomsmægler_textbox.ReadOnly = true;
@@ -446,7 +447,7 @@
             solgtdato_dateTimePicker.Location = new Point(296, 489);
             solgtdato_dateTimePicker.Name = "solgtdato_dateTimePicker";
             solgtdato_dateTimePicker.Size = new Size(125, 27);
-            solgtdato_dateTimePicker.TabIndex = 35;
+            solgtdato_dateTimePicker.TabIndex = 10;
             solgtdato_dateTimePicker.Visible = false;
             // 
             // solgtdato_label
@@ -462,28 +463,64 @@
             // vurdering_button
             // 
             vurdering_button.Enabled = false;
-            vurdering_button.Location = new Point(691, 42);
+            vurdering_button.Location = new Point(720, 44);
             vurdering_button.Name = "vurdering_button";
             vurdering_button.Size = new Size(113, 29);
-            vurdering_button.TabIndex = 37;
+            vurdering_button.TabIndex = 11;
             vurdering_button.Text = "Få vurdering";
             vurdering_button.UseVisualStyleBackColor = true;
             vurdering_button.Click += vurdering_button_Click;
             // 
             // clear_button
             // 
-            clear_button.Enabled = false;
             clear_button.Location = new Point(652, 529);
             clear_button.Name = "clear_button";
             clear_button.Size = new Size(63, 29);
-            clear_button.TabIndex = 38;
+            clear_button.TabIndex = 13;
+            clear_button.TabStop = false;
             clear_button.Text = "Ryd";
             clear_button.UseVisualStyleBackColor = true;
+            clear_button.Click += clear_button_Click;
+            // 
+            // vurdering_textbox
+            // 
+            vurdering_textbox.BackColor = SystemColors.Menu;
+            vurdering_textbox.BorderStyle = BorderStyle.None;
+            vurdering_textbox.Enabled = false;
+            vurdering_textbox.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
+            vurdering_textbox.Location = new Point(-2, 1);
+            vurdering_textbox.Maximum = new decimal(new int[] { 75000000, 0, 0, 0 });
+            vurdering_textbox.Name = "vurdering_textbox";
+            vurdering_textbox.ReadOnly = true;
+            vurdering_textbox.Size = new Size(144, 23);
+            vurdering_textbox.TabIndex = 39;
+            vurdering_textbox.TextAlign = HorizontalAlignment.Right;
+            vurdering_textbox.ThousandsSeparator = true;
+            // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(vurdering_textbox);
+            panel1.Location = new Point(559, 45);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(126, 27);
+            panel1.TabIndex = 40;
+            // 
+            // vurderingKr_label
+            // 
+            vurderingKr_label.AutoSize = true;
+            vurderingKr_label.Location = new Point(690, 48);
+            vurderingKr_label.Name = "vurderingKr_label";
+            vurderingKr_label.Size = new Size(24, 20);
+            vurderingKr_label.TabIndex = 41;
+            vurderingKr_label.Text = "kr.";
             // 
             // AddPropertyPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(vurderingKr_label);
+            Controls.Add(panel1);
             Controls.Add(clear_button);
             Controls.Add(vurdering_button);
             Controls.Add(solgtdato_label);
@@ -507,7 +544,6 @@
             Controls.Add(tilføjsælger_button);
             Controls.Add(dato_datepicker);
             Controls.Add(ejendomsmæglerID_textbox);
-            Controls.Add(vurdering_textbox);
             Controls.Add(kvm_textbox);
             Controls.Add(byggeår_textbox);
             Controls.Add(zipcode_textbox);
@@ -527,6 +563,8 @@
             Size = new Size(928, 603);
             ((System.ComponentModel.ISupportInitialize)addSellerGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)vurdering_textbox).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -555,7 +593,6 @@
         private TextBox zipcode_textbox;
         private TextBox byggeår_textbox;
         private TextBox kvm_textbox;
-        private TextBox vurdering_textbox;
         private TextBox ejendomsmæglerID_textbox;
         private DateTimePicker dato_datepicker;
         private Button tilføjsælger_button;
@@ -576,5 +613,8 @@
         private DateTimePicker solgtdato_dateTimePicker;
         private Button vurdering_button;
         private Button clear_button;
+        private NumericUpDown vurdering_textbox;
+        private Panel panel1;
+        private Label vurderingKr_label;
     }
 }

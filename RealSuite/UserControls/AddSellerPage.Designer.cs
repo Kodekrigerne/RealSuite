@@ -226,6 +226,7 @@
             fornavnCheckLabel.Size = new Size(25, 24);
             fornavnCheckLabel.TabIndex = 11;
             fornavnCheckLabel.Text = "O";
+            fornavnCheckLabel.Visible = false;
             // 
             // efternavnCheckLabel
             // 
@@ -237,6 +238,7 @@
             efternavnCheckLabel.Size = new Size(25, 24);
             efternavnCheckLabel.TabIndex = 12;
             efternavnCheckLabel.Text = "O";
+            efternavnCheckLabel.Visible = false;
             // 
             // cprCheckLabel
             // 
@@ -248,6 +250,7 @@
             cprCheckLabel.Size = new Size(25, 24);
             cprCheckLabel.TabIndex = 13;
             cprCheckLabel.Text = "O";
+            cprCheckLabel.Visible = false;
             // 
             // vejnavnCheckLabel
             // 
@@ -259,6 +262,7 @@
             vejnavnCheckLabel.Size = new Size(25, 24);
             vejnavnCheckLabel.TabIndex = 14;
             vejnavnCheckLabel.Text = "O";
+            vejnavnCheckLabel.Visible = false;
             // 
             // vejnrCheckLabel
             // 
@@ -270,6 +274,7 @@
             vejnrCheckLabel.Size = new Size(25, 24);
             vejnrCheckLabel.TabIndex = 15;
             vejnrCheckLabel.Text = "O";
+            vejnrCheckLabel.Visible = false;
             // 
             // postnrCheckLabel
             // 
@@ -281,6 +286,7 @@
             postnrCheckLabel.Size = new Size(25, 24);
             postnrCheckLabel.TabIndex = 16;
             postnrCheckLabel.Text = "O";
+            postnrCheckLabel.Visible = false;
             // 
             // telefonCheckLabel
             // 
@@ -292,6 +298,7 @@
             telefonCheckLabel.Size = new Size(25, 24);
             telefonCheckLabel.TabIndex = 17;
             telefonCheckLabel.Text = "O";
+            telefonCheckLabel.Visible = false;
             // 
             // rydButton
             // 
