@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using System.Data;
+using BusinessLogic;
 using RealSuite.Interfaces;
 
 namespace RealSuite.UserControls
@@ -14,7 +15,7 @@ namespace RealSuite.UserControls
 
         private void InitializeControls()
         {
-            propertiesDataGridView.DataSource = _propertyService.FilteredSortedProperties;
+            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             soldComboBox.SelectedItem = "Alle";
@@ -24,7 +25,7 @@ namespace RealSuite.UserControls
         {
             string solgtFilter = soldComboBox.SelectedItem!.ToString()!;
             _propertyService.ApplyFilters(solgtFilter, minPriceTrackBar.Value, maxPriceTrackBar.Value);
-            propertiesDataGridView.DataSource = _propertyService.FilteredSortedProperties;
+            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
         }
 
         public void Clear()
@@ -43,10 +44,15 @@ namespace RealSuite.UserControls
 
         private void SetTrackBarBounds()
         {
-            minPriceTrackBar.Minimum = (int)_propertyService.FilteredSortedProperties.Min(x => x.Price);
-            minPriceTrackBar.Maximum = (int)_propertyService.FilteredSortedProperties.Max(x => x.Price);
-            maxPriceTrackBar.Minimum = (int)_propertyService.FilteredSortedProperties.Min(x => x.Price);
-            maxPriceTrackBar.Maximum = (int)_propertyService.FilteredSortedProperties.Max(x => x.Price);
+            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
+
+            var minPrice = (int)table.Min(x => x.Field<Decimal>("Price"));
+            var maxPrice = (int)table.Max(x => x.Field<Decimal>("Price"));
+
+            minPriceTrackBar.Minimum = minPrice;
+            minPriceTrackBar.Maximum = maxPrice;
+            maxPriceTrackBar.Minimum = minPrice;
+            maxPriceTrackBar.Maximum = maxPrice;
         }
 
         private void MinPriceTrackBar_ValueChanged(object sender, EventArgs e)
@@ -80,11 +86,6 @@ namespace RealSuite.UserControls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
-        }
-
-        private void maxPriceLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

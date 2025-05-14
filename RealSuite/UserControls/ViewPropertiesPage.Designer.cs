@@ -161,7 +161,6 @@
             maxPriceLabel.Size = new Size(54, 19);
             maxPriceLabel.TabIndex = 5;
             maxPriceLabel.Text = "Pris til";
-            maxPriceLabel.Click += maxPriceLabel_Click;
             // 
             // soldLabel
             // 
