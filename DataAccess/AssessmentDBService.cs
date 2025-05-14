@@ -8,6 +8,9 @@ namespace DataAccess
     {
         public DataTable GetAssessmentData(PriceAssessment priceAssessment)
         {
+            var yearRange = 20;
+            var sqmRange = 40;
+
             string query = "SELECT SqmPrice FROM Properties WHERE (ZipCode = @zipCode AND BuildYear BETWEEN @lowerYear AND @upperYear AND SquareMeters BETWEEN @lowerSqm AND @upperSqm AND Sold = 1)";
             var dataTable = new DataTable();
 
@@ -18,10 +21,10 @@ namespace DataAccess
                 {
                     command.CommandText = query;
                     command.Parameters.AddWithValue("@zipCode", priceAssessment.ZipCode);
-                    command.Parameters.AddWithValue("@lowerYear", (priceAssessment.BuildYear - 10));
-                    command.Parameters.AddWithValue("@upperYear", (priceAssessment.BuildYear + 10));
-                    command.Parameters.AddWithValue("@lowerSqm", (priceAssessment.SquareMeters - 20));
-                    command.Parameters.AddWithValue("@upperSqm", (priceAssessment.SquareMeters + 20));
+                    command.Parameters.AddWithValue("@lowerYear", (priceAssessment.BuildYear - (yearRange / 2)));
+                    command.Parameters.AddWithValue("@upperYear", (priceAssessment.BuildYear + (yearRange / 2)));
+                    command.Parameters.AddWithValue("@lowerSqm", (priceAssessment.SquareMeters - (sqmRange / 2)));
+                    command.Parameters.AddWithValue("@upperSqm", (priceAssessment.SquareMeters + (sqmRange / 2)));
 
                     var adapter = new SqlDataAdapter(command);
                     adapter.Fill(dataTable);

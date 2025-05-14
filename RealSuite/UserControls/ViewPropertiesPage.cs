@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using BusinessLogic;
-using DataAccess;
 using RealSuite.Interfaces;
 
 namespace RealSuite.UserControls
@@ -113,8 +112,8 @@ namespace RealSuite.UserControls
             int maxPrice;
             try
             {
-                minPrice = (int)table.Min(x => x.Field<Decimal>("Price"));
-                maxPrice = (int)table.Max(x => x.Field<Decimal>("Price"));
+                minPrice = (int)table.Min(x => x.Field<int>("Price"));
+                maxPrice = (int)table.Max(x => x.Field<int>("Price"));
             }
             catch
             {
