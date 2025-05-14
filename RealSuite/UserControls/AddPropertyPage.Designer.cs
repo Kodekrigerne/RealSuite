@@ -468,6 +468,7 @@
             vurdering_button.TabIndex = 37;
             vurdering_button.Text = "Få vurdering";
             vurdering_button.UseVisualStyleBackColor = true;
+            vurdering_button.Click += vurdering_button_Click;
             // 
             // clear_button
             // 
