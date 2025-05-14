@@ -46,8 +46,18 @@ namespace RealSuite.UserControls
         {
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
 
-            var minPrice = (int)table.Min(x => x.Field<Decimal>("Price"));
-            var maxPrice = (int)table.Max(x => x.Field<Decimal>("Price"));
+            int minPrice;
+            int maxPrice;
+            try
+            {
+                minPrice = (int)table.Min(x => x.Field<Decimal>("Price"));
+                maxPrice = (int)table.Max(x => x.Field<Decimal>("Price"));
+            }
+            catch
+            {
+                minPrice = 0;
+                maxPrice = 1000;
+            }
 
             minPriceTrackBar.Minimum = minPrice;
             minPriceTrackBar.Maximum = maxPrice;
