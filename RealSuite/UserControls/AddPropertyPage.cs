@@ -24,6 +24,7 @@ namespace RealSuite.UserControls
         {
             if (addSellerGrid.Visible == true) addSellerGrid.Visible = false;
             else addSellerGrid.Visible = true;
+            SellerGridSetup();
         }
 
         private void addSellerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -280,8 +281,8 @@ namespace RealSuite.UserControls
         {
             Clear();
             vejnavn_textbox.Focus();
-        }    
-            
+        }
+
         private void vurdering_button_Click(object sender, EventArgs e)
         {
             var priceAssessment = new PriceAssessment(

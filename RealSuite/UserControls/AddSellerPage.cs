@@ -133,7 +133,7 @@ namespace RealSuite.UserControls
 
         private void vejNrTextBox_TextChanged(object sender, EventArgs e)
         {
-            vejNrTextBox.Visible = true;
+            vejnrCheckLabel.Visible = true;
             if (!vejNrTextBox.Text.Any(char.IsDigit) || vejNrTextBox.Text == "")
             {
                 vejnrCheckLabel.Text = "O";
@@ -150,7 +150,7 @@ namespace RealSuite.UserControls
 
         private void postNrTextBox_TextChanged(object sender, EventArgs e)
         {
-            postNrTextBox.Visible = true;
+            postnrCheckLabel.Visible = true;
 
             try
             {
@@ -175,7 +175,7 @@ namespace RealSuite.UserControls
 
         private void telefonTextBox_TextChanged(object sender, EventArgs e)
         {
-            telefonTextBox.Visible = true;
+            telefonCheckLabel.Visible = true;
             if (telefonTextBox.Text.Length != 8 || !telefonTextBox.Text.All(char.IsDigit))
             {
                 telefonCheckLabel.Text = "O";
