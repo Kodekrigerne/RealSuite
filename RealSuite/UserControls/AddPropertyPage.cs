@@ -14,6 +14,7 @@ namespace RealSuite.UserControls
             InitializeComponent();
             SellerGridSetup();
             pris_textbox.Controls[0].Hide();
+            vurdering_textbox.Controls[0].Hide();
 
         }
 
@@ -269,6 +270,12 @@ namespace RealSuite.UserControls
             {
                 vurdering_button.Enabled = false;
             }
+        }
+
+        private void clear_button_Click(object sender, EventArgs e)
+        {
+            Clear();
+            vejnavn_textbox.Focus();
         }
     }
 }
