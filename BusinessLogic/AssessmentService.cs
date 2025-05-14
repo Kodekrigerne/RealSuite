@@ -16,7 +16,7 @@ namespace BusinessLogic
             {
                 var enumDataTable = dataTable.AsEnumerable();
 
-                var averageSqmPrice = enumDataTable.Select(row => row.Field<decimal>("SqmPrice")).Average();
+                var averageSqmPrice = enumDataTable.Select(row => row.Field<int>("SqmPrice")).Average();
 
                 return Convert.ToInt32(averageSqmPrice) * priceAssessment.SquareMeters;
             }
