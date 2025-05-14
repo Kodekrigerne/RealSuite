@@ -16,9 +16,45 @@ namespace RealSuite.UserControls
         private void InitializeControls()
         {
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+            RenameColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
+            SetListedDatePickersInitialValues();
             soldComboBox.SelectedItem = "Alle";
+        }
+
+        private void RenameColumns()
+        {
+            propertiesDataGridView.Columns["StreetName"].HeaderText = "Vejnavn";
+            propertiesDataGridView.Columns["StreetNumber"].HeaderText = "Vejnr";
+            propertiesDataGridView.Columns["ZipCode"].HeaderText = "Postnr";
+            propertiesDataGridView.Columns["BuildYear"].HeaderText = "Byggeår";
+            propertiesDataGridView.Columns["SquareMeters"].HeaderText = "Kvm";
+            propertiesDataGridView.Columns["Price"].HeaderText = "Pris";
+            propertiesDataGridView.Columns["DateListed"].HeaderText = "Noteringsdato";
+            propertiesDataGridView.Columns["DateSold"].HeaderText = "Salgsdato";
+            propertiesDataGridView.Columns["Sold"].HeaderText = "Solgt?";
+        }
+
+        private void SetListedDatePickersInitialValues()
+        {
+            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
+
+            DateTime minDate;
+            DateTime maxDate;
+            try
+            {
+                minDate = table.Min(x => x.Field<DateTime>("DateListed"));
+                maxDate = table.Max(x => x.Field<DateTime>("DateListed"));
+            }
+            catch
+            {
+                minDate = DateTime.Now;
+                maxDate = DateTime.Now;
+            }
+
+            listedFromDatePicker.Value = minDate;
+            listedToDatePicker.Value = maxDate;
         }
 
         private void ApplyFilters(object? sender = null, EventArgs? e = null)

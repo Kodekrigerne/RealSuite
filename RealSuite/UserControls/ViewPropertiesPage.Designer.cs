@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
@@ -51,10 +51,10 @@
             maxPriceTrackBar = new TrackBar();
             selectedMaxPriceLabel = new Label();
             panel6 = new Panel();
-            dateTimePicker1 = new DateTimePicker();
+            listedFromDatePicker = new DateTimePicker();
             label2 = new Label();
             label1 = new Label();
-            dateTimePicker2 = new DateTimePicker();
+            listedToDatePicker = new DateTimePicker();
             panel7 = new Panel();
             comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
@@ -80,25 +80,25 @@
             propertiesDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             propertiesDataGridView.BackgroundColor = Color.White;
             propertiesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             propertiesDataGridView.ColumnHeadersHeight = 35;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.NullValue = null;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             propertiesDataGridView.Dock = DockStyle.Bottom;
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             propertiesDataGridView.EnableHeadersVisualStyles = false;
@@ -334,24 +334,25 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(79, 117, 184);
-            panel6.Controls.Add(dateTimePicker1);
+            panel6.Controls.Add(listedFromDatePicker);
             panel6.Controls.Add(label2);
             panel6.Controls.Add(label1);
-            panel6.Controls.Add(dateTimePicker2);
+            panel6.Controls.Add(listedToDatePicker);
             panel6.Location = new Point(616, 11);
             panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
             panel6.Size = new Size(297, 89);
             panel6.TabIndex = 17;
             // 
-            // dateTimePicker1
+            // listedFromDatePicker
             // 
-            dateTimePicker1.Font = new Font("Microsoft YaHei", 9.75F);
-            dateTimePicker1.Location = new Point(96, 7);
-            dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(191, 29);
-            dateTimePicker1.TabIndex = 15;
+            listedFromDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
+            listedFromDatePicker.Format = DateTimePickerFormat.Short;
+            listedFromDatePicker.Location = new Point(96, 7);
+            listedFromDatePicker.Margin = new Padding(3, 4, 3, 4);
+            listedFromDatePicker.Name = "listedFromDatePicker";
+            listedFromDatePicker.Size = new Size(191, 29);
+            listedFromDatePicker.TabIndex = 15;
             // 
             // label2
             // 
@@ -375,14 +376,15 @@
             label1.TabIndex = 17;
             label1.Text = "Dato fra";
             // 
-            // dateTimePicker2
+            // listedToDatePicker
             // 
-            dateTimePicker2.Font = new Font("Microsoft YaHei", 9.75F);
-            dateTimePicker2.Location = new Point(96, 45);
-            dateTimePicker2.Margin = new Padding(3, 4, 3, 4);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(191, 29);
-            dateTimePicker2.TabIndex = 16;
+            listedToDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
+            listedToDatePicker.Format = DateTimePickerFormat.Short;
+            listedToDatePicker.Location = new Point(96, 45);
+            listedToDatePicker.Margin = new Padding(3, 4, 3, 4);
+            listedToDatePicker.Name = "listedToDatePicker";
+            listedToDatePicker.Size = new Size(191, 29);
+            listedToDatePicker.TabIndex = 16;
             // 
             // panel7
             // 
@@ -449,8 +451,8 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker listedToDatePicker;
+        private DateTimePicker listedFromDatePicker;
         private Panel panel6;
         private Label label2;
         private Label label1;
