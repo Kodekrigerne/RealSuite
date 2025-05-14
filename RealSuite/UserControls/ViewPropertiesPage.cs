@@ -17,6 +17,7 @@ namespace RealSuite.UserControls
         {
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             soldComboBox.SelectedItem = "Alle";
+            zipCodeComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             RenameColumns();
             SetTrackBarBounds();
@@ -27,8 +28,6 @@ namespace RealSuite.UserControls
         private void SetZipCodeComboBox()
         {
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-            zipCodeComboBox.Items.Add("Alle");
-            zipCodeComboBox.SelectedItem = "Alle";
             zipCodeComboBox.Items.AddRange(table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>().ToArray());
 
         }
@@ -74,8 +73,10 @@ namespace RealSuite.UserControls
             var maxPriceFilter = maxPriceTrackBar.Value;
             var listedFrom = listedFromDatePicker.Value;
             var listedTo = listedToDatePicker.Value;
+            if (zipCodeComboBox.SelectedItem == null) zipCodeComboBox.SelectedItem = "Alle";
+            var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
 
-            _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo);
+            _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter);
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
         }
@@ -159,13 +160,18 @@ namespace RealSuite.UserControls
             ApplyFilters();
 
         }
-        
+
         private void ListedToDatePicker_ValueChanged(object sender, EventArgs e)
         {
             if (listedFromDatePicker.Value > listedToDatePicker.Value)
             {
                 listedFromDatePicker.Value = listedToDatePicker.Value;
             }
+            ApplyFilters();
+        }
+
+        private void zipCodeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
             ApplyFilters();
         }
     }

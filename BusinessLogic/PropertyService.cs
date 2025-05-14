@@ -30,14 +30,15 @@ namespace BusinessLogic
         }
 
 
-        public void ApplyFilters(string sold, int minPrice, int maxPrice, DateTime listedFrom, DateTime listedTo)
+        public void ApplyFilters(string sold, int minPrice, int maxPrice, DateTime listedFrom, DateTime listedTo, string zipCode)
         {
             string soldFilter = sold == "Alle" ? "" : sold == "Solgt" ? "Sold = 1 AND" : "Sold = 0 AND";
             string priceFilter = $"Price >= {minPrice} AND Price <= {maxPrice} AND";
             string listedFilter = $"DateListed >= #{listedFrom:yyyy-MM-dd}# AND DateListed <= #{listedTo:yyyy-MM-dd}#";
+            string zipCodeFilter = zipCode == "Alle"? "" : $"AND ZipCode = {zipCode}";
 
             PropertiesSource.Filter = string.Empty;
-            PropertiesSource.Filter += $"{soldFilter} {priceFilter} {listedFilter}";
+            PropertiesSource.Filter += $"{soldFilter} {priceFilter} {listedFilter} {zipCodeFilter}";
         }
 
         public bool CreateProperty(PropertyDTO propertyDTO)

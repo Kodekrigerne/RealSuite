@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
@@ -79,30 +80,32 @@
             propertiesDataGridView.AllowUserToOrderColumns = true;
             propertiesDataGridView.AllowUserToResizeColumns = false;
             propertiesDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.NullValue = null;
+            propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             propertiesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             propertiesDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             propertiesDataGridView.BackgroundColor = Color.White;
             propertiesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             propertiesDataGridView.ColumnHeadersHeight = 35;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.Format = "N1";
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
             propertiesDataGridView.Dock = DockStyle.Bottom;
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             propertiesDataGridView.EnableHeadersVisualStyles = false;
@@ -146,7 +149,7 @@
             // zipCodeFilterLabel
             // 
             zipCodeFilterLabel.AutoSize = true;
-            zipCodeFilterLabel.BackColor = Color.FromArgb(158, 126, 97);
+            zipCodeFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             zipCodeFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             zipCodeFilterLabel.ForeColor = Color.White;
             zipCodeFilterLabel.Location = new Point(244, 8);
@@ -157,7 +160,7 @@
             // 
             // zipCodePanel
             // 
-            zipCodePanel.BackColor = Color.FromArgb(79, 117, 184);
+            zipCodePanel.BackColor = Color.FromArgb(179, 215, 232);
             zipCodePanel.Controls.Add(zipCodeComboBox);
             zipCodePanel.Location = new Point(244, 27);
             zipCodePanel.Name = "zipCodePanel";
@@ -169,10 +172,12 @@
             zipCodeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             zipCodeComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             zipCodeComboBox.FormattingEnabled = true;
+            zipCodeComboBox.Items.AddRange(new object[] { "Alle" });
             zipCodeComboBox.Location = new Point(8, 6);
             zipCodeComboBox.Name = "zipCodeComboBox";
             zipCodeComboBox.Size = new Size(64, 27);
             zipCodeComboBox.TabIndex = 22;
+            zipCodeComboBox.SelectedIndexChanged += zipCodeComboBox_SelectedIndexChanged;
             // 
             // resultsLabel
             // 
@@ -188,7 +193,7 @@
             // sellerFilterLabel
             // 
             sellerFilterLabel.AutoSize = true;
-            sellerFilterLabel.BackColor = Color.FromArgb(158, 126, 97);
+            sellerFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             sellerFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             sellerFilterLabel.ForeColor = Color.White;
             sellerFilterLabel.Location = new Point(134, 7);
@@ -200,7 +205,7 @@
             // soldFilterLabel
             // 
             soldFilterLabel.AutoSize = true;
-            soldFilterLabel.BackColor = Color.FromArgb(158, 126, 97);
+            soldFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             soldFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             soldFilterLabel.ForeColor = Color.White;
             soldFilterLabel.Location = new Point(12, 8);
@@ -211,7 +216,7 @@
             // 
             // soldFilterPanel
             // 
-            soldFilterPanel.BackColor = Color.FromArgb(79, 117, 184);
+            soldFilterPanel.BackColor = Color.FromArgb(179, 215, 232);
             soldFilterPanel.Controls.Add(soldComboBox);
             soldFilterPanel.Location = new Point(12, 27);
             soldFilterPanel.Name = "soldFilterPanel";
@@ -242,7 +247,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(185, 223, 240);
+            panel1.BackColor = Color.FromArgb(142, 221, 188);
             panel1.BackgroundImage = Properties.Resources.Refresh_Properties_Logo;
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.Location = new Point(621, 99);
@@ -265,7 +270,7 @@
             // 
             // refreshButton
             // 
-            refreshButton.BackColor = Color.FromArgb(185, 223, 240);
+            refreshButton.BackColor = Color.FromArgb(148, 216, 200);
             refreshButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
             refreshButton.Location = new Point(509, 89);
             refreshButton.Margin = new Padding(3, 2, 3, 2);
@@ -278,7 +283,7 @@
             // 
             // priceFromFilterPanel
             // 
-            priceFromFilterPanel.BackColor = Color.FromArgb(79, 117, 184);
+            priceFromFilterPanel.BackColor = Color.FromArgb(179, 215, 232);
             priceFromFilterPanel.Controls.Add(maxPriceTrackBar);
             priceFromFilterPanel.Controls.Add(minPriceTrackBar);
             priceFromFilterPanel.Controls.Add(selectedMaxPriceLabel);
@@ -343,7 +348,7 @@
             // minPriceLabel
             // 
             minPriceLabel.AutoSize = true;
-            minPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
+            minPriceLabel.BackColor = Color.FromArgb(100, 131, 184);
             minPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             minPriceLabel.ForeColor = Color.White;
             minPriceLabel.Location = new Point(7, 7);
@@ -355,7 +360,7 @@
             // maxPriceLabel
             // 
             maxPriceLabel.AutoSize = true;
-            maxPriceLabel.BackColor = Color.FromArgb(158, 126, 97);
+            maxPriceLabel.BackColor = Color.FromArgb(100, 131, 184);
             maxPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             maxPriceLabel.ForeColor = Color.White;
             maxPriceLabel.Location = new Point(7, 38);
@@ -366,7 +371,7 @@
             // 
             // panel6
             // 
-            panel6.BackColor = Color.FromArgb(79, 117, 184);
+            panel6.BackColor = Color.FromArgb(179, 215, 232);
             panel6.Controls.Add(listedFromDatePicker);
             panel6.Controls.Add(label2);
             panel6.Controls.Add(label1);
@@ -389,7 +394,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(158, 126, 97);
+            label2.BackColor = Color.FromArgb(100, 131, 184);
             label2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label2.ForeColor = Color.White;
             label2.Location = new Point(8, 36);
@@ -401,7 +406,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(158, 126, 97);
+            label1.BackColor = Color.FromArgb(100, 131, 184);
             label1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label1.ForeColor = Color.White;
             label1.Location = new Point(8, 10);
@@ -422,7 +427,7 @@
             // 
             // panel7
             // 
-            panel7.BackColor = Color.FromArgb(79, 117, 184);
+            panel7.BackColor = Color.FromArgb(179, 215, 232);
             panel7.Controls.Add(sellerComboBox);
             panel7.Location = new Point(134, 26);
             panel7.Name = "panel7";
@@ -433,6 +438,7 @@
             // 
             sellerComboBox.Font = new Font("Microsoft YaHei", 10F);
             sellerComboBox.FormattingEnabled = true;
+            sellerComboBox.Items.AddRange(new object[] { "Alle" });
             sellerComboBox.Location = new Point(6, 6);
             sellerComboBox.Name = "sellerComboBox";
             sellerComboBox.Size = new Size(86, 27);
