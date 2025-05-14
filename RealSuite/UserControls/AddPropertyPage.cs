@@ -38,10 +38,10 @@ namespace RealSuite.UserControls
             }
         }
 
-
         public void Clear()
         {
             pris_textbox.Value = 0;
+            vurdering_textbox.Value = 0;
             foreach (Control control in Controls)
             {
                 if (control is TextBox textBox)
@@ -56,6 +56,9 @@ namespace RealSuite.UserControls
                     label.Visible = false;
                 }
             }
+
+            ejendomsmæglerID_textbox.Text = "1000";
+            ejendomsmægler_textbox.Text = "Maria Thodegaard";
         }
 
         private void tilføjsælger_button_Click(object sender, EventArgs e)
@@ -211,7 +214,6 @@ namespace RealSuite.UserControls
                 tilføjsælger_button.Enabled = false;
             }
         }
-
 
         private void SellerGridSetup()
         {
