@@ -59,8 +59,13 @@ namespace RealSuite.UserControls
 
         private void ApplyFilters(object? sender = null, EventArgs? e = null)
         {
-            string solgtFilter = soldComboBox.SelectedItem!.ToString()!;
-            _propertyService.ApplyFilters(solgtFilter, minPriceTrackBar.Value, maxPriceTrackBar.Value);
+            var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
+            var minPriceFilter = minPriceTrackBar.Value;
+            var maxPriceFilter = maxPriceTrackBar.Value;
+            var listedFrom = listedFromDatePicker.Value;
+            var listedTo = listedToDatePicker.Value;
+            
+            _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo);
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
         }
 
@@ -131,7 +136,7 @@ namespace RealSuite.UserControls
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            Clear();
+            InitializeControls();
         }
     }
 }
