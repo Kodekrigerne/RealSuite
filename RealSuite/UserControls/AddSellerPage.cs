@@ -45,6 +45,7 @@ namespace RealSuite.UserControls
 
         private void fornavnTextBox_TextChanged(object sender, EventArgs e)
         {
+            fornavnCheckLabel.Visible = true;
             if (!fornavnTextBox.Text.All(char.IsLetter) || fornavnTextBox.Text == "")
             {
                 fornavnCheckLabel.Text = "O";
@@ -61,6 +62,7 @@ namespace RealSuite.UserControls
 
         private void efternavnTextBox_TextChanged(object sender, EventArgs e)
         {
+            efternavnCheckLabel.Visible = true;
             if (!efternavnTextBox.Text.Any(char.IsLetter) || efternavnTextBox.Text == "")
             {
                 efternavnCheckLabel.Text = "O";
@@ -77,6 +79,7 @@ namespace RealSuite.UserControls
 
         private void cprNrTextBox_TextChanged(object sender, EventArgs e)
         {
+            cprCheckLabel.Visible = true;
             cpr2NrTextBox_TextChanged(sender, e);
 
             if (cprNrTextBox.Text.Length == cprNrTextBox.MaxLength)
@@ -89,6 +92,7 @@ namespace RealSuite.UserControls
 
         private void cpr2NrTextBox_TextChanged(object sender, EventArgs e)
         {
+            cprCheckLabel.Visible = true;
             if (cpr2NrTextBox.Text.Length == 0)
             {
                 cprNrTextBox.Focus();
@@ -112,6 +116,7 @@ namespace RealSuite.UserControls
 
         private void vejnavnTextBox_TextChanged(object sender, EventArgs e)
         {
+            vejnavnCheckLabel.Visible = true;
             if (!vejnavnTextBox.Text.Any(char.IsLetter) || vejnavnTextBox.Text == "")
             {
                 vejnavnCheckLabel.Text = "O";
@@ -128,6 +133,7 @@ namespace RealSuite.UserControls
 
         private void vejNrTextBox_TextChanged(object sender, EventArgs e)
         {
+            vejNrTextBox.Visible = true;
             if (!vejNrTextBox.Text.Any(char.IsDigit) || vejNrTextBox.Text == "")
             {
                 vejnrCheckLabel.Text = "O";
@@ -144,6 +150,7 @@ namespace RealSuite.UserControls
 
         private void postNrTextBox_TextChanged(object sender, EventArgs e)
         {
+            postNrTextBox.Visible = true;
 
             try
             {
@@ -168,6 +175,7 @@ namespace RealSuite.UserControls
 
         private void telefonTextBox_TextChanged(object sender, EventArgs e)
         {
+            telefonTextBox.Visible = true;
             if (telefonTextBox.Text.Length != 8 || !telefonTextBox.Text.All(char.IsDigit))
             {
                 telefonCheckLabel.Text = "O";
@@ -189,6 +197,13 @@ namespace RealSuite.UserControls
                 if (control is TextBox textBox)
                 {
                     textBox.Text = "";
+                }
+            }
+            foreach (Control control in Controls)
+            {
+                if (control is Label label && label.Font.Name == "Wingdings 2")
+                {
+                    label.Visible = false;
                 }
             }
         }
