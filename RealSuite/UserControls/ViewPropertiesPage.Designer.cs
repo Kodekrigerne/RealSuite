@@ -330,9 +330,9 @@
             panel6.Controls.Add(label2);
             panel6.Controls.Add(label1);
             panel6.Controls.Add(listedToDatePicker);
-            panel6.Location = new Point(539, 8);
+            panel6.Location = new Point(606, 8);
             panel6.Name = "panel6";
-            panel6.Size = new Size(260, 67);
+            panel6.Size = new Size(193, 67);
             panel6.TabIndex = 17;
             // 
             // listedFromDatePicker
@@ -341,9 +341,9 @@
             listedFromDatePicker.Format = DateTimePickerFormat.Short;
             listedFromDatePicker.Location = new Point(84, 5);
             listedFromDatePicker.Name = "listedFromDatePicker";
-            listedFromDatePicker.Size = new Size(168, 25);
+            listedFromDatePicker.Size = new Size(100, 25);
             listedFromDatePicker.TabIndex = 15;
-            listedFromDatePicker.ValueChanged += ApplyFilters;
+            listedFromDatePicker.ValueChanged += listedFromDatePicker_ValueChanged;
             // 
             // label2
             // 
@@ -373,9 +373,9 @@
             listedToDatePicker.Format = DateTimePickerFormat.Short;
             listedToDatePicker.Location = new Point(84, 34);
             listedToDatePicker.Name = "listedToDatePicker";
-            listedToDatePicker.Size = new Size(168, 25);
+            listedToDatePicker.Size = new Size(100, 25);
             listedToDatePicker.TabIndex = 16;
-            listedToDatePicker.ValueChanged += ApplyFilters;
+            listedToDatePicker.ValueChanged += ListedToDatePicker_ValueChanged;
             // 
             // panel7
             // 

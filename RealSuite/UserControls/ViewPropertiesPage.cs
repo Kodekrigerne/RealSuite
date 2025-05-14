@@ -64,7 +64,7 @@ namespace RealSuite.UserControls
             var maxPriceFilter = maxPriceTrackBar.Value;
             var listedFrom = listedFromDatePicker.Value;
             var listedTo = listedToDatePicker.Value;
-            
+
             _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo);
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
         }
@@ -137,6 +137,25 @@ namespace RealSuite.UserControls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             InitializeControls();
+        }
+
+        private void listedFromDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (listedToDatePicker.Value < listedFromDatePicker.Value)
+            {
+                listedToDatePicker.Value = listedFromDatePicker.Value;
+            }
+            ApplyFilters();
+
+        }
+        
+        private void ListedToDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (listedFromDatePicker.Value > listedToDatePicker.Value)
+            {
+                listedFromDatePicker.Value = listedToDatePicker.Value;
+            }
+            ApplyFilters();
         }
     }
 }
