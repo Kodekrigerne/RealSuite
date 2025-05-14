@@ -34,6 +34,7 @@
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
+            resultsLabel = new Label();
             label3 = new Label();
             minPriceLabel = new Label();
             maxPriceLabel = new Label();
@@ -119,6 +120,7 @@
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(resultsLabel);
             topPanel.Controls.Add(label3);
             topPanel.Controls.Add(minPriceLabel);
             topPanel.Controls.Add(maxPriceLabel);
@@ -137,6 +139,17 @@
             topPanel.Name = "topPanel";
             topPanel.Size = new Size(812, 136);
             topPanel.TabIndex = 1;
+            // 
+            // resultsLabel
+            // 
+            resultsLabel.AutoSize = true;
+            resultsLabel.BackColor = Color.FromArgb(243, 239, 218);
+            resultsLabel.Font = new Font("Microsoft YaHei", 10.5F, FontStyle.Italic);
+            resultsLabel.Location = new Point(12, 105);
+            resultsLabel.Name = "resultsLabel";
+            resultsLabel.Size = new Size(15, 20);
+            resultsLabel.TabIndex = 21;
+            resultsLabel.Text = "-";
             // 
             // label3
             // 
@@ -348,6 +361,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(158, 126, 97);
             label2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label2.ForeColor = Color.White;
             label2.Location = new Point(8, 36);
@@ -359,6 +373,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(158, 126, 97);
             label1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label1.ForeColor = Color.White;
             label1.Location = new Point(8, 10);
@@ -450,5 +465,6 @@
         private Label label3;
         private Panel panel7;
         private ComboBox comboBox1;
+        private Label resultsLabel;
     }
 }

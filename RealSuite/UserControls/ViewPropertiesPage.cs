@@ -67,6 +67,7 @@ namespace RealSuite.UserControls
 
             _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo);
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+            resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
         }
 
         public void Clear()
