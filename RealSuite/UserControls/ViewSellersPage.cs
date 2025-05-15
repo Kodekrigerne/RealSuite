@@ -57,9 +57,12 @@ namespace RealSuite.UserControls
         {
             foreach (DataGridViewRow row in sellersDataGridView.Rows)
             {
-                string cpr = row.Cells["CprNumber"].Value.ToString();
-                string cprReformatted = $"{cpr[0..5]}-{cpr[5..9]}";
-                row.Cells["CprNumber"].Value = cprReformatted;
+                if (row.Cells["CprNumber"] != null)
+                {
+                    string cpr = row.Cells["CprNumber"].Value.ToString();
+                    string cprReformatted = $"{cpr[0..5]}-{cpr[5..9]}";
+                    row.Cells["CprNumber"].Value = cprReformatted;
+                }
             }
         }
 
