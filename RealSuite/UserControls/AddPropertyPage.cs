@@ -20,7 +20,6 @@ namespace RealSuite.UserControls
             addSellerGrid.Visible = false;
             pris_textbox.Controls[0].Hide();
             vurdering_textbox.Controls[0].Hide();
-
         }
 
         private void addSellerButton_Click(object sender, EventArgs e)
@@ -28,6 +27,7 @@ namespace RealSuite.UserControls
             SellerGridSetup();
             if (addSellerGrid.Visible == true) addSellerGrid.Visible = false;
             else addSellerGrid.Visible = true;
+            addSellerGrid.UseWaitCursor = false;
         }
 
         private void addSellerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
