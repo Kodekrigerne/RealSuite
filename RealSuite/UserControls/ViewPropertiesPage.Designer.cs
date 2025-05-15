@@ -35,6 +35,8 @@
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
+            clearTextButton = new Label();
+            searchTextBox = new TextBox();
             zipCodeFilterLabel = new Label();
             zipCodePanel = new Panel();
             zipCodeComboBox = new ComboBox();
@@ -128,6 +130,8 @@
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(clearTextButton);
+            topPanel.Controls.Add(searchTextBox);
             topPanel.Controls.Add(zipCodeFilterLabel);
             topPanel.Controls.Add(zipCodePanel);
             topPanel.Controls.Add(resultsLabel);
@@ -147,6 +151,31 @@
             topPanel.Name = "topPanel";
             topPanel.Size = new Size(928, 181);
             topPanel.TabIndex = 1;
+            topPanel.Click += TopPanel_Click;
+            // 
+            // clearTextButton
+            // 
+            clearTextButton.AutoSize = true;
+            clearTextButton.BackColor = Color.White;
+            clearTextButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clearTextButton.ForeColor = Color.Red;
+            clearTextButton.Location = new Point(353, 122);
+            clearTextButton.Name = "clearTextButton";
+            clearTextButton.Size = new Size(21, 23);
+            clearTextButton.TabIndex = 26;
+            clearTextButton.Text = "X";
+            clearTextButton.Visible = false;
+            clearTextButton.Click += ClearTextButton_Click;
+            // 
+            // searchTextBox
+            // 
+            searchTextBox.Font = new Font("Microsoft YaHei", 9.75F);
+            searchTextBox.Location = new Point(160, 119);
+            searchTextBox.Name = "searchTextBox";
+            searchTextBox.Size = new Size(220, 29);
+            searchTextBox.TabIndex = 25;
+            searchTextBox.TextChanged += SearchTextBox_TextChanged;
+            searchTextBox.KeyDown += SearchTextBox_KeyDown;
             // 
             // zipCodeFilterLabel
             // 
@@ -518,5 +547,7 @@
         private ComboBox zipCodeComboBox;
         private Panel zipCodePanel;
         private Label zipCodeFilterLabel;
+        private TextBox searchTextBox;
+        private Label clearTextButton;
     }
 }

@@ -30,6 +30,7 @@ namespace RealSuite.UserControls
             _suspendFiltering = true;
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
+            searchTextBox.Clear();
             soldComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetSellerComboBox();
@@ -100,8 +101,9 @@ namespace RealSuite.UserControls
                 var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
                 var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
                 var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
+                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ');
 
-                _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter);
+                _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter, searchFilter);
                 propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
                 _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
                 resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
@@ -225,6 +227,30 @@ namespace RealSuite.UserControls
         private void TrackBar_Scroll(object sender, EventArgs e)
         {
             if (sender is TrackBar trackBar) trackBar.Value = (trackBar.Value / 10000) * 10000;
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) ApplyFilters();
+        }
+
+        private void TopPanel_Click(object sender, EventArgs e)
+        {
+            ActiveControl = null;
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                if (textBox.Text.Length == 0) clearTextButton.Visible = false;
+                else clearTextButton.Visible = true;
+            }
+        }
+
+        private void ClearTextButton_Click(object sender, EventArgs e)
+        {
+            searchTextBox.Clear();
         }
     }
 }
