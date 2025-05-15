@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
@@ -80,31 +80,31 @@
             propertiesDataGridView.AllowUserToOrderColumns = true;
             propertiesDataGridView.AllowUserToResizeColumns = false;
             propertiesDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.NullValue = null;
-            propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.NullValue = null;
+            propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             propertiesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             propertiesDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             propertiesDataGridView.BackgroundColor = Color.White;
             propertiesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             propertiesDataGridView.ColumnHeadersHeight = 35;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             propertiesDataGridView.Dock = DockStyle.Bottom;
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             propertiesDataGridView.EnableHeadersVisualStyles = false;
@@ -313,6 +313,7 @@
             maxPriceTrackBar.TabIndex = 3;
             maxPriceTrackBar.TickFrequency = 1000;
             maxPriceTrackBar.TickStyle = TickStyle.None;
+            maxPriceTrackBar.Scroll += TrackBar_Scroll;
             maxPriceTrackBar.ValueChanged += MaxPriceTrackBar_ValueChanged;
             maxPriceTrackBar.MouseUp += MaxPriceTrackBar_MouseUp;
             // 
@@ -327,6 +328,7 @@
             minPriceTrackBar.TabIndex = 2;
             minPriceTrackBar.TickFrequency = 1000;
             minPriceTrackBar.TickStyle = TickStyle.None;
+            minPriceTrackBar.Scroll += TrackBar_Scroll;
             minPriceTrackBar.ValueChanged += MinPriceTrackBar_ValueChanged;
             minPriceTrackBar.MouseUp += MinPriceTrackBar_MouseUp;
             // 

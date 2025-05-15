@@ -133,10 +133,10 @@ namespace RealSuite.UserControls
                 maxPrice = 1000;
             }
 
-            minPriceTrackBar.Minimum = minPrice;
-            minPriceTrackBar.Maximum = maxPrice;
-            maxPriceTrackBar.Minimum = minPrice;
-            maxPriceTrackBar.Maximum = maxPrice;
+            minPriceTrackBar.Minimum = ((minPrice / 10000) * 10000) - 10000;
+            minPriceTrackBar.Maximum = ((maxPrice / 10000) * 10000) + 10000;
+            maxPriceTrackBar.Minimum = ((minPrice / 10000) * 10000) - 10000;
+            maxPriceTrackBar.Maximum = ((maxPrice / 10000) * 10000) + 10000;
         }
 
         private void MinPriceTrackBar_ValueChanged(object sender, EventArgs e)
@@ -212,6 +212,11 @@ namespace RealSuite.UserControls
             var property = new Property(id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorID, dateListed, dateSold, sold, squareMeterPrice);
             var args = new UpdatePropertyEventArgs(property);
             UpdateProperty?.Invoke(this, args);
+        }
+
+        private void TrackBar_Scroll(object sender, EventArgs e)
+        {
+            if (sender is TrackBar trackBar) trackBar.Value = (trackBar.Value / 10000) * 10000;
         }
     }
 }
