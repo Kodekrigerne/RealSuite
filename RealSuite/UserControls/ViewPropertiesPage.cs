@@ -26,8 +26,6 @@ namespace RealSuite.UserControls
             _suspendFiltering = true;
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             soldComboBox.SelectedItem = "Alle";
-            zipCodeComboBox.SelectedItem = "Alle";
-            sellerComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetSellerComboBox();
             RenameColumns();
@@ -39,12 +37,14 @@ namespace RealSuite.UserControls
 
         private void SetZipCodeComboBox()
         {
+            zipCodeComboBox.SelectedItem = "Alle";
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             zipCodeComboBox.Items.AddRange(table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>().ToArray());
         }
 
         private void SetSellerComboBox()
         {
+            sellerComboBox.SelectedItem = "Alle";
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             sellerComboBox.Items.AddRange(table.Select(x => x.Field<int>("SellerID")).Distinct().Cast<object>().ToArray());
         }
@@ -91,9 +91,6 @@ namespace RealSuite.UserControls
                 var maxPriceFilter = maxPriceTrackBar.Value;
                 var listedFrom = listedFromDatePicker.Value;
                 var listedTo = listedToDatePicker.Value;
-                soldComboBox.SelectedItem ??= "Alle";
-                zipCodeComboBox.SelectedItem ??= "Alle";
-                sellerComboBox.SelectedItem ??= "Alle";
                 var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
                 var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
                 var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
