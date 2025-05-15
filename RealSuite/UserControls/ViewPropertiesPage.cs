@@ -14,6 +14,7 @@ namespace RealSuite.UserControls
         private readonly PropertyService _propertyService = new();
         public event EventHandler<UpdatePropertyEventArgs>? UpdateProperty;
         private bool _suspendFiltering = false;
+        private EnumerableRowCollection<DataRow>? _table;
 
         public ViewPropertiesPage(NavigationService navigation)
         {
@@ -28,6 +29,7 @@ namespace RealSuite.UserControls
         {
             _suspendFiltering = true;
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             soldComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetSellerComboBox();
@@ -43,8 +45,7 @@ namespace RealSuite.UserControls
             zipCodeComboBox.Items.Clear();
             zipCodeComboBox.Items.Add("Alle");
             zipCodeComboBox.SelectedItem = "Alle";
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-            zipCodeComboBox.Items.AddRange([.. table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>()]);
+            zipCodeComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("ZipCode")).Distinct().Order().Cast<object>()]);
         }
 
         private void SetSellerComboBox()
@@ -52,8 +53,7 @@ namespace RealSuite.UserControls
             sellerComboBox.Items.Clear();
             sellerComboBox.Items.Add("Alle");
             sellerComboBox.SelectedItem = "Alle";
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-            sellerComboBox.Items.AddRange([.. table.Select(x => x.Field<int>("SellerID")).Distinct().Cast<object>()]);
+            sellerComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("SellerID")).Distinct().Order().Cast<object>()]);
         }
 
         private void RenameColumns()
@@ -71,14 +71,12 @@ namespace RealSuite.UserControls
 
         private void SetListedDatePickersInitialValues()
         {
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-
             DateTime minDate;
             DateTime maxDate;
             try
             {
-                minDate = table.Min(x => x.Field<DateTime>("DateListed"));
-                maxDate = table.Max(x => x.Field<DateTime>("DateListed"));
+                minDate = _table!.Min(x => x.Field<DateTime>("DateListed"));
+                maxDate = _table!.Max(x => x.Field<DateTime>("DateListed"));
             }
             catch
             {
@@ -105,6 +103,7 @@ namespace RealSuite.UserControls
 
                 _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter);
                 propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+                _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
                 resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
             }
         }
@@ -126,14 +125,12 @@ namespace RealSuite.UserControls
 
         private void SetTrackBarBounds()
         {
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-
             int minPrice;
             int maxPrice;
             try
             {
-                minPrice = (int)table.Min(x => x.Field<int>("Price"));
-                maxPrice = (int)table.Max(x => x.Field<int>("Price"));
+                minPrice = (int)_table!.Min(x => x.Field<int>("Price"));
+                maxPrice = (int)_table!.Max(x => x.Field<int>("Price"));
             }
             catch
             {
