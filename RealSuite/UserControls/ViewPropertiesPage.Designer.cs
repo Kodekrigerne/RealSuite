@@ -400,7 +400,7 @@
             listedFromDatePicker.Name = "listedFromDatePicker";
             listedFromDatePicker.Size = new Size(114, 29);
             listedFromDatePicker.TabIndex = 15;
-            listedFromDatePicker.ValueChanged += listedFromDatePicker_ValueChanged;
+            listedFromDatePicker.ValueChanged += ListedFromDatePicker_ValueChanged;
             // 
             // listedDateToLabel
             // 

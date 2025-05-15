@@ -39,14 +39,14 @@ namespace RealSuite.UserControls
         {
             zipCodeComboBox.SelectedItem = "Alle";
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-            zipCodeComboBox.Items.AddRange(table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>().ToArray());
+            zipCodeComboBox.Items.AddRange([.. table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>()]);
         }
 
         private void SetSellerComboBox()
         {
             sellerComboBox.SelectedItem = "Alle";
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-            sellerComboBox.Items.AddRange(table.Select(x => x.Field<int>("SellerID")).Distinct().Cast<object>().ToArray());
+            sellerComboBox.Items.AddRange([.. table.Select(x => x.Field<int>("SellerID")).Distinct().Cast<object>()]);
         }
 
         private void RenameColumns()
@@ -172,7 +172,7 @@ namespace RealSuite.UserControls
             Clear();
         }
 
-        private void listedFromDatePicker_ValueChanged(object sender, EventArgs e)
+        private void ListedFromDatePicker_ValueChanged(object sender, EventArgs e)
         {
             if (listedToDatePicker.Value < listedFromDatePicker.Value)
             {

@@ -11,7 +11,7 @@ namespace RealSuite
         private Dictionary<Pages, UserControl> _pages = [];
         private readonly NavigationService _navigation;
 
-        StatusService _statusService = new StatusService();
+        private readonly StatusService _statusService = new();
 
         public MainForm()
         {
@@ -126,7 +126,7 @@ namespace RealSuite
             serverIndicatorLabel.ForeColor = _statusService.DbCheck() ? Color.LightGreen : Color.Red;
         }
 
-        private void dbCheckTimer_Tick(object sender, EventArgs e)
+        private void DbCheckTimer_Tick(object sender, EventArgs e)
         {
             CheckServerStatus();
         }
