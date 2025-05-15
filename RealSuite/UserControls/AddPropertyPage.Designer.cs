@@ -48,7 +48,7 @@
             kvm_textbox = new TextBox();
             ejendomsmæglerID_textbox = new TextBox();
             dato_datepicker = new DateTimePicker();
-            tilføjsælger_button = new Button();
+            tilføjbolig_button = new Button();
             sælgerID_textbox = new TextBox();
             solgt_label = new Label();
             solgt_checkbox = new CheckBox();
@@ -271,16 +271,16 @@
             dato_datepicker.Size = new Size(125, 27);
             dato_datepicker.TabIndex = 8;
             // 
-            // tilføjsælger_button
+            // tilføjbolig_button
             // 
-            tilføjsælger_button.Enabled = false;
-            tilføjsælger_button.Location = new Point(760, 529);
-            tilføjsælger_button.Name = "tilføjsælger_button";
-            tilføjsælger_button.Size = new Size(94, 29);
-            tilføjsælger_button.TabIndex = 12;
-            tilføjsælger_button.Text = "Tilføj";
-            tilføjsælger_button.UseVisualStyleBackColor = true;
-            tilføjsælger_button.Click += tilføjsælger_button_Click;
+            tilføjbolig_button.Enabled = false;
+            tilføjbolig_button.Location = new Point(760, 529);
+            tilføjbolig_button.Name = "tilføjbolig_button";
+            tilføjbolig_button.Size = new Size(94, 29);
+            tilføjbolig_button.TabIndex = 12;
+            tilføjbolig_button.Text = "Tilføj";
+            tilføjbolig_button.UseVisualStyleBackColor = true;
+            tilføjbolig_button.Click += tilføjbolig_button_Click;
             // 
             // sælgerID_textbox
             // 
@@ -541,7 +541,7 @@
             Controls.Add(solgt_checkbox);
             Controls.Add(solgt_label);
             Controls.Add(sælgerID_textbox);
-            Controls.Add(tilføjsælger_button);
+            Controls.Add(tilføjbolig_button);
             Controls.Add(dato_datepicker);
             Controls.Add(ejendomsmæglerID_textbox);
             Controls.Add(kvm_textbox);
@@ -595,7 +595,7 @@
         private TextBox kvm_textbox;
         private TextBox ejendomsmæglerID_textbox;
         private DateTimePicker dato_datepicker;
-        private Button tilføjsælger_button;
+        private Button tilføjbolig_button;
         private TextBox sælgerID_textbox;
         private Label solgt_label;
         private CheckBox solgt_checkbox;

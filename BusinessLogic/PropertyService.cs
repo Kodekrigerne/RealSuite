@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Text.RegularExpressions;
 using DataAccess;
+using Models;
 using Models.DTOModels;
 
 namespace BusinessLogic
@@ -34,7 +35,7 @@ namespace BusinessLogic
             string soldFilter = sold == "Alle" ? "" : sold == "Solgt" ? "Sold = 1 AND" : "Sold = 0 AND";
             string priceFilter = $"Price >= {minPrice} AND Price <= {maxPrice} AND";
             string listedFilter = $"DateListed >= #{listedFrom:yyyy-MM-dd}# AND DateListed <= #{listedTo:yyyy-MM-dd}#";
-            string zipCodeFilter = zipCode == "Alle"? "" : $"AND ZipCode = {zipCode}";
+            string zipCodeFilter = zipCode == "Alle" ? "" : $"AND ZipCode = {zipCode}";
             string sellerFilter = sellerID == "Alle" ? "" : $"AND SellerID = {sellerID}";
 
             PropertiesSource.Filter = string.Empty;
@@ -51,6 +52,16 @@ namespace BusinessLogic
             else return false;
         }
 
+        public bool UpdateProperty(Property property)
+        {
+            if (VerifyProperty(property) == true)
+            {
+                var rowUpdated = _propertyDbService.UpdateProperty(property);
+                return rowUpdated;
+            }
+            else return false;
+        }
+
         public bool VerifyProperty(PropertyDTO propertyDTO)
         {
             if (!propertyDTO.StreetName.All(char.IsLetter)) return false;
@@ -60,6 +71,20 @@ namespace BusinessLogic
             if (!propertyDTO.SquareMeters.ToString().All(char.IsDigit)) return false;
             if (propertyDTO.Price < 0) return false;
             if (!Regex.IsMatch(propertyDTO.DateListed.ToString("yyyy-MM-dd"), @"^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$"))
+                return false;
+
+            return true;
+        }
+
+        public bool VerifyProperty(Property property)
+        {
+            if (!property.StreetName.All(char.IsLetter)) return false;
+            if (!property.StreetNumber.ToString().All(char.IsDigit)) return false;
+            if (!property.ZipCode.ToString().All(char.IsDigit) || (property.ZipCode < 1000 || property.ZipCode > 9999)) return false;
+            if (!property.BuildYear.ToString().All(char.IsDigit)) return false;
+            if (!property.SquareMeters.ToString().All(char.IsDigit)) return false;
+            if (property.Price < 0) return false;
+            if (!Regex.IsMatch(property.DateListed.ToString("yyyy-MM-dd"), @"^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$"))
                 return false;
 
             return true;

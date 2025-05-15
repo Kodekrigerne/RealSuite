@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using Models;
 using Models.DTOModels;
 
 namespace DataAccess
@@ -73,6 +74,66 @@ namespace DataAccess
 
         }
 
+
+        public bool UpdateProperty(Property property)
+        {
+            string query =
+                "UPDATE Properties " +
+                "SET StreetName = @StreetName, " +
+                "    StreetNumber = @StreetNumber, " +
+                "    ZipCode = @ZipCode, " +
+                "    BuildYear = @BuildYear, " +
+                "    SquareMeters = @SquareMeters, " +
+                "    SellerID = @SellerID, " +
+                "    Price = @Price, " +
+                "    RealtorID = @RealtorID, " +
+                "    DateListed = @DateListed, " +
+                "    DateSold = @DateSold, " +
+                "    Sold = @Sold " +
+                "WHERE Id = @SId";
+
+            int rowsAffected = 0;
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    command.Parameters.AddWithValue("@Id", property.Id);
+                    command.Parameters.AddWithValue("@StreetName", property.StreetName);
+                    command.Parameters.AddWithValue("@StreetNumber", property.StreetNumber);
+                    command.Parameters.AddWithValue("@ZipCode", property.ZipCode);
+                    command.Parameters.AddWithValue("@BuildYear", property.BuildYear);
+                    command.Parameters.AddWithValue("@SquareMeters", property.SquareMeters);
+                    command.Parameters.AddWithValue("@SellerID", property.SellerId);
+                    command.Parameters.AddWithValue("@Price", property.Price);
+                    command.Parameters.AddWithValue("@RealtorID", property.RealtorId);
+                    command.Parameters.AddWithValue("@DateListed", property.DateListed);
+                    if (property.DateSold == null)
+                    {
+                        command.Parameters.AddWithValue("@DateSold", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@DateSold", property.DateSold);
+                    }
+                    command.Parameters.AddWithValue("@Sold", property.Sold);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Property information:" + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+
+            if (rowsAffected == 0) return false;
+            else return true;
+        }
 
     }
 }
