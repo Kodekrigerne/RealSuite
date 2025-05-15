@@ -39,7 +39,60 @@ namespace BusinessLogic
 
             foreach (DataColumn column in dt.Columns)
             {
-                headers.Add(column.ColumnName);
+                switch (column.ColumnName)
+                {
+                    case "Id":
+                        headers.Add("Bolig ID");
+                        break;
+
+                    case "StreetName":
+                        headers.Add("Vej");
+                        break;
+
+                    case "StreetNumber":
+                        headers.Add("Nr.");
+                        break;
+
+                    case "ZipCode":
+                        headers.Add("Postnr.");
+                        break;
+
+                    case "BuildYear":
+                        headers.Add("Byggeår");
+                        break;
+
+                    case "SquareMeters":
+                        headers.Add("m2");
+                        break;
+
+                    case "SellerID":
+                        headers.Add("Sælger");
+                        break;
+
+                    case "Price":
+                        headers.Add("Pris");
+                        break;
+
+                    case "RealtorID":
+                        headers.Add("Mægler");
+                        break;
+
+                    case "DateListed":
+                        headers.Add("Noteringsdato");
+                        break;
+
+                    case "DateSold":
+                        headers.Add("Salgsdato");
+                        break;
+
+                    case "Sold":
+                        headers.Add("Solgt");
+                        break;
+
+                    case "SqmPrice":
+                        headers.Add("Pris pr. m2");
+                        break;
+                }
             }
 
             csvLines.Add(string.Join(";", headers));
@@ -56,6 +109,16 @@ namespace BusinessLogic
                 foreach (DataColumn column in dt.Columns)
                 {
                     string? value = row.IsNull(column) ? "" : row[column].ToString();
+
+                    if (column.ColumnName == "DateListed")
+                    {
+                        value = value.Substring(0, value.Length - 9);
+                    }
+
+                    if (column.ColumnName == "DateSold" && value.Length != 0)
+                    {
+                        value = value.Substring(0, value.Length - 9);
+                    }
 
                     data.Add(value);
                 }
