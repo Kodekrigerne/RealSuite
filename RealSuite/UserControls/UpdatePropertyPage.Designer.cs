@@ -184,6 +184,7 @@
             pris_textbox.TextAlign = HorizontalAlignment.Right;
             pris_textbox.ThousandsSeparator = true;
             pris_textbox.ValueChanged += pris_textbox_ValueChanged;
+            pris_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // sælgernavn_textbox
             // 
@@ -384,6 +385,7 @@
             kvm_textbox.Size = new Size(125, 27);
             kvm_textbox.TabIndex = 53;
             kvm_textbox.TextChanged += kvm_textbox_TextChanged;
+            kvm_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // byggeår_textbox
             // 
@@ -394,6 +396,7 @@
             byggeår_textbox.Size = new Size(125, 27);
             byggeår_textbox.TabIndex = 51;
             byggeår_textbox.TextChanged += byggeår_textbox_TextChanged;
+            byggeår_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // zipcode_textbox
             // 
@@ -404,6 +407,7 @@
             zipcode_textbox.Size = new Size(125, 27);
             zipcode_textbox.TabIndex = 49;
             zipcode_textbox.TextChanged += zipcode_textbox_TextChanged;
+            zipcode_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // husnr_textbox
             // 
@@ -414,6 +418,7 @@
             husnr_textbox.Size = new Size(125, 27);
             husnr_textbox.TabIndex = 47;
             husnr_textbox.TextChanged += husnr_textbox_TextChanged;
+            husnr_textbox.KeyPress += HandleDigit_KeyPress;
             // 
             // vejnavn_textbox
             // 
@@ -423,6 +428,7 @@
             vejnavn_textbox.Size = new Size(125, 27);
             vejnavn_textbox.TabIndex = 43;
             vejnavn_textbox.TextChanged += vejnavn_textbox_TextChanged;
+            vejnavn_textbox.KeyPress += HandleLetter_KeyPress;
             // 
             // dato_label
             // 

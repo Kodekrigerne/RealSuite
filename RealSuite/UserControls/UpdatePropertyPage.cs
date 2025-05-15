@@ -206,6 +206,22 @@ namespace RealSuite.UserControls
             {
             }
         }
+        private void HandleDigit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Allow only digits and control keys (like backspace) 
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; //Suppress non-digit input
+            }
+        }
+        private void HandleLetter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Allow only digits and control keys (like backspace) 
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; //Suppress non-digit input
+            }
+        }
 
         private void vejnavn_textbox_TextChanged(object sender, EventArgs e)
         {
