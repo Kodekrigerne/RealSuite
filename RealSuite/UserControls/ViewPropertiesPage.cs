@@ -1,5 +1,8 @@
 ﻿using System.Data;
 using BusinessLogic;
+using Models;
+using RealSuite.Enums;
+using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 
@@ -9,6 +12,7 @@ namespace RealSuite.UserControls
     {
         private readonly NavigationService _navigation;
         private readonly PropertyService _propertyService = new();
+        public event EventHandler<UpdatePropertyEventArgs>? UpdateProperty;
 
         public ViewPropertiesPage(NavigationService navigation)
         {
@@ -191,6 +195,31 @@ namespace RealSuite.UserControls
         private void SellerComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             ApplyFilters();
+        }
+
+        private void PropertiesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var index = e.RowIndex;
+            var row = propertiesDataGridView.Rows[index];
+
+            int id = Convert.ToInt32(row.Cells["Id"].Value);
+            string streetName = row.Cells["StreetName"].Value.ToString()!;
+            int streetNumber = Convert.ToInt32(row.Cells["StreetNumber"].Value);
+            int zipCode = Convert.ToInt32(row.Cells["ZipCode"].Value);
+            int buildYear = Convert.ToInt32(row.Cells["BuildYear"].Value);
+            int squareMeters = Convert.ToInt32(row.Cells["SquareMeters"].Value);
+            int sellerId = Convert.ToInt32(row.Cells["SellerID"].Value);
+            int price = Convert.ToInt32(row.Cells["Price"].Value);
+            int realtorID = Convert.ToInt32(row.Cells["RealtorID"].Value);
+            DateTime dateListed = Convert.ToDateTime(row.Cells["DateListed"].Value);
+            DateTime? dateSold = row.Cells["DateSold"].Value == DBNull.Value ? null : Convert.ToDateTime(row.Cells["DateListed"]);
+            bool sold = Convert.ToInt32(row.Cells["Sold"].Value) == 1;
+            int squareMeterPrice = Convert.ToInt32(row.Cells["SqmPrice"].Value);
+
+            var property = new Property(id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorID, dateListed, dateSold, sold, squareMeterPrice);
+            var args = new UpdatePropertyEventArgs(property);
+            UpdateProperty?.Invoke(this, args);
+            _navigation.NavigateTo(Pages.UpdateProperty);
         }
     }
 }

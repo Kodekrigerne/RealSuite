@@ -1,4 +1,5 @@
 using RealSuite.Enums;
+using RealSuite.Events;
 using RealSuite.Services;
 using RealSuite.UserControls;
 
@@ -15,6 +16,7 @@ namespace RealSuite
             InitializePages();
             _navigation = new(_pages);
             _navigation.NavigateTo(Pages.Front);
+            if (_pages[Pages.ViewProperties] is ViewPropertiesPage page) page.UpdateProperty += UpdateProperty;
         }
 
         private void InitializePages()
@@ -40,6 +42,12 @@ namespace RealSuite
             page.Visible = false;
             page.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(page);
+        }
+
+        private void UpdateProperty(object sender, UpdatePropertyEventArgs e)
+        {
+            var page = _pages[Pages.UpdateProperty];
+            if (page is UpdatePropertyPage updatePropertyPage) updatePropertyPage.UpdateProperty = e.Property;
         }
 
         private void HighlightButton(object sender, EventArgs e)
