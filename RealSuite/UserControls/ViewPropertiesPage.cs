@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Diagnostics;
 using BusinessLogic;
 using Models;
 using RealSuite.Events;
@@ -16,9 +17,11 @@ namespace RealSuite.UserControls
 
         public ViewPropertiesPage(NavigationService navigation)
         {
+            _suspendFiltering = true;
             InitializeComponent();
             _navigation = navigation;
             InitializeControls();
+            _suspendFiltering = false;
         }
 
         private void InitializeControls()
@@ -37,6 +40,8 @@ namespace RealSuite.UserControls
 
         private void SetZipCodeComboBox()
         {
+            zipCodeComboBox.Items.Clear();
+            zipCodeComboBox.Items.Add("Alle");
             zipCodeComboBox.SelectedItem = "Alle";
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             zipCodeComboBox.Items.AddRange([.. table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>()]);
@@ -44,6 +49,8 @@ namespace RealSuite.UserControls
 
         private void SetSellerComboBox()
         {
+            sellerComboBox.Items.Clear();
+            sellerComboBox.Items.Add("Alle");
             sellerComboBox.SelectedItem = "Alle";
             var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             sellerComboBox.Items.AddRange([.. table.Select(x => x.Field<int>("SellerID")).Distinct().Cast<object>()]);
@@ -87,6 +94,7 @@ namespace RealSuite.UserControls
         {
             if (_suspendFiltering == false)
             {
+                Debug.WriteLine("Test");
                 var minPriceFilter = minPriceTrackBar.Value;
                 var maxPriceFilter = maxPriceTrackBar.Value;
                 var listedFrom = listedFromDatePicker.Value;
@@ -133,10 +141,13 @@ namespace RealSuite.UserControls
                 maxPrice = 1000;
             }
 
-            minPriceTrackBar.Minimum = ((minPrice / 10000) * 10000) - 10000;
-            minPriceTrackBar.Maximum = ((maxPrice / 10000) * 10000) + 10000;
-            maxPriceTrackBar.Minimum = ((minPrice / 10000) * 10000) - 10000;
-            maxPriceTrackBar.Maximum = ((maxPrice / 10000) * 10000) + 10000;
+            minPrice = ((minPrice / 10000) * 10000) - 10000;
+            maxPrice = ((maxPrice / 10000) * 10000) + 10000;
+
+            minPriceTrackBar.Minimum = minPrice;
+            minPriceTrackBar.Maximum = maxPrice;
+            maxPriceTrackBar.Minimum = minPrice;
+            maxPriceTrackBar.Maximum = maxPrice;
         }
 
         private void MinPriceTrackBar_ValueChanged(object sender, EventArgs e)
