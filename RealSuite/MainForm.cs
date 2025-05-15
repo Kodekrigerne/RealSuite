@@ -19,7 +19,6 @@ namespace RealSuite
             InitializePages();
             _navigation = new(_pages);
             _navigation.NavigateTo(Pages.Front);
-            _navigation.NavigateTo(Pages.Front);
             if (_pages[Pages.ViewProperties] is ViewPropertiesPage page) page.UpdateProperty += UpdateProperty;
             CheckServerStatus();
         }

@@ -12,6 +12,7 @@ namespace RealSuite.UserControls
         private readonly NavigationService _navigation;
         private readonly PropertyService _propertyService = new();
         public event EventHandler<UpdatePropertyEventArgs>? UpdateProperty;
+        private bool _suspendFiltering = false;
 
         public ViewPropertiesPage(NavigationService navigation)
         {
@@ -22,6 +23,7 @@ namespace RealSuite.UserControls
 
         private void InitializeControls()
         {
+            _suspendFiltering = true;
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             soldComboBox.SelectedItem = "Alle";
             zipCodeComboBox.SelectedItem = "Alle";
@@ -32,6 +34,7 @@ namespace RealSuite.UserControls
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
+            _suspendFiltering = false;
         }
 
         private void SetZipCodeComboBox()
@@ -82,25 +85,30 @@ namespace RealSuite.UserControls
 
         private void ApplyFilters(object? sender = null, EventArgs? e = null)
         {
-            var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
-            var minPriceFilter = minPriceTrackBar.Value;
-            var maxPriceFilter = maxPriceTrackBar.Value;
-            var listedFrom = listedFromDatePicker.Value;
-            var listedTo = listedToDatePicker.Value;
-            if (zipCodeComboBox.SelectedItem == null) zipCodeComboBox.SelectedItem = "Alle";
-            var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
-            if (sellerComboBox.SelectedItem == null) sellerComboBox.SelectedItem = "Alle";
-            var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
+            if (_suspendFiltering == false)
+            {
+                var minPriceFilter = minPriceTrackBar.Value;
+                var maxPriceFilter = maxPriceTrackBar.Value;
+                var listedFrom = listedFromDatePicker.Value;
+                var listedTo = listedToDatePicker.Value;
+                soldComboBox.SelectedItem ??= "Alle";
+                zipCodeComboBox.SelectedItem ??= "Alle";
+                sellerComboBox.SelectedItem ??= "Alle";
+                var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
+                var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
+                var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
 
-            _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter);
-            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
-            resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
+                _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter);
+                propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+                resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
+            }
         }
 
         public void Clear()
         {
             _propertyService.RefreshFromDb();
             InitializeControls();
+            ApplyFilters();
         }
 
         private void SetTrackBarInitialValues()
@@ -164,7 +172,7 @@ namespace RealSuite.UserControls
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            InitializeControls();
+            Clear();
         }
 
         private void listedFromDatePicker_ValueChanged(object sender, EventArgs e)
@@ -174,7 +182,6 @@ namespace RealSuite.UserControls
                 listedToDatePicker.Value = listedFromDatePicker.Value;
             }
             ApplyFilters();
-
         }
 
         private void ListedToDatePicker_ValueChanged(object sender, EventArgs e)
@@ -183,16 +190,6 @@ namespace RealSuite.UserControls
             {
                 listedFromDatePicker.Value = listedToDatePicker.Value;
             }
-            ApplyFilters();
-        }
-
-        private void ZipCodeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        private void SellerComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
             ApplyFilters();
         }
 

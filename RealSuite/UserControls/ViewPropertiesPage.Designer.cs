@@ -181,7 +181,7 @@
             zipCodeComboBox.Name = "zipCodeComboBox";
             zipCodeComboBox.Size = new Size(73, 29);
             zipCodeComboBox.TabIndex = 22;
-            zipCodeComboBox.SelectedIndexChanged += ZipCodeComboBox_SelectedIndexChanged;
+            zipCodeComboBox.SelectedIndexChanged += ApplyFilters;
             // 
             // resultsLabel
             // 
@@ -449,6 +449,7 @@
             // 
             // sellerComboBox
             // 
+            sellerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             sellerComboBox.Font = new Font("Microsoft YaHei", 10F);
             sellerComboBox.FormattingEnabled = true;
             sellerComboBox.Items.AddRange(new object[] { "Alle" });
@@ -457,7 +458,7 @@
             sellerComboBox.Name = "sellerComboBox";
             sellerComboBox.Size = new Size(98, 31);
             sellerComboBox.TabIndex = 18;
-            sellerComboBox.SelectedValueChanged += SellerComboBox_SelectedValueChanged;
+            sellerComboBox.SelectedValueChanged += ApplyFilters;
             // 
             // ViewPropertiesPage
             // 
