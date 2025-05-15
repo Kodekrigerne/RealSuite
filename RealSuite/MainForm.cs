@@ -1,3 +1,4 @@
+using BusinessLogic;
 using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.UserControls;
@@ -9,12 +10,15 @@ namespace RealSuite
         private Dictionary<Pages, UserControl> _pages = [];
         private UserControl _currentPage;
 
+        StatusService _statusService = new StatusService();
+
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
             _currentPage = _pages[Pages.Front];
             NavigateTo(Pages.Front);
+            CheckServerStatus();
         }
 
         private void InitializePages()
@@ -125,6 +129,16 @@ namespace RealSuite
         private void LogoPanel_MouseUp(object sender, MouseEventArgs e)
         {
             SetLogo(Properties.Resources.FrontLogoHighlight);
+        }
+
+        private void CheckServerStatus()
+        {
+            serverIndicatorLabel.ForeColor = _statusService.DbCheck() ? Color.LightGreen : Color.Red;
+        }
+
+        private void dbCheckTimer_Tick(object sender, EventArgs e)
+        {
+            CheckServerStatus();
         }
     }
 }
