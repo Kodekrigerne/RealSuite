@@ -229,7 +229,7 @@
             // 
             dbCheckTimer.Enabled = true;
             dbCheckTimer.Interval = 30000;
-            dbCheckTimer.Tick += dbCheckTimer_Tick;
+            dbCheckTimer.Tick += DbCheckTimer_Tick;
             // 
             // MainForm
             // 
@@ -255,7 +255,6 @@
         #endregion
 
         private SplitContainer splitContainer;
-        private UserControls.AddSellerPage addSellerPage;
         private Button addSellerButton;
         private Button viewSellersButton;
         private Button addPropertyButton;
