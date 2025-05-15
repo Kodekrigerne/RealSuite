@@ -90,7 +90,7 @@ namespace DataAccess
                 "    DateListed = @DateListed, " +
                 "    DateSold = @DateSold, " +
                 "    Sold = @Sold " +
-                "WHERE Id = @SId";
+                "WHERE Id = @Id";
 
             int rowsAffected = 0;
 

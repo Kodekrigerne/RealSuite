@@ -52,7 +52,13 @@ namespace RealSuite
         private void UpdateProperty(object sender, UpdatePropertyEventArgs e)
         {
             var page = _pages[Pages.UpdateProperty];
-            if (page is UpdatePropertyPage updatePropertyPage) updatePropertyPage.UpdateProperty = e.Property;
+            if (page is UpdatePropertyPage updatePropertyPage)
+            {
+                updatePropertyPage.UpdateProperty = e.Property;
+                updatePropertyPage.SetupPageDetails();
+            }
+
+
             _navigation.NavigateTo(Pages.UpdateProperty);
         }
 

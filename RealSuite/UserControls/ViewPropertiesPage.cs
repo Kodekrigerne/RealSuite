@@ -218,6 +218,7 @@ namespace RealSuite.UserControls
             var property = new Property(id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorID, dateListed, dateSold, sold, squareMeterPrice);
             var args = new UpdatePropertyEventArgs(property);
             UpdateProperty?.Invoke(this, args);
+
         }
     }
 }
