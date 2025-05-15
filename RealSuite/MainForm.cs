@@ -19,7 +19,8 @@ namespace RealSuite
             InitializePages();
             _navigation = new(_pages);
             _navigation.NavigateTo(Pages.Front);
-            if (_pages[Pages.ViewProperties] is ViewPropertiesPage page) page.UpdateProperty += UpdateProperty;
+            if (_pages[Pages.ViewProperties] is ViewPropertiesPage viewPropertiesPage) viewPropertiesPage.RowDoubleClick += HandleUpdateProperty;
+            if (_pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RowDoubleClick += HandleUpdateSeller;
             CheckServerStatus();
         }
 
@@ -33,7 +34,7 @@ namespace RealSuite
                 {Pages.UpdateProperty, new UpdatePropertyPage(_navigation) },
                 {Pages.AddSeller, new AddSellerPage(_navigation) },
                 {Pages.ViewSellers, new ViewSellersPage(_navigation) },
-                {Pages.UpdateSellers, new UpdateSellerPage(_navigation) },
+                {Pages.UpdateSeller, new UpdateSellerPage(_navigation) },
             };
             foreach (var page in _pages)
             {
@@ -48,17 +49,27 @@ namespace RealSuite
             splitContainer.Panel2.Controls.Add(page);
         }
 
-        private void UpdateProperty(object sender, UpdatePropertyEventArgs e)
+        private void HandleUpdateProperty(object? sender, UpdatePropertyEventArgs e)
         {
             var page = _pages[Pages.UpdateProperty];
             if (page is UpdatePropertyPage updatePropertyPage)
             {
-                updatePropertyPage.UpdateProperty = e.Property;
+                updatePropertyPage.PropertyToUpdate = e.Property;
                 updatePropertyPage.SetupPageDetails();
             }
 
-
             _navigation.NavigateTo(Pages.UpdateProperty);
+        }
+
+        private void HandleUpdateSeller(object? sender, UpdateSellerEventArgs e)
+        {
+            var page = _pages[Pages.UpdateSeller];
+            if (page is UpdateSellerPage updateSellerPage)
+            {
+                updateSellerPage.SellerToUpdate = e.Seller;
+            }
+
+            _navigation.NavigateTo(Pages.UpdateSeller);
         }
 
         private void HighlightButton(object sender, EventArgs e)

@@ -8,6 +8,6 @@
         UpdateProperty,
         AddSeller,
         ViewSellers,
-        UpdateSellers,
+        UpdateSeller,
     }
 }

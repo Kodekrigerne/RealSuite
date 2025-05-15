@@ -501,7 +501,7 @@
             saveToFileButton.TabIndex = 25;
             saveToFileButton.Text = "Gem liste";
             saveToFileButton.UseVisualStyleBackColor = true;
-            saveToFileButton.Click += saveToFileButton_Click;
+            saveToFileButton.Click += SaveToFileButton_Click;
             // 
             // ViewPropertiesPage
             // 
