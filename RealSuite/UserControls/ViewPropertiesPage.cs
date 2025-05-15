@@ -219,5 +219,12 @@ namespace RealSuite.UserControls
             var args = new UpdatePropertyEventArgs(property);
             UpdateProperty?.Invoke(this, args);
         }
+
+        private void saveToFileButton_Click(object sender, EventArgs e)
+        {
+            ExportService exportService = new ExportService(_propertyService.PropertiesSource);
+
+            exportService.SaveListToFile();
+        }
     }
 }

@@ -61,6 +61,7 @@
             listedToDatePicker = new DateTimePicker();
             panel7 = new Panel();
             sellerComboBox = new ComboBox();
+            saveToFileButton = new Button();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             topPanel.SuspendLayout();
@@ -128,6 +129,7 @@
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(saveToFileButton);
             topPanel.Controls.Add(zipCodeFilterLabel);
             topPanel.Controls.Add(zipCodePanel);
             topPanel.Controls.Add(resultsLabel);
@@ -459,6 +461,16 @@
             sellerComboBox.TabIndex = 18;
             sellerComboBox.SelectedValueChanged += SellerComboBox_SelectedValueChanged;
             // 
+            // saveToFileButton
+            // 
+            saveToFileButton.Location = new Point(373, 138);
+            saveToFileButton.Name = "saveToFileButton";
+            saveToFileButton.Size = new Size(101, 29);
+            saveToFileButton.TabIndex = 25;
+            saveToFileButton.Text = "Gem liste";
+            saveToFileButton.UseVisualStyleBackColor = true;
+            saveToFileButton.Click += saveToFileButton_Click;
+            // 
             // ViewPropertiesPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -515,5 +527,6 @@
         private ComboBox zipCodeComboBox;
         private Panel zipCodePanel;
         private Label zipCodeFilterLabel;
+        private Button saveToFileButton;
     }
 }
