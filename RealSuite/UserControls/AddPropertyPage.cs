@@ -66,7 +66,7 @@ namespace RealSuite.UserControls
             ejendomsmægler_textbox.Text = "Maria Thodegaard";
         }
 
-        private void tilføjsælger_button_Click(object sender, EventArgs e)
+        private void tilføjbolig_button_Click(object sender, EventArgs e)
         {
             var propertyDTO = new PropertyDTO(vejnavn_textbox.Text, Convert.ToInt32(husnr_textbox.Text),
                 Convert.ToInt32(zipcode_textbox.Text), Convert.ToInt32(byggeår_textbox.Text),
@@ -212,11 +212,11 @@ namespace RealSuite.UserControls
                 squaremeter_checkbox.Text == "P" &&
                 price_checkbox.Text == "P")
             {
-                tilføjsælger_button.Enabled = true;
+                tilføjbolig_button.Enabled = true;
             }
             else
             {
-                tilføjsælger_button.Enabled = false;
+                tilføjbolig_button.Enabled = false;
             }
         }
 
