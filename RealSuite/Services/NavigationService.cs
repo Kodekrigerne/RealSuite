@@ -15,13 +15,15 @@ namespace RealSuite.Services
             _currentPage.Visible = true;
         }
 
-        public void NavigateTo(Pages pageKey)
+        public void NavigateTo(Pages pageKey) { NavigateTo(pageKey, true); }
+
+        public void NavigateTo(Pages pageKey, bool clear)
         {
             if (_currentPage != _pages[pageKey])
             {
                 if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
 
-                if (_pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
+                if (clear && _pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
 
                 foreach (var otherPage in _pages)
                 {
