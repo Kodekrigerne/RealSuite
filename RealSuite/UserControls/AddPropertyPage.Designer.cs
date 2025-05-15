@@ -96,7 +96,7 @@
             addSellerGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             addSellerGrid.Size = new Size(376, 234);
             addSellerGrid.TabIndex = 1;
-            addSellerGrid.UseWaitCursor = true;
+            addSellerGrid.UseWaitCursor = false;
             addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
             // 
             // sqlCommand1
