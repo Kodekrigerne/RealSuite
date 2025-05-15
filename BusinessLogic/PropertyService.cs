@@ -30,16 +30,24 @@ namespace BusinessLogic
             return dataTable;
         }
 
-        public void ApplyFilters(string sold, int minPrice, int maxPrice, DateTime listedFrom, DateTime listedTo, string zipCode, string sellerID)
+        public void ApplyFilters(string sold, int minPrice, int maxPrice, DateTime listedFrom, DateTime listedTo, string zipCode, string sellerID, string[] search)
         {
             string soldFilter = sold == "Alle" ? "" : sold == "Solgt" ? "Sold = 1 AND" : "Sold = 0 AND";
             string priceFilter = $"Price >= {minPrice} AND Price <= {maxPrice} AND";
-            string listedFilter = $"DateListed >= #{listedFrom:yyyy-MM-dd}# AND DateListed <= #{listedTo:yyyy-MM-dd}#";
-            string zipCodeFilter = zipCode == "Alle" ? "" : $"AND ZipCode = {zipCode}";
-            string sellerFilter = sellerID == "Alle" ? "" : $"AND SellerID = {sellerID}";
+            string listedFilter = $"DateListed >= #{listedFrom:yyyy-MM-dd}# AND DateListed <= #{listedTo:yyyy-MM-dd}# AND";
+            string zipCodeFilter = zipCode == "Alle" ? "ZipCode = ZipCode" : $"ZipCode = {zipCode}";
+            string sellerFilter = sellerID == "Alle" ? "SellerID = SellerID" : $"SellerID = {sellerID}";
+            string searchFilter = search.Length == 2
+                ? $"AND StreetName LIKE '%{search[0]}%' AND (StreetNumber + '') LIKE '%{search[1]}%'"
+                : $"AND StreetName LIKE '%{search[0]}%' " +
+                $"OR (StreetNumber + '') LIKE '{search[0]}' " +
+                $"OR (ZipCode + '') LIKE '{search[0]}'" +
+                $"OR (BuildYear + '') LIKE '{search[0]}'" +
+                $"OR (DateListed + '') LIKE '{search[0]}'" +
+                $"OR (DateSold + '') LIKE '{search[0]}'";
 
             PropertiesSource.Filter = string.Empty;
-            PropertiesSource.Filter += $"{soldFilter} {priceFilter} {listedFilter} {zipCodeFilter} {sellerFilter}";
+            PropertiesSource.Filter += $"{soldFilter} {priceFilter} {listedFilter} {zipCodeFilter} AND {sellerFilter} {searchFilter}";
         }
 
         public bool CreateProperty(PropertyDTO propertyDTO)

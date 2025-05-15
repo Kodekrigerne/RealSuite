@@ -11,14 +11,13 @@ namespace RealSuite
         private Dictionary<Pages, UserControl> _pages = [];
         private readonly NavigationService _navigation;
 
-        StatusService _statusService = new StatusService();
+        private readonly StatusService _statusService = new();
 
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
             _navigation = new(_pages);
-            _navigation.NavigateTo(Pages.Front);
             _navigation.NavigateTo(Pages.Front);
             if (_pages[Pages.ViewProperties] is ViewPropertiesPage page) page.UpdateProperty += UpdateProperty;
             CheckServerStatus();
@@ -133,7 +132,7 @@ namespace RealSuite
             serverIndicatorLabel.ForeColor = _statusService.DbCheck() ? Color.LightGreen : Color.Red;
         }
 
-        private void dbCheckTimer_Tick(object sender, EventArgs e)
+        private void DbCheckTimer_Tick(object sender, EventArgs e)
         {
             CheckServerStatus();
         }

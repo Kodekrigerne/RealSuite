@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Diagnostics;
 using BusinessLogic;
 using Models;
 using RealSuite.Events;
@@ -12,38 +13,48 @@ namespace RealSuite.UserControls
         private readonly NavigationService _navigation;
         private readonly PropertyService _propertyService = new();
         public event EventHandler<UpdatePropertyEventArgs>? UpdateProperty;
+        private bool _suspendFiltering = false;
+        private EnumerableRowCollection<DataRow>? _table;
 
         public ViewPropertiesPage(NavigationService navigation)
         {
+            _suspendFiltering = true;
             InitializeComponent();
             _navigation = navigation;
             InitializeControls();
+            _suspendFiltering = false;
         }
 
         private void InitializeControls()
         {
+            _suspendFiltering = true;
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
+            searchTextBox.Clear();
             soldComboBox.SelectedItem = "Alle";
-            zipCodeComboBox.SelectedItem = "Alle";
-            sellerComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetSellerComboBox();
             RenameColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
+            _suspendFiltering = false;
         }
 
         private void SetZipCodeComboBox()
         {
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-            zipCodeComboBox.Items.AddRange(table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>().ToArray());
+            zipCodeComboBox.Items.Clear();
+            zipCodeComboBox.Items.Add("Alle");
+            zipCodeComboBox.SelectedItem = "Alle";
+            zipCodeComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("ZipCode")).Distinct().Order().Cast<object>()]);
         }
 
         private void SetSellerComboBox()
         {
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-            sellerComboBox.Items.AddRange(table.Select(x => x.Field<int>("SellerID")).Distinct().Cast<object>().ToArray());
+            sellerComboBox.Items.Clear();
+            sellerComboBox.Items.Add("Alle");
+            sellerComboBox.SelectedItem = "Alle";
+            sellerComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("SellerID")).Distinct().Order().Cast<object>()]);
         }
 
         private void RenameColumns()
@@ -61,14 +72,12 @@ namespace RealSuite.UserControls
 
         private void SetListedDatePickersInitialValues()
         {
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-
             DateTime minDate;
             DateTime maxDate;
             try
             {
-                minDate = table.Min(x => x.Field<DateTime>("DateListed"));
-                maxDate = table.Max(x => x.Field<DateTime>("DateListed"));
+                minDate = _table!.Min(x => x.Field<DateTime>("DateListed"));
+                maxDate = _table!.Max(x => x.Field<DateTime>("DateListed"));
             }
             catch
             {
@@ -82,25 +91,30 @@ namespace RealSuite.UserControls
 
         private void ApplyFilters(object? sender = null, EventArgs? e = null)
         {
-            var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
-            var minPriceFilter = minPriceTrackBar.Value;
-            var maxPriceFilter = maxPriceTrackBar.Value;
-            var listedFrom = listedFromDatePicker.Value;
-            var listedTo = listedToDatePicker.Value;
-            if (zipCodeComboBox.SelectedItem == null) zipCodeComboBox.SelectedItem = "Alle";
-            var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
-            if (sellerComboBox.SelectedItem == null) sellerComboBox.SelectedItem = "Alle";
-            var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
+            if (_suspendFiltering == false)
+            {
+                Debug.WriteLine("Test");
+                var minPriceFilter = minPriceTrackBar.Value;
+                var maxPriceFilter = maxPriceTrackBar.Value;
+                var listedFrom = listedFromDatePicker.Value;
+                var listedTo = listedToDatePicker.Value;
+                var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
+                var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
+                var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
+                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ');
 
-            _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter);
-            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
-            resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
+                _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter, searchFilter);
+                propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+                _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
+                resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
+            }
         }
 
         public void Clear()
         {
             _propertyService.RefreshFromDb();
             InitializeControls();
+            ApplyFilters();
         }
 
         private void SetTrackBarInitialValues()
@@ -113,20 +127,21 @@ namespace RealSuite.UserControls
 
         private void SetTrackBarBounds()
         {
-            var table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
-
             int minPrice;
             int maxPrice;
             try
             {
-                minPrice = (int)table.Min(x => x.Field<int>("Price"));
-                maxPrice = (int)table.Max(x => x.Field<int>("Price"));
+                minPrice = (int)_table!.Min(x => x.Field<int>("Price"));
+                maxPrice = (int)_table!.Max(x => x.Field<int>("Price"));
             }
             catch
             {
                 minPrice = 0;
                 maxPrice = 1000;
             }
+
+            minPrice = ((minPrice / 10000) * 10000) - 10000;
+            maxPrice = ((maxPrice / 10000) * 10000) + 10000;
 
             minPriceTrackBar.Minimum = minPrice;
             minPriceTrackBar.Maximum = maxPrice;
@@ -164,17 +179,16 @@ namespace RealSuite.UserControls
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            InitializeControls();
+            Clear();
         }
 
-        private void listedFromDatePicker_ValueChanged(object sender, EventArgs e)
+        private void ListedFromDatePicker_ValueChanged(object sender, EventArgs e)
         {
             if (listedToDatePicker.Value < listedFromDatePicker.Value)
             {
                 listedToDatePicker.Value = listedFromDatePicker.Value;
             }
             ApplyFilters();
-
         }
 
         private void ListedToDatePicker_ValueChanged(object sender, EventArgs e)
@@ -183,16 +197,6 @@ namespace RealSuite.UserControls
             {
                 listedFromDatePicker.Value = listedToDatePicker.Value;
             }
-            ApplyFilters();
-        }
-
-        private void ZipCodeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        private void SellerComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
             ApplyFilters();
         }
 
@@ -219,6 +223,36 @@ namespace RealSuite.UserControls
             var args = new UpdatePropertyEventArgs(property);
             UpdateProperty?.Invoke(this, args);
 
+        }
+
+        private void TrackBar_Scroll(object sender, EventArgs e)
+        {
+            if (sender is TrackBar trackBar) trackBar.Value = (trackBar.Value / 10000) * 10000;
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) ApplyFilters();
+        }
+
+        private void TopPanel_Click(object sender, EventArgs e)
+        {
+            ActiveControl = null;
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                if (textBox.Text.Length == 0) clearTextButton.Visible = false;
+                else clearTextButton.Visible = true;
+            }
+        }
+
+        private void ClearTextButton_Click(object sender, EventArgs e)
+        {
+            searchTextBox.Clear();
+            ApplyFilters();
         }
     }
 }
