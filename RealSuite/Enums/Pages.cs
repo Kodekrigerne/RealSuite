@@ -1,6 +1,6 @@
 ﻿namespace RealSuite.Enums
 {
-    internal enum Pages
+    public enum Pages
     {
         Front,
         AddProperty,

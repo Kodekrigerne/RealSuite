@@ -4,7 +4,7 @@ using Models.DTOModels;
 
 namespace DataAccess
 {
-    public class SellerDBSerivce
+    public class SellerDBService
     {
         public bool CreateSeller(SellerDTO sellerDTO)
         {

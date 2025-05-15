@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
     public partial class FrontPage : UserControl
     {
-        public FrontPage()
+        private readonly NavigationService _navigation;
+
+        public FrontPage(NavigationService navigation)
         {
             InitializeComponent();
+            _navigation = navigation;
         }
     }
 }

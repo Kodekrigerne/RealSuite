@@ -1,13 +1,15 @@
-﻿using RealSuite.Interfaces;
+﻿using Models;
+using RealSuite.Interfaces;
 using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class ViewSellersPage : UserControl, IClearable
+    public partial class UpdatePropertyPage : UserControl, IClearable
     {
         private readonly NavigationService _navigation;
+        public Property? UpdateProperty;
 
-        public ViewSellersPage(NavigationService navigation)
+        public UpdatePropertyPage(NavigationService navigation)
         {
             InitializeComponent();
             _navigation = navigation;

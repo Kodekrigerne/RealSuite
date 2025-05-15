@@ -1,5 +1,7 @@
+using BusinessLogic;
 using RealSuite.Enums;
-using RealSuite.Interfaces;
+using RealSuite.Events;
+using RealSuite.Services;
 using RealSuite.UserControls;
 
 namespace RealSuite
@@ -7,27 +9,32 @@ namespace RealSuite
     public partial class MainForm : Form
     {
         private Dictionary<Pages, UserControl> _pages = [];
-        private UserControl _currentPage;
+        private readonly NavigationService _navigation;
+
+        StatusService _statusService = new StatusService();
 
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
-            _currentPage = _pages[Pages.Front];
-            NavigateTo(Pages.Front);
+            _navigation = new(_pages);
+            _navigation.NavigateTo(Pages.Front);
+            _navigation.NavigateTo(Pages.Front);
+            if (_pages[Pages.ViewProperties] is ViewPropertiesPage page) page.UpdateProperty += UpdateProperty;
+            CheckServerStatus();
         }
 
         private void InitializePages()
         {
             _pages = new Dictionary<Pages, UserControl>
             {
-                {Pages.Front, new FrontPage() },
-                {Pages.AddProperty, new AddPropertyPage() },
-                {Pages.ViewProperties, new ViewPropertiesPage() },
-                {Pages.UpdateProperty, new UpdatePropertyPage() },
-                {Pages.AddSeller, new AddSellerPage() },
-                {Pages.ViewSellers, new ViewSellersPage() },
-                {Pages.UpdateSellers, new UpdateSellerPage() },
+                {Pages.Front, new FrontPage(_navigation) },
+                {Pages.AddProperty, new AddPropertyPage(_navigation) },
+                {Pages.ViewProperties, new ViewPropertiesPage(_navigation) },
+                {Pages.UpdateProperty, new UpdatePropertyPage(_navigation) },
+                {Pages.AddSeller, new AddSellerPage(_navigation) },
+                {Pages.ViewSellers, new ViewSellersPage(_navigation) },
+                {Pages.UpdateSellers, new UpdateSellerPage(_navigation) },
             };
             foreach (var page in _pages)
             {
@@ -42,23 +49,11 @@ namespace RealSuite
             splitContainer.Panel2.Controls.Add(page);
         }
 
-        private void NavigateTo(Pages pageKey)
+        private void UpdateProperty(object sender, UpdatePropertyEventArgs e)
         {
-            if (_currentPage != _pages[pageKey])
-            {
-                if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
-
-                if (_pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
-
-                foreach (var otherPage in _pages)
-                {
-                    if (otherPage.Value != page) otherPage.Value.Visible = false;
-                }
-
-                page.Visible = true;
-                page.Focus();
-                _currentPage = page;
-            }
+            var page = _pages[Pages.UpdateProperty];
+            if (page is UpdatePropertyPage updatePropertyPage) updatePropertyPage.UpdateProperty = e.Property;
+            _navigation.NavigateTo(Pages.UpdateProperty);
         }
 
         private void HighlightButton(object sender, EventArgs e)
@@ -78,27 +73,27 @@ namespace RealSuite
 
         private void ViewPropertiesButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.ViewProperties);
+            _navigation.NavigateTo(Pages.ViewProperties);
         }
 
         private void AddPropertyButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.AddProperty);
+            _navigation.NavigateTo(Pages.AddProperty);
         }
 
         private void ViewSellersButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.ViewSellers);
+            _navigation.NavigateTo(Pages.ViewSellers);
         }
 
         private void LogoPanel_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.Front);
+            _navigation.NavigateTo(Pages.Front);
         }
 
         private void AddSellerButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.AddSeller);
+            _navigation.NavigateTo(Pages.AddSeller);
         }
 
         private void SetLogo(Bitmap bitmap)
@@ -125,6 +120,16 @@ namespace RealSuite
         private void LogoPanel_MouseUp(object sender, MouseEventArgs e)
         {
             SetLogo(Properties.Resources.FrontLogoHighlight);
+        }
+
+        private void CheckServerStatus()
+        {
+            serverIndicatorLabel.ForeColor = _statusService.DbCheck() ? Color.LightGreen : Color.Red;
+        }
+
+        private void dbCheckTimer_Tick(object sender, EventArgs e)
+        {
+            CheckServerStatus();
         }
     }
 }

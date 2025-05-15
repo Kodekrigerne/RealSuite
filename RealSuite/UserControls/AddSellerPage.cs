@@ -3,16 +3,19 @@ using BusinessLogic;
 using Models.DTOModels;
 
 using RealSuite.Interfaces;
+using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
     public partial class AddSellerPage : UserControl, IClearable
     {
+        private readonly NavigationService _navigation;
         SellerService sellerService = new SellerService();
 
-        public AddSellerPage()
+        public AddSellerPage(NavigationService navigation)
         {
             InitializeComponent();
+            _navigation = navigation;
 
             tilføjButton.Enabled = false;
 
