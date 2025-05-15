@@ -251,6 +251,7 @@ namespace RealSuite.UserControls
         private void ClearTextButton_Click(object sender, EventArgs e)
         {
             searchTextBox.Clear();
+            ApplyFilters();
         }
     }
 }

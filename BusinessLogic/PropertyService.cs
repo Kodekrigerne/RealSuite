@@ -39,12 +39,11 @@ namespace BusinessLogic
             string searchFilter = search.Length == 2
                 ? $"AND StreetName LIKE '%{search[0]}%' AND (StreetNumber + '') LIKE '%{search[1]}%'"
                 : $"AND StreetName LIKE '%{search[0]}%' " +
-                $"OR (StreetNumber + '') LIKE '%{search[0]}%' " +
-                $"OR (ZipCode + '') LIKE '%{search[0]}%'" +
-                $"OR (BuildYear + '') LIKE '%{search[0]}%'" +
-                $"OR (SquareMeters + '') LIKE '%{search[0]}%'" +
-                $"OR (DateListed + '') LIKE '%{search[0]}%'" +
-                $"OR (DateSold + '') LIKE '%{search[0]}%'";
+                $"OR (StreetNumber + '') LIKE '{search[0]}' " +
+                $"OR (ZipCode + '') LIKE '{search[0]}'" +
+                $"OR (BuildYear + '') LIKE '{search[0]}'" +
+                $"OR (DateListed + '') LIKE '{search[0]}'" +
+                $"OR (DateSold + '') LIKE '{search[0]}'";
 
             PropertiesSource.Filter = string.Empty;
             PropertiesSource.Filter += $"{soldFilter} {priceFilter} {listedFilter} {zipCodeFilter} AND {sellerFilter} {searchFilter}";
