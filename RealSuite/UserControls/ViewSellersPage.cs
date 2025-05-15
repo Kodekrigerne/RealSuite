@@ -105,6 +105,7 @@ namespace RealSuite.UserControls
         private void refreshButton_Click(object sender, EventArgs e)
         {
             _sellerService.RefreshFromDB();
+            ReFormatCPRNumber();
             ApplyFilters();
         }
         #region color highlighting on refresh button and clear button when clicking and hovering
