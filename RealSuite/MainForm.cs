@@ -1,3 +1,4 @@
+using BusinessLogic;
 using RealSuite.Enums;
 using RealSuite.Events;
 using RealSuite.Services;
@@ -10,13 +11,17 @@ namespace RealSuite
         private Dictionary<Pages, UserControl> _pages = [];
         private readonly NavigationService _navigation;
 
+        StatusService _statusService = new StatusService();
+
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
             _navigation = new(_pages);
             _navigation.NavigateTo(Pages.Front);
+            _navigation.NavigateTo(Pages.Front);
             if (_pages[Pages.ViewProperties] is ViewPropertiesPage page) page.UpdateProperty += UpdateProperty;
+            CheckServerStatus();
         }
 
         private void InitializePages()
@@ -48,6 +53,7 @@ namespace RealSuite
         {
             var page = _pages[Pages.UpdateProperty];
             if (page is UpdatePropertyPage updatePropertyPage) updatePropertyPage.UpdateProperty = e.Property;
+            _navigation.NavigateTo(Pages.UpdateProperty);
         }
 
         private void HighlightButton(object sender, EventArgs e)
@@ -114,6 +120,16 @@ namespace RealSuite
         private void LogoPanel_MouseUp(object sender, MouseEventArgs e)
         {
             SetLogo(Properties.Resources.FrontLogoHighlight);
+        }
+
+        private void CheckServerStatus()
+        {
+            serverIndicatorLabel.ForeColor = _statusService.DbCheck() ? Color.LightGreen : Color.Red;
+        }
+
+        private void dbCheckTimer_Tick(object sender, EventArgs e)
+        {
+            CheckServerStatus();
         }
     }
 }

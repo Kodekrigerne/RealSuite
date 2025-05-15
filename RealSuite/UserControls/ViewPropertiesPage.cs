@@ -1,7 +1,6 @@
 ﻿using System.Data;
 using BusinessLogic;
 using Models;
-using RealSuite.Enums;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
@@ -212,14 +211,13 @@ namespace RealSuite.UserControls
             int price = Convert.ToInt32(row.Cells["Price"].Value);
             int realtorID = Convert.ToInt32(row.Cells["RealtorID"].Value);
             DateTime dateListed = Convert.ToDateTime(row.Cells["DateListed"].Value);
-            DateTime? dateSold = row.Cells["DateSold"].Value == DBNull.Value ? null : Convert.ToDateTime(row.Cells["DateListed"]);
+            DateTime? dateSold = row.Cells["DateSold"].Value == DBNull.Value ? null : Convert.ToDateTime(row.Cells["DateListed"].Value);
             bool sold = Convert.ToInt32(row.Cells["Sold"].Value) == 1;
             int squareMeterPrice = Convert.ToInt32(row.Cells["SqmPrice"].Value);
 
             var property = new Property(id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorID, dateListed, dateSold, sold, squareMeterPrice);
             var args = new UpdatePropertyEventArgs(property);
             UpdateProperty?.Invoke(this, args);
-            _navigation.NavigateTo(Pages.UpdateProperty);
         }
     }
 }

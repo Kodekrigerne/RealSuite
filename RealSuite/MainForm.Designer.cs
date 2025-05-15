@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainer = new SplitContainer();
+            serverIndicatorLabel = new Label();
             LogoPanel = new Panel();
             addSellerButton = new Button();
             viewSellersButton = new Button();
@@ -39,6 +41,7 @@
             PropertiesLabel = new Label();
             BgPanelSellers = new Panel();
             SellersLabel = new Label();
+            dbCheckTimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.SuspendLayout();
@@ -58,6 +61,7 @@
             // splitContainer.Panel1
             // 
             splitContainer.Panel1.BackColor = Color.FromArgb(79, 117, 184);
+            splitContainer.Panel1.Controls.Add(serverIndicatorLabel);
             splitContainer.Panel1.Controls.Add(LogoPanel);
             splitContainer.Panel1.Controls.Add(addSellerButton);
             splitContainer.Panel1.Controls.Add(viewSellersButton);
@@ -74,6 +78,17 @@
             splitContainer.SplitterWidth = 5;
             splitContainer.TabIndex = 0;
             splitContainer.TabStop = false;
+            // 
+            // serverIndicatorLabel
+            // 
+            serverIndicatorLabel.AutoSize = true;
+            serverIndicatorLabel.Font = new Font("Wingdings", 9F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            serverIndicatorLabel.ForeColor = Color.LightGreen;
+            serverIndicatorLabel.Location = new Point(11, 5);
+            serverIndicatorLabel.Name = "serverIndicatorLabel";
+            serverIndicatorLabel.Size = new Size(18, 16);
+            serverIndicatorLabel.TabIndex = 9;
+            serverIndicatorLabel.Text = "l";
             // 
             // LogoPanel
             // 
@@ -210,6 +225,12 @@
             SellersLabel.TabIndex = 8;
             SellersLabel.Text = "Sælgere";
             // 
+            // dbCheckTimer
+            // 
+            dbCheckTimer.Enabled = true;
+            dbCheckTimer.Interval = 30000;
+            dbCheckTimer.Tick += dbCheckTimer_Tick;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -221,6 +242,7 @@
             Name = "MainForm";
             Text = "RealSuite";
             splitContainer.Panel1.ResumeLayout(false);
+            splitContainer.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
             BgPanelProperties.ResumeLayout(false);
@@ -243,5 +265,7 @@
         private Label PropertiesLabel;
         private Panel BgPanelProperties;
         private Panel BgPanelSellers;
+        private Label serverIndicatorLabel;
+        private System.Windows.Forms.Timer dbCheckTimer;
     }
 }

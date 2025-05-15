@@ -17,7 +17,7 @@ namespace RealSuite.UserControls
         {
             _navigation = navigation;
             InitializeComponent();
-            SellerGridSetup();
+            addSellerGrid.Visible = false;
             pris_textbox.Controls[0].Hide();
             vurdering_textbox.Controls[0].Hide();
 
@@ -25,9 +25,9 @@ namespace RealSuite.UserControls
 
         private void addSellerButton_Click(object sender, EventArgs e)
         {
+            SellerGridSetup();
             if (addSellerGrid.Visible == true) addSellerGrid.Visible = false;
             else addSellerGrid.Visible = true;
-            SellerGridSetup();
         }
 
         private void addSellerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -223,7 +223,6 @@ namespace RealSuite.UserControls
 
         private void SellerGridSetup()
         {
-            addSellerGrid.Visible = false;
             var sellerDataTable = sellerService.GetSellers();
             addSellerGrid.DataSource = sellerDataTable;
             addSellerGrid.Columns[0].HeaderText = "Kunde ID";

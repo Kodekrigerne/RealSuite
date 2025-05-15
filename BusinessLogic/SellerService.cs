@@ -6,7 +6,7 @@ namespace BusinessLogic
 {
     public class SellerService()
     {
-        SellerDBSerivce sellerDBService = new SellerDBSerivce();
+        SellerDBService sellerDBService = new SellerDBService();
         PersonService personService = new PersonService();
 
         public bool CreateSellerDTO(SellerDTO sellerDTO)
