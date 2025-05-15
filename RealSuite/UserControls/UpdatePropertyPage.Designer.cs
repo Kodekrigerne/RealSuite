@@ -130,6 +130,7 @@
             vurdering_button.TabIndex = 65;
             vurdering_button.Text = "Få vurdering";
             vurdering_button.UseVisualStyleBackColor = true;
+            vurdering_button.Click += vurdering_button_Click;
             // 
             // solgtdato_label
             // 

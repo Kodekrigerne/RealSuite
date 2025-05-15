@@ -11,6 +11,7 @@ namespace RealSuite.UserControls
         public Property? UpdateProperty;
         private PropertyService propertyService = new PropertyService();
         private SellerService sellerService = new SellerService();
+        private AssessmentService assessmentService = new AssessmentService();
 
         public UpdatePropertyPage(NavigationService navigation)
         {
@@ -119,6 +120,8 @@ namespace RealSuite.UserControls
                     seller_checkbox.Visible = true;
                     price_checkbox.Visible = true;
 
+                    redigering_checkbox.Enabled = false;
+
                 }
                 else
                 {
@@ -142,6 +145,7 @@ namespace RealSuite.UserControls
         private void SubmitKeyCheck()
         {
             if (streetname_checklabel.Text == "P" &&
+                streetname_checklabel.Visible == true &&
                 streetnumber_checklabel.Text == "P" &&
                 zip_checkbox.Text == "P" &&
                 buildyear_checkbox.Text == "P" &&
@@ -153,6 +157,19 @@ namespace RealSuite.UserControls
             else
             {
                 opdater_button.Enabled = false;
+            }
+        }
+        private void GetAssessment()
+        {
+            if (buildyear_checkbox.Text != "O" &&
+                squaremeter_checkbox.Text != "O" &&
+                zip_checkbox.Text != "O")
+            {
+                vurdering_button.Enabled = true;
+            }
+            else
+            {
+                vurdering_button.Enabled = false;
             }
         }
 
@@ -222,22 +239,72 @@ namespace RealSuite.UserControls
 
         private void zipcode_textbox_TextChanged(object sender, EventArgs e)
         {
-
+            if (!zipcode_textbox.Text.All(char.IsDigit) || zipcode_textbox.Text.Length != 4)
+            {
+                zip_checkbox.Text = "O";
+                zip_checkbox.ForeColor = Color.Red;
+            }
+            else
+            {
+                zip_checkbox.Text = "P";
+                zip_checkbox.ForeColor = Color.Green;
+            }
+            SubmitKeyCheck();
+            GetAssessment();
         }
 
         private void byggeår_textbox_TextChanged(object sender, EventArgs e)
         {
-
+            if (!byggeår_textbox.Text.All(char.IsDigit) || byggeår_textbox.Text.Length != 4)
+            {
+                buildyear_checkbox.Text = "O";
+                buildyear_checkbox.ForeColor = Color.Red;
+            }
+            else
+            {
+                buildyear_checkbox.Text = "P";
+                buildyear_checkbox.ForeColor = Color.Green;
+            }
+            SubmitKeyCheck();
+            GetAssessment();
         }
 
         private void kvm_textbox_TextChanged(object sender, EventArgs e)
         {
-
+            if (!kvm_textbox.Text.All(char.IsDigit) || kvm_textbox.Text == "")
+            {
+                squaremeter_checkbox.Text = "O";
+                squaremeter_checkbox.ForeColor = Color.Red;
+            }
+            else
+            {
+                squaremeter_checkbox.Text = "P";
+                squaremeter_checkbox.ForeColor = Color.Green;
+            }
+            SubmitKeyCheck();
+            GetAssessment();
         }
         private void pris_textbox_ValueChanged(object sender, EventArgs e)
         {
             if (UpdateProperty != null && pris_textbox.Value != (decimal)UpdateProperty.Price)
                 opdater_button.Enabled = true;
         }
+
+        private void vurdering_button_Click(object sender, EventArgs e)
+        {
+            var priceAssessment = new PriceAssessment(
+                Convert.ToInt32(zipcode_textbox.Text),
+                Convert.ToInt32(byggeår_textbox.Text),
+                Convert.ToInt32(kvm_textbox.Text));
+
+            var assessedPrice = assessmentService.GetAssessment(priceAssessment);
+
+            if (assessedPrice > 0)
+            {
+                vurdering_textbox.Text = assessedPrice.ToString();
+            }
+            else MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
+        }
+
     }
 }
