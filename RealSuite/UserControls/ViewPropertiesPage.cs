@@ -254,5 +254,12 @@ namespace RealSuite.UserControls
             searchTextBox.Clear();
             ApplyFilters();
         }
+
+        private void saveToFileButton_Click(object sender, EventArgs e)
+        {
+            ExportService exportService = new ExportService(_propertyService.PropertiesSource);
+
+            exportService.SaveListToFile();
+        }
     }
 }
