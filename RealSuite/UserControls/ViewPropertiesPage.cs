@@ -1,15 +1,19 @@
 ﻿using System.Data;
 using BusinessLogic;
 using RealSuite.Interfaces;
+using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
     public partial class ViewPropertiesPage : UserControl, IClearable
     {
+        private readonly NavigationService _navigation;
         private readonly PropertyService _propertyService = new();
-        public ViewPropertiesPage()
+
+        public ViewPropertiesPage(NavigationService navigation)
         {
             InitializeComponent();
+            _navigation = navigation;
             InitializeControls();
         }
 

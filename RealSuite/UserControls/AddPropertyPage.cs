@@ -2,6 +2,7 @@
 using Models;
 using Models.DTOModels;
 using RealSuite.Interfaces;
+using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
@@ -9,10 +10,12 @@ namespace RealSuite.UserControls
     {
         private SellerService sellerService = new SellerService();
         private PropertyService propertyService = new PropertyService();
+        private readonly NavigationService _navigation;
         private AssessmentService assessmentService = new AssessmentService();
 
-        public AddPropertyPage()
+        public AddPropertyPage(NavigationService navigation)
         {
+            _navigation = navigation;
             InitializeComponent();
             SellerGridSetup();
             pris_textbox.Controls[0].Hide();

@@ -1,5 +1,5 @@
 using RealSuite.Enums;
-using RealSuite.Interfaces;
+using RealSuite.Services;
 using RealSuite.UserControls;
 
 namespace RealSuite
@@ -7,27 +7,27 @@ namespace RealSuite
     public partial class MainForm : Form
     {
         private Dictionary<Pages, UserControl> _pages = [];
-        private UserControl _currentPage;
+        private readonly NavigationService _navigation;
 
         public MainForm()
         {
             InitializeComponent();
             InitializePages();
-            _currentPage = _pages[Pages.Front];
-            NavigateTo(Pages.Front);
+            _navigation = new(_pages);
+            _navigation.NavigateTo(Pages.Front);
         }
 
         private void InitializePages()
         {
             _pages = new Dictionary<Pages, UserControl>
             {
-                {Pages.Front, new FrontPage() },
-                {Pages.AddProperty, new AddPropertyPage() },
-                {Pages.ViewProperties, new ViewPropertiesPage() },
-                {Pages.UpdateProperty, new UpdatePropertyPage() },
-                {Pages.AddSeller, new AddSellerPage() },
-                {Pages.ViewSellers, new ViewSellersPage() },
-                {Pages.UpdateSellers, new UpdateSellerPage() },
+                {Pages.Front, new FrontPage(_navigation) },
+                {Pages.AddProperty, new AddPropertyPage(_navigation) },
+                {Pages.ViewProperties, new ViewPropertiesPage(_navigation) },
+                {Pages.UpdateProperty, new UpdatePropertyPage(_navigation) },
+                {Pages.AddSeller, new AddSellerPage(_navigation) },
+                {Pages.ViewSellers, new ViewSellersPage(_navigation) },
+                {Pages.UpdateSellers, new UpdateSellerPage(_navigation) },
             };
             foreach (var page in _pages)
             {
@@ -40,25 +40,6 @@ namespace RealSuite
             page.Visible = false;
             page.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Add(page);
-        }
-
-        private void NavigateTo(Pages pageKey)
-        {
-            if (_currentPage != _pages[pageKey])
-            {
-                if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
-
-                if (_pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
-
-                foreach (var otherPage in _pages)
-                {
-                    if (otherPage.Value != page) otherPage.Value.Visible = false;
-                }
-
-                page.Visible = true;
-                page.Focus();
-                _currentPage = page;
-            }
         }
 
         private void HighlightButton(object sender, EventArgs e)
@@ -78,27 +59,27 @@ namespace RealSuite
 
         private void ViewPropertiesButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.ViewProperties);
+            _navigation.NavigateTo(Pages.ViewProperties);
         }
 
         private void AddPropertyButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.AddProperty);
+            _navigation.NavigateTo(Pages.AddProperty);
         }
 
         private void ViewSellersButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.ViewSellers);
+            _navigation.NavigateTo(Pages.ViewSellers);
         }
 
         private void LogoPanel_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.Front);
+            _navigation.NavigateTo(Pages.Front);
         }
 
         private void AddSellerButton_Click(object sender, EventArgs e)
         {
-            NavigateTo(Pages.AddSeller);
+            _navigation.NavigateTo(Pages.AddSeller);
         }
 
         private void SetLogo(Bitmap bitmap)
