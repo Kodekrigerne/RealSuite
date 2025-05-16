@@ -81,7 +81,7 @@ namespace RealSuite.UserControls
             zipCodeComboBox.Items.Clear();
             zipCodeComboBox.Items.Add("Alle");
             zipCodeComboBox.SelectedItem = "Alle";
-            zipCodeComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>()]);
+            zipCodeComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("ZipCode")).Distinct().Order().Cast<object>()]);
         }
 
         private void SetPhoneNumberComboBox()
@@ -89,7 +89,7 @@ namespace RealSuite.UserControls
             phoneNumberComboBox.Items.Clear();
             phoneNumberComboBox.Items.Add("Alle");
             phoneNumberComboBox.SelectedItem = "Alle";
-            phoneNumberComboBox.Items.AddRange([.. _table!.Select(x => x.Field<string>("PhoneNumber")).Distinct().Cast<object>()]);
+            phoneNumberComboBox.Items.AddRange([.. _table!.Select(x => x.Field<string>("PhoneNumber")).Distinct().Order().Cast<object>()]);
         }
 
         public void Clear()
