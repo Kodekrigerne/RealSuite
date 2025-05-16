@@ -70,6 +70,8 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["ZipCode"].HeaderText = "Postnr";
             propertiesDataGridView.Columns["BuildYear"].HeaderText = "Byggeår";
             propertiesDataGridView.Columns["SquareMeters"].HeaderText = "m2";
+            propertiesDataGridView.Columns["SellerID"].HeaderText = "Sælger ID";
+            propertiesDataGridView.Columns["RealtorID"].HeaderText = "Mægler ID";
             propertiesDataGridView.Columns["Price"].HeaderText = "Pris";
             propertiesDataGridView.Columns["DateListed"].HeaderText = "Noteringsdato";
             propertiesDataGridView.Columns["DateSold"].HeaderText = "Salgsdato";
