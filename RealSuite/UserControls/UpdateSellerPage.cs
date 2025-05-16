@@ -5,14 +5,18 @@ using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class UpdateSellerPage : UserControl, IClearable
+    public partial class UpdateSellerPage : UserControl, IClearable, INavigatable
     {
-        private readonly NavigationService _navigation;
+        private NavigationService? _navigation;
         public Seller? SellerToUpdate;
 
-        public UpdateSellerPage(NavigationService navigation)
+        public UpdateSellerPage()
         {
             InitializeComponent();
+        }
+
+        public void SetNavigation(NavigationService navigation)
+        {
             _navigation = navigation;
             SetupPage();
         }

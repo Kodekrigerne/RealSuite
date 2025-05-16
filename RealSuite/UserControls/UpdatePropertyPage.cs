@@ -5,53 +5,71 @@ using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class UpdatePropertyPage : UserControl, IClearable
+    public partial class UpdatePropertyPage : UserControl, IClearable, INavigatable
     {
-        private readonly NavigationService _navigation;
-        public Property? PropertyToUpdate;
+        private NavigationService? _navigation;
+        private Property? _propertyToUpdate;
         private readonly PropertyService propertyService = new();
         private readonly SellerService sellerService = new();
         private readonly AssessmentService assessmentService = new();
 
-        public UpdatePropertyPage(NavigationService navigation)
+        public UpdatePropertyPage()
         {
             InitializeComponent();
-            _navigation = navigation;
             addSellerGrid.Visible = false;
             pris_textbox.Controls[0].Hide();
             vurdering_textbox.Controls[0].Hide();
+            this.ActiveControl = null;
+
+        }
+
+        public void SetNavigation(NavigationService navigation)
+        {
+            _navigation = navigation;
         }
 
         public void Clear()
         {
+            redigering_checkbox.Checked = false;
+            redigering_checkbox.Enabled = true;
+
+            streetname_checklabel.Visible = false;
+            streetnumber_checklabel.Visible = false;
+            zip_checkbox.Visible = false;
+            buildyear_checkbox.Visible = false;
+            squaremeter_checkbox.Visible = false;
+            seller_checkbox.Visible = false;
+            price_checkbox.Visible = false;
 
         }
 
 
-        public void SetupPageDetails()
+        public void SetupPageDetails(Property property)
         {
-            if (PropertyToUpdate != null)
+            _propertyToUpdate = property;
+
+            if (_propertyToUpdate != null)
             {
-                id_textbox.Text = PropertyToUpdate.Id.ToString();
-                vejnavn_textbox.Text = PropertyToUpdate.StreetName;
-                husnr_textbox.Text = PropertyToUpdate.StreetNumber.ToString();
-                zipcode_textbox.Text = PropertyToUpdate.ZipCode.ToString();
-                byggeår_textbox.Text = PropertyToUpdate.BuildYear.ToString();
-                kvm_textbox.Text = PropertyToUpdate.SquareMeters.ToString();
-                sælgerID_textbox.Text = PropertyToUpdate.SellerId.ToString();
-                pris_textbox.Value = Convert.ToInt32(PropertyToUpdate.Price);
+                id_textbox.Text = _propertyToUpdate.Id.ToString();
+                vejnavn_textbox.Text = _propertyToUpdate.StreetName;
+                husnr_textbox.Text = _propertyToUpdate.StreetNumber.ToString();
+                zipcode_textbox.Text = _propertyToUpdate.ZipCode.ToString();
+                byggeår_textbox.Text = _propertyToUpdate.BuildYear.ToString();
+                kvm_textbox.Text = _propertyToUpdate.SquareMeters.ToString();
+                sælgerID_textbox.Text = _propertyToUpdate.SellerId.ToString();
+                pris_textbox.Value = Convert.ToInt32(_propertyToUpdate.Price);
                 ejendomsmæglerID_textbox.Text = "1000";
                 ejendomsmægler_textbox.Text = "Maria Thodegaard";
-                dato_datepicker.Value = PropertyToUpdate.DateListed;
-                solgt_checkbox.Checked = PropertyToUpdate.Sold;
+                dato_datepicker.Value = _propertyToUpdate.DateListed;
+                solgt_checkbox.Checked = _propertyToUpdate.Sold;
 
-                if (PropertyToUpdate.DateSold == null)
+                if (_propertyToUpdate.DateSold == null)
                 {
                     solgtdato_dateTimePicker.Value = DateTime.Now;
                 }
                 else
                 {
-                    solgtdato_dateTimePicker.Value = (DateTime)PropertyToUpdate.DateSold;
+                    solgtdato_dateTimePicker.Value = (DateTime)_propertyToUpdate.DateSold;
                 }
 
             }
@@ -74,11 +92,13 @@ namespace RealSuite.UserControls
 
         private void opdater_button_Click(object sender, EventArgs e)
         {
+            DateTime? soldDate = solgt_checkbox.Checked == true ? solgtdato_dateTimePicker.Value : null;
+
             var property = new Property(Convert.ToInt32(id_textbox.Text), vejnavn_textbox.Text, Convert.ToInt32(husnr_textbox.Text),
                 Convert.ToInt32(zipcode_textbox.Text), Convert.ToInt32(byggeår_textbox.Text),
                 Convert.ToInt32(kvm_textbox.Text), Convert.ToInt32(sælgerID_textbox.Text),
                 Convert.ToDouble(pris_textbox.Text), Convert.ToInt32(ejendomsmæglerID_textbox.Text),
-                dato_datepicker.Value, solgtdato_dateTimePicker.Value, solgt_checkbox.Checked, Convert.ToInt32(pris_textbox.Value / Convert.ToInt32(kvm_textbox.Text)));
+                dato_datepicker.Value, soldDate, solgt_checkbox.Checked, Convert.ToInt32(pris_textbox.Value / Convert.ToInt32(kvm_textbox.Text)));
 
             bool rowUpdated = propertyService.UpdateProperty(property);
 
@@ -183,7 +203,7 @@ namespace RealSuite.UserControls
         {
             var sellerDataTable = sellerService.GetSellers();
             addSellerGrid.DataSource = sellerDataTable;
-            addSellerGrid.Columns[0].HeaderText = "Kunde ID";
+            addSellerGrid.Columns[0].HeaderText = "ID";
             addSellerGrid.Columns[1].HeaderText = "Fornavn";
             addSellerGrid.Columns[2].HeaderText = "Efternavn";
             addSellerGrid.Columns[3].Visible = false;
@@ -302,7 +322,7 @@ namespace RealSuite.UserControls
         }
         private void pris_textbox_ValueChanged(object sender, EventArgs e)
         {
-            if (PropertyToUpdate != null && pris_textbox.Value != (decimal)PropertyToUpdate.Price)
+            if (_propertyToUpdate != null && pris_textbox.Value != (decimal)_propertyToUpdate.Price)
                 opdater_button.Enabled = true;
         }
 
@@ -318,9 +338,20 @@ namespace RealSuite.UserControls
             if (assessedPrice > 0)
             {
                 vurdering_textbox.Text = assessedPrice.ToString();
+                brugVurdering_button.Visible = true;
             }
-            else MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
+            else
+            {
+                MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
+                brugVurdering_button.Visible = false;
+            }
         }
 
+        private void brugVurdering_button_Click(object sender, EventArgs e)
+        {
+            pris_textbox.Value = vurdering_textbox.Value;
+            brugVurdering_button.Visible = false;
+            pris_textbox.Focus();
+        }
     }
 }

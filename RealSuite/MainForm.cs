@@ -1,6 +1,7 @@
 using BusinessLogic;
 using RealSuite.Enums;
 using RealSuite.Events;
+using RealSuite.Interfaces;
 using RealSuite.Services;
 using RealSuite.UserControls;
 
@@ -19,7 +20,7 @@ namespace RealSuite
             InitializePages();
             _navigation = new(_pages);
             _navigation.NavigateTo(Pages.Front);
-            if (_pages[Pages.ViewProperties] is ViewPropertiesPage viewPropertiesPage) viewPropertiesPage.RowDoubleClick += HandleUpdateProperty;
+            SetNavigations();
             if (_pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RowDoubleClick += HandleUpdateSeller;
             CheckServerStatus();
         }
@@ -28,13 +29,13 @@ namespace RealSuite
         {
             _pages = new Dictionary<Pages, UserControl>
             {
-                {Pages.Front, new FrontPage(_navigation) },
-                {Pages.AddProperty, new AddPropertyPage(_navigation) },
-                {Pages.ViewProperties, new ViewPropertiesPage(_navigation) },
-                {Pages.UpdateProperty, new UpdatePropertyPage(_navigation) },
-                {Pages.AddSeller, new AddSellerPage(_navigation) },
-                {Pages.ViewSellers, new ViewSellersPage(_navigation) },
-                {Pages.UpdateSeller, new UpdateSellerPage(_navigation) },
+                {Pages.Front, new FrontPage() },
+                {Pages.AddProperty, new AddPropertyPage() },
+                {Pages.ViewProperties, new ViewPropertiesPage() },
+                {Pages.UpdateProperty, new UpdatePropertyPage() },
+                {Pages.AddSeller, new AddSellerPage() },
+                {Pages.ViewSellers, new ViewSellersPage() },
+                {Pages.UpdateSeller, new UpdateSellerPage() },
             };
             foreach (var page in _pages)
             {
@@ -49,16 +50,12 @@ namespace RealSuite
             splitContainer.Panel2.Controls.Add(page);
         }
 
-        private void HandleUpdateProperty(object? sender, UpdatePropertyEventArgs e)
+        private void SetNavigations()
         {
-            var page = _pages[Pages.UpdateProperty];
-            if (page is UpdatePropertyPage updatePropertyPage)
+            foreach (var page in _pages.Values)
             {
-                updatePropertyPage.PropertyToUpdate = e.Property;
-                updatePropertyPage.SetupPageDetails();
+                if (page is INavigatable navPage) navPage.SetNavigation(_navigation);
             }
-
-            _navigation.NavigateTo(Pages.UpdateProperty);
         }
 
         private void HandleUpdateSeller(object? sender, UpdateSellerEventArgs e)

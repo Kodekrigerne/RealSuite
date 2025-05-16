@@ -5,13 +5,13 @@ namespace RealSuite.Services
 {
     public class NavigationService
     {
-        private readonly Dictionary<Pages, UserControl> _pages;
+        public Dictionary<Pages, UserControl> Pages { get; }
         private UserControl _currentPage;
 
         public NavigationService(Dictionary<Pages, UserControl> pages)
         {
-            _pages = pages;
-            _currentPage = pages[Pages.Front];
+            Pages = pages;
+            _currentPage = pages[Enums.Pages.Front];
             _currentPage.Visible = true;
         }
 
@@ -19,19 +19,19 @@ namespace RealSuite.Services
 
         public void NavigateTo(Pages pageKey, bool clear)
         {
-            if (_currentPage != _pages[pageKey])
+            if (_currentPage != Pages[pageKey])
             {
-                if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
+                if (!Pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
 
-                if (clear && _pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
 
-                foreach (var otherPage in _pages)
+                foreach (var otherPage in Pages)
                 {
                     if (otherPage.Value != page) otherPage.Value.Visible = false;
                 }
 
                 page.Visible = true;
                 page.Focus();
+                if (clear && Pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
                 _currentPage = page;
             }
         }
