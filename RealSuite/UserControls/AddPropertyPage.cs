@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using System.Windows.Forms;
+using BusinessLogic;
 using Models;
 using Models.DTOModels;
 using RealSuite.Interfaces;
@@ -224,7 +225,7 @@ namespace RealSuite.UserControls
         {
             var sellerDataTable = sellerService.GetSellers();
             addSellerGrid.DataSource = sellerDataTable;
-            addSellerGrid.Columns[0].HeaderText = "Kunde ID";
+            addSellerGrid.Columns[0].HeaderText = "ID";
             addSellerGrid.Columns[1].HeaderText = "Fornavn";
             addSellerGrid.Columns[2].HeaderText = "Efternavn";
             addSellerGrid.Columns[3].Visible = false;
@@ -256,11 +257,13 @@ namespace RealSuite.UserControls
             {
                 solgtdato_label.Visible = true;
                 solgtdato_dateTimePicker.Visible = true;
+                propertyForSaleLabel.Visible = false;
             }
             else
             {
                 solgtdato_label.Visible = false;
                 solgtdato_dateTimePicker.Visible = false;
+                propertyForSaleLabel.Visible = true;
             }
         }
 

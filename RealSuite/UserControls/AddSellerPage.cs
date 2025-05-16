@@ -248,5 +248,10 @@ namespace RealSuite.UserControls
             Clear();
             fornavnTextBox.Focus();
         }
+
+        private void husnr_label_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

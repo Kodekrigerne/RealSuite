@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            addSellerGrid = new DataGridView();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             addSellerButton = new Button();
             vejnavn_label = new Label();
@@ -81,7 +83,8 @@
             panel8 = new Panel();
             label7 = new Label();
             panel9 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)addSellerGrid).BeginInit();
+            propertyForSaleLabel = new Label();
+            addSellerGrid = new RealSuite.CustomControls.RsDataGridView();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)vurdering_textbox).BeginInit();
             panel2.SuspendLayout();
@@ -93,29 +96,8 @@
             panel1.SuspendLayout();
             panel8.SuspendLayout();
             panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)addSellerGrid).BeginInit();
             SuspendLayout();
-            // 
-            // addSellerGrid
-            // 
-            addSellerGrid.AllowUserToAddRows = false;
-            addSellerGrid.AllowUserToDeleteRows = false;
-            addSellerGrid.AllowUserToResizeColumns = false;
-            addSellerGrid.AllowUserToResizeRows = false;
-            addSellerGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            addSellerGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            addSellerGrid.Cursor = Cursors.Hand;
-            addSellerGrid.Location = new Point(450, 233);
-            addSellerGrid.Margin = new Padding(3, 2, 3, 2);
-            addSellerGrid.MultiSelect = false;
-            addSellerGrid.Name = "addSellerGrid";
-            addSellerGrid.ReadOnly = true;
-            addSellerGrid.RowHeadersVisible = false;
-            addSellerGrid.RowHeadersWidth = 51;
-            addSellerGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            addSellerGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            addSellerGrid.Size = new Size(350, 209);
-            addSellerGrid.TabIndex = 1;
-            addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
             // 
             // sqlCommand1
             // 
@@ -290,7 +272,7 @@
             tilføjbolig_button.BackColor = Color.LightGreen;
             tilføjbolig_button.Enabled = false;
             tilføjbolig_button.Font = new Font("Microsoft YaHei", 11.25F, FontStyle.Bold);
-            tilføjbolig_button.Location = new Point(36, 361);
+            tilføjbolig_button.Location = new Point(36, 367);
             tilføjbolig_button.Name = "tilføjbolig_button";
             tilføjbolig_button.Size = new Size(130, 47);
             tilføjbolig_button.TabIndex = 12;
@@ -304,7 +286,7 @@
             sælgerID_textbox.BorderStyle = BorderStyle.FixedSingle;
             sælgerID_textbox.Enabled = false;
             sælgerID_textbox.ForeColor = Color.White;
-            sælgerID_textbox.Location = new Point(161, 24);
+            sælgerID_textbox.Location = new Point(166, 24);
             sælgerID_textbox.Margin = new Padding(3, 2, 3, 2);
             sælgerID_textbox.Name = "sælgerID_textbox";
             sælgerID_textbox.ReadOnly = true;
@@ -393,7 +375,7 @@
             seller_checkbox.AutoSize = true;
             seller_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             seller_checkbox.ForeColor = Color.Red;
-            seller_checkbox.Location = new Point(310, 27);
+            seller_checkbox.Location = new Point(315, 27);
             seller_checkbox.Name = "seller_checkbox";
             seller_checkbox.Size = new Size(21, 20);
             seller_checkbox.TabIndex = 27;
@@ -418,7 +400,7 @@
             sælgernavn_textbox.BorderStyle = BorderStyle.FixedSingle;
             sælgernavn_textbox.Enabled = false;
             sælgernavn_textbox.ForeColor = Color.White;
-            sælgernavn_textbox.Location = new Point(211, 24);
+            sælgernavn_textbox.Location = new Point(216, 24);
             sælgernavn_textbox.Margin = new Padding(3, 2, 3, 2);
             sælgernavn_textbox.Name = "sælgernavn_textbox";
             sælgernavn_textbox.ReadOnly = true;
@@ -437,7 +419,7 @@
             pris_textbox.Name = "pris_textbox";
             pris_textbox.Size = new Size(110, 21);
             pris_textbox.TabIndex = 7;
-            pris_textbox.TextAlign = HorizontalAlignment.Right;
+            pris_textbox.TextAlign = HorizontalAlignment.Center;
             pris_textbox.ThousandsSeparator = true;
             pris_textbox.ValueChanged += pris_textbox_ValueChanged;
             // 
@@ -509,7 +491,7 @@
             // 
             clear_button.BackColor = Color.LightSalmon;
             clear_button.Font = new Font("Microsoft YaHei", 11.25F, FontStyle.Bold);
-            clear_button.Location = new Point(220, 364);
+            clear_button.Location = new Point(220, 370);
             clear_button.Margin = new Padding(3, 2, 3, 2);
             clear_button.Name = "clear_button";
             clear_button.Size = new Size(95, 40);
@@ -533,7 +515,7 @@
             vurdering_textbox.ReadOnly = true;
             vurdering_textbox.Size = new Size(109, 21);
             vurdering_textbox.TabIndex = 39;
-            vurdering_textbox.TextAlign = HorizontalAlignment.Right;
+            vurdering_textbox.TextAlign = HorizontalAlignment.Center;
             vurdering_textbox.ThousandsSeparator = true;
             // 
             // vurderingKr_label
@@ -580,7 +562,7 @@
             listedDateFromLabel.BackColor = Color.FromArgb(100, 131, 184);
             listedDateFromLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             listedDateFromLabel.ForeColor = Color.White;
-            listedDateFromLabel.Location = new Point(24, 14);
+            listedDateFromLabel.Location = new Point(23, 14);
             listedDateFromLabel.Name = "listedDateFromLabel";
             listedDateFromLabel.Size = new Size(157, 19);
             listedDateFromLabel.TabIndex = 18;
@@ -643,8 +625,8 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(110, 149, 219);
-            panel5.Controls.Add(pris_textbox);
             panel5.Controls.Add(kr_label);
+            panel5.Controls.Add(pris_textbox);
             panel5.Controls.Add(pris_label);
             panel5.Controls.Add(price_checkbox);
             panel5.Location = new Point(24, 155);
@@ -670,7 +652,7 @@
             label3.BackColor = Color.FromArgb(100, 131, 184);
             label3.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(451, 136);
+            label3.Location = new Point(450, 136);
             label3.Name = "label3";
             label3.Size = new Size(60, 19);
             label3.TabIndex = 42;
@@ -685,7 +667,7 @@
             panel7.Controls.Add(addSellerButton);
             panel7.Location = new Point(450, 155);
             panel7.Name = "panel7";
-            panel7.Size = new Size(338, 66);
+            panel7.Size = new Size(350, 66);
             panel7.TabIndex = 45;
             // 
             // label4
@@ -694,7 +676,7 @@
             label4.BackColor = Color.FromArgb(100, 131, 184);
             label4.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(26, 244);
+            label4.Location = new Point(26, 247);
             label4.Name = "label4";
             label4.Size = new Size(141, 19);
             label4.TabIndex = 46;
@@ -705,7 +687,7 @@
             panel1.BackColor = Color.FromArgb(110, 149, 219);
             panel1.Controls.Add(ejendomsmæglerID_textbox);
             panel1.Controls.Add(ejendomsmægler_textbox);
-            panel1.Location = new Point(26, 262);
+            panel1.Location = new Point(26, 265);
             panel1.Name = "panel1";
             panel1.Size = new Size(155, 70);
             panel1.TabIndex = 48;
@@ -737,7 +719,7 @@
             label7.BackColor = Color.FromArgb(100, 131, 184);
             label7.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(231, 242);
+            label7.Location = new Point(230, 245);
             label7.Name = "label7";
             label7.Size = new Size(133, 19);
             label7.TabIndex = 51;
@@ -746,26 +728,68 @@
             // panel9
             // 
             panel9.BackColor = Color.FromArgb(110, 149, 219);
+            panel9.Controls.Add(propertyForSaleLabel);
             panel9.Controls.Add(solgt_checkbox);
             panel9.Controls.Add(solgtdato_label);
             panel9.Controls.Add(solgtdato_dateTimePicker);
-            panel9.Location = new Point(230, 261);
+            panel9.Location = new Point(230, 264);
             panel9.Name = "panel9";
             panel9.Size = new Size(185, 71);
             panel9.TabIndex = 52;
+            // 
+            // propertyForSaleLabel
+            // 
+            propertyForSaleLabel.AutoSize = true;
+            propertyForSaleLabel.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Bold);
+            propertyForSaleLabel.ForeColor = Color.White;
+            propertyForSaleLabel.Location = new Point(8, 40);
+            propertyForSaleLabel.Name = "propertyForSaleLabel";
+            propertyForSaleLabel.Size = new Size(172, 19);
+            propertyForSaleLabel.TabIndex = 37;
+            propertyForSaleLabel.Text = "Boligen oprettes til salg.";
+            // 
+            // addSellerGrid
+            // 
+            dataGridViewCellStyle1.NullValue = null;
+            addSellerGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            addSellerGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            addSellerGrid.ColumnHeadersHeight = 4;
+            addSellerGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            addSellerGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            addSellerGrid.Dock = DockStyle.None;
+            addSellerGrid.Location = new Point(450, 227);
+            addSellerGrid.Name = "addSellerGrid";
+            addSellerGrid.Size = new Size(350, 204);
+            addSellerGrid.TabIndex = 53;
+            addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
             // 
             // AddPropertyPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(addSellerGrid);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(clear_button);
-            Controls.Add(addSellerGrid);
             Controls.Add(tilføjbolig_button);
             Controls.Add(panel2);
             Controls.Add(panel5);
@@ -776,7 +800,6 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "AddPropertyPage";
             Size = new Size(812, 452);
-            ((System.ComponentModel.ISupportInitialize)addSellerGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)vurdering_textbox).EndInit();
             panel2.ResumeLayout(false);
@@ -796,6 +819,7 @@
             panel8.ResumeLayout(false);
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)addSellerGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -804,7 +828,6 @@
 
 
         private Label solgtdato_label;
-        private DataGridView addSellerGrid;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Button addSellerButton;
         private TextBox ejendomsmægler_textbox;
@@ -858,5 +881,7 @@
         private Panel panel8;
         private Label label7;
         private Panel panel9;
+        private CustomControls.RsDataGridView addSellerGrid;
+        private Label propertyForSaleLabel;
     }
 }
