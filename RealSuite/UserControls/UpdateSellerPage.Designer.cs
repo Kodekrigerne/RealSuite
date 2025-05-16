@@ -168,6 +168,8 @@
             cpr2NrTextBox.Name = "cpr2NrTextBox";
             cpr2NrTextBox.Size = new Size(75, 27);
             cpr2NrTextBox.TabIndex = 26;
+            cpr2NrTextBox.TextChanged += cpr2NrTextBox_TextChanged;
+            cpr2NrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // bekræftButton
             // 
@@ -185,6 +187,8 @@
             postNrTextBox.Name = "postNrTextBox";
             postNrTextBox.Size = new Size(125, 27);
             postNrTextBox.TabIndex = 31;
+            postNrTextBox.TextChanged += postNrTextBox_TextChanged;
+            postNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // vejNrTextBox
             // 
@@ -193,6 +197,8 @@
             vejNrTextBox.Name = "vejNrTextBox";
             vejNrTextBox.Size = new Size(125, 27);
             vejNrTextBox.TabIndex = 30;
+            vejNrTextBox.TextChanged += vejNrTextBox_TextChanged;
+            vejNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // vejnavnTextBox
             // 
@@ -200,6 +206,8 @@
             vejnavnTextBox.Name = "vejnavnTextBox";
             vejnavnTextBox.Size = new Size(125, 27);
             vejnavnTextBox.TabIndex = 28;
+            vejnavnTextBox.TextChanged += vejnavnTextBox_TextChanged;
+            vejnavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // cprNrTextBox
             // 
@@ -208,6 +216,8 @@
             cprNrTextBox.Name = "cprNrTextBox";
             cprNrTextBox.Size = new Size(125, 27);
             cprNrTextBox.TabIndex = 24;
+            cprNrTextBox.TextChanged += cprNrTextBox_TextChanged;
+            cprNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // telefonTextBox
             // 
@@ -216,6 +226,8 @@
             telefonTextBox.Name = "telefonTextBox";
             telefonTextBox.Size = new Size(125, 27);
             telefonTextBox.TabIndex = 32;
+            telefonTextBox.TextChanged += telefonTextBox_TextChanged;
+            telefonTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // efternavnTextBox
             // 
@@ -223,6 +235,8 @@
             efternavnTextBox.Name = "efternavnTextBox";
             efternavnTextBox.Size = new Size(125, 27);
             efternavnTextBox.TabIndex = 22;
+            efternavnTextBox.TextChanged += efternavnTextBox_TextChanged;
+            efternavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // fornavnTextBox
             // 
@@ -230,6 +244,8 @@
             fornavnTextBox.Name = "fornavnTextBox";
             fornavnTextBox.Size = new Size(125, 27);
             fornavnTextBox.TabIndex = 19;
+            fornavnTextBox.TextChanged += fornavnTextBox_TextChanged;
+            fornavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // telefonLabel
             // 
@@ -320,7 +336,6 @@
             redigering_checkbox.Text = "Aktivér redigering";
             redigering_checkbox.UseVisualStyleBackColor = true;
             redigering_checkbox.CheckedChanged += redigering_checkbox_CheckedChanged;
-            
             // 
             // UpdateSellerPage
             // 
