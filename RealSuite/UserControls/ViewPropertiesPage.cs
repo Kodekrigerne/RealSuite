@@ -38,7 +38,7 @@ namespace RealSuite.UserControls
             soldComboBox.SelectedItem = "Ikke solgt";
             SetZipCodeComboBox();
             SetSellerComboBox();
-            RenameColumns();
+            SetColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
@@ -62,7 +62,7 @@ namespace RealSuite.UserControls
             sellerComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("SellerID")).Distinct().Order().Cast<object>()]);
         }
 
-        private void RenameColumns()
+        private void SetColumns()
         {
             propertiesDataGridView.Columns["StreetName"].HeaderText = "Vejnavn";
             propertiesDataGridView.Columns["StreetNumber"].HeaderText = "Vejnr";
@@ -74,6 +74,7 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["DateSold"].HeaderText = "Salgsdato";
             propertiesDataGridView.Columns["Sold"].HeaderText = "Solgt?";
             propertiesDataGridView.Columns["SqmPrice"].HeaderText = "dkk/m2";
+            propertiesDataGridView.Columns["Sælger"].DisplayIndex = 7;
         }
 
         private void SetListedDatePickersInitialValues()
