@@ -1,10 +1,10 @@
-﻿using BusinessLogic;
+﻿using System.Data;
+using System.Diagnostics;
+using BusinessLogic;
 using Models;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
-using System.Data;
-using System.Diagnostics;
 
 namespace RealSuite.UserControls
 {
@@ -14,35 +14,42 @@ namespace RealSuite.UserControls
         private readonly SellerService _sellerService = new();
         private EnumerableRowCollection<DataRow>? _table;
         public event EventHandler<UpdateSellerEventArgs>? RowDoubleClick;
+        private bool _suspendFiltering = false;
 
         public ViewSellersPage(NavigationService navigation)
         {
+            _suspendFiltering = true;
             InitializeComponent();
             _navigation = navigation;
+            sellersDataGridView.DataSource = _sellerService.SellersSource;
+            _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             InitializeControls();
+            _suspendFiltering = false;
         }
         private void InitializeControls()
         {
-            sellersDataGridView.DataSource = _sellerService.SellersSource;
-            _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
+            _suspendFiltering = true;
             zipCodeComboBox.SelectedItem = "Alle";
             phoneNumberComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetPhoneNumberComboBox();
             ReFormatCPRNumber();
             RenameColumns();
+            _suspendFiltering = false;
         }
 
         private void ApplyFilters()
         {
-            zipCodeComboBox.SelectedItem ??= "Alle";
-            var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString();
-            phoneNumberComboBox.SelectedItem ??= "Alle";
-            var phoneNumberFilter = phoneNumberComboBox.SelectedItem!.ToString();
+            if (!_suspendFiltering)
+            {
+                zipCodeComboBox.SelectedItem ??= "Alle";
+                var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString();
+                phoneNumberComboBox.SelectedItem ??= "Alle";
+                var phoneNumberFilter = phoneNumberComboBox.SelectedItem!.ToString();
 
-            _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!);
-            sellersDataGridView.DataSource = _sellerService.SellersSource;
-            resultsLabel.Text = $"Resultater: {sellersDataGridView.Rows.Count}";
+                _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!);
+                resultsLabel.Text = $"Resultater: {sellersDataGridView.Rows.Count}";
+            }
         }
 
         public void RenameColumns()
@@ -87,7 +94,6 @@ namespace RealSuite.UserControls
 
         public void Clear()
         {
-            _sellerService.RefreshFromDB();
             InitializeControls();
             ApplyFilters();
         }
