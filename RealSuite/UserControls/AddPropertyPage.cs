@@ -303,5 +303,10 @@ namespace RealSuite.UserControls
             }
             else MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
         }
+
+        private void AddPropertyPage_Click(object sender, EventArgs e)
+        {
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
+        }
     }
 }

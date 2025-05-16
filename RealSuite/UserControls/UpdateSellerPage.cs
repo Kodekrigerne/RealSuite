@@ -20,5 +20,10 @@ namespace RealSuite.UserControls
         }
 
         public void Clear() { }
+
+        private void UpdateSellerPage_Click(object sender, EventArgs e)
+        {
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
+        }
     }
 }

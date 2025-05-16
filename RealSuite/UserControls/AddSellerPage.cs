@@ -1,9 +1,8 @@
-﻿using System.Text.RegularExpressions;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models.DTOModels;
-
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Text.RegularExpressions;
 
 namespace RealSuite.UserControls
 {
@@ -251,6 +250,11 @@ namespace RealSuite.UserControls
         {
             Clear();
             fornavnTextBox.Focus();
+        }
+
+        private void AddSellerPage_Click(object sender, EventArgs e)
+        {
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
         }
     }
 }

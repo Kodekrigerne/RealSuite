@@ -30,12 +30,14 @@
         {
             SuspendLayout();
             // 
-            // UpdateSellersPage
+            // UpdateSellerPage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(20F, 48F);
             AutoScaleMode = AutoScaleMode.Font;
-            Name = "UpdateSellersPage";
-            Size = new Size(928, 603);
+            Margin = new Padding(8, 7, 8, 7);
+            Name = "UpdateSellerPage";
+            Size = new Size(2320, 1447);
+            Click += UpdateSellerPage_Click;
             ResumeLayout(false);
         }
 

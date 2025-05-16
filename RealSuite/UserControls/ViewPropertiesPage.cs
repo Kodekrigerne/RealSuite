@@ -247,10 +247,7 @@ namespace RealSuite.UserControls
             {
                 ApplyFilters();
             }
-            BeginInvoke(() =>
-            {
-                if (ContainsFocus) ParentForm!.ActiveControl = null;
-            });
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)

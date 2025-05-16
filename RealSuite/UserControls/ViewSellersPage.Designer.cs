@@ -99,6 +99,7 @@
             topPanel.Name = "topPanel";
             topPanel.Size = new Size(2320, 435);
             topPanel.TabIndex = 2;
+            topPanel.Click += TopPanel_Click;
             // 
             // phoneNumberLabel
             // 

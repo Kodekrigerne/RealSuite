@@ -197,5 +197,10 @@ namespace RealSuite.UserControls
                 _navigation.NavigateTo(Pages.UpdateSeller);
             }
         }
+
+        private void TopPanel_Click(object sender, EventArgs e)
+        {
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
+        }
     }
 }
