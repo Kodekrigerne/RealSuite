@@ -1,7 +1,10 @@
-﻿using System.Data;
-using BusinessLogic;
+﻿using BusinessLogic;
+using Models;
+using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Data;
+using System.Diagnostics;
 
 namespace RealSuite.UserControls
 {
@@ -10,6 +13,7 @@ namespace RealSuite.UserControls
         private readonly NavigationService _navigation;
         private readonly SellerService _sellerService = new();
         private EnumerableRowCollection<DataRow>? _table;
+        public event EventHandler<UpdateSellerEventArgs>? RowDoubleClick;
 
         public ViewSellersPage(NavigationService navigation)
         {
@@ -31,16 +35,15 @@ namespace RealSuite.UserControls
 
         private void ApplyFilters()
         {
-            if (zipCodeComboBox.SelectedItem == null) zipCodeComboBox.SelectedItem = "Alle";
+            zipCodeComboBox.SelectedItem ??= "Alle";
             var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString();
-            if (phoneNumberComboBox.SelectedItem == null) phoneNumberComboBox.SelectedItem = "Alle";
+            phoneNumberComboBox.SelectedItem ??= "Alle";
             var phoneNumberFilter = phoneNumberComboBox.SelectedItem!.ToString();
 
-            _sellerService.ApplyFilters(zipCodeFilter, phoneNumberFilter);
+            _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!);
             sellersDataGridView.DataSource = _sellerService.SellersSource;
             resultsLabel.Text = $"Resultater: {sellersDataGridView.Rows.Count}";
         }
-
 
         public void RenameColumns()
         {
@@ -59,8 +62,8 @@ namespace RealSuite.UserControls
             {
                 if (row.Cells["CprNumber"] != null)
                 {
-                    string cpr = row.Cells["CprNumber"].Value.ToString();
-                    string cprReformatted = $"{cpr[0..5]}-{cpr[5..9]}";
+                    string cpr = row.Cells["CprNumber"].Value.ToString()!;
+                    string cprReformatted = $"{cpr[0..6]}-{cpr[6..10]}";
                     row.Cells["CprNumber"].Value = cprReformatted;
                 }
             }
@@ -71,8 +74,7 @@ namespace RealSuite.UserControls
             zipCodeComboBox.Items.Clear();
             zipCodeComboBox.Items.Add("Alle");
             zipCodeComboBox.SelectedItem = "Alle";
-            zipCodeComboBox.Items.AddRange(_table.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>().ToArray());
-
+            zipCodeComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("ZipCode")).Distinct().Cast<object>()]);
         }
 
         private void SetPhoneNumberComboBox()
@@ -80,7 +82,7 @@ namespace RealSuite.UserControls
             phoneNumberComboBox.Items.Clear();
             phoneNumberComboBox.Items.Add("Alle");
             phoneNumberComboBox.SelectedItem = "Alle";
-            phoneNumberComboBox.Items.AddRange(_table.Select(x => x.Field<string>("PhoneNumber")).Distinct().Cast<object>().ToArray());
+            phoneNumberComboBox.Items.AddRange([.. _table!.Select(x => x.Field<string>("PhoneNumber")).Distinct().Cast<object>()]);
         }
 
         public void Clear()
@@ -90,22 +92,22 @@ namespace RealSuite.UserControls
             ApplyFilters();
         }
 
-        private void zipCodeComboBox_SelectedValueChanged(object sender, EventArgs e)
+        private void ZipCodeComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             ApplyFilters();
         }
 
-        private void phoneNumberComboBox_SelectedValueChanged(object sender, EventArgs e)
+        private void PhoneNumberComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             ApplyFilters();
         }
 
-        private void clearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)
         {
             _sellerService.RefreshFromDB();
             ReFormatCPRNumber();
@@ -160,5 +162,25 @@ namespace RealSuite.UserControls
             clearButtonIconPanel.BackColor = Color.Bisque;
         }
         #endregion
+
+        private void SellersDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var index = e.RowIndex;
+            var row = sellersDataGridView.Rows[index];
+
+            int id = Convert.ToInt32(row.Cells["Id"].Value);
+            string firstName = row.Cells["FirstName"].Value.ToString() ?? "";
+            string lastName = row.Cells["LastName"].Value.ToString() ?? "";
+            var cprNumber = row.Cells["CprNumber"].Value.ToString()!.Replace("-", "");
+            string streetName = row.Cells["StreetName"].Value.ToString() ?? "";
+            int streetNumber = Convert.ToInt32(row.Cells["StreetNumber"].Value);
+            int zipCode = Convert.ToInt32(row.Cells["ZipCode"].Value);
+            string phoneNumber = row.Cells["PhoneNumber"].Value.ToString() ?? "";
+            Debug.WriteLine(cprNumber);
+
+            var seller = new Seller(id, firstName, lastName, cprNumber, streetName, streetNumber, zipCode, phoneNumber);
+            var args = new UpdateSellerEventArgs(seller);
+            RowDoubleClick?.Invoke(this, args);
+        }
     }
 }

@@ -8,10 +8,10 @@ namespace RealSuite.UserControls
     public partial class UpdatePropertyPage : UserControl, IClearable
     {
         private readonly NavigationService _navigation;
-        public Property? UpdateProperty;
-        private PropertyService propertyService = new PropertyService();
-        private SellerService sellerService = new SellerService();
-        private AssessmentService assessmentService = new AssessmentService();
+        public Property? PropertyToUpdate;
+        private readonly PropertyService propertyService = new();
+        private readonly SellerService sellerService = new();
+        private readonly AssessmentService assessmentService = new();
 
         public UpdatePropertyPage(NavigationService navigation)
         {
@@ -30,28 +30,28 @@ namespace RealSuite.UserControls
 
         public void SetupPageDetails()
         {
-            if (UpdateProperty != null)
+            if (PropertyToUpdate != null)
             {
-                id_textbox.Text = UpdateProperty.Id.ToString();
-                vejnavn_textbox.Text = UpdateProperty.StreetName;
-                husnr_textbox.Text = UpdateProperty.StreetNumber.ToString();
-                zipcode_textbox.Text = UpdateProperty.ZipCode.ToString();
-                byggeår_textbox.Text = UpdateProperty.BuildYear.ToString();
-                kvm_textbox.Text = UpdateProperty.SquareMeters.ToString();
-                sælgerID_textbox.Text = UpdateProperty.SellerId.ToString();
-                pris_textbox.Value = Convert.ToInt32(UpdateProperty.Price);
+                id_textbox.Text = PropertyToUpdate.Id.ToString();
+                vejnavn_textbox.Text = PropertyToUpdate.StreetName;
+                husnr_textbox.Text = PropertyToUpdate.StreetNumber.ToString();
+                zipcode_textbox.Text = PropertyToUpdate.ZipCode.ToString();
+                byggeår_textbox.Text = PropertyToUpdate.BuildYear.ToString();
+                kvm_textbox.Text = PropertyToUpdate.SquareMeters.ToString();
+                sælgerID_textbox.Text = PropertyToUpdate.SellerId.ToString();
+                pris_textbox.Value = Convert.ToInt32(PropertyToUpdate.Price);
                 ejendomsmæglerID_textbox.Text = "1000";
                 ejendomsmægler_textbox.Text = "Maria Thodegaard";
-                dato_datepicker.Value = UpdateProperty.DateListed;
-                solgt_checkbox.Checked = UpdateProperty.Sold;
+                dato_datepicker.Value = PropertyToUpdate.DateListed;
+                solgt_checkbox.Checked = PropertyToUpdate.Sold;
 
-                if (UpdateProperty.DateSold == null)
+                if (PropertyToUpdate.DateSold == null)
                 {
                     solgtdato_dateTimePicker.Value = DateTime.Now;
                 }
                 else
                 {
-                    solgtdato_dateTimePicker.Value = (DateTime)UpdateProperty.DateSold;
+                    solgtdato_dateTimePicker.Value = (DateTime)PropertyToUpdate.DateSold;
                 }
 
             }
@@ -302,7 +302,7 @@ namespace RealSuite.UserControls
         }
         private void pris_textbox_ValueChanged(object sender, EventArgs e)
         {
-            if (UpdateProperty != null && pris_textbox.Value != (decimal)UpdateProperty.Price)
+            if (PropertyToUpdate != null && pris_textbox.Value != (decimal)PropertyToUpdate.Price)
                 opdater_button.Enabled = true;
         }
 

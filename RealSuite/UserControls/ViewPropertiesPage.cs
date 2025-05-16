@@ -1,10 +1,10 @@
-﻿using System.Data;
-using System.Diagnostics;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Data;
+using System.Diagnostics;
 
 namespace RealSuite.UserControls
 {
@@ -12,7 +12,7 @@ namespace RealSuite.UserControls
     {
         private readonly NavigationService _navigation;
         private readonly PropertyService _propertyService = new();
-        public event EventHandler<UpdatePropertyEventArgs>? UpdateProperty;
+        public event EventHandler<UpdatePropertyEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
         private EnumerableRowCollection<DataRow>? _table;
 
@@ -221,7 +221,7 @@ namespace RealSuite.UserControls
 
             var property = new Property(id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorID, dateListed, dateSold, sold, squareMeterPrice);
             var args = new UpdatePropertyEventArgs(property);
-            UpdateProperty?.Invoke(this, args);
+            RowDoubleClick?.Invoke(this, args);
 
         }
 
@@ -255,9 +255,9 @@ namespace RealSuite.UserControls
             ApplyFilters();
         }
 
-        private void saveToFileButton_Click(object sender, EventArgs e)
+        private void SaveToFileButton_Click(object sender, EventArgs e)
         {
-            ExportService exportService = new ExportService(_propertyService.PropertiesSource);
+            ExportService exportService = new(_propertyService.PropertiesSource);
 
             exportService.SaveListToFile();
         }
