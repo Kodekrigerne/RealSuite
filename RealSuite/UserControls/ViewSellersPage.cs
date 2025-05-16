@@ -8,24 +8,29 @@ using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class ViewSellersPage : UserControl, IClearable
+    public partial class ViewSellersPage : UserControl, IClearable, INavigatable
     {
-        private readonly NavigationService _navigation;
+        private NavigationService? _navigation;
         private readonly SellerService _sellerService = new();
         private EnumerableRowCollection<DataRow>? _table;
         public event EventHandler<UpdateSellerEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
 
-        public ViewSellersPage(NavigationService navigation)
+        public ViewSellersPage()
         {
             _suspendFiltering = true;
             InitializeComponent();
-            _navigation = navigation;
             sellersDataGridView.DataSource = _sellerService.SellersSource;
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             InitializeControls();
             _suspendFiltering = false;
         }
+
+        public void SetNavigation(NavigationService navigation)
+        {
+            _navigation = navigation;
+        }
+
         private void InitializeControls()
         {
             _suspendFiltering = true;
