@@ -104,7 +104,7 @@
             // 
             // fornavnTextBox
             // 
-            fornavnTextBox.Location = new Point(15, 32);
+            fornavnTextBox.Location = new Point(15, 30);
             fornavnTextBox.Margin = new Padding(3, 2, 3, 2);
             fornavnTextBox.Name = "fornavnTextBox";
             fornavnTextBox.Size = new Size(107, 23);
@@ -114,7 +114,7 @@
             // 
             // efternavnTextBox
             // 
-            efternavnTextBox.Location = new Point(157, 33);
+            efternavnTextBox.Location = new Point(157, 31);
             efternavnTextBox.Margin = new Padding(3, 2, 3, 2);
             efternavnTextBox.Name = "efternavnTextBox";
             efternavnTextBox.Size = new Size(110, 23);
@@ -216,7 +216,7 @@
             fornavnCheckLabel.AutoSize = true;
             fornavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             fornavnCheckLabel.ForeColor = Color.Red;
-            fornavnCheckLabel.Location = new Point(122, 34);
+            fornavnCheckLabel.Location = new Point(122, 32);
             fornavnCheckLabel.Name = "fornavnCheckLabel";
             fornavnCheckLabel.Size = new Size(21, 20);
             fornavnCheckLabel.TabIndex = 11;
@@ -228,7 +228,7 @@
             efternavnCheckLabel.AutoSize = true;
             efternavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             efternavnCheckLabel.ForeColor = Color.Red;
-            efternavnCheckLabel.Location = new Point(266, 36);
+            efternavnCheckLabel.Location = new Point(266, 34);
             efternavnCheckLabel.Name = "efternavnCheckLabel";
             efternavnCheckLabel.Size = new Size(21, 20);
             efternavnCheckLabel.TabIndex = 12;
@@ -376,7 +376,7 @@
             vejnavn_label.AutoSize = true;
             vejnavn_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             vejnavn_label.ForeColor = Color.White;
-            vejnavn_label.Location = new Point(15, 12);
+            vejnavn_label.Location = new Point(15, 10);
             vejnavn_label.Name = "vejnavn_label";
             vejnavn_label.Size = new Size(58, 17);
             vejnavn_label.TabIndex = 0;
@@ -387,7 +387,7 @@
             husnr_label.AutoSize = true;
             husnr_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             husnr_label.ForeColor = Color.White;
-            husnr_label.Location = new Point(157, 13);
+            husnr_label.Location = new Point(157, 11);
             husnr_label.Name = "husnr_label";
             husnr_label.Size = new Size(67, 17);
             husnr_label.TabIndex = 1;
