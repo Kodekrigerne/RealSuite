@@ -103,8 +103,6 @@ namespace RealSuite.UserControls
                 var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ');
 
                 _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter, searchFilter);
-                propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
-                _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
                 resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
             }
         }
