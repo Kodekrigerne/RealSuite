@@ -31,7 +31,7 @@ namespace RealSuite.Services
 
                 page.Visible = true;
                 page.Focus();
-                if (clear && _currentPage is IClearable clearablePage) clearablePage.Clear();
+                if (clear && _pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
                 _currentPage = page;
             }
         }

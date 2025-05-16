@@ -1,10 +1,9 @@
-﻿using BusinessLogic;
+﻿using System.Data;
+using BusinessLogic;
 using Models;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
-using System.Data;
-using System.Diagnostics;
 
 namespace RealSuite.UserControls
 {
@@ -21,6 +20,8 @@ namespace RealSuite.UserControls
             _suspendFiltering = true;
             InitializeComponent();
             _navigation = navigation;
+            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             InitializeControls();
             _suspendFiltering = false;
         }
@@ -28,10 +29,8 @@ namespace RealSuite.UserControls
         private void InitializeControls()
         {
             _suspendFiltering = true;
-            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
-            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             searchTextBox.Clear();
-            soldComboBox.SelectedItem = "Alle";
+            soldComboBox.SelectedItem = "Ikke solgt";
             SetZipCodeComboBox();
             SetSellerComboBox();
             RenameColumns();
@@ -39,6 +38,7 @@ namespace RealSuite.UserControls
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
             _suspendFiltering = false;
+            ApplyFilters();
         }
 
         private void SetZipCodeComboBox()
@@ -93,7 +93,6 @@ namespace RealSuite.UserControls
         {
             if (_suspendFiltering == false)
             {
-                Debug.WriteLine("Test");
                 var minPriceFilter = minPriceTrackBar.Value;
                 var maxPriceFilter = maxPriceTrackBar.Value;
                 var listedFrom = listedFromDatePicker.Value;
@@ -112,7 +111,6 @@ namespace RealSuite.UserControls
 
         public void Clear()
         {
-            _propertyService.RefreshFromDb();
             InitializeControls();
             ApplyFilters();
         }
