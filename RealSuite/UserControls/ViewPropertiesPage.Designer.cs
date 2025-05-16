@@ -33,7 +33,6 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
-            propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
             clearTextButton = new Label();
             searchTextBox = new TextBox();
@@ -65,7 +64,6 @@
             sellerComboBox = new ComboBox();
             saveToFileButton = new Button();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             topPanel.SuspendLayout();
             zipCodePanel.SuspendLayout();
             soldFilterPanel.SuspendLayout();
@@ -123,10 +121,6 @@
             propertiesDataGridView.TabIndex = 0;
             propertiesDataGridView.TabStop = false;
             propertiesDataGridView.CellDoubleClick += PropertiesDataGridView_CellDoubleClick;
-            // 
-            // propertyServiceBindingSource
-            // 
-            propertyServiceBindingSource.DataSource = typeof(BusinessLogic.PropertyService);
             // 
             // topPanel
             // 
@@ -513,7 +507,6 @@
             Name = "ViewPropertiesPage";
             Size = new Size(928, 603);
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
-            ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
             zipCodePanel.ResumeLayout(false);
@@ -531,7 +524,6 @@
         #endregion
 
         private DataGridView propertiesDataGridView;
-        private BindingSource propertyServiceBindingSource;
         private Panel topPanel;
         private ComboBox soldComboBox;
         private TrackBar minPriceTrackBar;
