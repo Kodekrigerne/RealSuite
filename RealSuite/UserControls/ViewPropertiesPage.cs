@@ -68,6 +68,7 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["DateListed"].HeaderText = "Noteringsdato";
             propertiesDataGridView.Columns["DateSold"].HeaderText = "Salgsdato";
             propertiesDataGridView.Columns["Sold"].HeaderText = "Solgt?";
+            propertiesDataGridView.Columns["SqmPrice"].HeaderText = "dkk/m2";
         }
 
         private void SetListedDatePickersInitialValues()
