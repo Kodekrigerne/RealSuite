@@ -20,10 +20,22 @@ namespace RealSuite.UserControls
             addSellerGrid.Visible = false;
             pris_textbox.Controls[0].Hide();
             vurdering_textbox.Controls[0].Hide();
+            this.ActiveControl = null;
+
         }
 
         public void Clear()
         {
+            redigering_checkbox.Checked = false;
+            redigering_checkbox.Enabled = true;
+
+            streetname_checklabel.Visible = false;
+            streetnumber_checklabel.Visible = false;
+            zip_checkbox.Visible = false;
+            buildyear_checkbox.Visible = false;
+            squaremeter_checkbox.Visible = false;
+            seller_checkbox.Visible = false;
+            price_checkbox.Visible = false;
 
         }
 
@@ -74,11 +86,13 @@ namespace RealSuite.UserControls
 
         private void opdater_button_Click(object sender, EventArgs e)
         {
+            DateTime? soldDate = solgt_checkbox.Checked == true ? solgtdato_dateTimePicker.Value : null;
+
             var property = new Property(Convert.ToInt32(id_textbox.Text), vejnavn_textbox.Text, Convert.ToInt32(husnr_textbox.Text),
                 Convert.ToInt32(zipcode_textbox.Text), Convert.ToInt32(byggeår_textbox.Text),
                 Convert.ToInt32(kvm_textbox.Text), Convert.ToInt32(sælgerID_textbox.Text),
                 Convert.ToDouble(pris_textbox.Text), Convert.ToInt32(ejendomsmæglerID_textbox.Text),
-                dato_datepicker.Value, solgtdato_dateTimePicker.Value, solgt_checkbox.Checked, Convert.ToInt32(pris_textbox.Value / Convert.ToInt32(kvm_textbox.Text)));
+                dato_datepicker.Value, soldDate, solgt_checkbox.Checked, Convert.ToInt32(pris_textbox.Value / Convert.ToInt32(kvm_textbox.Text)));
 
             bool rowUpdated = propertyService.UpdateProperty(property);
 
@@ -183,7 +197,7 @@ namespace RealSuite.UserControls
         {
             var sellerDataTable = sellerService.GetSellers();
             addSellerGrid.DataSource = sellerDataTable;
-            addSellerGrid.Columns[0].HeaderText = "Kunde ID";
+            addSellerGrid.Columns[0].HeaderText = "ID";
             addSellerGrid.Columns[1].HeaderText = "Fornavn";
             addSellerGrid.Columns[2].HeaderText = "Efternavn";
             addSellerGrid.Columns[3].Visible = false;
@@ -318,9 +332,20 @@ namespace RealSuite.UserControls
             if (assessedPrice > 0)
             {
                 vurdering_textbox.Text = assessedPrice.ToString();
+                brugVurdering_button.Visible = true;
             }
-            else MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
+            else
+            {
+                MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
+                brugVurdering_button.Visible = false;
+            }
         }
 
+        private void brugVurdering_button_Click(object sender, EventArgs e)
+        {
+            pris_textbox.Value = vurdering_textbox.Value;
+            brugVurdering_button.Visible = false;
+            pris_textbox.Focus();
+        }
     }
 }
