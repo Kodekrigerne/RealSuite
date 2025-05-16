@@ -177,6 +177,7 @@ namespace RealSuite.UserControls
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             _propertyService.RefreshFromDb();
+            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             ApplyFilters();
         }
 

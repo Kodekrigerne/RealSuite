@@ -122,6 +122,7 @@ namespace RealSuite.UserControls
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             _sellerService.RefreshFromDB();
+            _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             ReFormatCPRNumber();
             ApplyFilters();
         }
