@@ -78,7 +78,6 @@ namespace RealSuite.UserControls
             // 
             // propertiesDataGridView
             // 
-            propertiesDataGridView.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.NullValue = null;
             propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             propertiesDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
