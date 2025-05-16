@@ -241,7 +241,11 @@ namespace RealSuite.UserControls
 
         private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) ApplyFilters();
+            if (e.KeyCode == Keys.Enter)
+            {
+                ApplyFilters();
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void TopPanel_Click(object sender, EventArgs e)
