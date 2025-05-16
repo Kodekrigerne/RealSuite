@@ -234,7 +234,14 @@ namespace RealSuite.UserControls
 
         private void TopPanel_Click(object sender, EventArgs e)
         {
-            ActiveControl = null;
+            if (ActiveControl == searchTextBox)
+            {
+                ApplyFilters();
+            }
+            BeginInvoke(() =>
+            {
+                if (ContainsFocus) ParentForm!.ActiveControl = null;
+            });
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
