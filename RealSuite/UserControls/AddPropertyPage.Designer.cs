@@ -124,7 +124,7 @@
             // 
             // addSellerButton
             // 
-            addSellerButton.BackColor = Color.FromArgb(170, 212, 255);
+            addSellerButton.BackColor = SystemColors.ActiveCaption;
             addSellerButton.Font = new Font("Microsoft YaHei", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addSellerButton.ForeColor = Color.White;
             addSellerButton.Location = new Point(14, 11);
@@ -405,7 +405,7 @@
             price_checkbox.AutoSize = true;
             price_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             price_checkbox.ForeColor = Color.Red;
-            price_checkbox.Location = new Point(135, 38);
+            price_checkbox.Location = new Point(124, 36);
             price_checkbox.Name = "price_checkbox";
             price_checkbox.Size = new Size(21, 20);
             price_checkbox.TabIndex = 28;
@@ -446,7 +446,7 @@
             kr_label.AutoSize = true;
             kr_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             kr_label.ForeColor = Color.White;
-            kr_label.Location = new Point(119, 38);
+            kr_label.Location = new Point(108, 36);
             kr_label.Name = "kr_label";
             kr_label.Size = new Size(23, 17);
             kr_label.TabIndex = 33;
@@ -456,7 +456,7 @@
             // 
             ejendomsmægler_textbox.Enabled = false;
             ejendomsmægler_textbox.Font = new Font("Microsoft YaHei", 9F);
-            ejendomsmægler_textbox.Location = new Point(8, 34);
+            ejendomsmægler_textbox.Location = new Point(8, 36);
             ejendomsmægler_textbox.Margin = new Padding(3, 2, 3, 2);
             ejendomsmægler_textbox.Name = "ejendomsmægler_textbox";
             ejendomsmægler_textbox.ReadOnly = true;
@@ -492,7 +492,7 @@
             // 
             // vurdering_button
             // 
-            vurdering_button.BackColor = Color.FromArgb(159, 192, 255);
+            vurdering_button.BackColor = SystemColors.ActiveCaption;
             vurdering_button.Enabled = false;
             vurdering_button.Font = new Font("Microsoft YaHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             vurdering_button.ForeColor = Color.White;
@@ -707,7 +707,7 @@
             panel1.Controls.Add(ejendomsmægler_textbox);
             panel1.Location = new Point(26, 262);
             panel1.Name = "panel1";
-            panel1.Size = new Size(142, 62);
+            panel1.Size = new Size(155, 70);
             panel1.TabIndex = 48;
             // 
             // label6
