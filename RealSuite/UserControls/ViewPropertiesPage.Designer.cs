@@ -99,10 +99,10 @@ namespace RealSuite.UserControls
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            propertiesDataGridView.Location = new Point(0, 416);
-            propertiesDataGridView.Margin = new Padding(8, 10, 8, 10);
+            propertiesDataGridView.Location = new Point(0, 436);
+            propertiesDataGridView.Margin = new Padding(9, 10, 9, 10);
             propertiesDataGridView.Name = "propertiesDataGridView";
-            propertiesDataGridView.Size = new Size(2320, 1030);
+            propertiesDataGridView.Size = new Size(2320, 1010);
             propertiesDataGridView.TabIndex = 0;
             propertiesDataGridView.CellClick += propertiesDataGridView_CellClick;
             propertiesDataGridView.CellDoubleClick += PropertiesDataGridView_CellDoubleClick;

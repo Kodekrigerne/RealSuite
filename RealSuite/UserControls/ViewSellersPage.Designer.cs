@@ -54,6 +54,7 @@
             // 
             dataGridViewCellStyle1.NullValue = null;
             sellersDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            sellersDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
             dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
@@ -73,10 +74,10 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             sellersDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            sellersDataGridView.Location = new Point(0, 432);
+            sellersDataGridView.Location = new Point(0, 436);
             sellersDataGridView.Margin = new Padding(9, 10, 9, 10);
             sellersDataGridView.Name = "sellersDataGridView";
-            sellersDataGridView.Size = new Size(2320, 1014);
+            sellersDataGridView.Size = new Size(2320, 1010);
             sellersDataGridView.TabIndex = 0;
             sellersDataGridView.CellDoubleClick += SellersDataGridView_CellDoubleClick;
             // 
