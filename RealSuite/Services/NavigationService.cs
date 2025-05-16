@@ -23,7 +23,6 @@ namespace RealSuite.Services
             {
                 if (!_pages.TryGetValue(pageKey, out var page)) throw new ArgumentException("No page assigned to: ", nameof(pageKey));
 
-                if (clear && _pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
 
                 foreach (var otherPage in _pages)
                 {
@@ -32,6 +31,7 @@ namespace RealSuite.Services
 
                 page.Visible = true;
                 page.Focus();
+                if (clear && _currentPage is IClearable clearablePage) clearablePage.Clear();
                 _currentPage = page;
             }
         }
