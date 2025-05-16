@@ -118,7 +118,6 @@ namespace RealSuite.UserControls
         public void Clear()
         {
             InitializeControls();
-            ApplyFilters();
         }
 
         private void SetTrackBarInitialValues()

@@ -1,6 +1,5 @@
 using BusinessLogic;
 using RealSuite.Enums;
-using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 using RealSuite.UserControls;
@@ -11,7 +10,6 @@ namespace RealSuite
     {
         private Dictionary<Pages, UserControl> _pages = [];
         private readonly NavigationService _navigation;
-
         private readonly StatusService _statusService = new();
 
         public MainForm()
@@ -21,7 +19,6 @@ namespace RealSuite
             _navigation = new(_pages);
             _navigation.NavigateTo(Pages.Front);
             SetNavigations();
-            if (_pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RowDoubleClick += HandleUpdateSeller;
             CheckServerStatus();
         }
 
@@ -56,17 +53,6 @@ namespace RealSuite
             {
                 if (page is INavigatable navPage) navPage.SetNavigation(_navigation);
             }
-        }
-
-        private void HandleUpdateSeller(object? sender, UpdateSellerEventArgs e)
-        {
-            var page = _pages[Pages.UpdateSeller];
-            if (page is UpdateSellerPage updateSellerPage)
-            {
-                updateSellerPage.SellerToUpdate = e.Seller;
-            }
-
-            _navigation.NavigateTo(Pages.UpdateSeller);
         }
 
         private void HighlightButton(object sender, EventArgs e)

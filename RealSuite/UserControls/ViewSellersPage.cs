@@ -1,10 +1,9 @@
-﻿using System.Data;
-using System.Diagnostics;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models;
-using RealSuite.Events;
+using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Data;
 
 namespace RealSuite.UserControls
 {
@@ -13,7 +12,6 @@ namespace RealSuite.UserControls
         private NavigationService? _navigation;
         private readonly SellerService _sellerService = new();
         private EnumerableRowCollection<DataRow>? _table;
-        public event EventHandler<UpdateSellerEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
 
         public ViewSellersPage()
@@ -41,6 +39,7 @@ namespace RealSuite.UserControls
             ReFormatCPRNumber();
             RenameColumns();
             _suspendFiltering = false;
+            ApplyFilters();
         }
 
         private void ApplyFilters()
@@ -75,8 +74,11 @@ namespace RealSuite.UserControls
                 if (row.Cells["CprNumber"] != null)
                 {
                     string cpr = row.Cells["CprNumber"].Value.ToString()!;
-                    string cprReformatted = $"{cpr[0..6]}-{cpr[6..10]}";
-                    row.Cells["CprNumber"].Value = cprReformatted;
+                    if (!cpr.Contains('-'))
+                    {
+                        string cprReformatted = $"{cpr[0..6]}-{cpr[6..10]}";
+                        row.Cells["CprNumber"].Value = cprReformatted;
+                    }
                 }
             }
         }
@@ -100,7 +102,6 @@ namespace RealSuite.UserControls
         public void Clear()
         {
             InitializeControls();
-            ApplyFilters();
         }
 
         private void ZipCodeComboBox_SelectedValueChanged(object sender, EventArgs e)
@@ -187,11 +188,14 @@ namespace RealSuite.UserControls
             int streetNumber = Convert.ToInt32(row.Cells["StreetNumber"].Value);
             int zipCode = Convert.ToInt32(row.Cells["ZipCode"].Value);
             string phoneNumber = row.Cells["PhoneNumber"].Value.ToString() ?? "";
-            Debug.WriteLine(cprNumber);
 
             var seller = new Seller(id, firstName, lastName, cprNumber, streetName, streetNumber, zipCode, phoneNumber);
-            var args = new UpdateSellerEventArgs(seller);
-            RowDoubleClick?.Invoke(this, args);
+
+            if (_navigation?.Pages[Pages.UpdateSeller] is UpdateSellerPage page)
+            {
+                page.SellerToUpdate = seller;
+                _navigation.NavigateTo(Pages.UpdateSeller);
+            }
         }
     }
 }
