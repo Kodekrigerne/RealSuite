@@ -1,4 +1,6 @@
-﻿namespace RealSuite.UserControls
+﻿using RealSuite.CustomControls;
+
+namespace RealSuite.UserControls
 {
     partial class UpdatePropertyPage
     {
@@ -28,6 +30,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             vurderingKr_label = new Label();
             panel1 = new Panel();
             vurdering_textbox = new NumericUpDown();
@@ -40,7 +45,7 @@
             pris_textbox = new NumericUpDown();
             sælgernavn_textbox = new TextBox();
             addSellerButton = new Button();
-            addSellerGrid = new DataGridView();
+            addSellerGrid = new RsDataGridView();
             price_checkbox = new Label();
             seller_checkbox = new Label();
             squaremeter_checkbox = new Label();
@@ -72,6 +77,7 @@
             id_label = new Label();
             id_textbox = new TextBox();
             redigering_checkbox = new CheckBox();
+            brugVurdering_button = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)vurdering_textbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).BeginInit();
@@ -124,7 +130,7 @@
             // vurdering_button
             // 
             vurdering_button.Enabled = false;
-            vurdering_button.Location = new Point(718, 54);
+            vurdering_button.Location = new Point(718, 53);
             vurdering_button.Name = "vurdering_button";
             vurdering_button.Size = new Size(113, 29);
             vurdering_button.TabIndex = 65;
@@ -209,23 +215,35 @@
             // 
             // addSellerGrid
             // 
-            addSellerGrid.AllowUserToAddRows = false;
-            addSellerGrid.AllowUserToDeleteRows = false;
-            addSellerGrid.AllowUserToResizeColumns = false;
-            addSellerGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.NullValue = null;
+            addSellerGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             addSellerGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            addSellerGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            addSellerGrid.ColumnHeadersHeight = 4;
             addSellerGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            addSellerGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            addSellerGrid.Dock = DockStyle.None;
             addSellerGrid.Location = new Point(468, 99);
-            addSellerGrid.MultiSelect = false;
             addSellerGrid.Name = "addSellerGrid";
             addSellerGrid.ReadOnly = true;
-            addSellerGrid.RowHeadersVisible = false;
-            addSellerGrid.RowHeadersWidth = 51;
             addSellerGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            addSellerGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             addSellerGrid.Size = new Size(430, 312);
             addSellerGrid.TabIndex = 45;
-            addSellerGrid.UseWaitCursor = true;
             addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
             // 
             // price_checkbox
@@ -433,11 +451,11 @@
             // dato_label
             // 
             dato_label.AutoSize = true;
-            dato_label.Location = new Point(35, 462);
+            dato_label.Location = new Point(39, 467);
             dato_label.Name = "dato_label";
-            dato_label.Size = new Size(42, 20);
+            dato_label.Size = new Size(109, 20);
             dato_label.TabIndex = 62;
-            dato_label.Text = "Dato";
+            dato_label.Text = "Dato sat tilsalg";
             // 
             // ejendomsmælger_label
             // 
@@ -451,7 +469,7 @@
             // vurdering_label
             // 
             vurdering_label.AutoSize = true;
-            vurdering_label.Location = new Point(468, 55);
+            vurdering_label.Location = new Point(476, 58);
             vurdering_label.Name = "vurdering_label";
             vurdering_label.Size = new Size(74, 20);
             vurdering_label.TabIndex = 58;
@@ -548,10 +566,22 @@
             redigering_checkbox.UseVisualStyleBackColor = true;
             redigering_checkbox.CheckedChanged += redigering_checkbox_CheckedChanged;
             // 
+            // brugVurdering_button
+            // 
+            brugVurdering_button.Location = new Point(605, 20);
+            brugVurdering_button.Name = "brugVurdering_button";
+            brugVurdering_button.Size = new Size(78, 29);
+            brugVurdering_button.TabIndex = 85;
+            brugVurdering_button.Text = "Brug";
+            brugVurdering_button.UseVisualStyleBackColor = true;
+            brugVurdering_button.Visible = false;
+            brugVurdering_button.Click += brugVurdering_button_Click;
+            // 
             // UpdatePropertyPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(brugVurdering_button);
             Controls.Add(redigering_checkbox);
             Controls.Add(id_textbox);
             Controls.Add(id_label);
@@ -619,7 +649,6 @@
         private NumericUpDown pris_textbox;
         private TextBox sælgernavn_textbox;
         private Button addSellerButton;
-        private DataGridView addSellerGrid;
         private Label price_checkbox;
         private Label seller_checkbox;
         private Label squaremeter_checkbox;
@@ -651,5 +680,7 @@
         private Label id_label;
         private TextBox id_textbox;
         private CheckBox redigering_checkbox;
+        private Button brugVurdering_button;
+        private RsDataGridView addSellerGrid;
     }
 }
