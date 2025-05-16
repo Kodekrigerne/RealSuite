@@ -70,6 +70,12 @@ namespace BusinessLogic
             else return false;
         }
 
+        public bool DeleteProperty(int id)
+        {
+            var rowDeleted = _propertyDbService.DeleteProperty(id);
+            return rowDeleted;
+        }
+
         public bool VerifyProperty(PropertyDTO propertyDTO)
         {
             if (!propertyDTO.StreetName.All(char.IsLetter)) return false;

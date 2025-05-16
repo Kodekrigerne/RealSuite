@@ -1,10 +1,10 @@
-﻿using BusinessLogic;
+﻿using System.Data;
+using System.Diagnostics;
+using BusinessLogic;
 using Models;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
-using System.Data;
-using System.Diagnostics;
 
 namespace RealSuite.UserControls
 {
@@ -15,6 +15,7 @@ namespace RealSuite.UserControls
         public event EventHandler<UpdatePropertyEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
         private EnumerableRowCollection<DataRow>? _table;
+        private int? selectedPropertyId = null;
 
         public ViewPropertiesPage(NavigationService navigation)
         {
@@ -260,6 +261,49 @@ namespace RealSuite.UserControls
             ExportService exportService = new(_propertyService.PropertiesSource);
 
             exportService.SaveListToFile();
+        }
+
+        private void propertiesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var index = e.RowIndex;
+            if (e.RowIndex >= 0)
+            {
+                var row = propertiesDataGridView.Rows[index];
+                selectedPropertyId = Convert.ToInt32(row.Cells["Id"].Value);
+                sletBolig_button.Enabled = true;
+            }
+            else
+            {
+                sletBolig_button.Enabled = false;
+            }
+        }
+
+        private void sletBolig_button_Click(object sender, EventArgs e)
+        {
+            if (selectedPropertyId != null)
+            {
+                var confirmResult = MessageBox.Show("Er du sikker på, at du vil slette denne bolig?", "Bekræft sletning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    bool rowCreated = _propertyService.DeleteProperty((int)selectedPropertyId);
+                    if (rowCreated == true)
+                    {
+                        MessageBox.Show("Boligen blev slettet.", "Succes");
+                        //refresh datagridview??
+                    }
+                    else
+                    {
+                        MessageBox.Show("Boligen kunne ikke slettes.", "Fejl");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vælg venligst en bolig, før du sletter.", "Advarsel");
+            }
         }
     }
 }

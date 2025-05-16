@@ -135,5 +135,35 @@ namespace DataAccess
             else return true;
         }
 
+
+        public bool DeleteProperty(int id)
+        {
+            string query = "DELETE FROM Properties WHERE Id = @Id";
+
+            int rowsDeleted = 0;
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    rowsDeleted = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Property removal:" + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+
+            if (rowsDeleted == 0) return false;
+            else return true;
+
+        }
     }
 }

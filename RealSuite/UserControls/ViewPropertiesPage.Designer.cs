@@ -35,6 +35,8 @@
             propertiesDataGridView = new DataGridView();
             propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
+            sletBolig_button = new Button();
+            saveToFileButton = new Button();
             clearTextButton = new Label();
             searchTextBox = new TextBox();
             zipCodeFilterLabel = new Label();
@@ -63,7 +65,6 @@
             listedToDatePicker = new DateTimePicker();
             sellerComboBoxLabel = new Panel();
             sellerComboBox = new ComboBox();
-            saveToFileButton = new Button();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             topPanel.SuspendLayout();
@@ -112,16 +113,17 @@
             propertiesDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             propertiesDataGridView.EnableHeadersVisualStyles = false;
             propertiesDataGridView.GridColor = Color.Gainsboro;
-            propertiesDataGridView.Location = new Point(0, 190);
+            propertiesDataGridView.Location = new Point(0, 183);
             propertiesDataGridView.Margin = new Padding(3, 4, 3, 4);
             propertiesDataGridView.MultiSelect = false;
             propertiesDataGridView.Name = "propertiesDataGridView";
             propertiesDataGridView.RowHeadersVisible = false;
             propertiesDataGridView.RowHeadersWidth = 51;
             propertiesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            propertiesDataGridView.Size = new Size(928, 413);
+            propertiesDataGridView.Size = new Size(928, 420);
             propertiesDataGridView.TabIndex = 0;
             propertiesDataGridView.TabStop = false;
+            propertiesDataGridView.CellClick += propertiesDataGridView_CellClick;
             propertiesDataGridView.CellDoubleClick += PropertiesDataGridView_CellDoubleClick;
             // 
             // propertyServiceBindingSource
@@ -131,6 +133,7 @@
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(sletBolig_button);
             topPanel.Controls.Add(saveToFileButton);
             topPanel.Controls.Add(clearTextButton);
             topPanel.Controls.Add(searchTextBox);
@@ -154,6 +157,27 @@
             topPanel.Size = new Size(928, 181);
             topPanel.TabIndex = 1;
             topPanel.Click += TopPanel_Click;
+            // 
+            // sletBolig_button
+            // 
+            sletBolig_button.Enabled = false;
+            sletBolig_button.Location = new Point(477, 138);
+            sletBolig_button.Name = "sletBolig_button";
+            sletBolig_button.Size = new Size(94, 29);
+            sletBolig_button.TabIndex = 27;
+            sletBolig_button.Text = "Slet bolig";
+            sletBolig_button.UseVisualStyleBackColor = true;
+            sletBolig_button.Click += sletBolig_button_Click;
+            // 
+            // saveToFileButton
+            // 
+            saveToFileButton.Location = new Point(373, 138);
+            saveToFileButton.Name = "saveToFileButton";
+            saveToFileButton.Size = new Size(101, 29);
+            saveToFileButton.TabIndex = 25;
+            saveToFileButton.Text = "Gem liste";
+            saveToFileButton.UseVisualStyleBackColor = true;
+            saveToFileButton.Click += SaveToFileButton_Click;
             // 
             // clearTextButton
             // 
@@ -493,16 +517,6 @@
             sellerComboBox.TabIndex = 18;
             sellerComboBox.SelectedValueChanged += ApplyFilters;
             // 
-            // saveToFileButton
-            // 
-            saveToFileButton.Location = new Point(373, 138);
-            saveToFileButton.Name = "saveToFileButton";
-            saveToFileButton.Size = new Size(101, 29);
-            saveToFileButton.TabIndex = 25;
-            saveToFileButton.Text = "Gem liste";
-            saveToFileButton.UseVisualStyleBackColor = true;
-            saveToFileButton.Click += SaveToFileButton_Click;
-            // 
             // ViewPropertiesPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -562,5 +576,6 @@
         private Button saveToFileButton;
         private TextBox searchTextBox;
         private Label clearTextButton;
+        private Button sletBolig_button;
     }
 }
