@@ -67,15 +67,15 @@
             panel2 = new Panel();
             label1 = new Label();
             listedDateFromLabel = new Label();
+            label5 = new Label();
             panel4 = new Panel();
             panel3 = new Panel();
+            panel6 = new Panel();
             panel5 = new Panel();
             label2 = new Label();
-            panel6 = new Panel();
             label3 = new Label();
             panel7 = new Panel();
             label4 = new Label();
-            label5 = new Label();
             panel1 = new Panel();
             label6 = new Label();
             panel8 = new Panel();
@@ -87,8 +87,8 @@
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
-            panel5.SuspendLayout();
             panel6.SuspendLayout();
+            panel5.SuspendLayout();
             panel7.SuspendLayout();
             panel1.SuspendLayout();
             panel8.SuspendLayout();
@@ -104,7 +104,7 @@
             addSellerGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             addSellerGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             addSellerGrid.Cursor = Cursors.Hand;
-            addSellerGrid.Location = new Point(450, 222);
+            addSellerGrid.Location = new Point(450, 233);
             addSellerGrid.Margin = new Padding(3, 2, 3, 2);
             addSellerGrid.MultiSelect = false;
             addSellerGrid.Name = "addSellerGrid";
@@ -113,7 +113,7 @@
             addSellerGrid.RowHeadersWidth = 51;
             addSellerGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             addSellerGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            addSellerGrid.Size = new Size(350, 217);
+            addSellerGrid.Size = new Size(350, 209);
             addSellerGrid.TabIndex = 1;
             addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
             // 
@@ -152,7 +152,7 @@
             husnr_label.AutoSize = true;
             husnr_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             husnr_label.ForeColor = Color.White;
-            husnr_label.Location = new Point(156, 12);
+            husnr_label.Location = new Point(138, 12);
             husnr_label.Name = "husnr_label";
             husnr_label.Size = new Size(84, 17);
             husnr_label.TabIndex = 1;
@@ -163,7 +163,7 @@
             postnr_label.AutoSize = true;
             postnr_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             postnr_label.ForeColor = Color.White;
-            postnr_label.Location = new Point(267, 10);
+            postnr_label.Location = new Point(246, 11);
             postnr_label.Name = "postnr_label";
             postnr_label.Size = new Size(87, 17);
             postnr_label.TabIndex = 2;
@@ -174,7 +174,7 @@
             byggeår_label.AutoSize = true;
             byggeår_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             byggeår_label.ForeColor = Color.White;
-            byggeår_label.Location = new Point(15, 13);
+            byggeår_label.Location = new Point(12, 13);
             byggeår_label.Name = "byggeår_label";
             byggeår_label.Size = new Size(58, 17);
             byggeår_label.TabIndex = 3;
@@ -185,7 +185,7 @@
             kvm_label.AutoSize = true;
             kvm_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             kvm_label.ForeColor = Color.White;
-            kvm_label.Location = new Point(129, 10);
+            kvm_label.Location = new Point(115, 10);
             kvm_label.Name = "kvm_label";
             kvm_label.Size = new Size(91, 17);
             kvm_label.TabIndex = 4;
@@ -208,7 +208,7 @@
             vejnavn_textbox.Location = new Point(13, 31);
             vejnavn_textbox.Margin = new Padding(3, 2, 3, 2);
             vejnavn_textbox.Name = "vejnavn_textbox";
-            vejnavn_textbox.Size = new Size(110, 25);
+            vejnavn_textbox.Size = new Size(100, 25);
             vejnavn_textbox.TabIndex = 1;
             vejnavn_textbox.TextChanged += vejnavn_textbox_TextChanged;
             vejnavn_textbox.KeyPress += HandleLetter_KeyPress;
@@ -216,7 +216,7 @@
             // husnr_textbox
             // 
             husnr_textbox.Font = new Font("Microsoft YaHei", 9.75F);
-            husnr_textbox.Location = new Point(158, 31);
+            husnr_textbox.Location = new Point(138, 31);
             husnr_textbox.Margin = new Padding(3, 2, 3, 2);
             husnr_textbox.MaxLength = 4;
             husnr_textbox.Name = "husnr_textbox";
@@ -228,11 +228,11 @@
             // zipcode_textbox
             // 
             zipcode_textbox.Font = new Font("Microsoft YaHei", 9.75F);
-            zipcode_textbox.Location = new Point(269, 31);
+            zipcode_textbox.Location = new Point(247, 31);
             zipcode_textbox.Margin = new Padding(3, 2, 3, 2);
             zipcode_textbox.MaxLength = 4;
             zipcode_textbox.Name = "zipcode_textbox";
-            zipcode_textbox.Size = new Size(85, 25);
+            zipcode_textbox.Size = new Size(67, 25);
             zipcode_textbox.TabIndex = 3;
             zipcode_textbox.TextChanged += zipcode_textbox_TextChanged;
             zipcode_textbox.KeyPress += HandleDigit_KeyPress;
@@ -240,7 +240,7 @@
             // byggeår_textbox
             // 
             byggeår_textbox.Font = new Font("Microsoft YaHei", 9.75F);
-            byggeår_textbox.Location = new Point(16, 32);
+            byggeår_textbox.Location = new Point(13, 32);
             byggeår_textbox.Margin = new Padding(3, 2, 3, 2);
             byggeår_textbox.MaxLength = 4;
             byggeår_textbox.Name = "byggeår_textbox";
@@ -252,7 +252,7 @@
             // kvm_textbox
             // 
             kvm_textbox.Font = new Font("Microsoft YaHei", 9.75F);
-            kvm_textbox.Location = new Point(129, 32);
+            kvm_textbox.Location = new Point(115, 32);
             kvm_textbox.Margin = new Padding(3, 2, 3, 2);
             kvm_textbox.MaxLength = 5;
             kvm_textbox.Name = "kvm_textbox";
@@ -277,6 +277,7 @@
             // 
             // dato_datepicker
             // 
+            dato_datepicker.CalendarFont = new Font("Microsoft YaHei", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dato_datepicker.Format = DateTimePickerFormat.Short;
             dato_datepicker.Location = new Point(14, 16);
             dato_datepicker.Margin = new Padding(3, 2, 3, 2);
@@ -286,22 +287,24 @@
             // 
             // tilføjbolig_button
             // 
+            tilføjbolig_button.BackColor = Color.LightGreen;
             tilføjbolig_button.Enabled = false;
-            tilføjbolig_button.Location = new Point(760, 529);
+            tilføjbolig_button.Font = new Font("Microsoft YaHei", 11.25F, FontStyle.Bold);
+            tilføjbolig_button.Location = new Point(36, 361);
             tilføjbolig_button.Name = "tilføjbolig_button";
-            tilføjbolig_button.Size = new Size(94, 29);
+            tilføjbolig_button.Size = new Size(130, 47);
             tilføjbolig_button.TabIndex = 12;
             tilføjbolig_button.Text = "Tilføj";
-            tilføjbolig_button.UseVisualStyleBackColor = true;
+            tilføjbolig_button.UseVisualStyleBackColor = false;
             tilføjbolig_button.Click += tilføjbolig_button_Click;
             // 
             // sælgerID_textbox
             // 
-            sælgerID_textbox.BackColor = Color.PowderBlue;
+            sælgerID_textbox.BackColor = SystemColors.ControlLight;
             sælgerID_textbox.BorderStyle = BorderStyle.FixedSingle;
             sælgerID_textbox.Enabled = false;
             sælgerID_textbox.ForeColor = Color.White;
-            sælgerID_textbox.Location = new Point(162, 24);
+            sælgerID_textbox.Location = new Point(161, 24);
             sælgerID_textbox.Margin = new Padding(3, 2, 3, 2);
             sælgerID_textbox.Name = "sælgerID_textbox";
             sælgerID_textbox.ReadOnly = true;
@@ -316,7 +319,7 @@
             solgt_checkbox.AutoSize = true;
             solgt_checkbox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Bold);
             solgt_checkbox.ForeColor = Color.White;
-            solgt_checkbox.Location = new Point(13, 8);
+            solgt_checkbox.Location = new Point(8, 6);
             solgt_checkbox.Margin = new Padding(3, 2, 3, 2);
             solgt_checkbox.Name = "solgt_checkbox";
             solgt_checkbox.Size = new Size(78, 23);
@@ -330,7 +333,7 @@
             streetname_checklabel.AutoSize = true;
             streetname_checklabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             streetname_checklabel.ForeColor = Color.Red;
-            streetname_checklabel.Location = new Point(122, 35);
+            streetname_checklabel.Location = new Point(110, 35);
             streetname_checklabel.Name = "streetname_checklabel";
             streetname_checklabel.Size = new Size(21, 20);
             streetname_checklabel.TabIndex = 22;
@@ -342,7 +345,7 @@
             streetnumber_checklabel.AutoSize = true;
             streetnumber_checklabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             streetnumber_checklabel.ForeColor = Color.Red;
-            streetnumber_checklabel.Location = new Point(239, 35);
+            streetnumber_checklabel.Location = new Point(218, 35);
             streetnumber_checklabel.Name = "streetnumber_checklabel";
             streetnumber_checklabel.Size = new Size(21, 20);
             streetnumber_checklabel.TabIndex = 23;
@@ -354,7 +357,7 @@
             zip_checkbox.AutoSize = true;
             zip_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             zip_checkbox.ForeColor = Color.Red;
-            zip_checkbox.Location = new Point(353, 35);
+            zip_checkbox.Location = new Point(311, 35);
             zip_checkbox.Name = "zip_checkbox";
             zip_checkbox.Size = new Size(21, 20);
             zip_checkbox.TabIndex = 24;
@@ -366,7 +369,7 @@
             buildyear_checkbox.AutoSize = true;
             buildyear_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             buildyear_checkbox.ForeColor = Color.Red;
-            buildyear_checkbox.Location = new Point(93, 36);
+            buildyear_checkbox.Location = new Point(90, 36);
             buildyear_checkbox.Name = "buildyear_checkbox";
             buildyear_checkbox.Size = new Size(21, 20);
             buildyear_checkbox.TabIndex = 25;
@@ -378,7 +381,7 @@
             squaremeter_checkbox.AutoSize = true;
             squaremeter_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             squaremeter_checkbox.ForeColor = Color.Red;
-            squaremeter_checkbox.Location = new Point(218, 35);
+            squaremeter_checkbox.Location = new Point(204, 35);
             squaremeter_checkbox.Name = "squaremeter_checkbox";
             squaremeter_checkbox.Size = new Size(21, 20);
             squaremeter_checkbox.TabIndex = 26;
@@ -390,7 +393,7 @@
             seller_checkbox.AutoSize = true;
             seller_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             seller_checkbox.ForeColor = Color.Red;
-            seller_checkbox.Location = new Point(302, 27);
+            seller_checkbox.Location = new Point(310, 27);
             seller_checkbox.Name = "seller_checkbox";
             seller_checkbox.Size = new Size(21, 20);
             seller_checkbox.TabIndex = 27;
@@ -402,7 +405,7 @@
             price_checkbox.AutoSize = true;
             price_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             price_checkbox.ForeColor = Color.Red;
-            price_checkbox.Location = new Point(140, 36);
+            price_checkbox.Location = new Point(135, 38);
             price_checkbox.Name = "price_checkbox";
             price_checkbox.Size = new Size(21, 20);
             price_checkbox.TabIndex = 28;
@@ -411,27 +414,28 @@
             // 
             // sælgernavn_textbox
             // 
-            sælgernavn_textbox.BackColor = Color.PowderBlue;
+            sælgernavn_textbox.BackColor = SystemColors.ControlLight;
             sælgernavn_textbox.BorderStyle = BorderStyle.FixedSingle;
             sælgernavn_textbox.Enabled = false;
             sælgernavn_textbox.ForeColor = Color.White;
-            sælgernavn_textbox.Location = new Point(212, 24);
+            sælgernavn_textbox.Location = new Point(211, 24);
             sælgernavn_textbox.Margin = new Padding(3, 2, 3, 2);
             sælgernavn_textbox.Name = "sælgernavn_textbox";
             sælgernavn_textbox.ReadOnly = true;
-            sælgernavn_textbox.Size = new Size(92, 23);
+            sælgernavn_textbox.Size = new Size(101, 23);
             sælgernavn_textbox.TabIndex = 31;
             sælgernavn_textbox.TabStop = false;
             // 
             // pris_textbox
             // 
+            pris_textbox.BorderStyle = BorderStyle.None;
             pris_textbox.Font = new Font("Microsoft YaHei", 9.75F);
             pris_textbox.Increment = new decimal(new int[] { 1000, 0, 0, 0 });
             pris_textbox.Location = new Point(8, 31);
             pris_textbox.Margin = new Padding(3, 2, 3, 2);
             pris_textbox.Maximum = new decimal(new int[] { 75000000, 0, 0, 0 });
             pris_textbox.Name = "pris_textbox";
-            pris_textbox.Size = new Size(110, 25);
+            pris_textbox.Size = new Size(110, 21);
             pris_textbox.TabIndex = 7;
             pris_textbox.TextAlign = HorizontalAlignment.Right;
             pris_textbox.ThousandsSeparator = true;
@@ -466,7 +470,7 @@
             solgtdato_dateTimePicker.CalendarFont = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             solgtdato_dateTimePicker.CustomFormat = "";
             solgtdato_dateTimePicker.Format = DateTimePickerFormat.Short;
-            solgtdato_dateTimePicker.Location = new Point(124, 40);
+            solgtdato_dateTimePicker.Location = new Point(93, 40);
             solgtdato_dateTimePicker.Margin = new Padding(3, 2, 3, 2);
             solgtdato_dateTimePicker.Name = "solgtdato_dateTimePicker";
             solgtdato_dateTimePicker.ShowUpDown = true;
@@ -481,9 +485,9 @@
             solgtdato_label.ForeColor = Color.White;
             solgtdato_label.Location = new Point(8, 40);
             solgtdato_label.Name = "solgtdato_label";
-            solgtdato_label.Size = new Size(115, 19);
+            solgtdato_label.Size = new Size(79, 19);
             solgtdato_label.TabIndex = 36;
-            solgtdato_label.Text = "Vælg salgsdato:";
+            solgtdato_label.Text = "Salgsdato:";
             solgtdato_label.Visible = false;
             // 
             // vurdering_button
@@ -503,14 +507,16 @@
             // 
             // clear_button
             // 
-            clear_button.Location = new Point(269, 361);
+            clear_button.BackColor = Color.LightSalmon;
+            clear_button.Font = new Font("Microsoft YaHei", 11.25F, FontStyle.Bold);
+            clear_button.Location = new Point(220, 364);
             clear_button.Margin = new Padding(3, 2, 3, 2);
             clear_button.Name = "clear_button";
-            clear_button.Size = new Size(55, 22);
+            clear_button.Size = new Size(95, 40);
             clear_button.TabIndex = 13;
             clear_button.TabStop = false;
             clear_button.Text = "Ryd";
-            clear_button.UseVisualStyleBackColor = true;
+            clear_button.UseVisualStyleBackColor = false;
             clear_button.Click += clear_button_Click;
             // 
             // vurdering_textbox
@@ -546,12 +552,14 @@
             panel2.BackColor = Color.FromArgb(228, 221, 177);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(listedDateFromLabel);
+            panel2.Controls.Add(label5);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
+            panel2.Controls.Add(panel6);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(812, 118);
+            panel2.Size = new Size(812, 126);
             panel2.TabIndex = 42;
             // 
             // label1
@@ -560,7 +568,7 @@
             label1.BackColor = Color.FromArgb(100, 131, 184);
             label1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(449, 14);
+            label1.Location = new Point(383, 14);
             label1.Name = "label1";
             label1.Size = new Size(86, 19);
             label1.TabIndex = 19;
@@ -578,6 +586,18 @@
             listedDateFromLabel.TabIndex = 18;
             listedDateFromLabel.Text = "Adresseoplysninger";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.FromArgb(100, 131, 184);
+            label5.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(624, 16);
+            label5.Name = "label5";
+            label5.Size = new Size(110, 19);
+            label5.TabIndex = 47;
+            label5.Text = "Prisvurdering";
+            // 
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(110, 149, 219);
@@ -587,9 +607,9 @@
             panel4.Controls.Add(kvm_textbox);
             panel4.Controls.Add(kvm_label);
             panel4.Controls.Add(squaremeter_checkbox);
-            panel4.Location = new Point(449, 33);
+            panel4.Location = new Point(383, 33);
             panel4.Name = "panel4";
-            panel4.Size = new Size(245, 66);
+            panel4.Size = new Size(225, 66);
             panel4.TabIndex = 1;
             // 
             // panel3
@@ -606,19 +626,30 @@
             panel3.Controls.Add(zip_checkbox);
             panel3.Location = new Point(23, 33);
             panel3.Name = "panel3";
-            panel3.Size = new Size(386, 66);
+            panel3.Size = new Size(340, 66);
             panel3.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(110, 149, 219);
+            panel6.Controls.Add(vurderingKr_label);
+            panel6.Controls.Add(vurdering_textbox);
+            panel6.Controls.Add(vurdering_button);
+            panel6.Location = new Point(624, 33);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(171, 80);
+            panel6.TabIndex = 44;
             // 
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(110, 149, 219);
-            panel5.Controls.Add(pris_label);
             panel5.Controls.Add(pris_textbox);
             panel5.Controls.Add(kr_label);
+            panel5.Controls.Add(pris_label);
             panel5.Controls.Add(price_checkbox);
-            panel5.Location = new Point(24, 148);
+            panel5.Location = new Point(24, 155);
             panel5.Name = "panel5";
-            panel5.Size = new Size(166, 66);
+            panel5.Size = new Size(157, 66);
             panel5.TabIndex = 43;
             // 
             // label2
@@ -627,22 +658,11 @@
             label2.BackColor = Color.FromArgb(100, 131, 184);
             label2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(24, 129);
+            label2.Location = new Point(24, 136);
             label2.Name = "label2";
             label2.Size = new Size(95, 19);
             label2.TabIndex = 20;
             label2.Text = "Opslagspris";
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.FromArgb(110, 149, 219);
-            panel6.Controls.Add(vurderingKr_label);
-            panel6.Controls.Add(vurdering_textbox);
-            panel6.Controls.Add(vurdering_button);
-            panel6.Location = new Point(214, 146);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(195, 80);
-            panel6.TabIndex = 44;
             // 
             // label3
             // 
@@ -650,7 +670,7 @@
             label3.BackColor = Color.FromArgb(100, 131, 184);
             label3.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(462, 129);
+            label3.Location = new Point(451, 136);
             label3.Name = "label3";
             label3.Size = new Size(60, 19);
             label3.TabIndex = 42;
@@ -663,9 +683,9 @@
             panel7.Controls.Add(sælgernavn_textbox);
             panel7.Controls.Add(seller_checkbox);
             panel7.Controls.Add(addSellerButton);
-            panel7.Location = new Point(462, 148);
+            panel7.Location = new Point(450, 155);
             panel7.Name = "panel7";
-            panel7.Size = new Size(326, 66);
+            panel7.Size = new Size(338, 66);
             panel7.TabIndex = 45;
             // 
             // label4
@@ -674,30 +694,18 @@
             label4.BackColor = Color.FromArgb(100, 131, 184);
             label4.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(24, 233);
+            label4.Location = new Point(26, 244);
             label4.Name = "label4";
             label4.Size = new Size(141, 19);
             label4.TabIndex = 46;
             label4.Text = "Ejendomsmægler";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.FromArgb(100, 131, 184);
-            label5.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(214, 129);
-            label5.Name = "label5";
-            label5.Size = new Size(110, 19);
-            label5.TabIndex = 47;
-            label5.Text = "Prisvurdering";
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(110, 149, 219);
             panel1.Controls.Add(ejendomsmæglerID_textbox);
             panel1.Controls.Add(ejendomsmægler_textbox);
-            panel1.Location = new Point(24, 251);
+            panel1.Location = new Point(26, 262);
             panel1.Name = "panel1";
             panel1.Size = new Size(142, 62);
             panel1.TabIndex = 48;
@@ -708,7 +716,7 @@
             label6.BackColor = Color.FromArgb(100, 131, 184);
             label6.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(214, 236);
+            label6.Location = new Point(229, 141);
             label6.Name = "label6";
             label6.Size = new Size(46, 19);
             label6.TabIndex = 49;
@@ -718,9 +726,9 @@
             // 
             panel8.BackColor = Color.FromArgb(110, 149, 219);
             panel8.Controls.Add(dato_datepicker);
-            panel8.Location = new Point(214, 251);
+            panel8.Location = new Point(229, 156);
             panel8.Name = "panel8";
-            panel8.Size = new Size(149, 62);
+            panel8.Size = new Size(149, 65);
             panel8.TabIndex = 50;
             // 
             // label7
@@ -729,7 +737,7 @@
             label7.BackColor = Color.FromArgb(100, 131, 184);
             label7.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(24, 333);
+            label7.Location = new Point(231, 242);
             label7.Name = "label7";
             label7.Size = new Size(133, 19);
             label7.TabIndex = 51;
@@ -741,9 +749,9 @@
             panel9.Controls.Add(solgt_checkbox);
             panel9.Controls.Add(solgtdato_label);
             panel9.Controls.Add(solgtdato_dateTimePicker);
-            panel9.Location = new Point(23, 352);
+            panel9.Location = new Point(230, 261);
             panel9.Name = "panel9";
-            panel9.Size = new Size(237, 71);
+            panel9.Size = new Size(185, 71);
             panel9.TabIndex = 52;
             // 
             // AddPropertyPage
@@ -753,10 +761,8 @@
             BackColor = Color.White;
             Controls.Add(label7);
             Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(panel6);
             Controls.Add(label2);
             Controls.Add(clear_button);
             Controls.Add(addSellerGrid);
@@ -779,10 +785,10 @@
             panel4.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel1.ResumeLayout(false);
