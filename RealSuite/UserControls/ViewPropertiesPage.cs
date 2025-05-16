@@ -1,10 +1,10 @@
-﻿using System.Data;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models;
 using RealSuite.Enums;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Data;
 
 namespace RealSuite.UserControls
 {
@@ -108,7 +108,7 @@ namespace RealSuite.UserControls
                 var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
                 var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
                 var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
-                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ');
+                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
                 _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter, searchFilter);
                 resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
