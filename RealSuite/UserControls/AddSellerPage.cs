@@ -7,18 +7,22 @@ using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class AddSellerPage : UserControl, IClearable
+    public partial class AddSellerPage : UserControl, IClearable, INavigatable
     {
-        private readonly NavigationService _navigation;
+        private NavigationService? _navigation;
         SellerService sellerService = new SellerService();
 
-        public AddSellerPage(NavigationService navigation)
+        public AddSellerPage()
         {
             InitializeComponent();
-            _navigation = navigation;
 
             tilføjButton.Enabled = false;
 
+        }
+
+        public void SetNavigation(NavigationService navigation)
+        {
+            _navigation = navigation;
         }
 
         private void tilføjButton_Click(object sender, EventArgs e)

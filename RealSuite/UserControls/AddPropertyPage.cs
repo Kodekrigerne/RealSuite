@@ -6,20 +6,24 @@ using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class AddPropertyPage : UserControl, IClearable
+    public partial class AddPropertyPage : UserControl, IClearable, INavigatable
     {
         private SellerService sellerService = new SellerService();
         private PropertyService propertyService = new PropertyService();
-        private readonly NavigationService _navigation;
+        private NavigationService? _navigation;
         private AssessmentService assessmentService = new AssessmentService();
 
-        public AddPropertyPage(NavigationService navigation)
+        public AddPropertyPage()
         {
-            _navigation = navigation;
             InitializeComponent();
             addSellerGrid.Visible = false;
             pris_textbox.Controls[0].Hide();
             vurdering_textbox.Controls[0].Hide();
+        }
+
+        public void SetNavigation(NavigationService navigation)
+        {
+            _navigation = navigation;
         }
 
         private void addSellerButton_Click(object sender, EventArgs e)
