@@ -5,23 +5,27 @@ using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class UpdatePropertyPage : UserControl, IClearable
+    public partial class UpdatePropertyPage : UserControl, IClearable, INavigatable
     {
-        private readonly NavigationService _navigation;
-        public Property? PropertyToUpdate;
+        private NavigationService? _navigation;
+        private Property? _propertyToUpdate;
         private readonly PropertyService propertyService = new();
         private readonly SellerService sellerService = new();
         private readonly AssessmentService assessmentService = new();
 
-        public UpdatePropertyPage(NavigationService navigation)
+        public UpdatePropertyPage()
         {
             InitializeComponent();
-            _navigation = navigation;
             addSellerGrid.Visible = false;
             pris_textbox.Controls[0].Hide();
             vurdering_textbox.Controls[0].Hide();
             this.ActiveControl = null;
 
+        }
+
+        public void SetNavigation(NavigationService navigation)
+        {
+            _navigation = navigation;
         }
 
         public void Clear()
@@ -40,30 +44,32 @@ namespace RealSuite.UserControls
         }
 
 
-        public void SetupPageDetails()
+        public void SetupPageDetails(Property property)
         {
-            if (PropertyToUpdate != null)
+            _propertyToUpdate = property;
+
+            if (_propertyToUpdate != null)
             {
-                id_textbox.Text = PropertyToUpdate.Id.ToString();
-                vejnavn_textbox.Text = PropertyToUpdate.StreetName;
-                husnr_textbox.Text = PropertyToUpdate.StreetNumber.ToString();
-                zipcode_textbox.Text = PropertyToUpdate.ZipCode.ToString();
-                byggeår_textbox.Text = PropertyToUpdate.BuildYear.ToString();
-                kvm_textbox.Text = PropertyToUpdate.SquareMeters.ToString();
-                sælgerID_textbox.Text = PropertyToUpdate.SellerId.ToString();
-                pris_textbox.Value = Convert.ToInt32(PropertyToUpdate.Price);
+                id_textbox.Text = _propertyToUpdate.Id.ToString();
+                vejnavn_textbox.Text = _propertyToUpdate.StreetName;
+                husnr_textbox.Text = _propertyToUpdate.StreetNumber.ToString();
+                zipcode_textbox.Text = _propertyToUpdate.ZipCode.ToString();
+                byggeår_textbox.Text = _propertyToUpdate.BuildYear.ToString();
+                kvm_textbox.Text = _propertyToUpdate.SquareMeters.ToString();
+                sælgerID_textbox.Text = _propertyToUpdate.SellerId.ToString();
+                pris_textbox.Value = Convert.ToInt32(_propertyToUpdate.Price);
                 ejendomsmæglerID_textbox.Text = "1000";
                 ejendomsmægler_textbox.Text = "Maria Thodegaard";
-                dato_datepicker.Value = PropertyToUpdate.DateListed;
-                solgt_checkbox.Checked = PropertyToUpdate.Sold;
+                dato_datepicker.Value = _propertyToUpdate.DateListed;
+                solgt_checkbox.Checked = _propertyToUpdate.Sold;
 
-                if (PropertyToUpdate.DateSold == null)
+                if (_propertyToUpdate.DateSold == null)
                 {
                     solgtdato_dateTimePicker.Value = DateTime.Now;
                 }
                 else
                 {
-                    solgtdato_dateTimePicker.Value = (DateTime)PropertyToUpdate.DateSold;
+                    solgtdato_dateTimePicker.Value = (DateTime)_propertyToUpdate.DateSold;
                 }
 
             }
@@ -316,7 +322,7 @@ namespace RealSuite.UserControls
         }
         private void pris_textbox_ValueChanged(object sender, EventArgs e)
         {
-            if (PropertyToUpdate != null && pris_textbox.Value != (decimal)PropertyToUpdate.Price)
+            if (_propertyToUpdate != null && pris_textbox.Value != (decimal)_propertyToUpdate.Price)
                 opdater_button.Enabled = true;
         }
 

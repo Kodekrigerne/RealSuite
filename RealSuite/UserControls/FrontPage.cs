@@ -1,14 +1,19 @@
-﻿using RealSuite.Services;
+﻿using RealSuite.Interfaces;
+using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class FrontPage : UserControl
+    public partial class FrontPage : UserControl, INavigatable
     {
-        private readonly NavigationService _navigation;
+        private NavigationService? _navigation;
 
-        public FrontPage(NavigationService navigation)
+        public FrontPage()
         {
             InitializeComponent();
+        }
+
+        public void SetNavigation(NavigationService navigation)
+        {
             _navigation = navigation;
         }
     }

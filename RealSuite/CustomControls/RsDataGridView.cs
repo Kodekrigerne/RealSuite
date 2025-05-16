@@ -81,13 +81,6 @@ namespace RealSuite.CustomControls
             set => base.ColumnHeadersHeightSizeMode = value;
         }
 
-        [DefaultValue(DockStyle.Bottom)]
-        public new DockStyle Dock
-        {
-            get => base.Dock;
-            set => base.Dock = value;
-        }
-
         [DefaultValue(DataGridViewEditMode.EditProgrammatically)]
         public new DataGridViewEditMode EditMode
         {
@@ -157,7 +150,6 @@ namespace RealSuite.CustomControls
             CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             ColumnHeadersHeight = 35;
             ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            Dock = DockStyle.Bottom;
             EditMode = DataGridViewEditMode.EditProgrammatically;
             EnableHeadersVisualStyles = false;
             GridColor = Color.Gainsboro;

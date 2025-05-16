@@ -33,7 +33,6 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             propertiesDataGridView = new DataGridView();
-            propertyServiceBindingSource = new BindingSource(components);
             topPanel = new Panel();
             sletBolig_button = new Button();
             saveToFileButton = new Button();
@@ -66,7 +65,6 @@
             sellerComboBoxLabel = new Panel();
             sellerComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).BeginInit();
             topPanel.SuspendLayout();
             zipCodePanel.SuspendLayout();
             soldFilterPanel.SuspendLayout();
@@ -125,10 +123,6 @@
             propertiesDataGridView.TabStop = false;
             propertiesDataGridView.CellClick += propertiesDataGridView_CellClick;
             propertiesDataGridView.CellDoubleClick += PropertiesDataGridView_CellDoubleClick;
-            // 
-            // propertyServiceBindingSource
-            // 
-            propertyServiceBindingSource.DataSource = typeof(BusinessLogic.PropertyService);
             // 
             // topPanel
             // 
@@ -527,7 +521,6 @@
             Name = "ViewPropertiesPage";
             Size = new Size(928, 603);
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
-            ((System.ComponentModel.ISupportInitialize)propertyServiceBindingSource).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
             zipCodePanel.ResumeLayout(false);
@@ -545,7 +538,6 @@
         #endregion
 
         private DataGridView propertiesDataGridView;
-        private BindingSource propertyServiceBindingSource;
         private Panel topPanel;
         private ComboBox soldComboBox;
         private TrackBar minPriceTrackBar;

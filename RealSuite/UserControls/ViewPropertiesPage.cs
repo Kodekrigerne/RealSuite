@@ -1,45 +1,50 @@
 ﻿using System.Data;
-using System.Diagnostics;
 using BusinessLogic;
 using Models;
+using RealSuite.Enums;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 
 namespace RealSuite.UserControls
 {
-    public partial class ViewPropertiesPage : UserControl, IClearable
+    public partial class ViewPropertiesPage : UserControl, IClearable, INavigatable
     {
-        private readonly NavigationService _navigation;
+        private NavigationService? _navigation;
         private readonly PropertyService _propertyService = new();
         public event EventHandler<UpdatePropertyEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
         private EnumerableRowCollection<DataRow>? _table;
         private int? selectedPropertyId = null;
 
-        public ViewPropertiesPage(NavigationService navigation)
+        public ViewPropertiesPage()
         {
             _suspendFiltering = true;
             InitializeComponent();
-            _navigation = navigation;
+            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
+            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             InitializeControls();
             _suspendFiltering = false;
+        }
+
+        public void SetNavigation(NavigationService navigation)
+        {
+            _navigation = navigation;
         }
 
         private void InitializeControls()
         {
             _suspendFiltering = true;
-            propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
-            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             searchTextBox.Clear();
-            soldComboBox.SelectedItem = "Alle";
+            soldComboBox.SelectedItem = "Ikke solgt";
             SetZipCodeComboBox();
             SetSellerComboBox();
-            RenameColumns();
+            SetColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
             _suspendFiltering = false;
+            ApplyFilters();
         }
 
         private void SetZipCodeComboBox()
@@ -58,7 +63,7 @@ namespace RealSuite.UserControls
             sellerComboBox.Items.AddRange([.. _table!.Select(x => x.Field<int>("SellerID")).Distinct().Order().Cast<object>()]);
         }
 
-        private void RenameColumns()
+        private void SetColumns()
         {
             propertiesDataGridView.Columns["StreetName"].HeaderText = "Vejnavn";
             propertiesDataGridView.Columns["StreetNumber"].HeaderText = "Vejnr";
@@ -69,6 +74,8 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["DateListed"].HeaderText = "Noteringsdato";
             propertiesDataGridView.Columns["DateSold"].HeaderText = "Salgsdato";
             propertiesDataGridView.Columns["Sold"].HeaderText = "Solgt?";
+            propertiesDataGridView.Columns["SqmPrice"].HeaderText = "dkk/m2";
+            propertiesDataGridView.Columns["Sælger"].DisplayIndex = 7;
         }
 
         private void SetListedDatePickersInitialValues()
@@ -94,7 +101,6 @@ namespace RealSuite.UserControls
         {
             if (_suspendFiltering == false)
             {
-                Debug.WriteLine("Test");
                 var minPriceFilter = minPriceTrackBar.Value;
                 var maxPriceFilter = maxPriceTrackBar.Value;
                 var listedFrom = listedFromDatePicker.Value;
@@ -105,15 +111,12 @@ namespace RealSuite.UserControls
                 var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ');
 
                 _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter, searchFilter);
-                propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
-                _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
                 resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
             }
         }
 
         public void Clear()
         {
-            _propertyService.RefreshFromDb();
             InitializeControls();
             ApplyFilters();
         }
@@ -132,8 +135,8 @@ namespace RealSuite.UserControls
             int maxPrice;
             try
             {
-                minPrice = (int)_table!.Min(x => x.Field<int>("Price"));
-                maxPrice = (int)_table!.Max(x => x.Field<int>("Price"));
+                minPrice = _table!.Min(x => x.Field<int>("Price"));
+                maxPrice = _table!.Max(x => x.Field<int>("Price"));
             }
             catch
             {
@@ -221,9 +224,12 @@ namespace RealSuite.UserControls
             int squareMeterPrice = Convert.ToInt32(row.Cells["SqmPrice"].Value);
 
             var property = new Property(id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorID, dateListed, dateSold, sold, squareMeterPrice);
-            var args = new UpdatePropertyEventArgs(property);
-            RowDoubleClick?.Invoke(this, args);
 
+            if (_navigation?.Pages[Pages.UpdateProperty] is UpdatePropertyPage page)
+            {
+                page.SetupPageDetails(property);
+                _navigation.NavigateTo(Pages.UpdateProperty);
+            }
         }
 
         private void TrackBar_Scroll(object sender, EventArgs e)
@@ -238,7 +244,14 @@ namespace RealSuite.UserControls
 
         private void TopPanel_Click(object sender, EventArgs e)
         {
-            ActiveControl = null;
+            if (ActiveControl == searchTextBox)
+            {
+                ApplyFilters();
+            }
+            BeginInvoke(() =>
+            {
+                if (ContainsFocus) ParentForm!.ActiveControl = null;
+            });
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
