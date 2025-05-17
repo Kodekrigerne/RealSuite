@@ -114,7 +114,14 @@ namespace RealSuite.UserControls
 
         private void fortrydButton_Click(object sender, EventArgs e)
         {
-            SetupPage();
+            fornavnTextBox.Text = SellerToUpdate.FirstName;
+            efternavnTextBox.Text = SellerToUpdate.LastName;
+            cprNrTextBox.Text = SellerToUpdate.CprNumber.Substring(0, 6);
+            cpr2NrTextBox.Text = SellerToUpdate.CprNumber.Substring(6, 4);
+            vejnavnTextBox.Text = SellerToUpdate.StreetName;
+            vejNrTextBox.Text = SellerToUpdate.StreetNumber.ToString();
+            postNrTextBox.Text = SellerToUpdate.ZipCode.ToString();
+            telefonTextBox.Text = SellerToUpdate.PhoneNumber;
             CheckLabelsText("");
         }
 
@@ -434,6 +441,52 @@ namespace RealSuite.UserControls
             {
                 page.SetupPageDetails(property);
                 _navigation.NavigateTo(Pages.UpdateProperty);
+            }
+        }
+
+        private void bekræftButton_Click(object sender, EventArgs e)
+        {
+            var updatedSeller = new Seller(
+                SellerToUpdate.Id,
+                fornavnTextBox.Text,
+                efternavnTextBox.Text,
+                (cprNrTextBox.Text + cpr2NrTextBox.Text),
+                vejnavnTextBox.Text,
+                Convert.ToInt32(vejNrTextBox.Text),
+                Convert.ToInt32(postNrTextBox.Text),
+                telefonTextBox.Text);
+
+            bool rowUpdated = sellerService.UpdateSeller(updatedSeller);
+
+            if (rowUpdated == true)
+            {
+                MessageBox.Show("Sælgerdata opdateret.", "Data opdateret");
+                SellerToUpdate = updatedSeller;
+                SetupPage();
+            }
+            else
+            {
+                MessageBox.Show("Ændring af data fejlet.", "Fejl under opdatering");
+            }
+        }
+
+        private void tilbage_button_Click(object sender, EventArgs e)
+        {
+            if (SellerDataChanged())
+            {
+                DialogResult confirm =
+                    MessageBox.Show(
+                        "Ændringer er ikke gemt. Hvis du fortsætter, vil ændringer blive slettet. Ønsker du at fortsætte?",
+                        "Ændringer ej gemt", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    _navigation.NavigateTo(Pages.ViewSellers);
+                }
+            }
+            else
+            {
+                _navigation.NavigateTo(Pages.ViewSellers);
             }
         }
     }

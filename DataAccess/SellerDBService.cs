@@ -44,6 +44,46 @@ namespace DataAccess
             else return true;
         }
 
+        public bool UpdateSeller(Seller seller)
+        {
+            string query =
+                "UPDATE Sellers " +
+                "SET FirstName = @FirstName, LastName = @LastName, CprNumber = @CprNumber, StreetName = @StreetName, StreetNumber = @StreetNumber, ZipCode = @ZipCode, PhoneNumber = @PhoneNumber " +
+                "WHERE Id = @Id";
+
+            int rowsAffected = 0;
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@FirstName", seller.FirstName);
+                    command.Parameters.AddWithValue("@LastName", seller.LastName);
+                    command.Parameters.AddWithValue("@CprNumber", seller.CprNumber);
+                    command.Parameters.AddWithValue("@StreetName", seller.StreetName);
+                    command.Parameters.AddWithValue("@StreetNumber", seller.StreetNumber);
+                    command.Parameters.AddWithValue("@ZipCode", seller.ZipCode);
+                    command.Parameters.AddWithValue("@PhoneNumber", seller.PhoneNumber);
+                    command.Parameters.AddWithValue("@Id", seller.Id);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Seller information:" + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+
+            if (rowsAffected == 0) return false;
+            else return true;
+        }
+
         public DataTable GetSellers()
         {
             string query = "SELECT * FROM Sellers";
