@@ -1,7 +1,6 @@
 ﻿using BusinessLogic;
 using Models;
 using RealSuite.Enums;
-using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 using System.Data;
@@ -12,7 +11,6 @@ namespace RealSuite.UserControls
     {
         private NavigationService? _navigation;
         private readonly PropertyService _propertyService = new();
-        public event EventHandler<UpdatePropertyEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
         private EnumerableRowCollection<DataRow>? _table;
         private int? selectedPropertyId = null;
