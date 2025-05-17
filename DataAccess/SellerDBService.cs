@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using Models;
 using Models.DTOModels;
 
 namespace DataAccess
@@ -67,5 +68,62 @@ namespace DataAccess
             }
             return dataTable;
         }
+
+        public DataTable SellerSoldProperties(Seller seller)
+        {
+            string query = "SELECT * FROM Properties WHERE SellerID = @sellerID AND Sold = 1";
+            var dataTable = new DataTable();
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@sellerID", seller.Id);
+
+                    var adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in DataTable SellerSoldProperties: " + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+            return dataTable;
+        }
+
+        public DataTable SellerListedProperties(Seller seller)
+        {
+            string query = "SELECT * FROM Properties WHERE SellerID = @sellerID AND Sold = 0";
+            var dataTable = new DataTable();
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@sellerID", seller.Id);
+
+                    var adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in DataTable SellerListedProperties: " + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+            return dataTable;
+        }
+
     }
 }

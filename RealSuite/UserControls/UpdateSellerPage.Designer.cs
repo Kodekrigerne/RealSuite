@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             fortrydButton = new Button();
             telefonCheckLabel = new Label();
             postnrCheckLabel = new Label();
@@ -56,11 +62,17 @@
             kundeIdTextBox = new TextBox();
             kundeIdLabel = new Label();
             redigering_checkbox = new CheckBox();
+            soldPropertiesDataGrid = new RealSuite.CustomControls.RsDataGridView();
+            listedPropertiesDataGrid = new RealSuite.CustomControls.RsDataGridView();
+            soldPropertiesLabel = new Label();
+            listedPropertiesLabel = new Label();
+            ((System.ComponentModel.ISupportInitialize)soldPropertiesDataGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)listedPropertiesDataGrid).BeginInit();
             SuspendLayout();
             // 
             // fortrydButton
             // 
-            fortrydButton.Location = new Point(543, 547);
+            fortrydButton.Location = new Point(497, 469);
             fortrydButton.Name = "fortrydButton";
             fortrydButton.Size = new Size(158, 29);
             fortrydButton.TabIndex = 35;
@@ -73,89 +85,82 @@
             telefonCheckLabel.AutoSize = true;
             telefonCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             telefonCheckLabel.ForeColor = Color.Red;
-            telefonCheckLabel.Location = new Point(395, 483);
+            telefonCheckLabel.Location = new Point(291, 474);
             telefonCheckLabel.Name = "telefonCheckLabel";
             telefonCheckLabel.Size = new Size(25, 24);
             telefonCheckLabel.TabIndex = 42;
             telefonCheckLabel.Text = "O";
-            telefonCheckLabel.Visible = false;
             // 
             // postnrCheckLabel
             // 
             postnrCheckLabel.AutoSize = true;
             postnrCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             postnrCheckLabel.ForeColor = Color.Red;
-            postnrCheckLabel.Location = new Point(395, 418);
+            postnrCheckLabel.Location = new Point(291, 409);
             postnrCheckLabel.Name = "postnrCheckLabel";
             postnrCheckLabel.Size = new Size(25, 24);
             postnrCheckLabel.TabIndex = 41;
             postnrCheckLabel.Text = "O";
-            postnrCheckLabel.Visible = false;
             // 
             // vejnrCheckLabel
             // 
             vejnrCheckLabel.AutoSize = true;
             vejnrCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             vejnrCheckLabel.ForeColor = Color.Red;
-            vejnrCheckLabel.Location = new Point(395, 357);
+            vejnrCheckLabel.Location = new Point(291, 348);
             vejnrCheckLabel.Name = "vejnrCheckLabel";
             vejnrCheckLabel.Size = new Size(25, 24);
             vejnrCheckLabel.TabIndex = 40;
             vejnrCheckLabel.Text = "O";
-            vejnrCheckLabel.Visible = false;
             // 
             // vejnavnCheckLabel
             // 
             vejnavnCheckLabel.AutoSize = true;
             vejnavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             vejnavnCheckLabel.ForeColor = Color.Red;
-            vejnavnCheckLabel.Location = new Point(395, 301);
+            vejnavnCheckLabel.Location = new Point(291, 292);
             vejnavnCheckLabel.Name = "vejnavnCheckLabel";
             vejnavnCheckLabel.Size = new Size(25, 24);
             vejnavnCheckLabel.TabIndex = 39;
             vejnavnCheckLabel.Text = "O";
-            vejnavnCheckLabel.Visible = false;
             // 
             // cprCheckLabel
             // 
             cprCheckLabel.AutoSize = true;
             cprCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             cprCheckLabel.ForeColor = Color.Red;
-            cprCheckLabel.Location = new Point(496, 245);
+            cprCheckLabel.Location = new Point(392, 236);
             cprCheckLabel.Name = "cprCheckLabel";
             cprCheckLabel.Size = new Size(25, 24);
             cprCheckLabel.TabIndex = 38;
             cprCheckLabel.Text = "O";
-            cprCheckLabel.Visible = false;
             // 
             // efternavnCheckLabel
             // 
             efternavnCheckLabel.AutoSize = true;
             efternavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             efternavnCheckLabel.ForeColor = Color.Red;
-            efternavnCheckLabel.Location = new Point(386, 175);
+            efternavnCheckLabel.Location = new Point(282, 166);
             efternavnCheckLabel.Name = "efternavnCheckLabel";
             efternavnCheckLabel.Size = new Size(25, 24);
             efternavnCheckLabel.TabIndex = 37;
             efternavnCheckLabel.Text = "O";
-            efternavnCheckLabel.Visible = false;
             // 
             // fornavnCheckLabel
             // 
             fornavnCheckLabel.AutoSize = true;
             fornavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             fornavnCheckLabel.ForeColor = Color.Red;
-            fornavnCheckLabel.Location = new Point(386, 102);
+            fornavnCheckLabel.Location = new Point(282, 93);
             fornavnCheckLabel.Name = "fornavnCheckLabel";
             fornavnCheckLabel.Size = new Size(25, 24);
             fornavnCheckLabel.TabIndex = 36;
             fornavnCheckLabel.Text = "O";
-            fornavnCheckLabel.Visible = false;
             // 
             // cprBindestregLabel
             // 
             cprBindestregLabel.AutoSize = true;
-            cprBindestregLabel.Location = new Point(383, 245);
+            cprBindestregLabel.Location = new Point(279, 236);
             cprBindestregLabel.Name = "cprBindestregLabel";
             cprBindestregLabel.Size = new Size(15, 20);
             cprBindestregLabel.TabIndex = 34;
@@ -163,7 +168,7 @@
             // 
             // cpr2NrTextBox
             // 
-            cpr2NrTextBox.Location = new Point(404, 242);
+            cpr2NrTextBox.Location = new Point(300, 233);
             cpr2NrTextBox.MaxLength = 4;
             cpr2NrTextBox.Name = "cpr2NrTextBox";
             cpr2NrTextBox.Size = new Size(75, 27);
@@ -173,7 +178,7 @@
             // 
             // bekræftButton
             // 
-            bekræftButton.Location = new Point(718, 547);
+            bekræftButton.Location = new Point(672, 469);
             bekræftButton.Name = "bekræftButton";
             bekræftButton.Size = new Size(163, 29);
             bekræftButton.TabIndex = 33;
@@ -182,7 +187,7 @@
             // 
             // postNrTextBox
             // 
-            postNrTextBox.Location = new Point(255, 411);
+            postNrTextBox.Location = new Point(151, 402);
             postNrTextBox.MaxLength = 4;
             postNrTextBox.Name = "postNrTextBox";
             postNrTextBox.Size = new Size(125, 27);
@@ -192,7 +197,7 @@
             // 
             // vejNrTextBox
             // 
-            vejNrTextBox.Location = new Point(255, 350);
+            vejNrTextBox.Location = new Point(151, 341);
             vejNrTextBox.MaxLength = 4;
             vejNrTextBox.Name = "vejNrTextBox";
             vejNrTextBox.Size = new Size(125, 27);
@@ -202,7 +207,7 @@
             // 
             // vejnavnTextBox
             // 
-            vejnavnTextBox.Location = new Point(255, 297);
+            vejnavnTextBox.Location = new Point(151, 288);
             vejnavnTextBox.Name = "vejnavnTextBox";
             vejnavnTextBox.Size = new Size(125, 27);
             vejnavnTextBox.TabIndex = 28;
@@ -211,7 +216,7 @@
             // 
             // cprNrTextBox
             // 
-            cprNrTextBox.Location = new Point(255, 242);
+            cprNrTextBox.Location = new Point(151, 233);
             cprNrTextBox.MaxLength = 6;
             cprNrTextBox.Name = "cprNrTextBox";
             cprNrTextBox.Size = new Size(125, 27);
@@ -221,7 +226,7 @@
             // 
             // telefonTextBox
             // 
-            telefonTextBox.Location = new Point(255, 480);
+            telefonTextBox.Location = new Point(151, 471);
             telefonTextBox.MaxLength = 8;
             telefonTextBox.Name = "telefonTextBox";
             telefonTextBox.Size = new Size(125, 27);
@@ -231,7 +236,7 @@
             // 
             // efternavnTextBox
             // 
-            efternavnTextBox.Location = new Point(255, 171);
+            efternavnTextBox.Location = new Point(151, 162);
             efternavnTextBox.Name = "efternavnTextBox";
             efternavnTextBox.Size = new Size(125, 27);
             efternavnTextBox.TabIndex = 22;
@@ -240,7 +245,7 @@
             // 
             // fornavnTextBox
             // 
-            fornavnTextBox.Location = new Point(255, 95);
+            fornavnTextBox.Location = new Point(151, 86);
             fornavnTextBox.Name = "fornavnTextBox";
             fornavnTextBox.Size = new Size(125, 27);
             fornavnTextBox.TabIndex = 19;
@@ -250,7 +255,7 @@
             // telefonLabel
             // 
             telefonLabel.AutoSize = true;
-            telefonLabel.Location = new Point(151, 487);
+            telefonLabel.Location = new Point(47, 478);
             telefonLabel.Name = "telefonLabel";
             telefonLabel.Size = new Size(61, 20);
             telefonLabel.TabIndex = 29;
@@ -259,7 +264,7 @@
             // postNrLabel
             // 
             postNrLabel.AutoSize = true;
-            postNrLabel.Location = new Point(157, 418);
+            postNrLabel.Location = new Point(53, 409);
             postNrLabel.Name = "postNrLabel";
             postNrLabel.Size = new Size(55, 20);
             postNrLabel.TabIndex = 27;
@@ -268,7 +273,7 @@
             // vejNrLabel
             // 
             vejNrLabel.AutoSize = true;
-            vejNrLabel.Location = new Point(160, 357);
+            vejNrLabel.Location = new Point(56, 348);
             vejNrLabel.Name = "vejNrLabel";
             vejNrLabel.Size = new Size(52, 20);
             vejNrLabel.TabIndex = 25;
@@ -277,7 +282,7 @@
             // vejnavnLabel
             // 
             vejnavnLabel.AutoSize = true;
-            vejnavnLabel.Location = new Point(149, 304);
+            vejnavnLabel.Location = new Point(45, 295);
             vejnavnLabel.Name = "vejnavnLabel";
             vejnavnLabel.Size = new Size(63, 20);
             vejnavnLabel.TabIndex = 23;
@@ -286,7 +291,7 @@
             // cprNrLabel
             // 
             cprNrLabel.AutoSize = true;
-            cprNrLabel.Location = new Point(152, 245);
+            cprNrLabel.Location = new Point(48, 236);
             cprNrLabel.Name = "cprNrLabel";
             cprNrLabel.Size = new Size(60, 20);
             cprNrLabel.TabIndex = 21;
@@ -295,7 +300,7 @@
             // efternavnLabel
             // 
             efternavnLabel.AutoSize = true;
-            efternavnLabel.Location = new Point(138, 178);
+            efternavnLabel.Location = new Point(34, 169);
             efternavnLabel.Name = "efternavnLabel";
             efternavnLabel.Size = new Size(74, 20);
             efternavnLabel.TabIndex = 20;
@@ -304,7 +309,7 @@
             // fornavnLabel
             // 
             fornavnLabel.AutoSize = true;
-            fornavnLabel.Location = new Point(148, 102);
+            fornavnLabel.Location = new Point(44, 93);
             fornavnLabel.Name = "fornavnLabel";
             fornavnLabel.Size = new Size(64, 20);
             fornavnLabel.TabIndex = 18;
@@ -312,7 +317,8 @@
             // 
             // kundeIdTextBox
             // 
-            kundeIdTextBox.Location = new Point(255, 44);
+            kundeIdTextBox.Enabled = false;
+            kundeIdTextBox.Location = new Point(151, 35);
             kundeIdTextBox.Name = "kundeIdTextBox";
             kundeIdTextBox.Size = new Size(125, 27);
             kundeIdTextBox.TabIndex = 43;
@@ -320,7 +326,7 @@
             // kundeIdLabel
             // 
             kundeIdLabel.AutoSize = true;
-            kundeIdLabel.Location = new Point(148, 51);
+            kundeIdLabel.Location = new Point(44, 42);
             kundeIdLabel.Name = "kundeIdLabel";
             kundeIdLabel.Size = new Size(73, 20);
             kundeIdLabel.TabIndex = 44;
@@ -329,7 +335,7 @@
             // redigering_checkbox
             // 
             redigering_checkbox.AutoSize = true;
-            redigering_checkbox.Location = new Point(160, 552);
+            redigering_checkbox.Location = new Point(505, 531);
             redigering_checkbox.Name = "redigering_checkbox";
             redigering_checkbox.Size = new Size(150, 24);
             redigering_checkbox.TabIndex = 85;
@@ -337,10 +343,90 @@
             redigering_checkbox.UseVisualStyleBackColor = true;
             redigering_checkbox.CheckedChanged += redigering_checkbox_CheckedChanged;
             // 
+            // soldPropertiesDataGrid
+            // 
+            dataGridViewCellStyle1.NullValue = null;
+            soldPropertiesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            soldPropertiesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            soldPropertiesDataGrid.ColumnHeadersHeight = 4;
+            soldPropertiesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            soldPropertiesDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            soldPropertiesDataGrid.Location = new Point(440, 47);
+            soldPropertiesDataGrid.Name = "soldPropertiesDataGrid";
+            soldPropertiesDataGrid.Size = new Size(464, 115);
+            soldPropertiesDataGrid.TabIndex = 86;
+            soldPropertiesDataGrid.CellDoubleClick += sellerDataGrids_CellDoubleClick;
+            // 
+            // listedPropertiesDataGrid
+            // 
+            dataGridViewCellStyle4.NullValue = null;
+            listedPropertiesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            listedPropertiesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            listedPropertiesDataGrid.ColumnHeadersHeight = 4;
+            listedPropertiesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            listedPropertiesDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            listedPropertiesDataGrid.Location = new Point(440, 220);
+            listedPropertiesDataGrid.Name = "listedPropertiesDataGrid";
+            listedPropertiesDataGrid.Size = new Size(464, 115);
+            listedPropertiesDataGrid.TabIndex = 87;
+            listedPropertiesDataGrid.CellDoubleClick += sellerDataGrids_CellDoubleClick;
+            // 
+            // soldPropertiesLabel
+            // 
+            soldPropertiesLabel.AutoSize = true;
+            soldPropertiesLabel.Location = new Point(440, 24);
+            soldPropertiesLabel.Name = "soldPropertiesLabel";
+            soldPropertiesLabel.Size = new Size(139, 20);
+            soldPropertiesLabel.TabIndex = 88;
+            soldPropertiesLabel.Text = "Solgte ejendomme:";
+            // 
+            // listedPropertiesLabel
+            // 
+            listedPropertiesLabel.AutoSize = true;
+            listedPropertiesLabel.Location = new Point(440, 198);
+            listedPropertiesLabel.Name = "listedPropertiesLabel";
+            listedPropertiesLabel.Size = new Size(140, 20);
+            listedPropertiesLabel.TabIndex = 89;
+            listedPropertiesLabel.Text = "Ejendomme til salg:";
+            // 
             // UpdateSellerPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(listedPropertiesLabel);
+            Controls.Add(soldPropertiesLabel);
+            Controls.Add(listedPropertiesDataGrid);
+            Controls.Add(soldPropertiesDataGrid);
             Controls.Add(redigering_checkbox);
             Controls.Add(kundeIdLabel);
             Controls.Add(kundeIdTextBox);
@@ -371,6 +457,8 @@
             Controls.Add(fornavnLabel);
             Name = "UpdateSellerPage";
             Size = new Size(928, 603);
+            ((System.ComponentModel.ISupportInitialize)soldPropertiesDataGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)listedPropertiesDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -405,5 +493,9 @@
         private TextBox kundeIdTextBox;
         private Label kundeIdLabel;
         private CheckBox redigering_checkbox;
+        private CustomControls.RsDataGridView soldPropertiesDataGrid;
+        private CustomControls.RsDataGridView listedPropertiesDataGrid;
+        private Label soldPropertiesLabel;
+        private Label listedPropertiesLabel;
     }
 }

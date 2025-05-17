@@ -1,6 +1,6 @@
 ﻿using System.Data;
-using System.Diagnostics;
 using DataAccess;
+using Models;
 using Models.DTOModels;
 
 namespace BusinessLogic
@@ -52,6 +52,16 @@ namespace BusinessLogic
         {
             _sellersTable = GetSellers();
             SellersSource.DataSource = _sellersTable;
+        }
+
+        public DataTable SellerSoldProperties(Seller seller)
+        {
+            return sellerDBService.SellerSoldProperties(seller);
+        }
+
+        public DataTable SellerListedProperties(Seller seller)
+        {
+            return sellerDBService.SellerListedProperties(seller);
         }
     }
 }

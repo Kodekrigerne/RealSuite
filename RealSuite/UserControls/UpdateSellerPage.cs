@@ -1,5 +1,7 @@
 ﻿using System.Text.RegularExpressions;
+using BusinessLogic;
 using Models;
+using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 
@@ -8,6 +10,7 @@ namespace RealSuite.UserControls
     public partial class UpdateSellerPage : UserControl, IClearable, INavigatable
     {
         private NavigationService? _navigation;
+        private SellerService sellerService = new SellerService();
         public Seller? SellerToUpdate;
 
         public UpdateSellerPage()
@@ -18,10 +21,9 @@ namespace RealSuite.UserControls
         public void SetNavigation(NavigationService navigation)
         {
             _navigation = navigation;
-            SetupPage();
         }
 
-        public void SetupSellerDetails()
+        public void SetupPage()
         {
             if (SellerToUpdate != null)
             {
@@ -38,39 +40,30 @@ namespace RealSuite.UserControls
                 telefonTextBox.Text = SellerToUpdate.PhoneNumber;
 
                 EnableEventHandlers();
+
+                redigering_checkbox.Checked = false;
+
+                PageEdit(false);
+
+                CheckLabelsText("");
+
+                SetupListedPropertiesGrid();
+                SetupSoldPropertiesGrid();
             }
         }
 
-        public void SetupPage()
+        public void PageEdit(bool status)
         {
-            kundeIdTextBox.Enabled = false;
-            fornavnTextBox.Enabled = false;
-            efternavnTextBox.Enabled = false;
-            cprNrTextBox.Enabled = false;
-            cpr2NrTextBox.Enabled = false;
-            vejnavnTextBox.Enabled = false;
-            vejNrTextBox.Enabled = false;
-            postNrTextBox.Enabled = false;
-            telefonTextBox.Enabled = false;
-            redigering_checkbox.Checked = false;
-            fortrydButton.Visible = false;
-            bekræftButton.Visible = false;
-
-            CheckLabelsVisibility(false);
-        }
-
-        public void EnablePageEdit()
-        {
-            fornavnTextBox.Enabled = true;
-            efternavnTextBox.Enabled = true;
-            cprNrTextBox.Enabled = true;
-            cpr2NrTextBox.Enabled = true;
-            vejnavnTextBox.Enabled = true;
-            vejNrTextBox.Enabled = true;
-            postNrTextBox.Enabled = true;
-            telefonTextBox.Enabled = true;
-            fortrydButton.Visible = true;
-            bekræftButton.Visible = true;
+            fornavnTextBox.Enabled = status;
+            efternavnTextBox.Enabled = status;
+            cprNrTextBox.Enabled = status;
+            cpr2NrTextBox.Enabled = status;
+            vejnavnTextBox.Enabled = status;
+            vejNrTextBox.Enabled = status;
+            postNrTextBox.Enabled = status;
+            telefonTextBox.Enabled = status;
+            fortrydButton.Visible = status;
+            bekræftButton.Visible = status;
         }
 
         public void Clear()
@@ -88,7 +81,8 @@ namespace RealSuite.UserControls
                 if (confirm == DialogResult.Yes)
                 {
                     {
-                        EnablePageEdit();
+                        PageEdit(true);
+                        ConfirmButtonCheck();
                     }
                 }
                 else if (confirm == DialogResult.No)
@@ -106,7 +100,6 @@ namespace RealSuite.UserControls
                 if (confirm == DialogResult.Yes)
                 {
                     SetupPage();
-                    SetupSellerDetails();
                 }
                 else
                 {
@@ -116,13 +109,13 @@ namespace RealSuite.UserControls
             else
             {
                 SetupPage();
-                SetupSellerDetails();
             }
         }
 
         private void fortrydButton_Click(object sender, EventArgs e)
         {
-            SetupSellerDetails();
+            SetupPage();
+            CheckLabelsText("");
         }
 
         private bool SellerDataChanged()
@@ -160,8 +153,11 @@ namespace RealSuite.UserControls
 
         private void fornavnTextBox_TextChanged(object sender, EventArgs e)
         {
-            fornavnCheckLabel.Visible = true;
-            if (!fornavnTextBox.Text.All(char.IsLetter) || fornavnTextBox.Text == "")
+            if (fornavnTextBox.Text == SellerToUpdate.FirstName)
+            {
+                fornavnCheckLabel.Text = string.Empty;
+            }
+            else if (!fornavnTextBox.Text.All(char.IsLetter) || fornavnTextBox.Text == "")
             {
                 fornavnCheckLabel.Text = "O";
                 fornavnCheckLabel.ForeColor = Color.Red;
@@ -177,8 +173,11 @@ namespace RealSuite.UserControls
 
         private void efternavnTextBox_TextChanged(object sender, EventArgs e)
         {
-            efternavnCheckLabel.Visible = true;
-            if (!efternavnTextBox.Text.Any(char.IsLetter) || efternavnTextBox.Text == "")
+            if (efternavnTextBox.Text == SellerToUpdate.LastName)
+            {
+                efternavnCheckLabel.Text = string.Empty;
+            }
+            else if (!efternavnTextBox.Text.Any(char.IsLetter) || efternavnTextBox.Text == "")
             {
                 efternavnCheckLabel.Text = "O";
                 efternavnCheckLabel.ForeColor = Color.Red;
@@ -194,7 +193,6 @@ namespace RealSuite.UserControls
 
         private void cprNrTextBox_TextChanged(object sender, EventArgs e)
         {
-            cprCheckLabel.Visible = true;
             cpr2NrTextBox_TextChanged(sender, e);
 
             if (cprNrTextBox.Text.Length == cprNrTextBox.MaxLength)
@@ -207,13 +205,17 @@ namespace RealSuite.UserControls
 
         private void cpr2NrTextBox_TextChanged(object sender, EventArgs e)
         {
-            cprCheckLabel.Visible = true;
             if (cpr2NrTextBox.Text.Length == 0)
             {
                 cprNrTextBox.Focus();
             }
 
-            if (cprNrTextBox.Text.Length != 6 || !cprNrTextBox.Text.All(char.IsDigit) ||
+            if (cprNrTextBox.Text == SellerToUpdate.CprNumber.Substring(0, 6) &&
+                cpr2NrTextBox.Text == SellerToUpdate.CprNumber.Substring(6, 4))
+            {
+                cprCheckLabel.Text = string.Empty;
+            }
+            else if (cprNrTextBox.Text.Length != 6 || !cprNrTextBox.Text.All(char.IsDigit) ||
                 cpr2NrTextBox.Text.Length != 4 || !cpr2NrTextBox.Text.All(char.IsDigit) ||
                 !Regex.IsMatch(cprNrTextBox.Text, @"^(?:0[1-9]|[12]\d|3[01])(?:0[1-9]|1[0-2])(?:[0-9]{2})$"))
             {
@@ -231,8 +233,11 @@ namespace RealSuite.UserControls
 
         private void vejnavnTextBox_TextChanged(object sender, EventArgs e)
         {
-            vejnavnCheckLabel.Visible = true;
-            if (!vejnavnTextBox.Text.Any(char.IsLetter) || vejnavnTextBox.Text == "")
+            if (vejnavnTextBox.Text == SellerToUpdate.StreetName)
+            {
+                vejnavnCheckLabel.Text = string.Empty;
+            }
+            else if (!vejnavnTextBox.Text.Any(char.IsLetter) || vejnavnTextBox.Text == "")
             {
                 vejnavnCheckLabel.Text = "O";
                 vejnavnCheckLabel.ForeColor = Color.Red;
@@ -248,8 +253,11 @@ namespace RealSuite.UserControls
 
         private void vejNrTextBox_TextChanged(object sender, EventArgs e)
         {
-            vejnrCheckLabel.Visible = true;
-            if (!vejNrTextBox.Text.Any(char.IsDigit) || vejNrTextBox.Text == "")
+            if (vejNrTextBox.Text == SellerToUpdate.StreetNumber.ToString())
+            {
+                vejnrCheckLabel.Text = string.Empty;
+            }
+            else if (!vejNrTextBox.Text.Any(char.IsDigit) || vejNrTextBox.Text == "")
             {
                 vejnrCheckLabel.Text = "O";
                 vejnrCheckLabel.ForeColor = Color.Red;
@@ -265,11 +273,13 @@ namespace RealSuite.UserControls
 
         private void postNrTextBox_TextChanged(object sender, EventArgs e)
         {
-            postnrCheckLabel.Visible = true;
-
             try
             {
-                if (postNrTextBox.Text.All(char.IsLetter) || (Convert.ToInt32(postNrTextBox.Text) < 1000 || Convert.ToInt32(postNrTextBox.Text) > 9999))
+                if (postNrTextBox.Text == SellerToUpdate.ZipCode.ToString())
+                {
+                    postnrCheckLabel.Text = string.Empty;
+                }
+                else if (postNrTextBox.Text.All(char.IsLetter) || (Convert.ToInt32(postNrTextBox.Text) < 1000 || Convert.ToInt32(postNrTextBox.Text) > 9999))
                 {
                     postnrCheckLabel.Text = "O";
                     postnrCheckLabel.ForeColor = Color.Red;
@@ -290,8 +300,11 @@ namespace RealSuite.UserControls
 
         private void telefonTextBox_TextChanged(object sender, EventArgs e)
         {
-            telefonCheckLabel.Visible = true;
-            if (telefonTextBox.Text.Length != 8 || !telefonTextBox.Text.All(char.IsDigit))
+            if (telefonTextBox.Text == SellerToUpdate.PhoneNumber)
+            {
+                telefonCheckLabel.Text = string.Empty;
+            }
+            else if (telefonTextBox.Text.Length != 8 || !telefonTextBox.Text.All(char.IsDigit))
             {
                 telefonCheckLabel.Text = "O";
                 telefonCheckLabel.ForeColor = Color.Red;
@@ -337,7 +350,8 @@ namespace RealSuite.UserControls
                 vejnavnCheckLabel.Text == "O" ||
                 vejnrCheckLabel.Text == "O" ||
                 postnrCheckLabel.Text == "O" ||
-                telefonCheckLabel.Text == "O"
+                telefonCheckLabel.Text == "O" ||
+                SellerDataChanged() == false
                )
             {
                 bekræftButton.Enabled = false;
@@ -349,15 +363,78 @@ namespace RealSuite.UserControls
 
         }
 
-        private void CheckLabelsVisibility(bool status)
+        private void CheckLabelsText(string text)
         {
-            fornavnCheckLabel.Visible = status;
-            efternavnCheckLabel.Visible = status;
-            cprCheckLabel.Visible = status;
-            vejnavnCheckLabel.Visible = status;
-            vejnrCheckLabel.Visible = status;
-            postnrCheckLabel.Visible = status;
-            telefonCheckLabel.Visible = status;
+            fornavnCheckLabel.Text = text;
+            efternavnCheckLabel.Text = text;
+            cprCheckLabel.Text = text;
+            vejnavnCheckLabel.Text = text;
+            vejnrCheckLabel.Text = text;
+            postnrCheckLabel.Text = text;
+            telefonCheckLabel.Text = text;
+        }
+
+        private void SetupSoldPropertiesGrid()
+        {
+            if (SellerToUpdate != null)
+            {
+                soldPropertiesDataGrid.DataSource = sellerService.SellerSoldProperties(SellerToUpdate);
+
+                new List<int> { 0, 4, 5, 6, 8, 9, 11, 12 }.ForEach(columnIndex =>
+                    soldPropertiesDataGrid.Columns[columnIndex].Visible = false);
+
+                soldPropertiesDataGrid.Columns[1].HeaderText = "Vej";
+                soldPropertiesDataGrid.Columns[2].HeaderText = "Nr.";
+                soldPropertiesDataGrid.Columns[3].HeaderText = "Postnr.";
+                soldPropertiesDataGrid.Columns[7].HeaderText = "Pris.";
+                soldPropertiesDataGrid.Columns[10].HeaderText = "Solgt";
+            }
+        }
+
+        private void SetupListedPropertiesGrid()
+        {
+            if (SellerToUpdate != null)
+            {
+                listedPropertiesDataGrid.DataSource = sellerService.SellerListedProperties(SellerToUpdate);
+
+                new List<int> { 0, 4, 5, 6, 8, 10, 11, 12 }.ForEach(columnIndex =>
+                    listedPropertiesDataGrid.Columns[columnIndex].Visible = false);
+
+                listedPropertiesDataGrid.Columns[1].HeaderText = "Vej";
+                listedPropertiesDataGrid.Columns[2].HeaderText = "Nr.";
+                listedPropertiesDataGrid.Columns[3].HeaderText = "Postnr.";
+                listedPropertiesDataGrid.Columns[7].HeaderText = "Pris.";
+                listedPropertiesDataGrid.Columns[9].HeaderText = "Sat til salg";
+            }
+        }
+
+        private void sellerDataGrids_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var index = e.RowIndex;
+            DataGridView dataGridView = sender as DataGridView;
+            var row = dataGridView.Rows[index];
+
+            int id = Convert.ToInt32(row.Cells["Id"].Value);
+            string streetName = row.Cells["StreetName"].Value.ToString()!;
+            int streetNumber = Convert.ToInt32(row.Cells["StreetNumber"].Value);
+            int zipCode = Convert.ToInt32(row.Cells["ZipCode"].Value);
+            int buildYear = Convert.ToInt32(row.Cells["BuildYear"].Value);
+            int squareMeters = Convert.ToInt32(row.Cells["SquareMeters"].Value);
+            int sellerId = Convert.ToInt32(row.Cells["SellerID"].Value);
+            int price = Convert.ToInt32(row.Cells["Price"].Value);
+            int realtorID = Convert.ToInt32(row.Cells["RealtorID"].Value);
+            DateTime dateListed = Convert.ToDateTime(row.Cells["DateListed"].Value);
+            DateTime? dateSold = row.Cells["DateSold"].Value == DBNull.Value ? null : Convert.ToDateTime(row.Cells["DateListed"].Value);
+            bool sold = Convert.ToInt32(row.Cells["Sold"].Value) == 1;
+            int squareMeterPrice = Convert.ToInt32(row.Cells["SqmPrice"].Value);
+
+            var property = new Property(id, streetName, streetNumber, zipCode, buildYear, squareMeters, sellerId, price, realtorID, dateListed, dateSold, sold, squareMeterPrice);
+
+            if (_navigation?.Pages[Pages.UpdateProperty] is UpdatePropertyPage page)
+            {
+                page.SetupPageDetails(property);
+                _navigation.NavigateTo(Pages.UpdateProperty);
+            }
         }
     }
 }
