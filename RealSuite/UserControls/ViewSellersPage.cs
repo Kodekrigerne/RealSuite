@@ -72,7 +72,7 @@ namespace RealSuite.UserControls
         {
             foreach (DataGridViewRow row in sellersDataGridView.Rows)
             {
-                if (row.Cells["CprNumber"] != null)
+                if (row.Cells["CprNumber"] != null && row.Cells["CprNumber"].Value.ToString()[6] != '-')
                 {
                     string cpr = row.Cells["CprNumber"].Value.ToString()!;
                     string cprReformatted = $"{cpr[0..6]}-{cpr[6..10]}";
