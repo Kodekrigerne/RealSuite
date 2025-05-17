@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using Models.DTOModels;
+using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 using System.Text.RegularExpressions;
@@ -41,6 +42,7 @@ namespace RealSuite.UserControls
             {
                 MessageBox.Show("Sælger oprettet i databasen.", "Sælger oprettet");
                 Clear();
+                if (_navigation?.Pages[Pages.ViewSellers] is ViewSellersPage page) page.RefreshFromDb();
                 fornavnTextBox.Focus();
             }
             else

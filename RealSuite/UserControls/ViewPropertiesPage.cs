@@ -176,6 +176,11 @@ namespace RealSuite.UserControls
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            RefreshFromDb();
+        }
+
+        public void RefreshFromDb()
+        {
             _propertyService.RefreshFromDb();
             _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             ApplyFilters();
@@ -306,7 +311,7 @@ namespace RealSuite.UserControls
                     if (rowCreated == true)
                     {
                         MessageBox.Show("Boligen blev slettet.", "Succes");
-                        //refresh datagridview??
+                        RefreshFromDb();
                     }
                     else
                     {

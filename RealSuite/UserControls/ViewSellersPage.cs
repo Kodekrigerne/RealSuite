@@ -121,11 +121,17 @@ namespace RealSuite.UserControls
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            RefreshFromDb();
+        }
+
+        public void RefreshFromDb()
+        {
             _sellerService.RefreshFromDB();
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             ReFormatCPRNumber();
             ApplyFilters();
         }
+
         #region color highlighting on refresh button and clear button when clicking and hovering
         private void RefreshButton_MouseEnter(object sender, EventArgs e)
         {

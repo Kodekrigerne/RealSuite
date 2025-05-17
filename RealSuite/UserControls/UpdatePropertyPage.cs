@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using Models;
+using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 
@@ -100,6 +101,7 @@ namespace RealSuite.UserControls
             {
                 MessageBox.Show("Bolig opdateret i databasen.", "Bolig opdateret");
                 Clear();
+                if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage page) page.RefreshFromDb();
             }
             else
             {
