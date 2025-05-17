@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             fortrydButton = new Button();
             telefonCheckLabel = new Label();
             postnrCheckLabel = new Label();
@@ -66,6 +66,7 @@
             listedPropertiesDataGrid = new RealSuite.CustomControls.RsDataGridView();
             soldPropertiesLabel = new Label();
             listedPropertiesLabel = new Label();
+            tilbage_button = new Button();
             ((System.ComponentModel.ISupportInitialize)soldPropertiesDataGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)listedPropertiesDataGrid).BeginInit();
             SuspendLayout();
@@ -184,6 +185,7 @@
             bekræftButton.TabIndex = 33;
             bekræftButton.Text = "Bekræft ændringer";
             bekræftButton.UseVisualStyleBackColor = true;
+            bekræftButton.Click += bekræftButton_Click;
             // 
             // postNrTextBox
             // 
@@ -345,27 +347,27 @@
             // 
             // soldPropertiesDataGrid
             // 
-            dataGridViewCellStyle1.NullValue = null;
-            soldPropertiesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            soldPropertiesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.NullValue = null;
+            soldPropertiesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle8.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            soldPropertiesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             soldPropertiesDataGrid.ColumnHeadersHeight = 4;
             soldPropertiesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            soldPropertiesDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = SystemColors.Window;
+            dataGridViewCellStyle9.Font = new Font("Microsoft YaHei", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle9.NullValue = null;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
+            soldPropertiesDataGrid.DefaultCellStyle = dataGridViewCellStyle9;
             soldPropertiesDataGrid.Location = new Point(440, 47);
             soldPropertiesDataGrid.Name = "soldPropertiesDataGrid";
             soldPropertiesDataGrid.Size = new Size(464, 115);
@@ -374,27 +376,27 @@
             // 
             // listedPropertiesDataGrid
             // 
-            dataGridViewCellStyle4.NullValue = null;
-            listedPropertiesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            listedPropertiesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.NullValue = null;
+            listedPropertiesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle11.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            listedPropertiesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             listedPropertiesDataGrid.ColumnHeadersHeight = 4;
             listedPropertiesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            listedPropertiesDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = SystemColors.Window;
+            dataGridViewCellStyle12.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle12.NullValue = null;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            listedPropertiesDataGrid.DefaultCellStyle = dataGridViewCellStyle12;
             listedPropertiesDataGrid.Location = new Point(440, 220);
             listedPropertiesDataGrid.Name = "listedPropertiesDataGrid";
             listedPropertiesDataGrid.Size = new Size(464, 115);
@@ -419,10 +421,22 @@
             listedPropertiesLabel.TabIndex = 89;
             listedPropertiesLabel.Text = "Ejendomme til salg:";
             // 
+            // tilbage_button
+            // 
+            tilbage_button.Location = new Point(845, 3);
+            tilbage_button.Name = "tilbage_button";
+            tilbage_button.Size = new Size(80, 29);
+            tilbage_button.TabIndex = 90;
+            tilbage_button.TabStop = false;
+            tilbage_button.Text = "Tilbage";
+            tilbage_button.UseVisualStyleBackColor = true;
+            tilbage_button.Click += tilbage_button_Click;
+            // 
             // UpdateSellerPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tilbage_button);
             Controls.Add(listedPropertiesLabel);
             Controls.Add(soldPropertiesLabel);
             Controls.Add(listedPropertiesDataGrid);
@@ -497,5 +511,6 @@
         private CustomControls.RsDataGridView listedPropertiesDataGrid;
         private Label soldPropertiesLabel;
         private Label listedPropertiesLabel;
+        private Button tilbage_button;
     }
 }

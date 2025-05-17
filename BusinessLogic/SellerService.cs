@@ -18,7 +18,7 @@ namespace BusinessLogic
             SellersSource.DataSource = _sellersTable;
         }
 
-        public bool CreateSellerDTO(SellerDTO sellerDTO)
+        public bool CreateSeller(SellerDTO sellerDTO)
         {
             if (VerifySeller(sellerDTO) == true)
             {
@@ -28,6 +28,16 @@ namespace BusinessLogic
             else return false;
         }
 
+        public bool UpdateSeller(Seller seller)
+        {
+            if (VerifySeller(seller) == true)
+            {
+                var rowUpdated = sellerDBService.UpdateSeller(seller);
+                return rowUpdated;
+            }
+            return false;
+        }
+
         public void ApplyFilters(string zipCode, string phoneNumber)
         {
             string zipCodeFilter = zipCode == "Alle" ? "ZipCode = ZipCode AND" : $"ZipCode = {zipCode} AND";
@@ -35,6 +45,11 @@ namespace BusinessLogic
 
             SellersSource.Filter = string.Empty;
             SellersSource.Filter += $"{zipCodeFilter} {phoneNumberFilter}";
+        }
+
+        public bool VerifySeller(Seller seller)
+        {
+            return personService.VerifyPerson(seller);
         }
 
         public bool VerifySeller(SellerDTO sellerDTO)

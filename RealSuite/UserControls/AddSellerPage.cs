@@ -36,7 +36,7 @@ namespace RealSuite.UserControls
                 Convert.ToInt32(postNrTextBox.Text),
                 telefonTextBox.Text);
 
-            bool rowCreated = sellerService.CreateSellerDTO(sellerDTO);
+            bool rowCreated = sellerService.CreateSeller(sellerDTO);
 
             if (rowCreated == true)
             {
