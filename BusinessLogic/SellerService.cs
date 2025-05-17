@@ -78,5 +78,12 @@ namespace BusinessLogic
         {
             return sellerDBService.SellerListedProperties(seller);
         }
+
+        public bool DeleteSeller(Seller seller)
+        {
+            var sellerDeleted = sellerDBService.DeleteSeller(seller);
+
+            return sellerDeleted;
+        }
     }
 }

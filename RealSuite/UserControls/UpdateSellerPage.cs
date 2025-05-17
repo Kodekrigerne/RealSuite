@@ -64,6 +64,7 @@ namespace RealSuite.UserControls
             telefonTextBox.Enabled = status;
             fortrydButton.Visible = status;
             bekræftButton.Visible = status;
+            deleteButton.Visible = status;
         }
 
         public void Clear()
@@ -487,6 +488,41 @@ namespace RealSuite.UserControls
             else
             {
                 _navigation.NavigateTo(Pages.ViewSellers);
+            }
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            fornavnTextBox.Text = SellerToUpdate.FirstName;
+            efternavnTextBox.Text = SellerToUpdate.LastName;
+            cprNrTextBox.Text = SellerToUpdate.CprNumber.Substring(0, 6);
+            cpr2NrTextBox.Text = SellerToUpdate.CprNumber.Substring(6, 4);
+            vejnavnTextBox.Text = SellerToUpdate.StreetName;
+            vejNrTextBox.Text = SellerToUpdate.StreetNumber.ToString();
+            postNrTextBox.Text = SellerToUpdate.ZipCode.ToString();
+            telefonTextBox.Text = SellerToUpdate.PhoneNumber;
+            CheckLabelsText("");
+
+            DialogResult answer = MessageBox.Show("Dette vil slette SÆLGER-profilen samt alle tilknyttede ejendomme. " +
+                                                  "Denne handling kan ikke fortrydes. Ønsker du at fortsætte?",
+                "Sletning af SÆLGER", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+            if (answer == DialogResult.Yes)
+            {
+                var sellerDeleted = sellerService.DeleteSeller(SellerToUpdate);
+
+                if (sellerDeleted == true)
+                {
+                    MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
+                        "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _navigation.NavigateTo(Pages.ViewSellers);
+                }
+                else
+                {
+                    MessageBox.Show("Noget gik galt under sletning af sælger. Prøv igen senere.",
+                        "Fejl under slettelse", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

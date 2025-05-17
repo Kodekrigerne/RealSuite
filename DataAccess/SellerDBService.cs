@@ -165,5 +165,36 @@ namespace DataAccess
             return dataTable;
         }
 
+        public bool DeleteSeller(Seller seller)
+        {
+            string query =
+                "DELETE FROM Properties WHERE SellerID = @Id " +
+                "DELETE FROM Sellers WHERE Id = @Id";
+
+            int rowsAffected = 0;
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@Id", seller.Id);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Deletion of seller:" + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+
+            if (rowsAffected == 0) return false;
+            else return true;
+        }
     }
 }
