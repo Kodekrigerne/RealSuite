@@ -71,10 +71,12 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["SellerID"].HeaderText = "Sælger ID";
             propertiesDataGridView.Columns["RealtorID"].HeaderText = "Mægler ID";
             propertiesDataGridView.Columns["Price"].HeaderText = "Pris";
+            propertiesDataGridView.Columns["Price"].DefaultCellStyle.Format = "N0";
             propertiesDataGridView.Columns["DateListed"].HeaderText = "Noteringsdato";
             propertiesDataGridView.Columns["DateSold"].HeaderText = "Salgsdato";
             propertiesDataGridView.Columns["Sold"].HeaderText = "Solgt?";
             propertiesDataGridView.Columns["SqmPrice"].HeaderText = "dkk/m2";
+            propertiesDataGridView.Columns["SqmPrice"].DefaultCellStyle.Format = "N0";
             propertiesDataGridView.Columns["Sælger"].DisplayIndex = 7;
         }
 
