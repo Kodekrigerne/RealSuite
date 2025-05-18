@@ -52,13 +52,9 @@ namespace RealSuite.UserControls
         {
             pris_textbox.Value = 0;
             vurdering_textbox.Value = 0;
-            foreach (Control control in Controls)
-            {
-                if (control is TextBox textBox)
-                {
-                    textBox.Text = "";
-                }
-            }
+
+            ClearTextBoxes(this);
+
             foreach (Control control in Controls)
             {
                 if (control is Label label && label.Font.Name == "Wingdings 2")
@@ -230,7 +226,7 @@ namespace RealSuite.UserControls
         {
             var sellerDataTable = sellerService.GetSellers();
             addSellerGrid.DataSource = sellerDataTable;
-            addSellerGrid.Columns[0].HeaderText = "Kunde ID";
+            addSellerGrid.Columns[0].HeaderText = "ID";
             addSellerGrid.Columns[1].HeaderText = "Fornavn";
             addSellerGrid.Columns[2].HeaderText = "Efternavn";
             addSellerGrid.Columns[3].Visible = false;
@@ -262,11 +258,13 @@ namespace RealSuite.UserControls
             {
                 solgtdato_label.Visible = true;
                 solgtdato_dateTimePicker.Visible = true;
+                propertyForSaleLabel.Visible = false;
             }
             else
             {
                 solgtdato_label.Visible = false;
                 solgtdato_dateTimePicker.Visible = false;
+                propertyForSaleLabel.Visible = true;
             }
         }
 
@@ -304,6 +302,23 @@ namespace RealSuite.UserControls
                 vurdering_textbox.Text = assessedPrice.ToString();
             }
             else MessageBox.Show("Ikke tilstrækkelig data til at foretage vurdering.", "Vurdering");
+        }
+
+        private void ClearTextBoxes(Control control)
+        {
+            foreach (Control currentControl in control.Controls)
+            {
+                if (currentControl is Panel)
+                {
+                    ClearTextBoxes(currentControl);
+                }
+
+                if (currentControl is TextBox)
+                {
+                    TextBox currentTextBox = currentControl as TextBox;
+                    currentTextBox.Text = string.Empty;
+                }
+            }
         }
 
         private void AddPropertyPage_Click(object sender, EventArgs e)

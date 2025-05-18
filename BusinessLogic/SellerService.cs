@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using Models;
 using Models.DTOModels;
 using System.Data;
 
@@ -17,7 +18,7 @@ namespace BusinessLogic
             SellersSource.DataSource = _sellersTable;
         }
 
-        public bool CreateSellerDTO(SellerDTO sellerDTO)
+        public bool CreateSeller(SellerDTO sellerDTO)
         {
             if (VerifySeller(sellerDTO) == true)
             {
@@ -25,6 +26,16 @@ namespace BusinessLogic
                 return rowCreated;
             }
             else return false;
+        }
+
+        public bool UpdateSeller(Seller seller)
+        {
+            if (VerifySeller(seller) == true)
+            {
+                var rowUpdated = sellerDBService.UpdateSeller(seller);
+                return rowUpdated;
+            }
+            return false;
         }
 
         public void ApplyFilters(string zipCode, string phoneNumber, string[] search)
@@ -51,6 +62,11 @@ namespace BusinessLogic
             SellersSource.Filter += $"{zipCodeFilter} {phoneNumberFilter} {searchFilter}";
         }
 
+        public bool VerifySeller(Seller seller)
+        {
+            return personService.VerifyPerson(seller);
+        }
+
         public bool VerifySeller(SellerDTO sellerDTO)
         {
             return personService.VerifyPerson(sellerDTO);
@@ -66,6 +82,23 @@ namespace BusinessLogic
         {
             _sellersTable = GetSellers();
             SellersSource.DataSource = _sellersTable;
+        }
+
+        public DataTable SellerSoldProperties(Seller seller)
+        {
+            return sellerDBService.SellerSoldProperties(seller);
+        }
+
+        public DataTable SellerListedProperties(Seller seller)
+        {
+            return sellerDBService.SellerListedProperties(seller);
+        }
+
+        public bool DeleteSeller(Seller seller)
+        {
+            var sellerDeleted = sellerDBService.DeleteSeller(seller);
+
+            return sellerDeleted;
         }
     }
 }

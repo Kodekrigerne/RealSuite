@@ -13,6 +13,7 @@ namespace RealSuite.UserControls
         private readonly SellerService _sellerService = new();
         private EnumerableRowCollection<DataRow>? _table;
         private bool _suspendFiltering = false;
+        private int rowIndex;
 
         public ViewSellersPage()
         {
@@ -82,14 +83,11 @@ namespace RealSuite.UserControls
         {
             foreach (DataGridViewRow row in sellersDataGridView.Rows)
             {
-                if (row.Cells["CprNumber"] != null)
+                if (row.Cells["CprNumber"] != null && row.Cells["CprNumber"].Value.ToString()[6] != '-')
                 {
                     string cpr = row.Cells["CprNumber"].Value.ToString()!;
-                    if (!cpr.Contains('-'))
-                    {
-                        string cprReformatted = $"{cpr[0..6]}-{cpr[6..10]}";
-                        row.Cells["CprNumber"].Value = cprReformatted;
-                    }
+                    string cprReformatted = $"{cpr[0..6]}-{cpr[6..10]}";
+                    row.Cells["CprNumber"].Value = cprReformatted;
                 }
             }
         }
@@ -241,6 +239,57 @@ namespace RealSuite.UserControls
         {
             if (searchTextBox.Text == string.Empty) clearTextButton.Visible = false;
             else clearTextButton.Visible = true;
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            var row = sellersDataGridView.Rows[rowIndex];
+
+            Seller selectedSeller = new Seller(
+                Convert.ToInt32(row.Cells["Id"].Value),
+                row.Cells["FirstName"].Value.ToString() ?? "",
+                row.Cells["LastName"].Value.ToString() ?? "",
+                row.Cells["CprNumber"].Value.ToString()!.Replace("-", ""),
+                row.Cells["StreetName"].Value.ToString() ?? "",
+                Convert.ToInt32(row.Cells["StreetNumber"].Value),
+                Convert.ToInt32(row.Cells["ZipCode"].Value),
+                row.Cells["PhoneNumber"].Value.ToString() ?? "");
+
+            DialogResult answer = MessageBox.Show(
+                $"Dette vil slette SÆLGER-profilen '{selectedSeller.FirstName} {selectedSeller.LastName}' samt alle tilknyttede ejendomme. Denne handling kan ikke fortrydes." +
+                $"Ønsker du at fortsætte?",
+                "Sletning af SÆLGER", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+            if (answer == DialogResult.Yes)
+            {
+                var sellerDeleted = _sellerService.DeleteSeller(selectedSeller);
+
+                if (sellerDeleted == true)
+                {
+                    MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
+                        "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _navigation.NavigateTo(Pages.ViewSellers);
+                }
+                else
+                {
+                    MessageBox.Show("Noget gik galt under sletning af sælger. Prøv igen senere.",
+                        "Fejl under slettelse", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void sellersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            rowIndex = e.RowIndex;
+            if (e.RowIndex >= 0)
+            {
+                deleteButton.Enabled = true;
+            }
+            else
+            {
+                deleteButton.Enabled = false;
+            }
         }
     }
 }

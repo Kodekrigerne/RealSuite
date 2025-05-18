@@ -36,7 +36,7 @@ namespace RealSuite.UserControls
                 Convert.ToInt32(postNrTextBox.Text),
                 telefonTextBox.Text);
 
-            bool rowCreated = sellerService.CreateSellerDTO(sellerDTO);
+            bool rowCreated = sellerService.CreateSeller(sellerDTO);
 
             if (rowCreated == true)
             {
@@ -200,13 +200,8 @@ namespace RealSuite.UserControls
 
         public void Clear()
         {
-            foreach (Control control in Controls)
-            {
-                if (control is TextBox textBox)
-                {
-                    textBox.Text = "";
-                }
-            }
+            ClearTextBoxes(this);
+
             foreach (Control control in Controls)
             {
                 if (control is Label label && label.Font.Name == "Wingdings 2")
@@ -252,6 +247,28 @@ namespace RealSuite.UserControls
         {
             Clear();
             fornavnTextBox.Focus();
+        }
+
+        private void husnr_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClearTextBoxes(Control control)
+        {
+            foreach (Control currentControl in control.Controls)
+            {
+                if (currentControl is Panel)
+                {
+                    ClearTextBoxes(currentControl);
+                }
+
+                if (currentControl is TextBox)
+                {
+                    TextBox currentTextBox = currentControl as TextBox;
+                    currentTextBox.Text = string.Empty;
+                }
+            }
         }
 
         private void AddSellerPage_Click(object sender, EventArgs e)
