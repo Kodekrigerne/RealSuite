@@ -21,6 +21,7 @@ namespace RealSuite.UserControls
             sellersDataGridView.DataSource = _sellerService.SellersSource;
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             InitializeControls();
+            RenameColumns();
             ReFormatCPRNumber();
             _suspendFiltering = false;
         }
@@ -37,7 +38,6 @@ namespace RealSuite.UserControls
             phoneNumberComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetPhoneNumberComboBox();
-            RenameColumns();
             _suspendFiltering = false;
             ApplyFilters();
         }

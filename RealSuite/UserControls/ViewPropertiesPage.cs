@@ -22,6 +22,7 @@ namespace RealSuite.UserControls
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             InitializeControls();
+            SetColumns();
             searchInfoPictureBox.Image = SystemIcons.Information.ToBitmap();
             searchInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             var searchtoolTip = new ToolTip();
@@ -41,7 +42,6 @@ namespace RealSuite.UserControls
             soldComboBox.SelectedItem = "Ikke solgt";
             SetZipCodeComboBox();
             SetSellerComboBox();
-            SetColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
