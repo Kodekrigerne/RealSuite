@@ -210,6 +210,7 @@ namespace RealSuite.UserControls
             if (_navigation?.Pages[Pages.UpdateSeller] is UpdateSellerPage page)
             {
                 page.SellerToUpdate = seller;
+                page.SetupPage();
                 _navigation.NavigateTo(Pages.UpdateSeller);
             }
         }
