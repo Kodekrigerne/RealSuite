@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             sellersDataGridView = new RealSuite.CustomControls.RsDataGridView();
             topPanel = new Panel();
-            deleteButton = new Button();
             searchInfoPictureBox = new PictureBox();
             clearTextButton = new Label();
             searchTextBox = new TextBox();
+            deleteButton = new Button();
             phoneNumberLabel = new Label();
             numberPanel = new Panel();
             phoneNumberComboBox = new ComboBox();
@@ -57,28 +57,28 @@
             // 
             // sellersDataGridView
             // 
-            dataGridViewCellStyle1.NullValue = null;
-            sellersDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.NullValue = null;
+            sellersDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             sellersDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            sellersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle8.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            sellersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             sellersDataGridView.ColumnHeadersHeight = 4;
             sellersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            sellersDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = SystemColors.Window;
+            dataGridViewCellStyle9.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle9.NullValue = null;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
+            sellersDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
             sellersDataGridView.Location = new Point(0, 436);
             sellersDataGridView.Margin = new Padding(9, 10, 9, 10);
             sellersDataGridView.Name = "sellersDataGridView";
@@ -105,15 +105,16 @@
             topPanel.Controls.Add(refreshButton);
             topPanel.Dock = DockStyle.Top;
             topPanel.Location = new Point(0, 0);
-            topPanel.Margin = new Padding(4);
+            topPanel.Margin = new Padding(10);
             topPanel.Name = "topPanel";
-            topPanel.Size = new Size(928, 181);
+            topPanel.Size = new Size(2320, 434);
             topPanel.TabIndex = 2;
             topPanel.Click += TopPanel_Click;
             // 
             // searchInfoPictureBox
             // 
-            searchInfoPictureBox.Location = new Point(1131, 343);
+            searchInfoPictureBox.Location = new Point(840, 293);
+            searchInfoPictureBox.Margin = new Padding(8, 7, 8, 7);
             searchInfoPictureBox.Name = "searchInfoPictureBox";
             searchInfoPictureBox.Size = new Size(45, 45);
             searchInfoPictureBox.TabIndex = 29;
@@ -125,8 +126,8 @@
             clearTextButton.BackColor = Color.White;
             clearTextButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clearTextButton.ForeColor = Color.Red;
-            clearTextButton.Location = new Point(1067, 339);
-            clearTextButton.Margin = new Padding(8, 0, 8, 0);
+            clearTextButton.Location = new Point(772, 287);
+            clearTextButton.Margin = new Padding(20, 0, 20, 0);
             clearTextButton.Name = "clearTextButton";
             clearTextButton.Size = new Size(51, 55);
             clearTextButton.TabIndex = 27;
@@ -136,23 +137,25 @@
             // 
             // searchTextBox
             // 
+            searchTextBox.Font = new Font("Microsoft YaHei", 9.75F);
+            searchTextBox.Location = new Point(271, 286);
+            searchTextBox.Margin = new Padding(8, 7, 8, 7);
+            searchTextBox.Name = "searchTextBox";
+            searchTextBox.Size = new Size(558, 59);
+            searchTextBox.TabIndex = 26;
+            searchTextBox.TextChanged += SearchTextBox_TextChanged;
+            searchTextBox.KeyDown += SearchTextBox_KeyDown;
+            // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(740, 16);
+            deleteButton.Location = new Point(1850, 38);
+            deleteButton.Margin = new Padding(8, 7, 8, 7);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(163, 29);
+            deleteButton.Size = new Size(408, 70);
             deleteButton.TabIndex = 92;
             deleteButton.Text = "Slet sælger";
             deleteButton.UseVisualStyleBackColor = true;
             deleteButton.Click += deleteButton_Click;
-            // 
-            searchTextBox.Font = new Font("Microsoft YaHei", 9.75F);
-            searchTextBox.Location = new Point(581, 336);
-            searchTextBox.Name = "searchTextBox";
-            searchTextBox.Size = new Size(544, 59);
-            searchTextBox.TabIndex = 26;
-            searchTextBox.TextChanged += SearchTextBox_TextChanged;
-            searchTextBox.KeyDown += SearchTextBox_KeyDown;
             // 
             // phoneNumberLabel
             // 
@@ -160,10 +163,10 @@
             phoneNumberLabel.BackColor = Color.FromArgb(100, 131, 184);
             phoneNumberLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             phoneNumberLabel.ForeColor = Color.White;
-            phoneNumberLabel.Location = new Point(124, 16);
-            phoneNumberLabel.Margin = new Padding(4, 0, 4, 0);
+            phoneNumberLabel.Location = new Point(310, 38);
+            phoneNumberLabel.Margin = new Padding(10, 0, 10, 0);
             phoneNumberLabel.Name = "phoneNumberLabel";
-            phoneNumberLabel.Size = new Size(63, 26);
+            phoneNumberLabel.Size = new Size(145, 58);
             phoneNumberLabel.TabIndex = 25;
             phoneNumberLabel.Text = "Tlfnr.";
             // 
@@ -171,10 +174,10 @@
             // 
             numberPanel.BackColor = Color.FromArgb(179, 215, 232);
             numberPanel.Controls.Add(phoneNumberComboBox);
-            numberPanel.Location = new Point(124, 41);
-            numberPanel.Margin = new Padding(4);
+            numberPanel.Location = new Point(310, 98);
+            numberPanel.Margin = new Padding(10);
             numberPanel.Name = "numberPanel";
-            numberPanel.Size = new Size(126, 52);
+            numberPanel.Size = new Size(315, 125);
             numberPanel.TabIndex = 24;
             // 
             // phoneNumberComboBox
@@ -183,10 +186,10 @@
             phoneNumberComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             phoneNumberComboBox.FormattingEnabled = true;
             phoneNumberComboBox.Items.AddRange(new object[] { "Alle" });
-            phoneNumberComboBox.Location = new Point(9, 8);
-            phoneNumberComboBox.Margin = new Padding(4);
+            phoneNumberComboBox.Location = new Point(22, 19);
+            phoneNumberComboBox.Margin = new Padding(10);
             phoneNumberComboBox.Name = "phoneNumberComboBox";
-            phoneNumberComboBox.Size = new Size(108, 29);
+            phoneNumberComboBox.Size = new Size(264, 59);
             phoneNumberComboBox.TabIndex = 22;
             phoneNumberComboBox.SelectedValueChanged += PhoneNumberComboBox_SelectedValueChanged;
             // 
@@ -196,10 +199,10 @@
             zipCodeFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             zipCodeFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             zipCodeFilterLabel.ForeColor = Color.White;
-            zipCodeFilterLabel.Location = new Point(16, 16);
-            zipCodeFilterLabel.Margin = new Padding(4, 0, 4, 0);
+            zipCodeFilterLabel.Location = new Point(40, 38);
+            zipCodeFilterLabel.Margin = new Padding(10, 0, 10, 0);
             zipCodeFilterLabel.Name = "zipCodeFilterLabel";
-            zipCodeFilterLabel.Size = new Size(73, 26);
+            zipCodeFilterLabel.Size = new Size(171, 58);
             zipCodeFilterLabel.TabIndex = 24;
             zipCodeFilterLabel.Text = "Postnr";
             // 
@@ -207,10 +210,10 @@
             // 
             zipCodePanel.BackColor = Color.FromArgb(179, 215, 232);
             zipCodePanel.Controls.Add(zipCodeComboBox);
-            zipCodePanel.Location = new Point(16, 41);
-            zipCodePanel.Margin = new Padding(4);
+            zipCodePanel.Location = new Point(40, 98);
+            zipCodePanel.Margin = new Padding(10);
             zipCodePanel.Name = "zipCodePanel";
-            zipCodePanel.Size = new Size(90, 52);
+            zipCodePanel.Size = new Size(225, 125);
             zipCodePanel.TabIndex = 23;
             // 
             // zipCodeComboBox
@@ -219,10 +222,10 @@
             zipCodeComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             zipCodeComboBox.FormattingEnabled = true;
             zipCodeComboBox.Items.AddRange(new object[] { "Alle" });
-            zipCodeComboBox.Location = new Point(9, 8);
-            zipCodeComboBox.Margin = new Padding(4);
+            zipCodeComboBox.Location = new Point(22, 19);
+            zipCodeComboBox.Margin = new Padding(10);
             zipCodeComboBox.Name = "zipCodeComboBox";
-            zipCodeComboBox.Size = new Size(72, 29);
+            zipCodeComboBox.Size = new Size(174, 59);
             zipCodeComboBox.TabIndex = 22;
             zipCodeComboBox.SelectedValueChanged += ZipCodeComboBox_SelectedValueChanged;
             // 
@@ -231,10 +234,10 @@
             resultsLabel.AutoSize = true;
             resultsLabel.BackColor = Color.FromArgb(243, 239, 218);
             resultsLabel.Font = new Font("Microsoft YaHei", 10.5F, FontStyle.Italic);
-            resultsLabel.Location = new Point(14, 140);
-            resultsLabel.Margin = new Padding(4, 0, 4, 0);
+            resultsLabel.Location = new Point(35, 336);
+            resultsLabel.Margin = new Padding(10, 0, 10, 0);
             resultsLabel.Name = "resultsLabel";
-            resultsLabel.Size = new Size(18, 24);
+            resultsLabel.Size = new Size(42, 55);
             resultsLabel.TabIndex = 21;
             resultsLabel.Text = "-";
             // 
@@ -243,10 +246,10 @@
             clearButtonIconPanel.BackColor = Color.PeachPuff;
             clearButtonIconPanel.BackgroundImage = Properties.Resources.ClearPropertyFiltersIcon;
             clearButtonIconPanel.BackgroundImageLayout = ImageLayout.Stretch;
-            clearButtonIconPanel.Location = new Point(873, 129);
-            clearButtonIconPanel.Margin = new Padding(4);
+            clearButtonIconPanel.Location = new Point(2182, 310);
+            clearButtonIconPanel.Margin = new Padding(10);
             clearButtonIconPanel.Name = "clearButtonIconPanel";
-            clearButtonIconPanel.Size = new Size(30, 36);
+            clearButtonIconPanel.Size = new Size(75, 86);
             clearButtonIconPanel.TabIndex = 11;
             // 
             // refreshIconPanel
@@ -254,20 +257,20 @@
             refreshIconPanel.BackColor = Color.FromArgb(142, 221, 188);
             refreshIconPanel.BackgroundImage = Properties.Resources.Refresh_Properties_Logo;
             refreshIconPanel.BackgroundImageLayout = ImageLayout.Stretch;
-            refreshIconPanel.Location = new Point(710, 132);
-            refreshIconPanel.Margin = new Padding(4);
+            refreshIconPanel.Location = new Point(1775, 317);
+            refreshIconPanel.Margin = new Padding(10);
             refreshIconPanel.Name = "refreshIconPanel";
-            refreshIconPanel.Size = new Size(26, 31);
+            refreshIconPanel.Size = new Size(65, 74);
             refreshIconPanel.TabIndex = 10;
             // 
             // clearButton
             // 
             clearButton.BackColor = Color.PeachPuff;
             clearButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            clearButton.Location = new Point(767, 119);
-            clearButton.Margin = new Padding(4, 2, 4, 2);
+            clearButton.Location = new Point(1918, 286);
+            clearButton.Margin = new Padding(10, 5, 10, 5);
             clearButton.Name = "clearButton";
-            clearButton.Size = new Size(146, 58);
+            clearButton.Size = new Size(365, 139);
             clearButton.TabIndex = 9;
             clearButton.Text = "Ryd filtre     ";
             clearButton.UseVisualStyleBackColor = false;
@@ -281,10 +284,10 @@
             // 
             refreshButton.BackColor = Color.FromArgb(148, 216, 200);
             refreshButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            refreshButton.Location = new Point(582, 119);
-            refreshButton.Margin = new Padding(4, 2, 4, 2);
+            refreshButton.Location = new Point(1455, 286);
+            refreshButton.Margin = new Padding(10, 5, 10, 5);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(167, 58);
+            refreshButton.Size = new Size(418, 139);
             refreshButton.TabIndex = 8;
             refreshButton.Text = "Genindlæs    ";
             refreshButton.UseVisualStyleBackColor = false;
@@ -296,13 +299,13 @@
             // 
             // ViewSellersPage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(20F, 48F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(topPanel);
             Controls.Add(sellersDataGridView);
-            Margin = new Padding(4, 2, 4, 2);
+            Margin = new Padding(10, 5, 10, 5);
             Name = "ViewSellersPage";
-            Size = new Size(928, 602);
+            Size = new Size(2320, 1445);
             ((System.ComponentModel.ISupportInitialize)sellersDataGridView).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();

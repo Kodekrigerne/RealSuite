@@ -1,9 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models;
 using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Text.RegularExpressions;
 
 namespace RealSuite.UserControls
 {
@@ -525,7 +525,6 @@ namespace RealSuite.UserControls
                 }
             }
         }
-        public void Clear() { }
 
         private void UpdateSellerPage_Click(object sender, EventArgs e)
         {
