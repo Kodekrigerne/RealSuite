@@ -33,6 +33,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             sellersDataGridView = new RealSuite.CustomControls.RsDataGridView();
             topPanel = new Panel();
+            searchInfoPictureBox = new PictureBox();
             clearTextButton = new Label();
             searchTextBox = new TextBox();
             phoneNumberLabel = new Label();
@@ -46,12 +47,11 @@
             refreshIconPanel = new Panel();
             clearButton = new Button();
             refreshButton = new Button();
-            searchInfoPictureBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)sellersDataGridView).BeginInit();
             topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).BeginInit();
             numberPanel.SuspendLayout();
             zipCodePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).BeginInit();
             SuspendLayout();
             // 
             // sellersDataGridView
@@ -108,13 +108,21 @@
             topPanel.TabIndex = 2;
             topPanel.Click += TopPanel_Click;
             // 
+            // searchInfoPictureBox
+            // 
+            searchInfoPictureBox.Location = new Point(1131, 343);
+            searchInfoPictureBox.Name = "searchInfoPictureBox";
+            searchInfoPictureBox.Size = new Size(45, 45);
+            searchInfoPictureBox.TabIndex = 29;
+            searchInfoPictureBox.TabStop = false;
+            // 
             // clearTextButton
             // 
             clearTextButton.AutoSize = true;
             clearTextButton.BackColor = Color.White;
             clearTextButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clearTextButton.ForeColor = Color.Red;
-            clearTextButton.Location = new Point(660, 335);
+            clearTextButton.Location = new Point(1067, 339);
             clearTextButton.Margin = new Padding(8, 0, 8, 0);
             clearTextButton.Name = "clearTextButton";
             clearTextButton.Size = new Size(51, 55);
@@ -126,7 +134,7 @@
             // searchTextBox
             // 
             searchTextBox.Font = new Font("Microsoft YaHei", 9.75F);
-            searchTextBox.Location = new Point(174, 332);
+            searchTextBox.Location = new Point(581, 336);
             searchTextBox.Name = "searchTextBox";
             searchTextBox.Size = new Size(544, 59);
             searchTextBox.TabIndex = 26;
@@ -273,14 +281,6 @@
             refreshButton.MouseLeave += RefreshButton_MouseLeave;
             refreshButton.MouseUp += RefreshButton_MouseUp;
             // 
-            // searchInfoPictureBox
-            // 
-            searchInfoPictureBox.Location = new Point(724, 339);
-            searchInfoPictureBox.Name = "searchInfoPictureBox";
-            searchInfoPictureBox.Size = new Size(45, 45);
-            searchInfoPictureBox.TabIndex = 29;
-            searchInfoPictureBox.TabStop = false;
-            // 
             // ViewSellersPage
             // 
             AutoScaleDimensions = new SizeF(20F, 48F);
@@ -293,9 +293,9 @@
             ((System.ComponentModel.ISupportInitialize)sellersDataGridView).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).EndInit();
             numberPanel.ResumeLayout(false);
             zipCodePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).EndInit();
             ResumeLayout(false);
         }
 

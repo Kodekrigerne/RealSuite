@@ -57,12 +57,12 @@ namespace RealSuite.UserControls
             if (!_suspendFiltering)
             {
                 zipCodeComboBox.SelectedItem ??= "Alle";
-                var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString();
+                var zipCodeFilter = zipCodeComboBox.SelectedItem?.ToString();
                 phoneNumberComboBox.SelectedItem ??= "Alle";
                 var phoneNumberFilter = phoneNumberComboBox.SelectedItem!.ToString();
-                var searchFilter = searchTextBox.Text;
+                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!);
+                _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!, searchFilter);
                 resultsLabel.Text = $"Resultater: {sellersDataGridView.Rows.Count}";
             }
         }
@@ -234,6 +234,7 @@ namespace RealSuite.UserControls
         private void ClearTextButton_Click(object sender, EventArgs e)
         {
             searchTextBox.Text = string.Empty;
+            ApplyFilters();
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)

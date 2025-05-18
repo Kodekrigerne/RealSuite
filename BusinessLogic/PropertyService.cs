@@ -37,7 +37,7 @@ namespace BusinessLogic
             string listedFilter = $"DateListed >= #{listedFrom:yyyy-MM-dd}# AND DateListed <= #{listedTo:yyyy-MM-dd}# AND";
             string zipCodeFilter = zipCode == "Alle" ? "ZipCode = ZipCode" : $"ZipCode = {zipCode}";
             string sellerFilter = sellerID == "Alle" ? "SellerID = SellerID" : $"SellerID = {sellerID}";
-            string searchFilter = "";
+            string searchFilter = string.Empty;
             if (search.Length == 1)
             {
                 searchFilter = $"AND (StreetName LIKE '%{search[0]}%' " +
