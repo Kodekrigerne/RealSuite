@@ -35,6 +35,7 @@ namespace RealSuite.UserControls
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             propertiesDataGridView = new RsDataGridView();
             topPanel = new Panel();
+            searchInfoPictureBox = new PictureBox();
             sletBolig_button = new Button();
             saveToFileButton = new Button();
             clearTextButton = new Label();
@@ -67,6 +68,7 @@ namespace RealSuite.UserControls
             sellerComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
             topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).BeginInit();
             zipCodePanel.SuspendLayout();
             soldFilterPanel.SuspendLayout();
             priceFromFilterPanel.SuspendLayout();
@@ -111,6 +113,7 @@ namespace RealSuite.UserControls
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(searchInfoPictureBox);
             topPanel.Controls.Add(sletBolig_button);
             topPanel.Controls.Add(saveToFileButton);
             topPanel.Controls.Add(clearTextButton);
@@ -135,6 +138,14 @@ namespace RealSuite.UserControls
             topPanel.Size = new Size(2320, 434);
             topPanel.TabIndex = 1;
             topPanel.Click += TopPanel_Click;
+            // 
+            // searchInfoPictureBox
+            // 
+            searchInfoPictureBox.Location = new Point(727, 282);
+            searchInfoPictureBox.Name = "searchInfoPictureBox";
+            searchInfoPictureBox.Size = new Size(45, 45);
+            searchInfoPictureBox.TabIndex = 28;
+            searchInfoPictureBox.TabStop = false;
             // 
             // sletBolig_button
             // 
@@ -165,7 +176,7 @@ namespace RealSuite.UserControls
             clearTextButton.BackColor = Color.White;
             clearTextButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clearTextButton.ForeColor = Color.Red;
-            clearTextButton.Location = new Point(882, 293);
+            clearTextButton.Location = new Point(655, 278);
             clearTextButton.Margin = new Padding(8, 0, 8, 0);
             clearTextButton.Name = "clearTextButton";
             clearTextButton.Size = new Size(51, 55);
@@ -177,7 +188,7 @@ namespace RealSuite.UserControls
             // searchTextBox
             // 
             searchTextBox.Font = new Font("Microsoft YaHei", 9.75F);
-            searchTextBox.Location = new Point(400, 286);
+            searchTextBox.Location = new Point(173, 275);
             searchTextBox.Margin = new Padding(8, 7, 8, 7);
             searchTextBox.Name = "searchTextBox";
             searchTextBox.Size = new Size(544, 59);
@@ -524,6 +535,7 @@ namespace RealSuite.UserControls
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).EndInit();
             zipCodePanel.ResumeLayout(false);
             soldFilterPanel.ResumeLayout(false);
             priceFromFilterPanel.ResumeLayout(false);
@@ -570,5 +582,6 @@ namespace RealSuite.UserControls
         private TextBox searchTextBox;
         private Label clearTextButton;
         private Button sletBolig_button;
+        private PictureBox searchInfoPictureBox;
     }
 }

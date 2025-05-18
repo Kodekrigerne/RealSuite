@@ -22,6 +22,10 @@ namespace RealSuite.UserControls
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             InitializeControls();
+            searchInfoPictureBox.Image = SystemIcons.Information.ToBitmap();
+            searchInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            var searchtoolTip = new ToolTip();
+            searchtoolTip.SetToolTip(searchInfoPictureBox, "Søg efter adresse, navn på sælger, postnummer eller år");
             _suspendFiltering = false;
         }
 
