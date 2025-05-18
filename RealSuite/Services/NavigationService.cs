@@ -33,6 +33,7 @@ namespace RealSuite.Services
                 page.Focus();
                 if (clear && Pages[pageKey] is IClearable clearablePage) clearablePage.Clear();
                 _currentPage = page;
+                if (page.ContainsFocus) page.ParentForm!.ActiveControl = null;
             }
         }
     }

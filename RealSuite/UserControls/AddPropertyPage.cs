@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using Models;
 using Models.DTOModels;
+using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 
@@ -80,6 +81,7 @@ namespace RealSuite.UserControls
             {
                 MessageBox.Show("Bolig oprettet i databasen.", "Bolig oprettet");
                 Clear();
+                if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage page) page.RefreshFromDb();
             }
             else
             {
@@ -317,6 +319,11 @@ namespace RealSuite.UserControls
                     currentTextBox.Text = string.Empty;
                 }
             }
+        }
+
+        private void AddPropertyPage_Click(object sender, EventArgs e)
+        {
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
         }
     }
 }

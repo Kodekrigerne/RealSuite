@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using Models;
+using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
 
@@ -19,8 +20,6 @@ namespace RealSuite.UserControls
             addSellerGrid.Visible = false;
             pris_textbox.Controls[0].Hide();
             vurdering_textbox.Controls[0].Hide();
-            this.ActiveControl = null;
-
         }
 
         public void SetNavigation(NavigationService navigation)
@@ -32,7 +31,6 @@ namespace RealSuite.UserControls
         {
             redigering_checkbox.Checked = false;
             redigering_checkbox.Enabled = true;
-
             streetname_checklabel.Visible = false;
             streetnumber_checklabel.Visible = false;
             zip_checkbox.Visible = false;
@@ -40,9 +38,7 @@ namespace RealSuite.UserControls
             squaremeter_checkbox.Visible = false;
             seller_checkbox.Visible = false;
             price_checkbox.Visible = false;
-
         }
-
 
         public void SetupPageDetails(Property property)
         {
@@ -71,7 +67,6 @@ namespace RealSuite.UserControls
                 {
                     solgtdato_dateTimePicker.Value = (DateTime)_propertyToUpdate.DateSold;
                 }
-
             }
         }
 
@@ -106,6 +101,7 @@ namespace RealSuite.UserControls
             {
                 MessageBox.Show("Bolig opdateret i databasen.", "Bolig opdateret");
                 Clear();
+                if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage page) page.RefreshFromDb();
             }
             else
             {
@@ -131,7 +127,6 @@ namespace RealSuite.UserControls
                     dato_datepicker.Enabled = true;
                     solgt_checkbox.Enabled = true;
                     solgtdato_dateTimePicker.Enabled = true;
-
                     streetname_checklabel.Visible = true;
                     streetnumber_checklabel.Visible = true;
                     zip_checkbox.Visible = true;
@@ -139,9 +134,7 @@ namespace RealSuite.UserControls
                     squaremeter_checkbox.Visible = true;
                     seller_checkbox.Visible = true;
                     price_checkbox.Visible = true;
-
                     redigering_checkbox.Enabled = false;
-
                 }
                 else
                 {
@@ -162,6 +155,7 @@ namespace RealSuite.UserControls
             }
 
         }
+
         private void SubmitKeyCheck()
         {
             if (streetname_checklabel.Text == "P" &&
@@ -179,6 +173,7 @@ namespace RealSuite.UserControls
                 opdater_button.Enabled = false;
             }
         }
+
         private void GetAssessment()
         {
             if (buildyear_checkbox.Text != "O" &&
@@ -199,6 +194,7 @@ namespace RealSuite.UserControls
             if (addSellerGrid.Visible == true) addSellerGrid.Visible = false;
             else addSellerGrid.Visible = true;
         }
+
         private void SellerGridSetup()
         {
             var sellerDataTable = sellerService.GetSellers();
@@ -222,9 +218,7 @@ namespace RealSuite.UserControls
                                           addSellerGrid.Rows[e.RowIndex].Cells[2].Value;
                 addSellerGrid.Visible = false;
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) { }
         }
         private void HandleDigit_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -320,6 +314,7 @@ namespace RealSuite.UserControls
             SubmitKeyCheck();
             GetAssessment();
         }
+
         private void pris_textbox_ValueChanged(object sender, EventArgs e)
         {
             if (_propertyToUpdate != null && pris_textbox.Value != (decimal)_propertyToUpdate.Price)
@@ -352,6 +347,17 @@ namespace RealSuite.UserControls
             pris_textbox.Value = vurdering_textbox.Value;
             brugVurdering_button.Visible = false;
             pris_textbox.Focus();
+        }
+
+        private void UpdatePropertyPage_Click(object sender, EventArgs e)
+        {
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            // Tilføj logik her
+            _navigation?.NavigateTo(Pages.ViewProperties, false);
         }
     }
 }

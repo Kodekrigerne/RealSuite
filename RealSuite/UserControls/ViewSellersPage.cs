@@ -1,11 +1,9 @@
-﻿using System.Data;
-using System.Diagnostics;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models;
 using RealSuite.Enums;
-using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Data;
 
 namespace RealSuite.UserControls
 {
@@ -14,7 +12,6 @@ namespace RealSuite.UserControls
         private NavigationService? _navigation;
         private readonly SellerService _sellerService = new();
         private EnumerableRowCollection<DataRow>? _table;
-        public event EventHandler<UpdateSellerEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
         private int rowIndex;
 
@@ -25,12 +22,23 @@ namespace RealSuite.UserControls
             sellersDataGridView.DataSource = _sellerService.SellersSource;
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             InitializeControls();
+            RenameColumns();
+            ReFormatCPRNumber();
+            SetSearchToolTip();
             _suspendFiltering = false;
         }
 
         public void SetNavigation(NavigationService navigation)
         {
             _navigation = navigation;
+        }
+
+        private void SetSearchToolTip()
+        {
+            searchInfoPictureBox.Image = SystemIcons.Information.ToBitmap();
+            searchInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            var searchtoolTip = new ToolTip();
+            searchtoolTip.SetToolTip(searchInfoPictureBox, "Søg efter sælgers navn, adresse, postnummer eller telefonnummer.");
         }
 
         private void InitializeControls()
@@ -40,9 +48,9 @@ namespace RealSuite.UserControls
             phoneNumberComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetPhoneNumberComboBox();
-            ReFormatCPRNumber();
-            RenameColumns();
+            searchTextBox.Text = string.Empty;
             _suspendFiltering = false;
+            ApplyFilters();
         }
 
         private void ApplyFilters()
@@ -50,11 +58,12 @@ namespace RealSuite.UserControls
             if (!_suspendFiltering)
             {
                 zipCodeComboBox.SelectedItem ??= "Alle";
-                var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString();
+                var zipCodeFilter = zipCodeComboBox.SelectedItem?.ToString();
                 phoneNumberComboBox.SelectedItem ??= "Alle";
                 var phoneNumberFilter = phoneNumberComboBox.SelectedItem!.ToString();
+                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!);
+                _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!, searchFilter);
                 resultsLabel.Text = $"Resultater: {sellersDataGridView.Rows.Count}";
             }
         }
@@ -102,7 +111,6 @@ namespace RealSuite.UserControls
         public void Clear()
         {
             InitializeControls();
-            ApplyFilters();
         }
 
         private void ZipCodeComboBox_SelectedValueChanged(object sender, EventArgs e)
@@ -122,10 +130,17 @@ namespace RealSuite.UserControls
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            RefreshFromDb();
+        }
+
+        public void RefreshFromDb()
+        {
             _sellerService.RefreshFromDB();
+            _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             ReFormatCPRNumber();
             ApplyFilters();
         }
+
         #region color highlighting on refresh button and clear button when clicking and hovering
         private void RefreshButton_MouseEnter(object sender, EventArgs e)
         {
@@ -189,11 +204,42 @@ namespace RealSuite.UserControls
             int streetNumber = Convert.ToInt32(row.Cells["StreetNumber"].Value);
             int zipCode = Convert.ToInt32(row.Cells["ZipCode"].Value);
             string phoneNumber = row.Cells["PhoneNumber"].Value.ToString() ?? "";
-            Debug.WriteLine(cprNumber);
 
             var seller = new Seller(id, firstName, lastName, cprNumber, streetName, streetNumber, zipCode, phoneNumber);
-            var args = new UpdateSellerEventArgs(seller);
-            RowDoubleClick?.Invoke(this, args);
+
+            if (_navigation?.Pages[Pages.UpdateSeller] is UpdateSellerPage page)
+            {
+                page.SellerToUpdate = seller;
+                page.SetupPage();
+                _navigation.NavigateTo(Pages.UpdateSeller);
+            }
+        }
+
+        private void TopPanel_Click(object sender, EventArgs e)
+        {
+            if (ActiveControl == searchTextBox) ApplyFilters();
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ApplyFilters();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void ClearTextButton_Click(object sender, EventArgs e)
+        {
+            searchTextBox.Text = string.Empty;
+            ApplyFilters();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (searchTextBox.Text == string.Empty) clearTextButton.Visible = false;
+            else clearTextButton.Visible = true;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -224,7 +270,8 @@ namespace RealSuite.UserControls
                     MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
                         "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    _navigation.NavigateTo(Pages.ViewSellers);
+                    if (_navigation?.Pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RefreshFromDb();
+                    if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage viewPropertiesPage) viewPropertiesPage.RefreshFromDb();
                 }
                 else
                 {

@@ -1,10 +1,9 @@
-﻿using System.Data;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models;
 using RealSuite.Enums;
-using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Data;
 
 namespace RealSuite.UserControls
 {
@@ -12,7 +11,6 @@ namespace RealSuite.UserControls
     {
         private NavigationService? _navigation;
         private readonly PropertyService _propertyService = new();
-        public event EventHandler<UpdatePropertyEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
         private EnumerableRowCollection<DataRow>? _table;
         private int? selectedPropertyId = null;
@@ -24,12 +22,22 @@ namespace RealSuite.UserControls
             propertiesDataGridView.DataSource = _propertyService.PropertiesSource;
             _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             InitializeControls();
+            SetColumns();
+            SetSearchToolTip();
             _suspendFiltering = false;
         }
 
         public void SetNavigation(NavigationService navigation)
         {
             _navigation = navigation;
+        }
+
+        private void SetSearchToolTip()
+        {
+            searchInfoPictureBox.Image = SystemIcons.Information.ToBitmap();
+            searchInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            var searchtoolTip = new ToolTip();
+            searchtoolTip.SetToolTip(searchInfoPictureBox, "Søg efter adresse, navn på sælger, postnummer eller år.");
         }
 
         private void InitializeControls()
@@ -39,7 +47,6 @@ namespace RealSuite.UserControls
             soldComboBox.SelectedItem = "Ikke solgt";
             SetZipCodeComboBox();
             SetSellerComboBox();
-            SetColumns();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
             SetListedDatePickersInitialValues();
@@ -69,12 +76,16 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["StreetNumber"].HeaderText = "Vejnr";
             propertiesDataGridView.Columns["ZipCode"].HeaderText = "Postnr";
             propertiesDataGridView.Columns["BuildYear"].HeaderText = "Byggeår";
-            propertiesDataGridView.Columns["SquareMeters"].HeaderText = "Kvm";
+            propertiesDataGridView.Columns["SquareMeters"].HeaderText = "m2";
+            propertiesDataGridView.Columns["SellerID"].HeaderText = "Sælger ID";
+            propertiesDataGridView.Columns["RealtorID"].HeaderText = "Mægler ID";
             propertiesDataGridView.Columns["Price"].HeaderText = "Pris";
+            propertiesDataGridView.Columns["Price"].DefaultCellStyle.Format = "N0";
             propertiesDataGridView.Columns["DateListed"].HeaderText = "Noteringsdato";
             propertiesDataGridView.Columns["DateSold"].HeaderText = "Salgsdato";
             propertiesDataGridView.Columns["Sold"].HeaderText = "Solgt?";
             propertiesDataGridView.Columns["SqmPrice"].HeaderText = "dkk/m2";
+            propertiesDataGridView.Columns["SqmPrice"].DefaultCellStyle.Format = "N0";
             propertiesDataGridView.Columns["Sælger"].DisplayIndex = 7;
         }
 
@@ -108,7 +119,7 @@ namespace RealSuite.UserControls
                 var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
                 var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
                 var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
-                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ');
+                var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
                 _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter, searchFilter);
                 resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
@@ -118,7 +129,6 @@ namespace RealSuite.UserControls
         public void Clear()
         {
             InitializeControls();
-            ApplyFilters();
         }
 
         private void SetTrackBarInitialValues()
@@ -177,7 +187,13 @@ namespace RealSuite.UserControls
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            RefreshFromDb();
+        }
+
+        public void RefreshFromDb()
+        {
             _propertyService.RefreshFromDb();
+            _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             ApplyFilters();
         }
 
@@ -239,19 +255,17 @@ namespace RealSuite.UserControls
 
         private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) ApplyFilters();
+            if (e.KeyCode == Keys.Enter)
+            {
+                ApplyFilters();
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void TopPanel_Click(object sender, EventArgs e)
         {
-            if (ActiveControl == searchTextBox)
-            {
-                ApplyFilters();
-            }
-            BeginInvoke(() =>
-            {
-                if (ContainsFocus) ParentForm!.ActiveControl = null;
-            });
+            if (ActiveControl == searchTextBox) ApplyFilters();
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
@@ -305,7 +319,7 @@ namespace RealSuite.UserControls
                     if (rowCreated == true)
                     {
                         MessageBox.Show("Boligen blev slettet.", "Succes");
-                        //refresh datagridview??
+                        RefreshFromDb();
                     }
                     else
                     {

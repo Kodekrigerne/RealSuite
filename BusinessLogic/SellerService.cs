@@ -1,7 +1,7 @@
-﻿using System.Data;
-using DataAccess;
+﻿using DataAccess;
 using Models;
 using Models.DTOModels;
+using System.Data;
 
 namespace BusinessLogic
 {
@@ -38,13 +38,28 @@ namespace BusinessLogic
             return false;
         }
 
-        public void ApplyFilters(string zipCode, string phoneNumber)
+        public void ApplyFilters(string zipCode, string phoneNumber, string[] search)
         {
             string zipCodeFilter = zipCode == "Alle" ? "ZipCode = ZipCode AND" : $"ZipCode = {zipCode} AND";
             string phoneNumberFilter = phoneNumber == "Alle" ? "PhoneNumber = PhoneNumber" : $"PhoneNumber = {phoneNumber}";
+            string searchFilter = string.Empty;
+            if (search.Length == 1)
+            {
+                searchFilter = $"AND (StreetName LIKE '%{search[0]}%' " +
+                    $"OR (StreetNumber + '') LIKE '{search[0]}' " +
+                    $"OR (ZipCode + '') LIKE '{search[0]}'" +
+                    $"OR FirstName LIKE '%{search[0]}%'" +
+                    $"OR LastName LIKE '%{search[0]}%'" +
+                    $"OR PhoneNumber LIKE '{search[0]}')";
+            }
+            else if (search.Length == 2)
+            {
+                searchFilter = $"AND ((StreetName LIKE '%{search[0]}%' AND (StreetNumber + '') LIKE '%{search[1]}%') " +
+                    $"OR (FirstName LIKE '%{search[0]}%' AND LastName LIKE '%{search[1]}%'))";
+            }
 
             SellersSource.Filter = string.Empty;
-            SellersSource.Filter += $"{zipCodeFilter} {phoneNumberFilter}";
+            SellersSource.Filter += $"{zipCodeFilter} {phoneNumberFilter} {searchFilter}";
         }
 
         public bool VerifySeller(Seller seller)

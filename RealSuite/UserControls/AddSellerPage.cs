@@ -1,9 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Models.DTOModels;
-
+using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
+using System.Text.RegularExpressions;
 
 namespace RealSuite.UserControls
 {
@@ -42,6 +42,7 @@ namespace RealSuite.UserControls
             {
                 MessageBox.Show("Sælger oprettet i databasen.", "Sælger oprettet");
                 Clear();
+                if (_navigation?.Pages[Pages.ViewSellers] is ViewSellersPage page) page.RefreshFromDb();
                 fornavnTextBox.Focus();
             }
             else
@@ -268,6 +269,11 @@ namespace RealSuite.UserControls
                     currentTextBox.Text = string.Empty;
                 }
             }
+        }
+
+        private void AddSellerPage_Click(object sender, EventArgs e)
+        {
+            if (ContainsFocus) ParentForm!.ActiveControl = null;
         }
     }
 }
