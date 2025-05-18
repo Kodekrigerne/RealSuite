@@ -269,7 +269,8 @@ namespace RealSuite.UserControls
                     MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
                         "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    _navigation.NavigateTo(Pages.ViewSellers);
+                    if (_navigation?.Pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RefreshFromDb();
+                    if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage viewPropertiesPage) viewPropertiesPage.RefreshFromDb();
                 }
                 else
                 {

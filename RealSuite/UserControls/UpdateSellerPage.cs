@@ -462,6 +462,8 @@ namespace RealSuite.UserControls
             if (rowUpdated == true)
             {
                 MessageBox.Show("Sælgerdata opdateret.", "Data opdateret");
+                if (_navigation?.Pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RefreshFromDb();
+                if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage viewPropertiesPage) viewPropertiesPage.RefreshFromDb();
                 SellerToUpdate = updatedSeller;
                 SetupPage();
             }
@@ -482,12 +484,12 @@ namespace RealSuite.UserControls
 
                 if (confirm == DialogResult.Yes)
                 {
-                    _navigation.NavigateTo(Pages.ViewSellers);
+                    _navigation?.NavigateTo(Pages.ViewSellers, false);
                 }
             }
             else
             {
-                _navigation.NavigateTo(Pages.ViewSellers);
+                _navigation?.NavigateTo(Pages.ViewSellers, false);
             }
         }
 
@@ -516,7 +518,9 @@ namespace RealSuite.UserControls
                     MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
                         "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    _navigation.NavigateTo(Pages.ViewSellers);
+                    if (_navigation?.Pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RefreshFromDb();
+                    if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage viewPropertiesPage) viewPropertiesPage.RefreshFromDb();
+                    _navigation?.NavigateTo(Pages.ViewSellers);
                 }
                 else
                 {
