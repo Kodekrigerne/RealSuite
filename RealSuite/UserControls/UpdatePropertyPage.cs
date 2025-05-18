@@ -353,5 +353,11 @@ namespace RealSuite.UserControls
         {
             if (ContainsFocus) ParentForm!.ActiveControl = null;
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            // Tilføj logik her
+            _navigation?.NavigateTo(Pages.ViewProperties, false);
+        }
     }
 }

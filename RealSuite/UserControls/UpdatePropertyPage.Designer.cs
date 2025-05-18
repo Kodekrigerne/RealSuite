@@ -130,6 +130,7 @@ namespace RealSuite.UserControls
             tilbage_button.TabStop = false;
             tilbage_button.Text = "Tilbage";
             tilbage_button.UseVisualStyleBackColor = true;
+            tilbage_button.Click += BackButton_Click;
             // 
             // vurdering_button
             // 
