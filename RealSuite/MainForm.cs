@@ -64,6 +64,7 @@ namespace RealSuite
             if (page is UpdateSellerPage updateSellerPage)
             {
                 updateSellerPage.SellerToUpdate = e.Seller;
+                updateSellerPage.SetupPage();
             }
 
             _navigation.NavigateTo(Pages.UpdateSeller);
