@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using BusinessLogic;
 using Models;
+using RealSuite.Enums;
 using RealSuite.Events;
 using RealSuite.Interfaces;
 using RealSuite.Services;
@@ -15,6 +16,7 @@ namespace RealSuite.UserControls
         private EnumerableRowCollection<DataRow>? _table;
         public event EventHandler<UpdateSellerEventArgs>? RowDoubleClick;
         private bool _suspendFiltering = false;
+        private int rowIndex;
 
         public ViewSellersPage()
         {
@@ -192,6 +194,57 @@ namespace RealSuite.UserControls
             var seller = new Seller(id, firstName, lastName, cprNumber, streetName, streetNumber, zipCode, phoneNumber);
             var args = new UpdateSellerEventArgs(seller);
             RowDoubleClick?.Invoke(this, args);
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            var row = sellersDataGridView.Rows[rowIndex];
+
+            Seller selectedSeller = new Seller(
+                Convert.ToInt32(row.Cells["Id"].Value),
+                row.Cells["FirstName"].Value.ToString() ?? "",
+                row.Cells["LastName"].Value.ToString() ?? "",
+                row.Cells["CprNumber"].Value.ToString()!.Replace("-", ""),
+                row.Cells["StreetName"].Value.ToString() ?? "",
+                Convert.ToInt32(row.Cells["StreetNumber"].Value),
+                Convert.ToInt32(row.Cells["ZipCode"].Value),
+                row.Cells["PhoneNumber"].Value.ToString() ?? "");
+
+            DialogResult answer = MessageBox.Show(
+                $"Dette vil slette SÆLGER-profilen '{selectedSeller.FirstName} {selectedSeller.LastName}' samt alle tilknyttede ejendomme. Denne handling kan ikke fortrydes." +
+                $"Ønsker du at fortsætte?",
+                "Sletning af SÆLGER", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+            if (answer == DialogResult.Yes)
+            {
+                var sellerDeleted = _sellerService.DeleteSeller(selectedSeller);
+
+                if (sellerDeleted == true)
+                {
+                    MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
+                        "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _navigation.NavigateTo(Pages.ViewSellers);
+                }
+                else
+                {
+                    MessageBox.Show("Noget gik galt under sletning af sælger. Prøv igen senere.",
+                        "Fejl under slettelse", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void sellersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            rowIndex = e.RowIndex;
+            if (e.RowIndex >= 0)
+            {
+                deleteButton.Enabled = true;
+            }
+            else
+            {
+                deleteButton.Enabled = false;
+            }
         }
     }
 }

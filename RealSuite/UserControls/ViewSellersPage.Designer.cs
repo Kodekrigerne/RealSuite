@@ -33,6 +33,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             sellersDataGridView = new RealSuite.CustomControls.RsDataGridView();
             topPanel = new Panel();
+            deleteButton = new Button();
             phoneNumberLabel = new Label();
             numberPanel = new Panel();
             phoneNumberComboBox = new ComboBox();
@@ -73,16 +74,18 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             sellersDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            sellersDataGridView.Location = new Point(0, 432);
-            sellersDataGridView.Margin = new Padding(9, 10, 9, 10);
+            sellersDataGridView.Location = new Point(0, 180);
+            sellersDataGridView.Margin = new Padding(4);
             sellersDataGridView.Name = "sellersDataGridView";
-            sellersDataGridView.Size = new Size(2320, 1014);
+            sellersDataGridView.Size = new Size(928, 422);
             sellersDataGridView.TabIndex = 0;
+            sellersDataGridView.CellClick += sellersDataGridView_CellClick;
             sellersDataGridView.CellDoubleClick += SellersDataGridView_CellDoubleClick;
             // 
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(deleteButton);
             topPanel.Controls.Add(phoneNumberLabel);
             topPanel.Controls.Add(numberPanel);
             topPanel.Controls.Add(zipCodeFilterLabel);
@@ -94,10 +97,20 @@
             topPanel.Controls.Add(refreshButton);
             topPanel.Dock = DockStyle.Top;
             topPanel.Location = new Point(0, 0);
-            topPanel.Margin = new Padding(9, 10, 9, 10);
+            topPanel.Margin = new Padding(4);
             topPanel.Name = "topPanel";
-            topPanel.Size = new Size(2320, 435);
+            topPanel.Size = new Size(928, 181);
             topPanel.TabIndex = 2;
+            // 
+            // deleteButton
+            // 
+            deleteButton.Location = new Point(740, 16);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(163, 29);
+            deleteButton.TabIndex = 92;
+            deleteButton.Text = "Slet sælger";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // phoneNumberLabel
             // 
@@ -105,10 +118,10 @@
             phoneNumberLabel.BackColor = Color.FromArgb(100, 131, 184);
             phoneNumberLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             phoneNumberLabel.ForeColor = Color.White;
-            phoneNumberLabel.Location = new Point(311, 38);
-            phoneNumberLabel.Margin = new Padding(9, 0, 9, 0);
+            phoneNumberLabel.Location = new Point(124, 16);
+            phoneNumberLabel.Margin = new Padding(4, 0, 4, 0);
             phoneNumberLabel.Name = "phoneNumberLabel";
-            phoneNumberLabel.Size = new Size(145, 58);
+            phoneNumberLabel.Size = new Size(63, 26);
             phoneNumberLabel.TabIndex = 25;
             phoneNumberLabel.Text = "Tlfnr.";
             // 
@@ -116,10 +129,10 @@
             // 
             numberPanel.BackColor = Color.FromArgb(179, 215, 232);
             numberPanel.Controls.Add(phoneNumberComboBox);
-            numberPanel.Location = new Point(311, 99);
-            numberPanel.Margin = new Padding(9, 10, 9, 10);
+            numberPanel.Location = new Point(124, 41);
+            numberPanel.Margin = new Padding(4);
             numberPanel.Name = "numberPanel";
-            numberPanel.Size = new Size(314, 125);
+            numberPanel.Size = new Size(126, 52);
             numberPanel.TabIndex = 24;
             // 
             // phoneNumberComboBox
@@ -128,10 +141,10 @@
             phoneNumberComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             phoneNumberComboBox.FormattingEnabled = true;
             phoneNumberComboBox.Items.AddRange(new object[] { "Alle" });
-            phoneNumberComboBox.Location = new Point(23, 19);
-            phoneNumberComboBox.Margin = new Padding(9, 10, 9, 10);
+            phoneNumberComboBox.Location = new Point(9, 8);
+            phoneNumberComboBox.Margin = new Padding(4);
             phoneNumberComboBox.Name = "phoneNumberComboBox";
-            phoneNumberComboBox.Size = new Size(264, 59);
+            phoneNumberComboBox.Size = new Size(108, 29);
             phoneNumberComboBox.TabIndex = 22;
             phoneNumberComboBox.SelectedValueChanged += PhoneNumberComboBox_SelectedValueChanged;
             // 
@@ -141,10 +154,10 @@
             zipCodeFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             zipCodeFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             zipCodeFilterLabel.ForeColor = Color.White;
-            zipCodeFilterLabel.Location = new Point(40, 38);
-            zipCodeFilterLabel.Margin = new Padding(9, 0, 9, 0);
+            zipCodeFilterLabel.Location = new Point(16, 16);
+            zipCodeFilterLabel.Margin = new Padding(4, 0, 4, 0);
             zipCodeFilterLabel.Name = "zipCodeFilterLabel";
-            zipCodeFilterLabel.Size = new Size(171, 58);
+            zipCodeFilterLabel.Size = new Size(73, 26);
             zipCodeFilterLabel.TabIndex = 24;
             zipCodeFilterLabel.Text = "Postnr";
             // 
@@ -152,10 +165,10 @@
             // 
             zipCodePanel.BackColor = Color.FromArgb(179, 215, 232);
             zipCodePanel.Controls.Add(zipCodeComboBox);
-            zipCodePanel.Location = new Point(40, 99);
-            zipCodePanel.Margin = new Padding(9, 10, 9, 10);
+            zipCodePanel.Location = new Point(16, 41);
+            zipCodePanel.Margin = new Padding(4);
             zipCodePanel.Name = "zipCodePanel";
-            zipCodePanel.Size = new Size(226, 125);
+            zipCodePanel.Size = new Size(90, 52);
             zipCodePanel.TabIndex = 23;
             // 
             // zipCodeComboBox
@@ -164,10 +177,10 @@
             zipCodeComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             zipCodeComboBox.FormattingEnabled = true;
             zipCodeComboBox.Items.AddRange(new object[] { "Alle" });
-            zipCodeComboBox.Location = new Point(23, 19);
-            zipCodeComboBox.Margin = new Padding(9, 10, 9, 10);
+            zipCodeComboBox.Location = new Point(9, 8);
+            zipCodeComboBox.Margin = new Padding(4);
             zipCodeComboBox.Name = "zipCodeComboBox";
-            zipCodeComboBox.Size = new Size(175, 59);
+            zipCodeComboBox.Size = new Size(72, 29);
             zipCodeComboBox.TabIndex = 22;
             zipCodeComboBox.SelectedValueChanged += ZipCodeComboBox_SelectedValueChanged;
             // 
@@ -176,10 +189,10 @@
             resultsLabel.AutoSize = true;
             resultsLabel.BackColor = Color.FromArgb(243, 239, 218);
             resultsLabel.Font = new Font("Microsoft YaHei", 10.5F, FontStyle.Italic);
-            resultsLabel.Location = new Point(34, 336);
-            resultsLabel.Margin = new Padding(9, 0, 9, 0);
+            resultsLabel.Location = new Point(14, 140);
+            resultsLabel.Margin = new Padding(4, 0, 4, 0);
             resultsLabel.Name = "resultsLabel";
-            resultsLabel.Size = new Size(42, 55);
+            resultsLabel.Size = new Size(18, 24);
             resultsLabel.TabIndex = 21;
             resultsLabel.Text = "-";
             // 
@@ -188,10 +201,10 @@
             clearButtonIconPanel.BackColor = Color.PeachPuff;
             clearButtonIconPanel.BackgroundImage = Properties.Resources.ClearPropertyFiltersIcon;
             clearButtonIconPanel.BackgroundImageLayout = ImageLayout.Stretch;
-            clearButtonIconPanel.Location = new Point(2183, 310);
-            clearButtonIconPanel.Margin = new Padding(9, 10, 9, 10);
+            clearButtonIconPanel.Location = new Point(873, 129);
+            clearButtonIconPanel.Margin = new Padding(4);
             clearButtonIconPanel.Name = "clearButtonIconPanel";
-            clearButtonIconPanel.Size = new Size(74, 86);
+            clearButtonIconPanel.Size = new Size(30, 36);
             clearButtonIconPanel.TabIndex = 11;
             // 
             // refreshIconPanel
@@ -199,20 +212,20 @@
             refreshIconPanel.BackColor = Color.FromArgb(142, 221, 188);
             refreshIconPanel.BackgroundImage = Properties.Resources.Refresh_Properties_Logo;
             refreshIconPanel.BackgroundImageLayout = ImageLayout.Stretch;
-            refreshIconPanel.Location = new Point(1774, 317);
-            refreshIconPanel.Margin = new Padding(9, 10, 9, 10);
+            refreshIconPanel.Location = new Point(710, 132);
+            refreshIconPanel.Margin = new Padding(4);
             refreshIconPanel.Name = "refreshIconPanel";
-            refreshIconPanel.Size = new Size(66, 74);
+            refreshIconPanel.Size = new Size(26, 31);
             refreshIconPanel.TabIndex = 10;
             // 
             // clearButton
             // 
             clearButton.BackColor = Color.PeachPuff;
             clearButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            clearButton.Location = new Point(1917, 285);
-            clearButton.Margin = new Padding(9, 6, 9, 6);
+            clearButton.Location = new Point(767, 119);
+            clearButton.Margin = new Padding(4, 2, 4, 2);
             clearButton.Name = "clearButton";
-            clearButton.Size = new Size(366, 138);
+            clearButton.Size = new Size(146, 58);
             clearButton.TabIndex = 9;
             clearButton.Text = "Ryd filtre     ";
             clearButton.UseVisualStyleBackColor = false;
@@ -226,10 +239,10 @@
             // 
             refreshButton.BackColor = Color.FromArgb(148, 216, 200);
             refreshButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            refreshButton.Location = new Point(1454, 285);
-            refreshButton.Margin = new Padding(9, 6, 9, 6);
+            refreshButton.Location = new Point(582, 119);
+            refreshButton.Margin = new Padding(4, 2, 4, 2);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(417, 138);
+            refreshButton.Size = new Size(167, 58);
             refreshButton.TabIndex = 8;
             refreshButton.Text = "Genindlæs    ";
             refreshButton.UseVisualStyleBackColor = false;
@@ -241,13 +254,13 @@
             // 
             // ViewSellersPage
             // 
-            AutoScaleDimensions = new SizeF(20F, 48F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(topPanel);
             Controls.Add(sellersDataGridView);
-            Margin = new Padding(9, 6, 9, 6);
+            Margin = new Padding(4, 2, 4, 2);
             Name = "ViewSellersPage";
-            Size = new Size(2320, 1446);
+            Size = new Size(928, 602);
             ((System.ComponentModel.ISupportInitialize)sellersDataGridView).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
@@ -274,5 +287,6 @@
         private ComboBox phoneNumberComboBox;
         private Label phoneNumberLabel;
         private Panel panel7;
+        private Button deleteButton;
     }
 }
