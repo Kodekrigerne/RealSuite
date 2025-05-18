@@ -33,6 +33,8 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             sellersDataGridView = new RealSuite.CustomControls.RsDataGridView();
             topPanel = new Panel();
+            clearTextButton = new Label();
+            searchTextBox = new TextBox();
             phoneNumberLabel = new Label();
             numberPanel = new Panel();
             phoneNumberComboBox = new ComboBox();
@@ -44,10 +46,12 @@
             refreshIconPanel = new Panel();
             clearButton = new Button();
             refreshButton = new Button();
+            searchInfoPictureBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)sellersDataGridView).BeginInit();
             topPanel.SuspendLayout();
             numberPanel.SuspendLayout();
             zipCodePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).BeginInit();
             SuspendLayout();
             // 
             // sellersDataGridView
@@ -84,6 +88,9 @@
             // topPanel
             // 
             topPanel.BackColor = Color.FromArgb(228, 221, 177);
+            topPanel.Controls.Add(searchInfoPictureBox);
+            topPanel.Controls.Add(clearTextButton);
+            topPanel.Controls.Add(searchTextBox);
             topPanel.Controls.Add(phoneNumberLabel);
             topPanel.Controls.Add(numberPanel);
             topPanel.Controls.Add(zipCodeFilterLabel);
@@ -100,6 +107,31 @@
             topPanel.Size = new Size(2320, 435);
             topPanel.TabIndex = 2;
             topPanel.Click += TopPanel_Click;
+            // 
+            // clearTextButton
+            // 
+            clearTextButton.AutoSize = true;
+            clearTextButton.BackColor = Color.White;
+            clearTextButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clearTextButton.ForeColor = Color.Red;
+            clearTextButton.Location = new Point(660, 335);
+            clearTextButton.Margin = new Padding(8, 0, 8, 0);
+            clearTextButton.Name = "clearTextButton";
+            clearTextButton.Size = new Size(51, 55);
+            clearTextButton.TabIndex = 27;
+            clearTextButton.Text = "X";
+            clearTextButton.Visible = false;
+            clearTextButton.Click += ClearTextButton_Click;
+            // 
+            // searchTextBox
+            // 
+            searchTextBox.Font = new Font("Microsoft YaHei", 9.75F);
+            searchTextBox.Location = new Point(174, 332);
+            searchTextBox.Name = "searchTextBox";
+            searchTextBox.Size = new Size(544, 59);
+            searchTextBox.TabIndex = 26;
+            searchTextBox.TextChanged += SearchTextBox_TextChanged;
+            searchTextBox.KeyDown += SearchTextBox_KeyDown;
             // 
             // phoneNumberLabel
             // 
@@ -241,6 +273,14 @@
             refreshButton.MouseLeave += RefreshButton_MouseLeave;
             refreshButton.MouseUp += RefreshButton_MouseUp;
             // 
+            // searchInfoPictureBox
+            // 
+            searchInfoPictureBox.Location = new Point(724, 339);
+            searchInfoPictureBox.Name = "searchInfoPictureBox";
+            searchInfoPictureBox.Size = new Size(45, 45);
+            searchInfoPictureBox.TabIndex = 29;
+            searchInfoPictureBox.TabStop = false;
+            // 
             // ViewSellersPage
             // 
             AutoScaleDimensions = new SizeF(20F, 48F);
@@ -255,6 +295,7 @@
             topPanel.PerformLayout();
             numberPanel.ResumeLayout(false);
             zipCodePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)searchInfoPictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -276,5 +317,8 @@
         private ComboBox phoneNumberComboBox;
         private Label phoneNumberLabel;
         private Panel panel7;
+        private TextBox searchTextBox;
+        private Label clearTextButton;
+        private PictureBox searchInfoPictureBox;
     }
 }

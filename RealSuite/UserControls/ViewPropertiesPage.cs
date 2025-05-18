@@ -23,16 +23,21 @@ namespace RealSuite.UserControls
             _table = ((DataTable)_propertyService.PropertiesSource.DataSource).AsEnumerable();
             InitializeControls();
             SetColumns();
-            searchInfoPictureBox.Image = SystemIcons.Information.ToBitmap();
-            searchInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            var searchtoolTip = new ToolTip();
-            searchtoolTip.SetToolTip(searchInfoPictureBox, "Søg efter adresse, navn på sælger, postnummer eller år");
+            SetSearchToolTip();
             _suspendFiltering = false;
         }
 
         public void SetNavigation(NavigationService navigation)
         {
             _navigation = navigation;
+        }
+
+        private void SetSearchToolTip()
+        {
+            searchInfoPictureBox.Image = SystemIcons.Information.ToBitmap();
+            searchInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            var searchtoolTip = new ToolTip();
+            searchtoolTip.SetToolTip(searchInfoPictureBox, "Søg efter adresse, navn på sælger, postnummer eller år.");
         }
 
         private void InitializeControls()
@@ -259,10 +264,7 @@ namespace RealSuite.UserControls
 
         private void TopPanel_Click(object sender, EventArgs e)
         {
-            if (ActiveControl == searchTextBox)
-            {
-                ApplyFilters();
-            }
+            if (ActiveControl == searchTextBox) ApplyFilters();
             if (ContainsFocus) ParentForm!.ActiveControl = null;
         }
 

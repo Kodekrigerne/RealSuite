@@ -23,12 +23,21 @@ namespace RealSuite.UserControls
             InitializeControls();
             RenameColumns();
             ReFormatCPRNumber();
+            SetSearchToolTip();
             _suspendFiltering = false;
         }
 
         public void SetNavigation(NavigationService navigation)
         {
             _navigation = navigation;
+        }
+
+        private void SetSearchToolTip()
+        {
+            searchInfoPictureBox.Image = SystemIcons.Information.ToBitmap();
+            searchInfoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            var searchtoolTip = new ToolTip();
+            searchtoolTip.SetToolTip(searchInfoPictureBox, "Søg efter sælgers navn, adresse, postnummer eller telefonnummer.");
         }
 
         private void InitializeControls()
@@ -38,6 +47,7 @@ namespace RealSuite.UserControls
             phoneNumberComboBox.SelectedItem = "Alle";
             SetZipCodeComboBox();
             SetPhoneNumberComboBox();
+            searchTextBox.Text = string.Empty;
             _suspendFiltering = false;
             ApplyFilters();
         }
@@ -50,6 +60,7 @@ namespace RealSuite.UserControls
                 var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString();
                 phoneNumberComboBox.SelectedItem ??= "Alle";
                 var phoneNumberFilter = phoneNumberComboBox.SelectedItem!.ToString();
+                var searchFilter = searchTextBox.Text;
 
                 _sellerService.ApplyFilters(zipCodeFilter!, phoneNumberFilter!);
                 resultsLabel.Text = $"Resultater: {sellersDataGridView.Rows.Count}";
@@ -207,7 +218,28 @@ namespace RealSuite.UserControls
 
         private void TopPanel_Click(object sender, EventArgs e)
         {
+            if (ActiveControl == searchTextBox) ApplyFilters();
             if (ContainsFocus) ParentForm!.ActiveControl = null;
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ApplyFilters();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void ClearTextButton_Click(object sender, EventArgs e)
+        {
+            searchTextBox.Text = string.Empty;
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (searchTextBox.Text == string.Empty) clearTextButton.Visible = false;
+            else clearTextButton.Visible = true;
         }
     }
 }
