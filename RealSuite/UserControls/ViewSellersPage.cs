@@ -23,7 +23,6 @@ namespace RealSuite.UserControls
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             InitializeControls();
             RenameColumns();
-            FormatColumns();
             SetSearchToolTip();
             _suspendFiltering = false;
         }
@@ -79,23 +78,22 @@ namespace RealSuite.UserControls
             sellersDataGridView.Columns["PhoneNumber"].HeaderText = "Telefon-nr.";
         }
 
-        public void FormatColumns()
+        private void SellersDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow row in sellersDataGridView.Rows)
+            if (sellersDataGridView.Columns[e.ColumnIndex].Name == "CprNumber" && e.Value != null)
             {
-                if (row.Cells["CprNumber"] != null && row.Cells["CprNumber"].Value.ToString()![6] != '-')
-                {
-                    string cprNumber = row.Cells["CprNumber"].Value.ToString()!;
-                    string cprNumberFormatted = $"{cprNumber[0..6]}-{cprNumber[6..10]}";
-                    row.Cells["CprNumber"].Value = cprNumberFormatted;
-                }
+                var cprNumber = e.Value.ToString()!;
+                var cprNumberFormatted = $"{cprNumber[0..6]}-{cprNumber[6..10]}";
+                e.Value = cprNumberFormatted;
+                e.FormattingApplied = true;
+            }
 
-                if (row.Cells["PhoneNumber"] != null && row.Cells["PhoneNumber"].Value.ToString()![4] != ' ')
-                {
-                    string phoneNumber = row.Cells["PhoneNumber"].Value.ToString()!;
-                    string phoneNumberFormatted = $"{phoneNumber[0..4]} {phoneNumber[4..8]}";
-                    row.Cells["PhoneNumber"].Value = phoneNumberFormatted;
-                }
+            if (sellersDataGridView.Columns[e.ColumnIndex].Name == "PhoneNumber" && e.Value != null)
+            {
+                var phoneNumber = e.Value.ToString()!;
+                var phoneNumberFormatted = $"{phoneNumber[0..4]} {phoneNumber[4..8]}";
+                e.Value = phoneNumberFormatted;
+                e.FormattingApplied = true;
             }
         }
 
@@ -144,7 +142,6 @@ namespace RealSuite.UserControls
         {
             _sellerService.RefreshFromDB();
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
-            FormatColumns();
             ApplyFilters();
         }
 
