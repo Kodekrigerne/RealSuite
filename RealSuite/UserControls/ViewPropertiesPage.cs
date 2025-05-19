@@ -1,9 +1,9 @@
-﻿using BusinessLogic;
+﻿using System.Data;
+using BusinessLogic;
 using Models;
 using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
-using System.Data;
 
 namespace RealSuite.UserControls
 {
@@ -243,7 +243,7 @@ namespace RealSuite.UserControls
 
             if (_navigation?.Pages[Pages.UpdateProperty] is UpdatePropertyPage page)
             {
-                page.SetupPageDetails(property);
+                page.SetupPageDetails(property, row.Cells["Sælger"].Value.ToString()!);
                 _navigation.NavigateTo(Pages.UpdateProperty);
             }
         }

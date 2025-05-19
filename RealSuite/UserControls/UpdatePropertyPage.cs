@@ -41,7 +41,7 @@ namespace RealSuite.UserControls
             addSellerGrid.Visible = false;
         }
 
-        public void SetupPageDetails(Property property)
+        public void SetupPageDetails(Property property, string sellerName)
         {
             _propertyToUpdate = property;
 
@@ -54,6 +54,7 @@ namespace RealSuite.UserControls
                 byggeår_textbox.Text = _propertyToUpdate.BuildYear.ToString();
                 kvm_textbox.Text = _propertyToUpdate.SquareMeters.ToString();
                 sælgerID_textbox.Text = _propertyToUpdate.SellerId.ToString();
+                sælgernavn_textbox.Text = sellerName;
                 pris_textbox.Value = Convert.ToInt32(_propertyToUpdate.Price);
                 ejendomsmæglerID_textbox.Text = "1000";
                 ejendomsmægler_textbox.Text = "Maria Thodegaard";

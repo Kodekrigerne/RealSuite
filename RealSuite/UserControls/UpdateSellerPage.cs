@@ -440,7 +440,7 @@ namespace RealSuite.UserControls
 
             if (_navigation?.Pages[Pages.UpdateProperty] is UpdatePropertyPage page)
             {
-                page.SetupPageDetails(property);
+                page.SetupPageDetails(property, $"{SellerToUpdate.FirstName} {SellerToUpdate.LastName}");
                 _navigation.NavigateTo(Pages.UpdateProperty);
             }
         }
