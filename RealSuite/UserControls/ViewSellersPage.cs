@@ -1,9 +1,9 @@
-﻿using BusinessLogic;
+﻿using System.Data;
+using BusinessLogic;
 using Models;
 using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
-using System.Data;
 
 namespace RealSuite.UserControls
 {
@@ -23,7 +23,6 @@ namespace RealSuite.UserControls
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
             InitializeControls();
             RenameColumns();
-            ReFormatCPRNumber();
             SetSearchToolTip();
             _suspendFiltering = false;
         }
@@ -79,16 +78,22 @@ namespace RealSuite.UserControls
             sellersDataGridView.Columns["PhoneNumber"].HeaderText = "Telefon-nr.";
         }
 
-        public void ReFormatCPRNumber()
+        private void SellersDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow row in sellersDataGridView.Rows)
+            if (sellersDataGridView.Columns[e.ColumnIndex].Name == "CprNumber" && e.Value != null)
             {
-                if (row.Cells["CprNumber"] != null && row.Cells["CprNumber"].Value.ToString()[6] != '-')
-                {
-                    string cpr = row.Cells["CprNumber"].Value.ToString()!;
-                    string cprReformatted = $"{cpr[0..6]}-{cpr[6..10]}";
-                    row.Cells["CprNumber"].Value = cprReformatted;
-                }
+                var cprNumber = e.Value.ToString()!;
+                var cprNumberFormatted = $"{cprNumber[0..6]}-{cprNumber[6..10]}";
+                e.Value = cprNumberFormatted;
+                e.FormattingApplied = true;
+            }
+
+            if (sellersDataGridView.Columns[e.ColumnIndex].Name == "PhoneNumber" && e.Value != null)
+            {
+                var phoneNumber = e.Value.ToString()!;
+                var phoneNumberFormatted = $"{phoneNumber[0..4]} {phoneNumber[4..8]}";
+                e.Value = phoneNumberFormatted;
+                e.FormattingApplied = true;
             }
         }
 
@@ -137,7 +142,6 @@ namespace RealSuite.UserControls
         {
             _sellerService.RefreshFromDB();
             _table = ((DataTable)_sellerService.SellersSource.DataSource).AsEnumerable();
-            ReFormatCPRNumber();
             ApplyFilters();
         }
 

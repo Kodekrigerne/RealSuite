@@ -250,7 +250,7 @@ namespace RealSuite.UserControls
             // 
             squaremeter_checkbox.AutoSize = true;
             squaremeter_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            squaremeter_checkbox.ForeColor = Color.Green;
+            squaremeter_checkbox.ForeColor = Color.LightGreen;
             squaremeter_checkbox.Location = new Point(307, 250);
             squaremeter_checkbox.Name = "squaremeter_checkbox";
             squaremeter_checkbox.Size = new Size(28, 24);
@@ -262,7 +262,7 @@ namespace RealSuite.UserControls
             // 
             buildyear_checkbox.AutoSize = true;
             buildyear_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            buildyear_checkbox.ForeColor = Color.Green;
+            buildyear_checkbox.ForeColor = Color.LightGreen;
             buildyear_checkbox.Location = new Point(307, 207);
             buildyear_checkbox.Name = "buildyear_checkbox";
             buildyear_checkbox.Size = new Size(28, 24);
@@ -274,7 +274,7 @@ namespace RealSuite.UserControls
             // 
             zip_checkbox.AutoSize = true;
             zip_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            zip_checkbox.ForeColor = Color.Green;
+            zip_checkbox.ForeColor = Color.LightGreen;
             zip_checkbox.Location = new Point(307, 166);
             zip_checkbox.Name = "zip_checkbox";
             zip_checkbox.Size = new Size(28, 24);
@@ -286,7 +286,7 @@ namespace RealSuite.UserControls
             // 
             streetnumber_checklabel.AutoSize = true;
             streetnumber_checklabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            streetnumber_checklabel.ForeColor = Color.Green;
+            streetnumber_checklabel.ForeColor = Color.LightGreen;
             streetnumber_checklabel.Location = new Point(307, 118);
             streetnumber_checklabel.Name = "streetnumber_checklabel";
             streetnumber_checklabel.Size = new Size(28, 24);
@@ -298,7 +298,7 @@ namespace RealSuite.UserControls
             // 
             streetname_checklabel.AutoSize = true;
             streetname_checklabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            streetname_checklabel.ForeColor = Color.Green;
+            streetname_checklabel.ForeColor = Color.LightGreen;
             streetname_checklabel.Location = new Point(307, 71);
             streetname_checklabel.Name = "streetname_checklabel";
             streetname_checklabel.Size = new Size(28, 24);

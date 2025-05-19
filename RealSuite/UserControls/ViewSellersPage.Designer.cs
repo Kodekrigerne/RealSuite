@@ -86,6 +86,7 @@
             sellersDataGridView.TabIndex = 0;
             sellersDataGridView.CellClick += sellersDataGridView_CellClick;
             sellersDataGridView.CellDoubleClick += SellersDataGridView_CellDoubleClick;
+            sellersDataGridView.CellFormatting += SellersDataGridView_CellFormatting;
             // 
             // topPanel
             // 

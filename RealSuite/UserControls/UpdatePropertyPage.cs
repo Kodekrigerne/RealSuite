@@ -175,14 +175,14 @@ namespace RealSuite.UserControls
         {
             var sellerDataTable = sellerService.GetSellers();
             addSellerGrid.DataSource = sellerDataTable;
-            addSellerGrid.Columns[0].HeaderText = "ID";
-            addSellerGrid.Columns[1].HeaderText = "Fornavn";
-            addSellerGrid.Columns[2].HeaderText = "Efternavn";
-            addSellerGrid.Columns[3].Visible = false;
-            addSellerGrid.Columns[4].Visible = false;
-            addSellerGrid.Columns[5].Visible = false;
-            addSellerGrid.Columns[6].Visible = false;
-            addSellerGrid.Columns[7].HeaderText = "Telefon";
+            addSellerGrid.Columns["Id"].HeaderText = "ID";
+            addSellerGrid.Columns["FirstName"].HeaderText = "Fornavn";
+            addSellerGrid.Columns["LastName"].HeaderText = "Efternavn";
+            addSellerGrid.Columns["CprNumber"].Visible = false;
+            addSellerGrid.Columns["StreetName"].Visible = false;
+            addSellerGrid.Columns["StreetNumber"].Visible = false;
+            addSellerGrid.Columns["ZipCode"].Visible = false;
+            addSellerGrid.Columns["PhoneNumber"].HeaderText = "Telefon";
         }
 
         private void addSellerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -225,7 +225,7 @@ namespace RealSuite.UserControls
             else
             {
                 streetname_checklabel.Text = "P";
-                streetname_checklabel.ForeColor = Color.Green;
+                streetname_checklabel.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
         }
@@ -240,7 +240,7 @@ namespace RealSuite.UserControls
             else
             {
                 streetnumber_checklabel.Text = "P";
-                streetnumber_checklabel.ForeColor = Color.Green;
+                streetnumber_checklabel.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
         }
@@ -255,7 +255,7 @@ namespace RealSuite.UserControls
             else
             {
                 zip_checkbox.Text = "P";
-                zip_checkbox.ForeColor = Color.Green;
+                zip_checkbox.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
             GetAssessment();
@@ -271,7 +271,7 @@ namespace RealSuite.UserControls
             else
             {
                 buildyear_checkbox.Text = "P";
-                buildyear_checkbox.ForeColor = Color.Green;
+                buildyear_checkbox.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
             GetAssessment();
@@ -287,7 +287,7 @@ namespace RealSuite.UserControls
             else
             {
                 squaremeter_checkbox.Text = "P";
-                squaremeter_checkbox.ForeColor = Color.Green;
+                squaremeter_checkbox.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
             GetAssessment();

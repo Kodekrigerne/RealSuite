@@ -35,8 +35,8 @@ namespace DataAccess
         public bool CreateProperty(PropertyDTO propertyDTO)
         {
             string query =
-                "INSERT INTO Properties(StreetName, StreetNumber, ZipCode, BuildYear, SquareMeters, SellerID, Price, RealtorID, DateListed, Sold) " +
-                "VALUES(@StreetName, @StreetNumber, @ZipCode, @BuildYear, @SquareMeters, @SellerID, @Price, @RealtorID, @DateListed, @Sold)";
+                "INSERT INTO Properties(StreetName, StreetNumber, ZipCode, BuildYear, SquareMeters, SellerID, Price, RealtorID, DateListed, DateSold, Sold) " +
+                "VALUES(@StreetName, @StreetNumber, @ZipCode, @BuildYear, @SquareMeters, @SellerID, @Price, @RealtorID, @DateListed, @DateSold, @Sold)";
 
             int rowsAffected = 0;
 
@@ -55,6 +55,14 @@ namespace DataAccess
                     command.Parameters.AddWithValue("@Price", propertyDTO.Price);
                     command.Parameters.AddWithValue("@RealtorID", propertyDTO.RealtorId);
                     command.Parameters.AddWithValue("@DateListed", propertyDTO.DateListed);
+                    if (propertyDTO.DateSold == null)
+                    {
+                        command.Parameters.AddWithValue("@DateSold", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@DateSold", propertyDTO.DateSold);
+                    }
                     command.Parameters.AddWithValue("@Sold", propertyDTO.Sold);
 
                     rowsAffected = command.ExecuteNonQuery();
