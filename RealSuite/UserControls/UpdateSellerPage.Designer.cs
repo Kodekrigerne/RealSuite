@@ -484,6 +484,7 @@
             Controls.Add(fornavnLabel);
             Name = "UpdateSellerPage";
             Size = new Size(928, 603);
+            Click += UpdateSellerPage_Click;
             ((System.ComponentModel.ISupportInitialize)soldPropertiesDataGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)listedPropertiesDataGrid).EndInit();
             ResumeLayout(false);

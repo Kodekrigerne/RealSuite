@@ -74,9 +74,9 @@
             vejnavnLabel.AutoSize = true;
             vejnavnLabel.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             vejnavnLabel.ForeColor = Color.White;
-            vejnavnLabel.Location = new Point(15, 17);
+            vejnavnLabel.Location = new Point(17, 23);
             vejnavnLabel.Name = "vejnavnLabel";
-            vejnavnLabel.Size = new Size(61, 17);
+            vejnavnLabel.Size = new Size(76, 19);
             vejnavnLabel.TabIndex = 3;
             vejnavnLabel.Text = "Vejnavn:";
             // 
@@ -85,9 +85,9 @@
             vejNrLabel.AutoSize = true;
             vejNrLabel.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             vejNrLabel.ForeColor = Color.White;
-            vejNrLabel.Location = new Point(179, 18);
+            vejNrLabel.Location = new Point(205, 24);
             vejNrLabel.Name = "vejNrLabel";
-            vejNrLabel.Size = new Size(51, 17);
+            vejNrLabel.Size = new Size(62, 19);
             vejNrLabel.TabIndex = 4;
             vejNrLabel.Text = "Vej nr.:";
             // 
@@ -96,82 +96,75 @@
             postNrLabel.AutoSize = true;
             postNrLabel.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             postNrLabel.ForeColor = Color.White;
-            postNrLabel.Location = new Point(345, 17);
+            postNrLabel.Location = new Point(394, 23);
             postNrLabel.Name = "postNrLabel";
-            postNrLabel.Size = new Size(54, 17);
+            postNrLabel.Size = new Size(66, 19);
             postNrLabel.TabIndex = 5;
             postNrLabel.Text = "Postnr.:";
             // 
             // fornavnTextBox
             // 
-            fornavnTextBox.Location = new Point(15, 30);
-            fornavnTextBox.Margin = new Padding(3, 2, 3, 2);
+            fornavnTextBox.Location = new Point(17, 40);
             fornavnTextBox.Name = "fornavnTextBox";
-            fornavnTextBox.Size = new Size(107, 23);
+            fornavnTextBox.Size = new Size(122, 27);
             fornavnTextBox.TabIndex = 1;
             fornavnTextBox.TextChanged += fornavnTextBox_TextChanged;
             fornavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // efternavnTextBox
             // 
-            efternavnTextBox.Location = new Point(157, 31);
-            efternavnTextBox.Margin = new Padding(3, 2, 3, 2);
+            efternavnTextBox.Location = new Point(179, 41);
             efternavnTextBox.Name = "efternavnTextBox";
-            efternavnTextBox.Size = new Size(110, 23);
+            efternavnTextBox.Size = new Size(125, 27);
             efternavnTextBox.TabIndex = 2;
             efternavnTextBox.TextChanged += efternavnTextBox_TextChanged;
             efternavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // telefonTextBox
             // 
-            telefonTextBox.Location = new Point(37, 327);
-            telefonTextBox.Margin = new Padding(3, 2, 3, 2);
+            telefonTextBox.Location = new Point(42, 436);
             telefonTextBox.MaxLength = 8;
             telefonTextBox.Name = "telefonTextBox";
-            telefonTextBox.Size = new Size(110, 23);
+            telefonTextBox.Size = new Size(125, 27);
             telefonTextBox.TabIndex = 8;
             telefonTextBox.TextChanged += telefonTextBox_TextChanged;
             telefonTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // cprNrTextBox
             // 
-            cprNrTextBox.Location = new Point(11, 18);
-            cprNrTextBox.Margin = new Padding(3, 2, 3, 2);
+            cprNrTextBox.Location = new Point(13, 24);
             cprNrTextBox.MaxLength = 6;
             cprNrTextBox.Name = "cprNrTextBox";
-            cprNrTextBox.Size = new Size(110, 23);
+            cprNrTextBox.Size = new Size(125, 27);
             cprNrTextBox.TabIndex = 3;
             cprNrTextBox.TextChanged += cprNrTextBox_TextChanged;
             cprNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // vejnavnTextBox
             // 
-            vejnavnTextBox.Location = new Point(15, 40);
-            vejnavnTextBox.Margin = new Padding(3, 2, 3, 2);
+            vejnavnTextBox.Location = new Point(17, 53);
             vejnavnTextBox.Name = "vejnavnTextBox";
-            vejnavnTextBox.Size = new Size(110, 23);
+            vejnavnTextBox.Size = new Size(125, 27);
             vejnavnTextBox.TabIndex = 5;
             vejnavnTextBox.TextChanged += vejnavnTextBox_TextChanged;
             vejnavnTextBox.KeyPress += HandleLetter_KeyPress;
             // 
             // vejNrTextBox
             // 
-            vejNrTextBox.Location = new Point(177, 40);
-            vejNrTextBox.Margin = new Padding(3, 2, 3, 2);
+            vejNrTextBox.Location = new Point(202, 53);
             vejNrTextBox.MaxLength = 4;
             vejNrTextBox.Name = "vejNrTextBox";
-            vejNrTextBox.Size = new Size(110, 23);
+            vejNrTextBox.Size = new Size(125, 27);
             vejNrTextBox.TabIndex = 6;
             vejNrTextBox.TextChanged += vejNrTextBox_TextChanged;
             vejNrTextBox.KeyPress += HandleDigit_KeyPress;
             // 
             // postNrTextBox
             // 
-            postNrTextBox.Location = new Point(340, 40);
-            postNrTextBox.Margin = new Padding(3, 2, 3, 2);
+            postNrTextBox.Location = new Point(389, 53);
             postNrTextBox.MaxLength = 4;
             postNrTextBox.Name = "postNrTextBox";
-            postNrTextBox.Size = new Size(110, 23);
+            postNrTextBox.Size = new Size(125, 27);
             postNrTextBox.TabIndex = 7;
             postNrTextBox.TextChanged += postNrTextBox_TextChanged;
             postNrTextBox.KeyPress += HandleDigit_KeyPress;
@@ -180,10 +173,9 @@
             // 
             tilføjButton.BackColor = Color.LightGreen;
             tilføjButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            tilføjButton.Location = new Point(416, 309);
-            tilføjButton.Margin = new Padding(3, 2, 3, 2);
+            tilføjButton.Location = new Point(475, 412);
             tilføjButton.Name = "tilføjButton";
-            tilføjButton.Size = new Size(138, 61);
+            tilføjButton.Size = new Size(158, 81);
             tilføjButton.TabIndex = 9;
             tilføjButton.Text = "Opret";
             tilføjButton.UseVisualStyleBackColor = false;
@@ -191,11 +183,10 @@
             // 
             // cpr2NrTextBox
             // 
-            cpr2NrTextBox.Location = new Point(139, 17);
-            cpr2NrTextBox.Margin = new Padding(3, 2, 3, 2);
+            cpr2NrTextBox.Location = new Point(159, 23);
             cpr2NrTextBox.MaxLength = 4;
             cpr2NrTextBox.Name = "cpr2NrTextBox";
-            cpr2NrTextBox.Size = new Size(66, 23);
+            cpr2NrTextBox.Size = new Size(75, 27);
             cpr2NrTextBox.TabIndex = 4;
             cpr2NrTextBox.TextChanged += cpr2NrTextBox_TextChanged;
             cpr2NrTextBox.KeyPress += HandleDigit_KeyPress;
@@ -205,9 +196,9 @@
             cprBindestregLabel.AutoSize = true;
             cprBindestregLabel.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cprBindestregLabel.ForeColor = Color.White;
-            cprBindestregLabel.Location = new Point(122, 19);
+            cprBindestregLabel.Location = new Point(139, 25);
             cprBindestregLabel.Name = "cprBindestregLabel";
-            cprBindestregLabel.Size = new Size(15, 19);
+            cprBindestregLabel.Size = new Size(17, 24);
             cprBindestregLabel.TabIndex = 10;
             cprBindestregLabel.Text = "-";
             // 
@@ -216,9 +207,9 @@
             fornavnCheckLabel.AutoSize = true;
             fornavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             fornavnCheckLabel.ForeColor = Color.Red;
-            fornavnCheckLabel.Location = new Point(122, 32);
+            fornavnCheckLabel.Location = new Point(139, 43);
             fornavnCheckLabel.Name = "fornavnCheckLabel";
-            fornavnCheckLabel.Size = new Size(21, 20);
+            fornavnCheckLabel.Size = new Size(25, 24);
             fornavnCheckLabel.TabIndex = 11;
             fornavnCheckLabel.Text = "O";
             fornavnCheckLabel.Visible = false;
@@ -228,9 +219,9 @@
             efternavnCheckLabel.AutoSize = true;
             efternavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             efternavnCheckLabel.ForeColor = Color.Red;
-            efternavnCheckLabel.Location = new Point(266, 34);
+            efternavnCheckLabel.Location = new Point(304, 45);
             efternavnCheckLabel.Name = "efternavnCheckLabel";
-            efternavnCheckLabel.Size = new Size(21, 20);
+            efternavnCheckLabel.Size = new Size(25, 24);
             efternavnCheckLabel.TabIndex = 12;
             efternavnCheckLabel.Text = "O";
             efternavnCheckLabel.Visible = false;
@@ -240,9 +231,9 @@
             cprCheckLabel.AutoSize = true;
             cprCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             cprCheckLabel.ForeColor = Color.Red;
-            cprCheckLabel.Location = new Point(205, 19);
+            cprCheckLabel.Location = new Point(234, 25);
             cprCheckLabel.Name = "cprCheckLabel";
-            cprCheckLabel.Size = new Size(21, 20);
+            cprCheckLabel.Size = new Size(25, 24);
             cprCheckLabel.TabIndex = 13;
             cprCheckLabel.Text = "O";
             cprCheckLabel.Visible = false;
@@ -252,9 +243,9 @@
             vejnavnCheckLabel.AutoSize = true;
             vejnavnCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             vejnavnCheckLabel.ForeColor = Color.Red;
-            vejnavnCheckLabel.Location = new Point(131, 43);
+            vejnavnCheckLabel.Location = new Point(150, 57);
             vejnavnCheckLabel.Name = "vejnavnCheckLabel";
-            vejnavnCheckLabel.Size = new Size(21, 20);
+            vejnavnCheckLabel.Size = new Size(25, 24);
             vejnavnCheckLabel.TabIndex = 14;
             vejnavnCheckLabel.Text = "O";
             vejnavnCheckLabel.Visible = false;
@@ -264,9 +255,9 @@
             vejnrCheckLabel.AutoSize = true;
             vejnrCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             vejnrCheckLabel.ForeColor = Color.Red;
-            vejnrCheckLabel.Location = new Point(293, 43);
+            vejnrCheckLabel.Location = new Point(335, 57);
             vejnrCheckLabel.Name = "vejnrCheckLabel";
-            vejnrCheckLabel.Size = new Size(21, 20);
+            vejnrCheckLabel.Size = new Size(25, 24);
             vejnrCheckLabel.TabIndex = 15;
             vejnrCheckLabel.Text = "O";
             vejnrCheckLabel.Visible = false;
@@ -276,9 +267,9 @@
             postnrCheckLabel.AutoSize = true;
             postnrCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             postnrCheckLabel.ForeColor = Color.Red;
-            postnrCheckLabel.Location = new Point(456, 43);
+            postnrCheckLabel.Location = new Point(521, 57);
             postnrCheckLabel.Name = "postnrCheckLabel";
-            postnrCheckLabel.Size = new Size(21, 20);
+            postnrCheckLabel.Size = new Size(25, 24);
             postnrCheckLabel.TabIndex = 16;
             postnrCheckLabel.Text = "O";
             postnrCheckLabel.Visible = false;
@@ -288,9 +279,9 @@
             telefonCheckLabel.AutoSize = true;
             telefonCheckLabel.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             telefonCheckLabel.ForeColor = Color.Red;
-            telefonCheckLabel.Location = new Point(130, 21);
+            telefonCheckLabel.Location = new Point(149, 28);
             telefonCheckLabel.Name = "telefonCheckLabel";
-            telefonCheckLabel.Size = new Size(21, 20);
+            telefonCheckLabel.Size = new Size(25, 24);
             telefonCheckLabel.TabIndex = 17;
             telefonCheckLabel.Text = "O";
             telefonCheckLabel.Visible = false;
@@ -299,10 +290,9 @@
             // 
             rydButton.BackColor = Color.LightSalmon;
             rydButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            rydButton.Location = new Point(588, 307);
-            rydButton.Margin = new Padding(3, 2, 3, 2);
+            rydButton.Location = new Point(672, 409);
             rydButton.Name = "rydButton";
-            rydButton.Size = new Size(138, 61);
+            rydButton.Size = new Size(158, 81);
             rydButton.TabIndex = 10;
             rydButton.Text = "Ryd";
             rydButton.UseVisualStyleBackColor = false;
@@ -317,9 +307,11 @@
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(812, 126);
+            panel2.Size = new Size(928, 168);
             panel2.TabIndex = 43;
+            panel2.Click += AddSellerPage_Click;
             // 
             // label1
             // 
@@ -327,9 +319,9 @@
             label1.BackColor = Color.FromArgb(100, 131, 184);
             label1.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(389, 23);
+            label1.Location = new Point(445, 31);
             label1.Name = "label1";
-            label1.Size = new Size(111, 19);
+            label1.Size = new Size(139, 26);
             label1.TabIndex = 19;
             label1.Text = "CPR-nummer";
             // 
@@ -339,9 +331,9 @@
             listedDateFromLabel.BackColor = Color.FromArgb(100, 131, 184);
             listedDateFromLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             listedDateFromLabel.ForeColor = Color.White;
-            listedDateFromLabel.Location = new Point(23, 14);
+            listedDateFromLabel.Location = new Point(26, 19);
             listedDateFromLabel.Name = "listedDateFromLabel";
-            listedDateFromLabel.Size = new Size(50, 19);
+            listedDateFromLabel.Size = new Size(62, 26);
             listedDateFromLabel.TabIndex = 18;
             listedDateFromLabel.Text = "Navn";
             // 
@@ -352,9 +344,10 @@
             panel4.Controls.Add(cprBindestregLabel);
             panel4.Controls.Add(cpr2NrTextBox);
             panel4.Controls.Add(cprCheckLabel);
-            panel4.Location = new Point(389, 42);
+            panel4.Location = new Point(445, 56);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(233, 56);
+            panel4.Size = new Size(266, 75);
             panel4.TabIndex = 1;
             // 
             // panel3
@@ -366,9 +359,10 @@
             panel3.Controls.Add(fornavnCheckLabel);
             panel3.Controls.Add(efternavnTextBox);
             panel3.Controls.Add(efternavnCheckLabel);
-            panel3.Location = new Point(23, 33);
+            panel3.Location = new Point(26, 44);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(340, 66);
+            panel3.Size = new Size(389, 88);
             panel3.TabIndex = 0;
             // 
             // vejnavn_label
@@ -376,9 +370,9 @@
             vejnavn_label.AutoSize = true;
             vejnavn_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             vejnavn_label.ForeColor = Color.White;
-            vejnavn_label.Location = new Point(15, 10);
+            vejnavn_label.Location = new Point(17, 13);
             vejnavn_label.Name = "vejnavn_label";
-            vejnavn_label.Size = new Size(58, 17);
+            vejnavn_label.Size = new Size(71, 19);
             vejnavn_label.TabIndex = 0;
             vejnavn_label.Text = "Fornavn";
             // 
@@ -387,9 +381,9 @@
             husnr_label.AutoSize = true;
             husnr_label.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold);
             husnr_label.ForeColor = Color.White;
-            husnr_label.Location = new Point(157, 11);
+            husnr_label.Location = new Point(179, 15);
             husnr_label.Name = "husnr_label";
-            husnr_label.Size = new Size(67, 17);
+            husnr_label.Size = new Size(83, 19);
             husnr_label.TabIndex = 1;
             husnr_label.Text = "Efternavn";
             husnr_label.Click += husnr_label_Click;
@@ -406,9 +400,10 @@
             panel1.Controls.Add(vejNrTextBox);
             panel1.Controls.Add(vejNrLabel);
             panel1.Controls.Add(postNrLabel);
-            panel1.Location = new Point(23, 175);
+            panel1.Location = new Point(26, 233);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(481, 79);
+            panel1.Size = new Size(550, 105);
             panel1.TabIndex = 44;
             // 
             // label2
@@ -417,9 +412,9 @@
             label2.BackColor = Color.FromArgb(100, 131, 184);
             label2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(23, 156);
+            label2.Location = new Point(26, 208);
             label2.Name = "label2";
-            label2.Size = new Size(68, 19);
+            label2.Size = new Size(87, 26);
             label2.TabIndex = 20;
             label2.Text = "Adresse";
             // 
@@ -429,9 +424,9 @@
             label3.BackColor = Color.FromArgb(100, 131, 184);
             label3.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(23, 290);
+            label3.Location = new Point(26, 387);
             label3.Name = "label3";
-            label3.Size = new Size(131, 19);
+            label3.Size = new Size(165, 26);
             label3.TabIndex = 45;
             label3.Text = "Telefonnummer";
             // 
@@ -439,14 +434,15 @@
             // 
             panel5.BackColor = Color.FromArgb(110, 149, 219);
             panel5.Controls.Add(telefonCheckLabel);
-            panel5.Location = new Point(23, 309);
+            panel5.Location = new Point(26, 412);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(185, 61);
+            panel5.Size = new Size(211, 81);
             panel5.TabIndex = 46;
             // 
             // AddSellerPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(label3);
             Controls.Add(label2);
@@ -456,9 +452,9 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(panel5);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "AddSellerPage";
-            Size = new Size(812, 452);
+            Size = new Size(928, 603);
+            Click += AddSellerPage_Click;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel4.ResumeLayout(false);
