@@ -1,9 +1,9 @@
-﻿using BusinessLogic;
+﻿using System.Text.RegularExpressions;
+using BusinessLogic;
 using Models;
 using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
-using System.Text.RegularExpressions;
 
 namespace RealSuite.UserControls
 {
