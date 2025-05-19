@@ -479,6 +479,8 @@ namespace RealSuite.UserControls
                 ejendomsmægler_textbox.Text = "Maria Thodegaard";
                 dato_datepicker.Value = _propertyToUpdate.DateListed;
                 solgt_checkbox.Checked = _propertyToUpdate.Sold;
+                vurdering_textbox.Text = string.Empty;
+                brugVurdering_button.Visible = false;
 
                 if (_propertyToUpdate.DateSold == null)
                 {
