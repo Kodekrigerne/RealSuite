@@ -529,6 +529,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(928, 168);
             panel2.TabIndex = 42;
+            panel2.Click += AddPropertyPage_Click;
             // 
             // label1
             // 
@@ -808,6 +809,7 @@
             Controls.Add(panel9);
             Name = "AddPropertyPage";
             Size = new Size(928, 603);
+            Click += AddPropertyPage_Click;
             ((System.ComponentModel.ISupportInitialize)pris_textbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)vurdering_textbox).EndInit();
             panel2.ResumeLayout(false);
