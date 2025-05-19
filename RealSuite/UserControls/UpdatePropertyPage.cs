@@ -354,6 +354,7 @@ namespace RealSuite.UserControls
         private void UpdatePropertyPage_Click(object sender, EventArgs e)
         {
             if (ContainsFocus) ParentForm!.ActiveControl = null;
+            addSellerGrid.Visible = false;
         }
 
         private void BackButton_Click(object sender, EventArgs e)
