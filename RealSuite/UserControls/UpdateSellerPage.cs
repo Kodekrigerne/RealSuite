@@ -513,7 +513,7 @@ namespace RealSuite.UserControls
             {
                 var sellerDeleted = sellerService.DeleteSeller(SellerToUpdate);
 
-                if (sellerDeleted == true)
+                if (sellerDeleted)
                 {
                     MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
                         "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);

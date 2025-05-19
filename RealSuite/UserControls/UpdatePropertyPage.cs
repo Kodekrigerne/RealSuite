@@ -432,31 +432,33 @@ namespace RealSuite.UserControls
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            /*SetupPropertyDetails();
+            SetupPropertyDetails();
 
-            DialogResult answer = MessageBox.Show($"Dette vil slette ejendommen: {_propertyToUpdate.StreetName} {_propertyToUpdate.StreetNumber}. " +
-                                                  "Denne handling kan ikke fortrydes. Ønsker du at fortsætte?",
+            DialogResult answer = MessageBox.Show(
+                $"""
+                 Dette vil slette ejendommen: {_propertyToUpdate.StreetName} {_propertyToUpdate.StreetNumber}.
+                 Denne handling kan ikke fortrydes. Ønsker du at fortsætte?
+                 """,
                 "Sletning af ejendom", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
 
             if (answer == DialogResult.Yes)
             {
-                var sellerDeleted = sellerService.DeleteSeller(SellerToUpdate);
+                var propertyDeleted = propertyService.DeleteProperty(_propertyToUpdate.Id);
 
-                if (sellerDeleted == true)
+                if (propertyDeleted)
                 {
-                    MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
-                        "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Ejendom slettet: {_propertyToUpdate.StreetName}{_propertyToUpdate.StreetNumber}",
+                        "Slettelse af ejendom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    if (_navigation?.Pages[Pages.ViewSellers] is ViewSellersPage viewSellersPage) viewSellersPage.RefreshFromDb();
                     if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage viewPropertiesPage) viewPropertiesPage.RefreshFromDb();
-                    _navigation?.NavigateTo(Pages.ViewSellers);
+                    _navigation?.NavigateTo(Pages.ViewProperties);
                 }
                 else
                 {
                     MessageBox.Show("Noget gik galt under sletning af sælger. Prøv igen senere.",
                         "Fejl under slettelse", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }*/
+            }
         }
 
         private void SetupPropertyDetails()
