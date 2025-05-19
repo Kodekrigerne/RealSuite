@@ -43,6 +43,8 @@ namespace RealSuite.UserControls
             SetupPropertyDetails();
 
             opdater_button.Enabled = false;
+
+            viewSellerButton.Visible = true;
         }
 
         private void solgt_checkbox_CheckedChanged(object sender, EventArgs e)
@@ -94,6 +96,7 @@ namespace RealSuite.UserControls
                 {
                     CheckLabelsText("");
                     PageEdit(true);
+                    viewSellerButton.Visible = false;
                 }
                 else if (confirm == DialogResult.Cancel)
                 {
@@ -503,6 +506,18 @@ namespace RealSuite.UserControls
             }
 
             CheckLabelsText("");
+        }
+
+        private void viewSellerButton_Click(object sender, EventArgs e)
+        {
+            var seller = sellerService.GetSellerFromProperty(_propertyToUpdate);
+
+            if (_navigation?.Pages[Pages.UpdateSeller] is UpdateSellerPage page)
+            {
+                page.SellerToUpdate = seller;
+                page.SetupPage();
+                _navigation.NavigateTo(Pages.UpdateSeller);
+            }
         }
     }
 }

@@ -78,6 +78,7 @@ namespace RealSuite.UserControls
             brugVurdering_button = new Button();
             fortrydButton = new Button();
             deleteButton = new Button();
+            viewSellerButton = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)vurdering_textbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).BeginInit();
@@ -573,10 +574,21 @@ namespace RealSuite.UserControls
             deleteButton.UseVisualStyleBackColor = true;
             deleteButton.Click += deleteButton_Click;
             // 
+            // viewSellerButton
+            // 
+            viewSellerButton.Location = new Point(222, 329);
+            viewSellerButton.Name = "viewSellerButton";
+            viewSellerButton.Size = new Size(138, 29);
+            viewSellerButton.TabIndex = 88;
+            viewSellerButton.Text = "Til sælger profil";
+            viewSellerButton.UseVisualStyleBackColor = true;
+            viewSellerButton.Click += viewSellerButton_Click;
+            // 
             // UpdatePropertyPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(viewSellerButton);
             Controls.Add(deleteButton);
             Controls.Add(fortrydButton);
             Controls.Add(brugVurdering_button);
@@ -679,5 +691,6 @@ namespace RealSuite.UserControls
         private RsDataGridView addSellerGrid;
         private Button fortrydButton;
         private Button deleteButton;
+        private Button viewSellerButton;
     }
 }
