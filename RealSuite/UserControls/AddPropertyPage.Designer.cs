@@ -73,6 +73,7 @@
             panel4 = new Panel();
             panel3 = new Panel();
             panel6 = new Panel();
+            useAssessment_button = new Button();
             panel5 = new Panel();
             label2 = new Label();
             label3 = new Label();
@@ -84,7 +85,7 @@
             label7 = new Label();
             panel9 = new Panel();
             propertyForSaleLabel = new Label();
-            addSellerGrid = new RealSuite.CustomControls.RsDataGridView();
+            addSellerGrid = new CustomControls.RsDataGridView();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)vurdering_textbox).BeginInit();
             panel2.SuspendLayout();
@@ -378,7 +379,7 @@
             price_checkbox.AutoSize = true;
             price_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
             price_checkbox.ForeColor = Color.Red;
-            price_checkbox.Location = new Point(142, 48);
+            price_checkbox.Location = new Point(149, 43);
             price_checkbox.Name = "price_checkbox";
             price_checkbox.Size = new Size(25, 24);
             price_checkbox.TabIndex = 28;
@@ -440,9 +441,9 @@
             solgtdato_dateTimePicker.CalendarFont = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             solgtdato_dateTimePicker.CustomFormat = "";
             solgtdato_dateTimePicker.Format = DateTimePickerFormat.Short;
+            solgtdato_dateTimePicker.ImeMode = ImeMode.NoControl;
             solgtdato_dateTimePicker.Location = new Point(106, 53);
             solgtdato_dateTimePicker.Name = "solgtdato_dateTimePicker";
-            solgtdato_dateTimePicker.ShowUpDown = true;
             solgtdato_dateTimePicker.Size = new Size(99, 27);
             solgtdato_dateTimePicker.TabIndex = 10;
             solgtdato_dateTimePicker.Visible = false;
@@ -605,11 +606,26 @@
             panel6.Controls.Add(vurderingKr_label);
             panel6.Controls.Add(vurdering_textbox);
             panel6.Controls.Add(vurdering_button);
+            panel6.Controls.Add(useAssessment_button);
             panel6.Location = new Point(713, 44);
             panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
             panel6.Size = new Size(195, 107);
             panel6.TabIndex = 44;
+            // 
+            // useAssessment_button
+            // 
+            useAssessment_button.BackColor = SystemColors.ActiveCaption;
+            useAssessment_button.Enabled = false;
+            useAssessment_button.Font = new Font("Microsoft YaHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            useAssessment_button.ForeColor = Color.White;
+            useAssessment_button.Location = new Point(14, 11);
+            useAssessment_button.Name = "useAssessment_button";
+            useAssessment_button.Size = new Size(170, 49);
+            useAssessment_button.TabIndex = 42;
+            useAssessment_button.Text = "Tilføj til pris";
+            useAssessment_button.UseVisualStyleBackColor = false;
+            useAssessment_button.Click += useAssessment_button_Click;
             // 
             // panel5
             // 
@@ -721,10 +737,10 @@
             // panel9
             // 
             panel9.BackColor = Color.FromArgb(110, 149, 219);
-            panel9.Controls.Add(propertyForSaleLabel);
             panel9.Controls.Add(solgt_checkbox);
             panel9.Controls.Add(solgtdato_label);
             panel9.Controls.Add(solgtdato_dateTimePicker);
+            panel9.Controls.Add(propertyForSaleLabel);
             panel9.Location = new Point(263, 352);
             panel9.Margin = new Padding(3, 4, 3, 4);
             panel9.Name = "panel9";
@@ -877,5 +893,6 @@
         private Panel panel9;
         private CustomControls.RsDataGridView addSellerGrid;
         private Label propertyForSaleLabel;
+        private Button useAssessment_button;
     }
 }

@@ -38,6 +38,7 @@ namespace RealSuite.UserControls
             squaremeter_checkbox.Visible = false;
             seller_checkbox.Visible = false;
             price_checkbox.Visible = false;
+            addSellerGrid.Hide();
         }
 
         public void SetupPageDetails(Property property)
@@ -247,7 +248,7 @@ namespace RealSuite.UserControls
             else
             {
                 streetname_checklabel.Text = "P";
-                streetname_checklabel.ForeColor = Color.Green;
+                streetname_checklabel.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
         }
@@ -262,7 +263,7 @@ namespace RealSuite.UserControls
             else
             {
                 streetnumber_checklabel.Text = "P";
-                streetnumber_checklabel.ForeColor = Color.Green;
+                streetnumber_checklabel.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
         }
@@ -277,7 +278,7 @@ namespace RealSuite.UserControls
             else
             {
                 zip_checkbox.Text = "P";
-                zip_checkbox.ForeColor = Color.Green;
+                zip_checkbox.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
             GetAssessment();
@@ -293,7 +294,7 @@ namespace RealSuite.UserControls
             else
             {
                 buildyear_checkbox.Text = "P";
-                buildyear_checkbox.ForeColor = Color.Green;
+                buildyear_checkbox.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
             GetAssessment();
@@ -309,7 +310,7 @@ namespace RealSuite.UserControls
             else
             {
                 squaremeter_checkbox.Text = "P";
-                squaremeter_checkbox.ForeColor = Color.Green;
+                squaremeter_checkbox.ForeColor = Color.LightGreen;
             }
             SubmitKeyCheck();
             GetAssessment();
