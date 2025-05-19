@@ -38,6 +38,7 @@ namespace RealSuite.UserControls
             squaremeter_checkbox.Visible = false;
             seller_checkbox.Visible = false;
             price_checkbox.Visible = false;
+            addSellerGrid.Visible = false;
         }
 
         public void SetupPageDetails(Property property)
