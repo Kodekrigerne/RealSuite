@@ -125,29 +125,19 @@ namespace RealSuite.UserControls
 
         private void SubmitKeyCheck()
         {
-            if (DataChanged())
+            if (streetname_checklabel.Text == "O" ||
+                streetnumber_checklabel.Text == "O" ||
+                zip_checkbox.Text == "O" ||
+                buildyear_checkbox.Text == "O" ||
+                squaremeter_checkbox.Text == "O" ||
+                !DataChanged())
             {
-                opdater_button.Enabled = true;
+                opdater_button.Enabled = false;
             }
             else
             {
-                opdater_button.Enabled = false;
-            }
-
-            /*if (streetname_checklabel.Text == "P" &&
-                streetname_checklabel.Visible == true &&
-                streetnumber_checklabel.Text == "P" &&
-                zip_checkbox.Text == "P" &&
-                buildyear_checkbox.Text == "P" &&
-                squaremeter_checkbox.Text == "P" &&
-                price_checkbox.Text == "P")
-            {
                 opdater_button.Enabled = true;
             }
-            else if (!DataChanged())
-            {
-                opdater_button.Enabled = false;
-            }*/
         }
 
         private void GetAssessment()
@@ -217,7 +207,11 @@ namespace RealSuite.UserControls
 
         private void vejnavn_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (!vejnavn_textbox.Text.All(char.IsLetter) || vejnavn_textbox.Text == "")
+            if (vejnavn_textbox.Text == _propertyToUpdate.StreetName)
+            {
+                streetname_checklabel.Text = string.Empty;
+            }
+            else if (!vejnavn_textbox.Text.All(char.IsLetter) || vejnavn_textbox.Text == "")
             {
                 streetname_checklabel.Text = "O";
                 streetname_checklabel.ForeColor = Color.Red;
@@ -232,7 +226,11 @@ namespace RealSuite.UserControls
 
         private void husnr_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (!husnr_textbox.Text.All(char.IsDigit) || husnr_textbox.Text == "")
+            if (husnr_textbox.Text == _propertyToUpdate.StreetNumber.ToString())
+            {
+                streetnumber_checklabel.Text = string.Empty;
+            }
+            else if (!husnr_textbox.Text.All(char.IsDigit) || husnr_textbox.Text == "")
             {
                 streetnumber_checklabel.Text = "O";
                 streetnumber_checklabel.ForeColor = Color.Red;
@@ -247,7 +245,11 @@ namespace RealSuite.UserControls
 
         private void zipcode_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (!zipcode_textbox.Text.All(char.IsDigit) || zipcode_textbox.Text.Length != 4)
+            if (zipcode_textbox.Text == _propertyToUpdate.ZipCode.ToString())
+            {
+                zip_checkbox.Text = string.Empty;
+            }
+            else if (!zipcode_textbox.Text.All(char.IsDigit) || zipcode_textbox.Text.Length != 4)
             {
                 zip_checkbox.Text = "O";
                 zip_checkbox.ForeColor = Color.Red;
@@ -263,7 +265,11 @@ namespace RealSuite.UserControls
 
         private void byggeår_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (!byggeår_textbox.Text.All(char.IsDigit) || byggeår_textbox.Text.Length != 4)
+            if (byggeår_textbox.Text == _propertyToUpdate.BuildYear.ToString())
+            {
+                buildyear_checkbox.Text = string.Empty;
+            }
+            else if (!byggeår_textbox.Text.All(char.IsDigit) || byggeår_textbox.Text.Length != 4)
             {
                 buildyear_checkbox.Text = "O";
                 buildyear_checkbox.ForeColor = Color.Red;
@@ -279,7 +285,11 @@ namespace RealSuite.UserControls
 
         private void kvm_textbox_TextChanged(object sender, EventArgs e)
         {
-            if (!kvm_textbox.Text.All(char.IsDigit) || kvm_textbox.Text == "")
+            if (kvm_textbox.Text == _propertyToUpdate.SquareMeters.ToString())
+            {
+                squaremeter_checkbox.Text = string.Empty;
+            }
+            else if (!kvm_textbox.Text.All(char.IsDigit) || kvm_textbox.Text == "")
             {
                 squaremeter_checkbox.Text = "O";
                 squaremeter_checkbox.ForeColor = Color.Red;
