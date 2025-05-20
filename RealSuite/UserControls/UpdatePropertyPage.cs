@@ -76,8 +76,8 @@ namespace RealSuite.UserControls
             if (rowUpdated == true)
             {
                 MessageBox.Show("Bolig opdateret i databasen.", "Bolig opdateret");
-                Clear();
                 if (_navigation?.Pages[Pages.ViewProperties] is ViewPropertiesPage page) page.RefreshFromDb();
+                _navigation.NavigateTo(Pages.ViewProperties);
             }
             else
             {
