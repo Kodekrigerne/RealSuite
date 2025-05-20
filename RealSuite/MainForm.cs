@@ -11,6 +11,7 @@ namespace RealSuite
         private Dictionary<Pages, UserControl> _pages = [];
         private readonly NavigationService _navigation;
         private readonly StatusService _statusService = new();
+        private ToolTip dbStatusTooltip = new();
 
         public MainForm()
         {
@@ -20,6 +21,7 @@ namespace RealSuite
             _navigation.NavigateTo(Pages.Front);
             SetNavigations();
             CheckServerStatus();
+            SetDbStatusTooltip();
         }
 
         private void InitializePages()
@@ -129,6 +131,21 @@ namespace RealSuite
         private void DbCheckTimer_Tick(object sender, EventArgs e)
         {
             CheckServerStatus();
+            SetDbStatusTooltip();
+        }
+
+        private void SetDbStatusTooltip()
+        {
+            if (serverIndicatorLabel.ForeColor == Color.LightGreen)
+            {
+                dbStatusTooltip.SetToolTip(serverIndicatorLabel,
+                    "Server er online.");
+            }
+            else
+            {
+                dbStatusTooltip.SetToolTip(serverIndicatorLabel,
+                    "Server er offline.");
+            }
         }
     }
 }

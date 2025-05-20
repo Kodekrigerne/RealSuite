@@ -21,7 +21,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in DbCheck: " + ex.Message);
+
             }
             finally
             {
