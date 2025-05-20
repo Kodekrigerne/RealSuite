@@ -78,7 +78,7 @@ namespace DataAccess
             }
 
             if (rowsAffected == 0) return false;
-            else return true;
+            return true;
 
         }
 
@@ -140,7 +140,7 @@ namespace DataAccess
             }
 
             if (rowsAffected == 0) return false;
-            else return true;
+            return true;
         }
 
 
@@ -170,7 +170,7 @@ namespace DataAccess
             }
 
             if (rowsDeleted == 0) return false;
-            else return true;
+            return true;
 
         }
     }

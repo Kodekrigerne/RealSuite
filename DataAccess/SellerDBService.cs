@@ -109,6 +109,32 @@ namespace DataAccess
             return dataTable;
         }
 
+        public DataTable GetSeller(int sellerID)
+        {
+            string query = "SELECT * FROM Sellers WHERE Id = @sellerID";
+            var dataTable = new DataTable();
+
+            try
+            {
+                DbConnect.OpenConnection();
+                using (var command = new SqlCommand(query, DbConnect.GetConnection()))
+                {
+                    var adapter = new SqlDataAdapter(command);
+                    command.Parameters.AddWithValue("@sellerID", sellerID);
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in GetSeller: " + ex.Message);
+            }
+            finally
+            {
+                DbConnect.CloseConnection();
+            }
+            return dataTable;
+        }
+
         public DataTable SellerSoldProperties(Seller seller)
         {
             string query = "SELECT * FROM Properties WHERE SellerID = @sellerID AND Sold = 1";

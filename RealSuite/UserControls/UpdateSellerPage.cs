@@ -440,7 +440,7 @@ namespace RealSuite.UserControls
 
             if (_navigation?.Pages[Pages.UpdateProperty] is UpdatePropertyPage page)
             {
-                page.SetupPageDetails(property);
+                page.SetupPageDetails(property, $"{SellerToUpdate.FirstName} {SellerToUpdate.LastName}");
                 _navigation.NavigateTo(Pages.UpdateProperty);
             }
         }
@@ -513,7 +513,7 @@ namespace RealSuite.UserControls
             {
                 var sellerDeleted = sellerService.DeleteSeller(SellerToUpdate);
 
-                if (sellerDeleted == true)
+                if (sellerDeleted)
                 {
                     MessageBox.Show("SÆLGER-profil og tilknyttede ejendomme slettet.",
                         "Slettelse af SÆLGER samt ejendomme", MessageBoxButtons.OK, MessageBoxIcon.Information);

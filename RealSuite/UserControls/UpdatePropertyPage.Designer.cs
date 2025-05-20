@@ -46,8 +46,6 @@ namespace RealSuite.UserControls
             sælgernavn_textbox = new TextBox();
             addSellerButton = new Button();
             addSellerGrid = new RsDataGridView();
-            price_checkbox = new Label();
-            seller_checkbox = new Label();
             squaremeter_checkbox = new Label();
             buildyear_checkbox = new Label();
             zip_checkbox = new Label();
@@ -78,6 +76,9 @@ namespace RealSuite.UserControls
             id_textbox = new TextBox();
             redigering_checkbox = new CheckBox();
             brugVurdering_button = new Button();
+            fortrydButton = new Button();
+            deleteButton = new Button();
+            viewSellerButton = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)vurdering_textbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pris_textbox).BeginInit();
@@ -246,30 +247,6 @@ namespace RealSuite.UserControls
             addSellerGrid.TabIndex = 45;
             addSellerGrid.CellDoubleClick += addSellerGrid_CellDoubleClick;
             // 
-            // price_checkbox
-            // 
-            price_checkbox.AutoSize = true;
-            price_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            price_checkbox.ForeColor = Color.LightGreen;
-            price_checkbox.Location = new Point(328, 385);
-            price_checkbox.Name = "price_checkbox";
-            price_checkbox.Size = new Size(28, 24);
-            price_checkbox.TabIndex = 75;
-            price_checkbox.Text = "P";
-            price_checkbox.Visible = false;
-            // 
-            // seller_checkbox
-            // 
-            seller_checkbox.AutoSize = true;
-            seller_checkbox.Font = new Font("Wingdings 2", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            seller_checkbox.ForeColor = Color.LightGreen;
-            seller_checkbox.Location = new Point(366, 299);
-            seller_checkbox.Name = "seller_checkbox";
-            seller_checkbox.Size = new Size(28, 24);
-            seller_checkbox.TabIndex = 74;
-            seller_checkbox.Text = "P";
-            seller_checkbox.Visible = false;
-            // 
             // squaremeter_checkbox
             // 
             squaremeter_checkbox.AutoSize = true;
@@ -365,11 +342,11 @@ namespace RealSuite.UserControls
             // opdater_button
             // 
             opdater_button.Enabled = false;
-            opdater_button.Location = new Point(758, 529);
+            opdater_button.Location = new Point(688, 529);
             opdater_button.Name = "opdater_button";
-            opdater_button.Size = new Size(94, 29);
+            opdater_button.Size = new Size(164, 29);
             opdater_button.TabIndex = 66;
-            opdater_button.Text = "Opdater";
+            opdater_button.Text = "Opdater ændringer";
             opdater_button.UseVisualStyleBackColor = true;
             opdater_button.Click += opdater_button_Click;
             // 
@@ -577,10 +554,43 @@ namespace RealSuite.UserControls
             brugVurdering_button.Visible = false;
             brugVurdering_button.Click += brugVurdering_button_Click;
             // 
+            // fortrydButton
+            // 
+            fortrydButton.Location = new Point(688, 494);
+            fortrydButton.Name = "fortrydButton";
+            fortrydButton.Size = new Size(164, 29);
+            fortrydButton.TabIndex = 86;
+            fortrydButton.Text = "Fortryd ændringer";
+            fortrydButton.UseVisualStyleBackColor = true;
+            fortrydButton.Click += fortrydButton_Click;
+            // 
+            // deleteButton
+            // 
+            deleteButton.Location = new Point(468, 551);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(164, 29);
+            deleteButton.TabIndex = 87;
+            deleteButton.Text = "Slet bolig";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
+            // 
+            // viewSellerButton
+            // 
+            viewSellerButton.Location = new Point(222, 329);
+            viewSellerButton.Name = "viewSellerButton";
+            viewSellerButton.Size = new Size(138, 29);
+            viewSellerButton.TabIndex = 88;
+            viewSellerButton.Text = "Til sælger profil";
+            viewSellerButton.UseVisualStyleBackColor = true;
+            viewSellerButton.Click += viewSellerButton_Click;
+            // 
             // UpdatePropertyPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(viewSellerButton);
+            Controls.Add(deleteButton);
+            Controls.Add(fortrydButton);
             Controls.Add(brugVurdering_button);
             Controls.Add(redigering_checkbox);
             Controls.Add(id_textbox);
@@ -597,8 +607,6 @@ namespace RealSuite.UserControls
             Controls.Add(sælgernavn_textbox);
             Controls.Add(addSellerButton);
             Controls.Add(addSellerGrid);
-            Controls.Add(price_checkbox);
-            Controls.Add(seller_checkbox);
             Controls.Add(squaremeter_checkbox);
             Controls.Add(buildyear_checkbox);
             Controls.Add(zip_checkbox);
@@ -650,8 +658,6 @@ namespace RealSuite.UserControls
         private NumericUpDown pris_textbox;
         private TextBox sælgernavn_textbox;
         private Button addSellerButton;
-        private Label price_checkbox;
-        private Label seller_checkbox;
         private Label squaremeter_checkbox;
         private Label buildyear_checkbox;
         private Label zip_checkbox;
@@ -683,5 +689,8 @@ namespace RealSuite.UserControls
         private CheckBox redigering_checkbox;
         private Button brugVurdering_button;
         private RsDataGridView addSellerGrid;
+        private Button fortrydButton;
+        private Button deleteButton;
+        private Button viewSellerButton;
     }
 }
