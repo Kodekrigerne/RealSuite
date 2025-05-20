@@ -100,7 +100,49 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in GetSellers: " + ex.Message);
+                DataTable personTable = new DataTable("Person");
+
+                DataColumn idColumn = new DataColumn();
+                idColumn.DataType = typeof(int);
+                idColumn.ColumnName = "Id";
+                personTable.Columns.Add(idColumn);
+
+                DataColumn firstNameColumn = new DataColumn();
+                firstNameColumn.DataType = typeof(string);
+                firstNameColumn.ColumnName = "FirstName";
+                personTable.Columns.Add(firstNameColumn);
+
+                DataColumn lastNameColumn = new DataColumn();
+                lastNameColumn.DataType = typeof(string);
+                lastNameColumn.ColumnName = "LastName";
+                personTable.Columns.Add(lastNameColumn);
+
+                DataColumn cprNumberColumn = new DataColumn();
+                cprNumberColumn.DataType = typeof(string);
+                cprNumberColumn.ColumnName = "CprNumber";
+                personTable.Columns.Add(cprNumberColumn);
+
+                DataColumn streetNameColumn = new DataColumn();
+                streetNameColumn.DataType = typeof(string);
+                streetNameColumn.ColumnName = "StreetName";
+                personTable.Columns.Add(streetNameColumn);
+
+                DataColumn streetNumberColumn = new DataColumn();
+                streetNumberColumn.DataType = typeof(int);
+                streetNumberColumn.ColumnName = "StreetNumber";
+                personTable.Columns.Add(streetNumberColumn);
+
+                DataColumn zipCodeColumn = new DataColumn();
+                zipCodeColumn.DataType = typeof(int);
+                zipCodeColumn.ColumnName = "ZipCode";
+                personTable.Columns.Add(zipCodeColumn);
+
+                DataColumn phoneNumberColumn = new DataColumn();
+                phoneNumberColumn.DataType = typeof(string);
+                phoneNumberColumn.ColumnName = "PhoneNumber";
+                personTable.Columns.Add(phoneNumberColumn);
+
+                return personTable;
             }
             finally
             {
