@@ -49,7 +49,6 @@ namespace RealSuite.UserControls
             SetSellerComboBox();
             SetTrackBarBounds();
             SetTrackBarInitialValues();
-            SetListedDatePickersInitialValues();
             _suspendFiltering = false;
             ApplyFilters();
         }
@@ -89,14 +88,16 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["Sælger"].DisplayIndex = 7;
         }
 
-        private void SetListedDatePickersInitialValues()
+        private void SetSoldDatePickersInitialValues()
         {
             DateTime minDate;
             DateTime maxDate;
             try
             {
-                minDate = _table!.Min(x => x.Field<DateTime>("DateListed"));
-                maxDate = _table!.Max(x => x.Field<DateTime>("DateListed"));
+                var tempTable = _table?.Where(x => x.Field<DateTime?>("DateSold") != null);
+
+                minDate = tempTable!.Min(x => x.Field<DateTime>("DateSold"));
+                maxDate = tempTable!.Max(x => x.Field<DateTime>("DateSold"));
             }
             catch
             {
@@ -104,8 +105,8 @@ namespace RealSuite.UserControls
                 maxDate = DateTime.Now;
             }
 
-            listedFromDatePicker.Value = minDate;
-            listedToDatePicker.Value = maxDate;
+            soldFromDatePicker.Value = minDate;
+            soldToDatePicker.Value = maxDate;
         }
 
         private void ApplyFilters(object? sender = null, EventArgs? e = null)
@@ -114,14 +115,27 @@ namespace RealSuite.UserControls
             {
                 var minPriceFilter = minPriceTrackBar.Value;
                 var maxPriceFilter = maxPriceTrackBar.Value;
-                var listedFrom = listedFromDatePicker.Value;
-                var listedTo = listedToDatePicker.Value;
                 var solgtFilter = soldComboBox.SelectedItem!.ToString()!;
+
+                DateTime? soldFrom;
+                DateTime? soldTo;
+
+                if (solgtFilter == "Solgt")
+                {
+                    soldFrom = soldFromDatePicker.Value;
+                    soldTo = soldToDatePicker.Value;
+                }
+                else
+                {
+                    soldFrom = null;
+                    soldTo = null;
+                }
+
                 var zipCodeFilter = zipCodeComboBox.SelectedItem!.ToString()!;
                 var sellerFilter = sellerComboBox.SelectedItem!.ToString()!;
                 var searchFilter = searchTextBox.Text.Trim().Replace("'", "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, listedFrom, listedTo, zipCodeFilter, sellerFilter, searchFilter);
+                _propertyService.ApplyFilters(solgtFilter, minPriceFilter, maxPriceFilter, soldFrom, soldTo, zipCodeFilter, sellerFilter, searchFilter);
                 resultsLabel.Text = $"Resultater: {propertiesDataGridView.Rows.Count}";
             }
         }
@@ -202,20 +216,20 @@ namespace RealSuite.UserControls
             Clear();
         }
 
-        private void ListedFromDatePicker_ValueChanged(object sender, EventArgs e)
+        private void SoldFromDatePicker_ValueChanged(object sender, EventArgs e)
         {
-            if (listedToDatePicker.Value < listedFromDatePicker.Value)
+            if (soldToDatePicker.Value < soldFromDatePicker.Value)
             {
-                listedToDatePicker.Value = listedFromDatePicker.Value;
+                soldToDatePicker.Value = soldFromDatePicker.Value;
             }
             ApplyFilters();
         }
 
-        private void ListedToDatePicker_ValueChanged(object sender, EventArgs e)
+        private void SoldToDatePicker_ValueChanged(object sender, EventArgs e)
         {
-            if (listedFromDatePicker.Value > listedToDatePicker.Value)
+            if (soldFromDatePicker.Value > soldToDatePicker.Value)
             {
-                listedFromDatePicker.Value = listedToDatePicker.Value;
+                soldFromDatePicker.Value = soldToDatePicker.Value;
             }
             ApplyFilters();
         }
@@ -331,6 +345,31 @@ namespace RealSuite.UserControls
             {
                 MessageBox.Show("Vælg venligst en bolig, før du sletter.", "Advarsel");
             }
+        }
+
+        private void SoldComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (soldComboBox.SelectedItem!.ToString() == "Solgt")
+            {
+                _suspendFiltering = true;
+                SetSoldDatePickersInitialValues();
+                _suspendFiltering = false;
+
+                soldDatePickerLabel.Visible = true;
+                soldDateFromLabel.Visible = true;
+                soldDateToLabel.Visible = true;
+                soldFromDatePicker.Visible = true;
+                soldToDatePicker.Visible = true;
+            }
+            else
+            {
+                soldDatePickerLabel.Visible = false;
+                soldDateFromLabel.Visible = false;
+                soldDateToLabel.Visible = false;
+                soldFromDatePicker.Visible = false;
+                soldToDatePicker.Visible = false;
+            }
+            ApplyFilters();
         }
     }
 }
