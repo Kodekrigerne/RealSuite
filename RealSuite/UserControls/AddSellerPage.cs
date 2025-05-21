@@ -1,9 +1,9 @@
-﻿using BusinessLogic;
+﻿using System.Text.RegularExpressions;
+using BusinessLogic;
 using Models.DTOModels;
 using RealSuite.Enums;
 using RealSuite.Interfaces;
 using RealSuite.Services;
-using System.Text.RegularExpressions;
 
 namespace RealSuite.UserControls
 {
@@ -47,7 +47,7 @@ namespace RealSuite.UserControls
             }
             else
             {
-                MessageBox.Show("Sælger ikke oprettet i database", "Fejl under oprettelse");
+                MessageBox.Show($"En sælger med angivet CPR-nummer: {cprNrTextBox.Text}-{cpr2NrTextBox.Text} findes allerede.", "Fejl under oprettelse");
             }
         }
 

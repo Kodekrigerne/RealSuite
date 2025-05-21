@@ -33,7 +33,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Seller information:" + ex.Message);
+
             }
             finally
             {
