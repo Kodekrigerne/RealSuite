@@ -30,9 +30,9 @@ namespace RealSuite.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             propertiesDataGridView = new RsDataGridView();
             topPanel = new Panel();
             searchInfoPictureBox = new PictureBox();
@@ -80,32 +80,32 @@ namespace RealSuite.UserControls
             // 
             // propertiesDataGridView
             // 
-            dataGridViewCellStyle1.NullValue = null;
-            propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.NullValue = null;
+            propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             propertiesDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             propertiesDataGridView.ColumnHeadersHeight = 4;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            propertiesDataGridView.Location = new Point(0, 436);
-            propertiesDataGridView.Margin = new Padding(9, 10, 9, 10);
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            propertiesDataGridView.Location = new Point(0, 182);
+            propertiesDataGridView.Margin = new Padding(4);
             propertiesDataGridView.Name = "propertiesDataGridView";
-            propertiesDataGridView.Size = new Size(2320, 1010);
+            propertiesDataGridView.Size = new Size(928, 421);
             propertiesDataGridView.TabIndex = 0;
             propertiesDataGridView.CellClick += propertiesDataGridView_CellClick;
             propertiesDataGridView.CellDoubleClick += PropertiesDataGridView_CellDoubleClick;
@@ -133,27 +133,27 @@ namespace RealSuite.UserControls
             topPanel.Controls.Add(sellerComboBoxLabel);
             topPanel.Dock = DockStyle.Top;
             topPanel.Location = new Point(0, 0);
-            topPanel.Margin = new Padding(8, 10, 8, 10);
+            topPanel.Margin = new Padding(3, 4, 3, 4);
             topPanel.Name = "topPanel";
-            topPanel.Size = new Size(2320, 434);
+            topPanel.Size = new Size(928, 181);
             topPanel.TabIndex = 1;
             topPanel.Click += TopPanel_Click;
             // 
             // searchInfoPictureBox
             // 
-            searchInfoPictureBox.Location = new Point(727, 282);
+            searchInfoPictureBox.Location = new Point(236, 102);
+            searchInfoPictureBox.Margin = new Padding(1);
             searchInfoPictureBox.Name = "searchInfoPictureBox";
-            searchInfoPictureBox.Size = new Size(45, 45);
+            searchInfoPictureBox.Size = new Size(18, 19);
             searchInfoPictureBox.TabIndex = 28;
             searchInfoPictureBox.TabStop = false;
             // 
             // sletBolig_button
             // 
             sletBolig_button.Enabled = false;
-            sletBolig_button.Location = new Point(1192, 331);
-            sletBolig_button.Margin = new Padding(8, 7, 8, 7);
+            sletBolig_button.Location = new Point(477, 138);
             sletBolig_button.Name = "sletBolig_button";
-            sletBolig_button.Size = new Size(235, 70);
+            sletBolig_button.Size = new Size(94, 29);
             sletBolig_button.TabIndex = 27;
             sletBolig_button.Text = "Slet bolig";
             sletBolig_button.UseVisualStyleBackColor = true;
@@ -161,10 +161,9 @@ namespace RealSuite.UserControls
             // 
             // saveToFileButton
             // 
-            saveToFileButton.Location = new Point(932, 331);
-            saveToFileButton.Margin = new Padding(8, 7, 8, 7);
+            saveToFileButton.Location = new Point(373, 138);
             saveToFileButton.Name = "saveToFileButton";
-            saveToFileButton.Size = new Size(252, 70);
+            saveToFileButton.Size = new Size(101, 29);
             saveToFileButton.TabIndex = 25;
             saveToFileButton.Text = "Gem liste";
             saveToFileButton.UseVisualStyleBackColor = true;
@@ -176,10 +175,9 @@ namespace RealSuite.UserControls
             clearTextButton.BackColor = Color.White;
             clearTextButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             clearTextButton.ForeColor = Color.Red;
-            clearTextButton.Location = new Point(655, 278);
-            clearTextButton.Margin = new Padding(8, 0, 8, 0);
+            clearTextButton.Location = new Point(207, 100);
             clearTextButton.Name = "clearTextButton";
-            clearTextButton.Size = new Size(51, 55);
+            clearTextButton.Size = new Size(21, 23);
             clearTextButton.TabIndex = 26;
             clearTextButton.Text = "X";
             clearTextButton.Visible = false;
@@ -188,10 +186,9 @@ namespace RealSuite.UserControls
             // searchTextBox
             // 
             searchTextBox.Font = new Font("Microsoft YaHei", 9.75F);
-            searchTextBox.Location = new Point(173, 275);
-            searchTextBox.Margin = new Padding(8, 7, 8, 7);
+            searchTextBox.Location = new Point(14, 99);
             searchTextBox.Name = "searchTextBox";
-            searchTextBox.Size = new Size(544, 59);
+            searchTextBox.Size = new Size(220, 29);
             searchTextBox.TabIndex = 25;
             searchTextBox.TextChanged += SearchTextBox_TextChanged;
             searchTextBox.KeyDown += SearchTextBox_KeyDown;
@@ -202,10 +199,9 @@ namespace RealSuite.UserControls
             zipCodeFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             zipCodeFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             zipCodeFilterLabel.ForeColor = Color.White;
-            zipCodeFilterLabel.Location = new Point(698, 26);
-            zipCodeFilterLabel.Margin = new Padding(8, 0, 8, 0);
+            zipCodeFilterLabel.Location = new Point(279, 11);
             zipCodeFilterLabel.Name = "zipCodeFilterLabel";
-            zipCodeFilterLabel.Size = new Size(171, 58);
+            zipCodeFilterLabel.Size = new Size(73, 26);
             zipCodeFilterLabel.TabIndex = 24;
             zipCodeFilterLabel.Text = "Postnr";
             // 
@@ -213,10 +209,10 @@ namespace RealSuite.UserControls
             // 
             zipCodePanel.BackColor = Color.FromArgb(179, 215, 232);
             zipCodePanel.Controls.Add(zipCodeComboBox);
-            zipCodePanel.Location = new Point(698, 86);
-            zipCodePanel.Margin = new Padding(8, 10, 8, 10);
+            zipCodePanel.Location = new Point(279, 36);
+            zipCodePanel.Margin = new Padding(3, 4, 3, 4);
             zipCodePanel.Name = "zipCodePanel";
-            zipCodePanel.Size = new Size(225, 125);
+            zipCodePanel.Size = new Size(90, 52);
             zipCodePanel.TabIndex = 23;
             // 
             // zipCodeComboBox
@@ -225,10 +221,10 @@ namespace RealSuite.UserControls
             zipCodeComboBox.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             zipCodeComboBox.FormattingEnabled = true;
             zipCodeComboBox.Items.AddRange(new object[] { "Alle" });
-            zipCodeComboBox.Location = new Point(22, 19);
-            zipCodeComboBox.Margin = new Padding(8, 10, 8, 10);
+            zipCodeComboBox.Location = new Point(9, 8);
+            zipCodeComboBox.Margin = new Padding(3, 4, 3, 4);
             zipCodeComboBox.Name = "zipCodeComboBox";
-            zipCodeComboBox.Size = new Size(176, 59);
+            zipCodeComboBox.Size = new Size(73, 29);
             zipCodeComboBox.TabIndex = 22;
             zipCodeComboBox.SelectedIndexChanged += ApplyFilters;
             // 
@@ -237,10 +233,9 @@ namespace RealSuite.UserControls
             resultsLabel.AutoSize = true;
             resultsLabel.BackColor = Color.FromArgb(243, 239, 218);
             resultsLabel.Font = new Font("Microsoft YaHei", 10.5F, FontStyle.Italic);
-            resultsLabel.Location = new Point(35, 336);
-            resultsLabel.Margin = new Padding(8, 0, 8, 0);
+            resultsLabel.Location = new Point(14, 140);
             resultsLabel.Name = "resultsLabel";
-            resultsLabel.Size = new Size(42, 55);
+            resultsLabel.Size = new Size(18, 24);
             resultsLabel.TabIndex = 21;
             resultsLabel.Text = "-";
             // 
@@ -250,10 +245,9 @@ namespace RealSuite.UserControls
             sellerFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             sellerFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             sellerFilterLabel.ForeColor = Color.White;
-            sellerFilterLabel.Location = new Point(382, 22);
-            sellerFilterLabel.Margin = new Padding(8, 0, 8, 0);
+            sellerFilterLabel.Location = new Point(153, 9);
             sellerFilterLabel.Name = "sellerFilterLabel";
-            sellerFilterLabel.Size = new Size(177, 58);
+            sellerFilterLabel.Size = new Size(78, 26);
             sellerFilterLabel.TabIndex = 20;
             sellerFilterLabel.Text = "Sælger";
             // 
@@ -263,10 +257,9 @@ namespace RealSuite.UserControls
             soldFilterLabel.BackColor = Color.FromArgb(100, 131, 184);
             soldFilterLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             soldFilterLabel.ForeColor = Color.White;
-            soldFilterLabel.Location = new Point(35, 26);
-            soldFilterLabel.Margin = new Padding(8, 0, 8, 0);
+            soldFilterLabel.Location = new Point(14, 11);
             soldFilterLabel.Name = "soldFilterLabel";
-            soldFilterLabel.Size = new Size(163, 58);
+            soldFilterLabel.Size = new Size(71, 26);
             soldFilterLabel.TabIndex = 2;
             soldFilterLabel.Text = "Status";
             // 
@@ -274,10 +267,10 @@ namespace RealSuite.UserControls
             // 
             soldFilterPanel.BackColor = Color.FromArgb(179, 215, 232);
             soldFilterPanel.Controls.Add(soldComboBox);
-            soldFilterPanel.Location = new Point(35, 86);
-            soldFilterPanel.Margin = new Padding(8, 10, 8, 10);
+            soldFilterPanel.Location = new Point(14, 36);
+            soldFilterPanel.Margin = new Padding(3, 4, 3, 4);
             soldFilterPanel.Name = "soldFilterPanel";
-            soldFilterPanel.Size = new Size(302, 122);
+            soldFilterPanel.Size = new Size(121, 51);
             soldFilterPanel.TabIndex = 14;
             // 
             // soldComboBox
@@ -286,10 +279,10 @@ namespace RealSuite.UserControls
             soldComboBox.Font = new Font("Microsoft YaHei", 10F);
             soldComboBox.FormattingEnabled = true;
             soldComboBox.Items.AddRange(new object[] { "Alle", "Solgt", "Ikke solgt" });
-            soldComboBox.Location = new Point(25, 19);
-            soldComboBox.Margin = new Padding(8, 10, 8, 10);
+            soldComboBox.Location = new Point(10, 8);
+            soldComboBox.Margin = new Padding(3, 4, 3, 4);
             soldComboBox.Name = "soldComboBox";
-            soldComboBox.Size = new Size(244, 60);
+            soldComboBox.Size = new Size(100, 31);
             soldComboBox.TabIndex = 0;
             soldComboBox.SelectedIndexChanged += ApplyFilters;
             // 
@@ -298,10 +291,10 @@ namespace RealSuite.UserControls
             clearButtonIconLabel.BackColor = Color.PeachPuff;
             clearButtonIconLabel.BackgroundImage = Properties.Resources.ClearPropertyFiltersIcon;
             clearButtonIconLabel.BackgroundImageLayout = ImageLayout.Stretch;
-            clearButtonIconLabel.Location = new Point(2182, 310);
-            clearButtonIconLabel.Margin = new Padding(8, 10, 8, 10);
+            clearButtonIconLabel.Location = new Point(873, 129);
+            clearButtonIconLabel.Margin = new Padding(3, 4, 3, 4);
             clearButtonIconLabel.Name = "clearButtonIconLabel";
-            clearButtonIconLabel.Size = new Size(75, 86);
+            clearButtonIconLabel.Size = new Size(30, 36);
             clearButtonIconLabel.TabIndex = 11;
             // 
             // refreshButtonIconLabel
@@ -309,20 +302,19 @@ namespace RealSuite.UserControls
             refreshButtonIconLabel.BackColor = Color.FromArgb(142, 221, 188);
             refreshButtonIconLabel.BackgroundImage = Properties.Resources.Refresh_Properties_Logo;
             refreshButtonIconLabel.BackgroundImageLayout = ImageLayout.Stretch;
-            refreshButtonIconLabel.Location = new Point(1775, 317);
-            refreshButtonIconLabel.Margin = new Padding(8, 10, 8, 10);
+            refreshButtonIconLabel.Location = new Point(710, 132);
+            refreshButtonIconLabel.Margin = new Padding(3, 4, 3, 4);
             refreshButtonIconLabel.Name = "refreshButtonIconLabel";
-            refreshButtonIconLabel.Size = new Size(65, 74);
+            refreshButtonIconLabel.Size = new Size(26, 31);
             refreshButtonIconLabel.TabIndex = 10;
             // 
             // clearButton
             // 
             clearButton.BackColor = Color.PeachPuff;
             clearButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            clearButton.Location = new Point(1918, 286);
-            clearButton.Margin = new Padding(8, 7, 8, 7);
+            clearButton.Location = new Point(767, 119);
             clearButton.Name = "clearButton";
-            clearButton.Size = new Size(365, 137);
+            clearButton.Size = new Size(146, 57);
             clearButton.TabIndex = 9;
             clearButton.Text = "Ryd filtre     ";
             clearButton.UseVisualStyleBackColor = false;
@@ -332,10 +324,9 @@ namespace RealSuite.UserControls
             // 
             refreshButton.BackColor = Color.FromArgb(148, 216, 200);
             refreshButton.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            refreshButton.Location = new Point(1455, 286);
-            refreshButton.Margin = new Padding(8, 7, 8, 7);
+            refreshButton.Location = new Point(582, 119);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(418, 137);
+            refreshButton.Size = new Size(167, 57);
             refreshButton.TabIndex = 8;
             refreshButton.Text = "Genindlæs    ";
             refreshButton.UseVisualStyleBackColor = false;
@@ -350,19 +341,19 @@ namespace RealSuite.UserControls
             priceFromFilterPanel.Controls.Add(selectedMinPriceLabel);
             priceFromFilterPanel.Controls.Add(minPriceLabel);
             priceFromFilterPanel.Controls.Add(maxPriceLabel);
-            priceFromFilterPanel.Location = new Point(1545, 26);
-            priceFromFilterPanel.Margin = new Padding(8, 10, 8, 10);
+            priceFromFilterPanel.Location = new Point(618, 11);
+            priceFromFilterPanel.Margin = new Padding(3, 4, 3, 4);
             priceFromFilterPanel.Name = "priceFromFilterPanel";
-            priceFromFilterPanel.Size = new Size(738, 214);
+            priceFromFilterPanel.Size = new Size(295, 89);
             priceFromFilterPanel.TabIndex = 12;
             // 
             // maxPriceTrackBar
             // 
             maxPriceTrackBar.LargeChange = 0;
-            maxPriceTrackBar.Location = new Point(200, 115);
-            maxPriceTrackBar.Margin = new Padding(8, 10, 8, 10);
+            maxPriceTrackBar.Location = new Point(80, 48);
+            maxPriceTrackBar.Margin = new Padding(3, 4, 3, 4);
             maxPriceTrackBar.Name = "maxPriceTrackBar";
-            maxPriceTrackBar.Size = new Size(298, 136);
+            maxPriceTrackBar.Size = new Size(119, 56);
             maxPriceTrackBar.SmallChange = 1000;
             maxPriceTrackBar.TabIndex = 3;
             maxPriceTrackBar.TickFrequency = 1000;
@@ -374,10 +365,10 @@ namespace RealSuite.UserControls
             // minPriceTrackBar
             // 
             minPriceTrackBar.LargeChange = 0;
-            minPriceTrackBar.Location = new Point(200, 19);
-            minPriceTrackBar.Margin = new Padding(8, 10, 8, 10);
+            minPriceTrackBar.Location = new Point(80, 8);
+            minPriceTrackBar.Margin = new Padding(3, 4, 3, 4);
             minPriceTrackBar.Name = "minPriceTrackBar";
-            minPriceTrackBar.Size = new Size(298, 136);
+            minPriceTrackBar.Size = new Size(119, 56);
             minPriceTrackBar.SmallChange = 1000;
             minPriceTrackBar.TabIndex = 2;
             minPriceTrackBar.TickFrequency = 1000;
@@ -392,10 +383,9 @@ namespace RealSuite.UserControls
             selectedMaxPriceLabel.BackColor = Color.White;
             selectedMaxPriceLabel.Font = new Font("Microsoft YaHei", 10.5F);
             selectedMaxPriceLabel.ForeColor = Color.FromArgb(38, 38, 38);
-            selectedMaxPriceLabel.Location = new Point(515, 118);
-            selectedMaxPriceLabel.Margin = new Padding(8, 0, 8, 0);
+            selectedMaxPriceLabel.Location = new Point(206, 49);
             selectedMaxPriceLabel.Name = "selectedMaxPriceLabel";
-            selectedMaxPriceLabel.Size = new Size(99, 55);
+            selectedMaxPriceLabel.Size = new Size(43, 24);
             selectedMaxPriceLabel.TabIndex = 7;
             selectedMaxPriceLabel.Text = "123";
             // 
@@ -405,10 +395,9 @@ namespace RealSuite.UserControls
             selectedMinPriceLabel.BackColor = Color.White;
             selectedMinPriceLabel.Font = new Font("Microsoft YaHei", 10.5F);
             selectedMinPriceLabel.ForeColor = Color.FromArgb(38, 38, 38);
-            selectedMinPriceLabel.Location = new Point(515, 19);
-            selectedMinPriceLabel.Margin = new Padding(8, 0, 8, 0);
+            selectedMinPriceLabel.Location = new Point(206, 8);
             selectedMinPriceLabel.Name = "selectedMinPriceLabel";
-            selectedMinPriceLabel.Size = new Size(99, 55);
+            selectedMinPriceLabel.Size = new Size(43, 24);
             selectedMinPriceLabel.TabIndex = 6;
             selectedMinPriceLabel.Text = "123";
             // 
@@ -418,10 +407,9 @@ namespace RealSuite.UserControls
             minPriceLabel.BackColor = Color.FromArgb(100, 131, 184);
             minPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             minPriceLabel.ForeColor = Color.White;
-            minPriceLabel.Location = new Point(20, 22);
-            minPriceLabel.Margin = new Padding(8, 0, 8, 0);
+            minPriceLabel.Location = new Point(8, 9);
             minPriceLabel.Name = "minPriceLabel";
-            minPriceLabel.Size = new Size(183, 58);
+            minPriceLabel.Size = new Size(80, 26);
             minPriceLabel.TabIndex = 4;
             minPriceLabel.Text = "Pris fra";
             // 
@@ -431,10 +419,9 @@ namespace RealSuite.UserControls
             maxPriceLabel.BackColor = Color.FromArgb(100, 131, 184);
             maxPriceLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             maxPriceLabel.ForeColor = Color.White;
-            maxPriceLabel.Location = new Point(20, 122);
-            maxPriceLabel.Margin = new Padding(8, 0, 8, 0);
+            maxPriceLabel.Location = new Point(8, 51);
             maxPriceLabel.Name = "maxPriceLabel";
-            maxPriceLabel.Size = new Size(165, 58);
+            maxPriceLabel.Size = new Size(73, 26);
             maxPriceLabel.TabIndex = 5;
             maxPriceLabel.Text = "Pris til";
             // 
@@ -445,20 +432,20 @@ namespace RealSuite.UserControls
             listedDatePickerLabel.Controls.Add(listedDateToLabel);
             listedDatePickerLabel.Controls.Add(listedDateFromLabel);
             listedDatePickerLabel.Controls.Add(listedToDatePicker);
-            listedDatePickerLabel.Location = new Point(952, 26);
-            listedDatePickerLabel.Margin = new Padding(8, 10, 8, 10);
+            listedDatePickerLabel.Location = new Point(381, 11);
+            listedDatePickerLabel.Margin = new Padding(3, 4, 3, 4);
             listedDatePickerLabel.Name = "listedDatePickerLabel";
-            listedDatePickerLabel.Size = new Size(552, 214);
+            listedDatePickerLabel.Size = new Size(221, 89);
             listedDatePickerLabel.TabIndex = 17;
             // 
             // listedFromDatePicker
             // 
             listedFromDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
             listedFromDatePicker.Format = DateTimePickerFormat.Short;
-            listedFromDatePicker.Location = new Point(240, 17);
-            listedFromDatePicker.Margin = new Padding(8, 10, 8, 10);
+            listedFromDatePicker.Location = new Point(96, 7);
+            listedFromDatePicker.Margin = new Padding(3, 4, 3, 4);
             listedFromDatePicker.Name = "listedFromDatePicker";
-            listedFromDatePicker.Size = new Size(279, 59);
+            listedFromDatePicker.Size = new Size(114, 29);
             listedFromDatePicker.TabIndex = 15;
             listedFromDatePicker.ValueChanged += ListedFromDatePicker_ValueChanged;
             // 
@@ -468,10 +455,9 @@ namespace RealSuite.UserControls
             listedDateToLabel.BackColor = Color.FromArgb(100, 131, 184);
             listedDateToLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             listedDateToLabel.ForeColor = Color.White;
-            listedDateToLabel.Location = new Point(22, 115);
-            listedDateToLabel.Margin = new Padding(8, 0, 8, 0);
+            listedDateToLabel.Location = new Point(9, 48);
             listedDateToLabel.Name = "listedDateToLabel";
-            listedDateToLabel.Size = new Size(189, 58);
+            listedDateToLabel.Size = new Size(84, 26);
             listedDateToLabel.TabIndex = 18;
             listedDateToLabel.Text = "Dato til";
             // 
@@ -481,10 +467,9 @@ namespace RealSuite.UserControls
             listedDateFromLabel.BackColor = Color.FromArgb(100, 131, 184);
             listedDateFromLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
             listedDateFromLabel.ForeColor = Color.White;
-            listedDateFromLabel.Location = new Point(22, 31);
-            listedDateFromLabel.Margin = new Padding(8, 0, 8, 0);
+            listedDateFromLabel.Location = new Point(9, 13);
             listedDateFromLabel.Name = "listedDateFromLabel";
-            listedDateFromLabel.Size = new Size(207, 58);
+            listedDateFromLabel.Size = new Size(91, 26);
             listedDateFromLabel.TabIndex = 17;
             listedDateFromLabel.Text = "Dato fra";
             // 
@@ -492,10 +477,10 @@ namespace RealSuite.UserControls
             // 
             listedToDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
             listedToDatePicker.Format = DateTimePickerFormat.Short;
-            listedToDatePicker.Location = new Point(240, 108);
-            listedToDatePicker.Margin = new Padding(8, 10, 8, 10);
+            listedToDatePicker.Location = new Point(96, 45);
+            listedToDatePicker.Margin = new Padding(3, 4, 3, 4);
             listedToDatePicker.Name = "listedToDatePicker";
-            listedToDatePicker.Size = new Size(279, 59);
+            listedToDatePicker.Size = new Size(114, 29);
             listedToDatePicker.TabIndex = 16;
             listedToDatePicker.ValueChanged += ListedToDatePicker_ValueChanged;
             // 
@@ -503,10 +488,10 @@ namespace RealSuite.UserControls
             // 
             sellerComboBoxLabel.BackColor = Color.FromArgb(179, 215, 232);
             sellerComboBoxLabel.Controls.Add(sellerComboBox);
-            sellerComboBoxLabel.Location = new Point(382, 84);
-            sellerComboBoxLabel.Margin = new Padding(8, 10, 8, 10);
+            sellerComboBoxLabel.Location = new Point(153, 35);
+            sellerComboBoxLabel.Margin = new Padding(3, 4, 3, 4);
             sellerComboBoxLabel.Name = "sellerComboBoxLabel";
-            sellerComboBoxLabel.Size = new Size(282, 125);
+            sellerComboBoxLabel.Size = new Size(113, 52);
             sellerComboBoxLabel.TabIndex = 19;
             // 
             // sellerComboBox
@@ -515,23 +500,22 @@ namespace RealSuite.UserControls
             sellerComboBox.Font = new Font("Microsoft YaHei", 10F);
             sellerComboBox.FormattingEnabled = true;
             sellerComboBox.Items.AddRange(new object[] { "Alle" });
-            sellerComboBox.Location = new Point(18, 19);
-            sellerComboBox.Margin = new Padding(8, 10, 8, 10);
+            sellerComboBox.Location = new Point(7, 8);
+            sellerComboBox.Margin = new Padding(3, 4, 3, 4);
             sellerComboBox.Name = "sellerComboBox";
-            sellerComboBox.Size = new Size(239, 60);
+            sellerComboBox.Size = new Size(98, 31);
             sellerComboBox.TabIndex = 18;
             sellerComboBox.SelectedValueChanged += ApplyFilters;
             // 
             // ViewPropertiesPage
             // 
-            AutoScaleDimensions = new SizeF(20F, 48F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(topPanel);
             Controls.Add(propertiesDataGridView);
-            Margin = new Padding(8, 7, 8, 7);
             Name = "ViewPropertiesPage";
-            Size = new Size(2320, 1447);
+            Size = new Size(928, 603);
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
