@@ -78,6 +78,11 @@ namespace Models
             saelgerColumn.DataType = typeof(string);
             saelgerColumn.ColumnName = "Sælger";
             Columns.Add(saelgerColumn);
+
+            DataColumn saelgerPhoneNumberColumn = new DataColumn();
+            saelgerPhoneNumberColumn.DataType = typeof(string);
+            saelgerPhoneNumberColumn.ColumnName = "Telefonnummer";
+            Columns.Add(saelgerPhoneNumberColumn);
         }
     }
 }
