@@ -86,6 +86,7 @@ namespace RealSuite.UserControls
             propertiesDataGridView.Columns["SqmPrice"].HeaderText = "dkk/m2";
             propertiesDataGridView.Columns["SqmPrice"].DefaultCellStyle.Format = "N0";
             propertiesDataGridView.Columns["Sælger"].DisplayIndex = 7;
+            propertiesDataGridView.Columns["PhoneNumber"].Visible = false;
         }
 
         private void SetSoldDatePickersInitialValues()
