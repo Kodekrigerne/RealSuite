@@ -73,7 +73,7 @@ namespace RealSuite.UserControls
                 Convert.ToInt32(zipcode_textbox.Text), Convert.ToInt32(byggeår_textbox.Text),
                 Convert.ToInt32(kvm_textbox.Text), Convert.ToInt32(sælgerID_textbox.Text),
                 Convert.ToDouble(pris_textbox.Text), Convert.ToInt32(ejendomsmæglerID_textbox.Text),
-                dato_datepicker.Value, solgt_checkbox.Checked);
+                dato_datepicker.Value, solgt_checkbox.Checked ? solgtdato_dateTimePicker.Value : null, solgt_checkbox.Checked);
 
             bool rowCreated = propertyService.CreateProperty(propertyDTO);
 
