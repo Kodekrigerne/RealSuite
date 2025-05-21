@@ -78,6 +78,7 @@ namespace RealSuite.UserControls
             {
                 DialogResult confirm = MessageBox.Show("Aktivér redigering?",
                     "Bekræft redigering", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                editingActivatedLabel.Text = "Redigering aktiveret";
 
                 if (confirm == DialogResult.Yes)
                 {
@@ -110,6 +111,7 @@ namespace RealSuite.UserControls
             else
             {
                 SetupPage();
+                editingActivatedLabel.Text = "Redigering ikke aktiveret";
             }
         }
 

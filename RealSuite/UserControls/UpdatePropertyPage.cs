@@ -51,6 +51,7 @@ namespace RealSuite.UserControls
         {
             if (solgt_checkbox.Checked == true)
             {
+                forSaleLabel.Visible = false;
                 solgtdato_label.Visible = true;
                 solgtdato_dateTimePicker.Visible = true;
             }
@@ -58,6 +59,7 @@ namespace RealSuite.UserControls
             {
                 solgtdato_label.Visible = false;
                 solgtdato_dateTimePicker.Visible = false;
+                forSaleLabel.Visible = true;
             }
         }
 
@@ -92,6 +94,8 @@ namespace RealSuite.UserControls
                 DialogResult confirm = MessageBox.Show("Aktivér redigering?",
                     "Bekræft redigering", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
+                editingActivatedLabel.Text = "Redigering aktiveret";
+
                 if (confirm == DialogResult.OK)
                 {
                     CheckLabelsText("");
@@ -121,6 +125,7 @@ namespace RealSuite.UserControls
             }
             else
             {
+                editingActivatedLabel.Text = "Redigering ikke aktiveret";
                 SetupPageDetails(_propertyToUpdate, _sellerName);
             }
 
@@ -518,6 +523,11 @@ namespace RealSuite.UserControls
                 page.SetupPage();
                 _navigation.NavigateTo(Pages.UpdateSeller);
             }
+        }
+
+        private void adressPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
