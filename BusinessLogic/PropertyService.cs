@@ -1,8 +1,8 @@
-﻿using DataAccess;
+﻿using System.Data;
+using System.Text.RegularExpressions;
+using DataAccess;
 using Models;
 using Models.DTOModels;
-using System.Data;
-using System.Text.RegularExpressions;
 
 namespace BusinessLogic
 {
@@ -30,11 +30,14 @@ namespace BusinessLogic
             return dataTable;
         }
 
-        public void ApplyFilters(string sold, int minPrice, int maxPrice, DateTime listedFrom, DateTime listedTo, string zipCode, string sellerID, string[] search)
+        public void ApplyFilters(string sold, int minPrice, int maxPrice, DateTime? soldFrom, DateTime? soldTo, string zipCode, string sellerID, string[] search)
         {
             string soldFilter = sold == "Alle" ? "" : sold == "Solgt" ? "Sold = 1 AND" : "Sold = 0 AND";
             string priceFilter = $"Price >= {minPrice} AND Price <= {maxPrice} AND";
-            string listedFilter = $"DateListed >= #{listedFrom:yyyy-MM-dd}# AND DateListed <= #{listedTo:yyyy-MM-dd}# AND";
+
+            string soldDateFilter = string.Empty;
+            if (sold != "Solgt") soldDateFilter = "";
+            else soldDateFilter = $"DateSold >= #{soldFrom:yyyy-MM-dd}# AND DateSold <= #{soldTo:yyyy-MM-dd}# AND";
             string zipCodeFilter = zipCode == "Alle" ? "ZipCode = ZipCode" : $"ZipCode = {zipCode}";
             string sellerFilter = sellerID == "Alle" ? "SellerID = SellerID" : $"SellerID = {sellerID}";
             string searchFilter = string.Empty;
@@ -55,7 +58,7 @@ namespace BusinessLogic
             }
 
             PropertiesSource.Filter = string.Empty;
-            PropertiesSource.Filter += $"{soldFilter} {priceFilter} {listedFilter} {zipCodeFilter} AND {sellerFilter} {searchFilter}";
+            PropertiesSource.Filter += $"{soldFilter} {priceFilter} {soldDateFilter} {zipCodeFilter} AND {sellerFilter} {searchFilter}";
         }
 
         public bool CreateProperty(PropertyDTO propertyDTO)

@@ -30,9 +30,9 @@ namespace RealSuite.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             propertiesDataGridView = new RsDataGridView();
             topPanel = new Panel();
             searchInfoPictureBox = new PictureBox();
@@ -59,11 +59,11 @@ namespace RealSuite.UserControls
             selectedMinPriceLabel = new Label();
             minPriceLabel = new Label();
             maxPriceLabel = new Label();
-            listedDatePickerLabel = new Panel();
-            listedFromDatePicker = new DateTimePicker();
-            listedDateToLabel = new Label();
-            listedDateFromLabel = new Label();
-            listedToDatePicker = new DateTimePicker();
+            soldDatePickerLabel = new Panel();
+            soldFromDatePicker = new DateTimePicker();
+            soldDateToLabel = new Label();
+            soldDateFromLabel = new Label();
+            soldToDatePicker = new DateTimePicker();
             sellerComboBoxLabel = new Panel();
             sellerComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)propertiesDataGridView).BeginInit();
@@ -74,34 +74,34 @@ namespace RealSuite.UserControls
             priceFromFilterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).BeginInit();
-            listedDatePickerLabel.SuspendLayout();
+            soldDatePickerLabel.SuspendLayout();
             sellerComboBoxLabel.SuspendLayout();
             SuspendLayout();
             // 
             // propertiesDataGridView
             // 
-            dataGridViewCellStyle4.NullValue = null;
-            propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.NullValue = null;
+            propertiesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             propertiesDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(166, 193, 239);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(166, 193, 239);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            propertiesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             propertiesDataGridView.ColumnHeadersHeight = 4;
             propertiesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(228, 221, 177);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(228, 221, 177);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            propertiesDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             propertiesDataGridView.Location = new Point(0, 182);
             propertiesDataGridView.Margin = new Padding(4);
             propertiesDataGridView.Name = "propertiesDataGridView";
@@ -129,7 +129,7 @@ namespace RealSuite.UserControls
             topPanel.Controls.Add(clearButton);
             topPanel.Controls.Add(refreshButton);
             topPanel.Controls.Add(priceFromFilterPanel);
-            topPanel.Controls.Add(listedDatePickerLabel);
+            topPanel.Controls.Add(soldDatePickerLabel);
             topPanel.Controls.Add(sellerComboBoxLabel);
             topPanel.Dock = DockStyle.Top;
             topPanel.Location = new Point(0, 0);
@@ -284,7 +284,7 @@ namespace RealSuite.UserControls
             soldComboBox.Name = "soldComboBox";
             soldComboBox.Size = new Size(100, 31);
             soldComboBox.TabIndex = 0;
-            soldComboBox.SelectedIndexChanged += ApplyFilters;
+            soldComboBox.SelectedIndexChanged += SoldComboBox_SelectedIndexChanged;
             // 
             // clearButtonIconLabel
             // 
@@ -425,64 +425,69 @@ namespace RealSuite.UserControls
             maxPriceLabel.TabIndex = 5;
             maxPriceLabel.Text = "Pris til";
             // 
-            // listedDatePickerLabel
+            // soldDatePickerLabel
             // 
-            listedDatePickerLabel.BackColor = Color.FromArgb(179, 215, 232);
-            listedDatePickerLabel.Controls.Add(listedFromDatePicker);
-            listedDatePickerLabel.Controls.Add(listedDateToLabel);
-            listedDatePickerLabel.Controls.Add(listedDateFromLabel);
-            listedDatePickerLabel.Controls.Add(listedToDatePicker);
-            listedDatePickerLabel.Location = new Point(381, 11);
-            listedDatePickerLabel.Margin = new Padding(3, 4, 3, 4);
-            listedDatePickerLabel.Name = "listedDatePickerLabel";
-            listedDatePickerLabel.Size = new Size(221, 89);
-            listedDatePickerLabel.TabIndex = 17;
+            soldDatePickerLabel.BackColor = Color.FromArgb(179, 215, 232);
+            soldDatePickerLabel.Controls.Add(soldFromDatePicker);
+            soldDatePickerLabel.Controls.Add(soldDateToLabel);
+            soldDatePickerLabel.Controls.Add(soldDateFromLabel);
+            soldDatePickerLabel.Controls.Add(soldToDatePicker);
+            soldDatePickerLabel.Location = new Point(381, 11);
+            soldDatePickerLabel.Margin = new Padding(3, 4, 3, 4);
+            soldDatePickerLabel.Name = "soldDatePickerLabel";
+            soldDatePickerLabel.Size = new Size(221, 89);
+            soldDatePickerLabel.TabIndex = 17;
+            soldDatePickerLabel.Visible = false;
             // 
-            // listedFromDatePicker
+            // soldFromDatePicker
             // 
-            listedFromDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
-            listedFromDatePicker.Format = DateTimePickerFormat.Short;
-            listedFromDatePicker.Location = new Point(96, 7);
-            listedFromDatePicker.Margin = new Padding(3, 4, 3, 4);
-            listedFromDatePicker.Name = "listedFromDatePicker";
-            listedFromDatePicker.Size = new Size(114, 29);
-            listedFromDatePicker.TabIndex = 15;
-            listedFromDatePicker.ValueChanged += ListedFromDatePicker_ValueChanged;
+            soldFromDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
+            soldFromDatePicker.Format = DateTimePickerFormat.Short;
+            soldFromDatePicker.Location = new Point(96, 7);
+            soldFromDatePicker.Margin = new Padding(3, 4, 3, 4);
+            soldFromDatePicker.Name = "soldFromDatePicker";
+            soldFromDatePicker.Size = new Size(114, 29);
+            soldFromDatePicker.TabIndex = 15;
+            soldFromDatePicker.Visible = false;
+            soldFromDatePicker.ValueChanged += SoldFromDatePicker_ValueChanged;
             // 
-            // listedDateToLabel
+            // soldDateToLabel
             // 
-            listedDateToLabel.AutoSize = true;
-            listedDateToLabel.BackColor = Color.FromArgb(100, 131, 184);
-            listedDateToLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            listedDateToLabel.ForeColor = Color.White;
-            listedDateToLabel.Location = new Point(9, 48);
-            listedDateToLabel.Name = "listedDateToLabel";
-            listedDateToLabel.Size = new Size(84, 26);
-            listedDateToLabel.TabIndex = 18;
-            listedDateToLabel.Text = "Dato til";
+            soldDateToLabel.AutoSize = true;
+            soldDateToLabel.BackColor = Color.FromArgb(100, 131, 184);
+            soldDateToLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            soldDateToLabel.ForeColor = Color.White;
+            soldDateToLabel.Location = new Point(9, 48);
+            soldDateToLabel.Name = "soldDateToLabel";
+            soldDateToLabel.Size = new Size(84, 26);
+            soldDateToLabel.TabIndex = 18;
+            soldDateToLabel.Text = "Dato til";
+            soldDateToLabel.Visible = false;
             // 
-            // listedDateFromLabel
+            // soldDateFromLabel
             // 
-            listedDateFromLabel.AutoSize = true;
-            listedDateFromLabel.BackColor = Color.FromArgb(100, 131, 184);
-            listedDateFromLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
-            listedDateFromLabel.ForeColor = Color.White;
-            listedDateFromLabel.Location = new Point(9, 13);
-            listedDateFromLabel.Name = "listedDateFromLabel";
-            listedDateFromLabel.Size = new Size(91, 26);
-            listedDateFromLabel.TabIndex = 17;
-            listedDateFromLabel.Text = "Dato fra";
+            soldDateFromLabel.AutoSize = true;
+            soldDateFromLabel.BackColor = Color.FromArgb(100, 131, 184);
+            soldDateFromLabel.Font = new Font("Microsoft YaHei", 11F, FontStyle.Bold);
+            soldDateFromLabel.ForeColor = Color.White;
+            soldDateFromLabel.Location = new Point(9, 13);
+            soldDateFromLabel.Name = "soldDateFromLabel";
+            soldDateFromLabel.Size = new Size(91, 26);
+            soldDateFromLabel.TabIndex = 17;
+            soldDateFromLabel.Text = "Dato fra";
+            soldDateFromLabel.Visible = false;
             // 
-            // listedToDatePicker
+            // soldToDatePicker
             // 
-            listedToDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
-            listedToDatePicker.Format = DateTimePickerFormat.Short;
-            listedToDatePicker.Location = new Point(96, 45);
-            listedToDatePicker.Margin = new Padding(3, 4, 3, 4);
-            listedToDatePicker.Name = "listedToDatePicker";
-            listedToDatePicker.Size = new Size(114, 29);
-            listedToDatePicker.TabIndex = 16;
-            listedToDatePicker.ValueChanged += ListedToDatePicker_ValueChanged;
+            soldToDatePicker.Font = new Font("Microsoft YaHei", 9.75F);
+            soldToDatePicker.Format = DateTimePickerFormat.Short;
+            soldToDatePicker.Location = new Point(96, 45);
+            soldToDatePicker.Margin = new Padding(3, 4, 3, 4);
+            soldToDatePicker.Name = "soldToDatePicker";
+            soldToDatePicker.Size = new Size(114, 29);
+            soldToDatePicker.TabIndex = 16;
+            soldToDatePicker.Visible = false;
+            soldToDatePicker.ValueChanged += SoldToDatePicker_ValueChanged;
             // 
             // sellerComboBoxLabel
             // 
@@ -526,8 +531,8 @@ namespace RealSuite.UserControls
             priceFromFilterPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)maxPriceTrackBar).EndInit();
             ((System.ComponentModel.ISupportInitialize)minPriceTrackBar).EndInit();
-            listedDatePickerLabel.ResumeLayout(false);
-            listedDatePickerLabel.PerformLayout();
+            soldDatePickerLabel.ResumeLayout(false);
+            soldDatePickerLabel.PerformLayout();
             sellerComboBoxLabel.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -549,11 +554,11 @@ namespace RealSuite.UserControls
         private Panel clearButtonIconLabel;
         private Panel priceFromFilterPanel;
         private Panel soldFilterPanel;
-        private DateTimePicker listedToDatePicker;
-        private DateTimePicker listedFromDatePicker;
-        private Panel listedDatePickerLabel;
-        private Label listedDateToLabel;
-        private Label listedDateFromLabel;
+        private DateTimePicker soldToDatePicker;
+        private DateTimePicker soldFromDatePicker;
+        private Panel soldDatePickerLabel;
+        private Label soldDateToLabel;
+        private Label soldDateFromLabel;
         private Label soldFilterLabel;
         private Label sellerFilterLabel;
         private Panel sellerComboBoxLabel;
