@@ -9,7 +9,7 @@ namespace DataAccess
     {
         public DataTable GetProperties()
         {
-            string query = "SELECT P.*, S.PhoneNumber, (S.FirstName + ' ' + S.LastName) AS Sælger FROM Properties P LEFT OUTER JOIN Sellers S ON P.SellerID = S.ID";
+            string query = "SELECT P.*, (S.FirstName + ' ' + S.LastName) AS Sælger, S.PhoneNumber FROM Properties P LEFT OUTER JOIN Sellers S ON P.SellerID = S.ID";
             var dataTable = new DataTable();
 
             try
