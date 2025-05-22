@@ -20,7 +20,8 @@ namespace RealSuite
             _navigation = new(_pages);
             _navigation.NavigateTo(Pages.Front);
             SetNavigations();
-            CheckServerStatus();
+            var status = CheckServerStatus();
+            if (status == false) MessageBox.Show("Ingen forbindelse til database.");
             SetDbStatusTooltip();
         }
 
@@ -123,9 +124,11 @@ namespace RealSuite
             SetLogo(Properties.Resources.FrontLogoHighlight);
         }
 
-        private void CheckServerStatus()
+        private bool CheckServerStatus()
         {
-            serverIndicatorLabel.ForeColor = _statusService.DbCheck() ? Color.LightGreen : Color.Red;
+            var status = _statusService.DbCheck();
+            serverIndicatorLabel.ForeColor = status ? Color.LightGreen : Color.Red;
+            return status;
         }
 
         private void DbCheckTimer_Tick(object sender, EventArgs e)
