@@ -10,10 +10,17 @@ namespace DataAccess
 
         private static string GetPassword()
         {
-            var solutionRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\.."));
-            var envPath = Path.Combine(solutionRoot, "password.env");
-            var password = File.ReadLines(envPath).First();
-            return password;
+            try
+            {
+                var solutionRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\.."));
+                var envPath = Path.Combine(solutionRoot, "password.env");
+                var password = File.ReadLines(envPath).First();
+                return password;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
 
         public static void OpenConnection()
