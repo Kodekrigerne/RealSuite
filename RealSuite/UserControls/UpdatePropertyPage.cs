@@ -185,14 +185,11 @@ namespace RealSuite.UserControls
 
         private void addSellerGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                sælgerID_textbox.Text = addSellerGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
-                sælgernavn_textbox.Text = addSellerGrid.Rows[e.RowIndex].Cells[1].Value + " " +
-                                          addSellerGrid.Rows[e.RowIndex].Cells[2].Value;
-                addSellerGrid.Visible = false;
-            }
-            catch (Exception) { }
+            if (e.RowIndex < 0) return;
+            sælgerID_textbox.Text = addSellerGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+            sælgernavn_textbox.Text = addSellerGrid.Rows[e.RowIndex].Cells[1].Value + " " +
+                                      addSellerGrid.Rows[e.RowIndex].Cells[2].Value;
+            addSellerGrid.Visible = false;
         }
 
         private void HandleDigit_KeyPress(object sender, KeyPressEventArgs e)

@@ -421,6 +421,7 @@ namespace RealSuite.UserControls
         private void sellerDataGrids_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var index = e.RowIndex;
+            if (index < 0) return;
             DataGridView dataGridView = sender as DataGridView;
             var row = dataGridView.Rows[index];
 
