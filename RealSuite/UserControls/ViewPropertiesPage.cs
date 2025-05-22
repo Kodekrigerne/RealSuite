@@ -238,6 +238,7 @@ namespace RealSuite.UserControls
         private void PropertiesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var index = e.RowIndex;
+            if (index < 0) return;
             var row = propertiesDataGridView.Rows[index];
 
             int id = Convert.ToInt32(row.Cells["Id"].Value);
